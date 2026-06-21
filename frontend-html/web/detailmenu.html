@@ -8,6 +8,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=JetBrains+Mono:wght@100..800&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="components.css" rel="stylesheet"/>
+<script src="components.js" defer></script>
 <!-- Tailwind Configuration -->
 <script id="tailwind-config">
       tailwind.config = {
@@ -141,19 +143,7 @@
 <body class="font-body-md text-body-md overflow-x-hidden">
 <div class="grain-overlay"></div>
 <!-- Navigation Header -->
-<header class="bg-surface-bright sticky top-0 z-50 border-b border-outline-muted">
-<nav class="flex justify-between items-center px-6 md:px-margin-desktop py-6 max-w-container-max mx-auto">
-<div class="font-headline-md text-headline-md text-primary tracking-tight">Sela Cafe</div>
-<div class="hidden md:flex gap-8 items-center">
-<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Home</a>
-<a class="font-label-caps text-label-caps text-primary border-b-2 border-primary pb-1" href="#">Menu</a>
-<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Promo</a>
-<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Locations</a>
-<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Careers</a>
-</div>
-<button class="bg-primary text-on-primary px-6 py-3 font-label-caps text-label-caps hover:bg-deep-espresso active:scale-95 transition-all">Order Now</button>
-</nav>
-</header>
+<div id="navbar-placeholder"></div>
 <main class="max-w-container-max mx-auto px-6 md:px-margin-desktop py-12 md:py-24">
 <!-- Product Hero Section -->
 <section class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-start">
@@ -377,47 +367,7 @@
 </section>
 </main>
 <!-- Footer -->
-<footer class="bg-deep-espresso text-on-primary">
-<div class="max-w-container-max mx-auto px-6 md:px-margin-desktop py-section-padding">
-<div class="flex flex-col md:flex-row justify-between items-start gap-12">
-<div class="flex flex-col gap-6">
-<div class="font-headline-md text-headline-md tracking-tight">Sela Cafe</div>
-<p class="font-body-md text-on-primary-container max-w-sm">
-                        Dedicated to the preservation of slow moments and artisan heritage. Join us in our sanctuary for quiet contemplation and exceptional coffee.
-                    </p>
-</div>
-<div class="grid grid-cols-2 md:grid-cols-3 gap-12">
-<div class="flex flex-col gap-4">
-<span class="font-label-caps text-label-caps uppercase opacity-50">Menu</span>
-<a class="font-body-md text-sm hover:text-primary-fixed transition-colors" href="#">Daily Brews</a>
-<a class="font-body-md text-sm hover:text-primary-fixed transition-colors" href="#">The Pastry Lab</a>
-<a class="font-body-md text-sm hover:text-primary-fixed transition-colors" href="#">Retail Grains</a>
-</div>
-<div class="flex flex-col gap-4">
-<span class="font-label-caps text-label-caps uppercase opacity-50">Culture</span>
-<a class="font-body-md text-sm hover:text-primary-fixed transition-colors" href="#">Our Origin</a>
-<a class="font-body-md text-sm hover:text-primary-fixed transition-colors" href="#">Artisan Grants</a>
-<a class="font-body-md text-sm hover:text-primary-fixed transition-colors" href="#">The Press</a>
-</div>
-<div class="flex flex-col gap-4">
-<span class="font-label-caps text-label-caps uppercase opacity-50">Contact</span>
-<a class="font-body-md text-sm hover:text-primary-fixed transition-colors" href="#">Privacy</a>
-<a class="font-body-md text-sm hover:text-primary-fixed transition-colors" href="#">Terms</a>
-<a class="font-body-md text-sm hover:text-primary-fixed transition-colors" href="#">Careers</a>
-</div>
-</div>
-</div>
-<div class="sela-line my-12 opacity-10"></div>
-<div class="flex flex-col md:flex-row justify-between items-center gap-4">
-<p class="font-label-caps text-[10px] opacity-40">© 2024 Sela Cafe. All rights reserved. Crafted for the slow living artisan.</p>
-<div class="flex gap-6">
-<a class="material-symbols-outlined text-on-primary-container hover:text-on-primary transition-colors" href="#">share</a>
-<a class="material-symbols-outlined text-on-primary-container hover:text-on-primary transition-colors" href="#">public</a>
-<a class="material-symbols-outlined text-on-primary-container hover:text-on-primary transition-colors" href="#">coffee</a>
-</div>
-</div>
-</div>
-</footer>
+<div id="footer-placeholder"></div>
 <script>
         // Quantity Selector Logic
         let currentQty = 1;

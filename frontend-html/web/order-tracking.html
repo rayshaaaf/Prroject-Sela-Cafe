@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order Tracking | Sela Cafe</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="components.css" rel="stylesheet"/>
+<script src="components.js" defer></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#201b0c",
+                        "surface-bright": "#faf9f5",
+                        "primary-container": "#33210d",
+                        "on-secondary-fixed-variant": "#2f4d39",
+                        "on-secondary-fixed": "#022110",
+                        "inverse-on-surface": "#f2f1ed",
+                        "tertiary-container": "#292515",
+                        "on-surface-variant": "#4e453d",
+                        "on-surface": "#1b1c1a",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-dim": "#dbdad6",
+                        "primary": "#1b0c00",
+                        "surface-variant": "#e3e2df",
+                        "on-error-container": "#93000a",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#adcfb4",
+                        "on-primary-container": "#a3876c",
+                        "surface-container-highest": "#e3e2df",
+                        "surface-tint": "#725a42",
+                        "surface-container-low": "#f4f4f0",
+                        "on-secondary-container": "#4a6a53",
+                        "on-primary-fixed": "#291805",
+                        "tertiary-fixed-dim": "#cfc6ae",
+                        "outline": "#80756c",
+                        "inverse-primary": "#e1c1a3",
+                        "on-primary-fixed-variant": "#58432c",
+                        "heritage-cream": "#F2E8CF",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#4c4634",
+                        "surface": "#faf9f5",
+                        "secondary-container": "#c5e8cc",
+                        "moss-green": "#386641",
+                        "surface-container-high": "#e9e8e4",
+                        "paper-white": "#FDFCF8",
+                        "background": "#faf9f5",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#c8ebcf",
+                        "tertiary": "#141003",
+                        "primary-fixed-dim": "#e1c1a3",
+                        "on-background": "#1b1c1a",
+                        "secondary": "#46654f",
+                        "primary-fixed": "#feddbe",
+                        "inverse-surface": "#2f312e",
+                        "on-tertiary-container": "#938c76",
+                        "deep-espresso": "#2A1B0E",
+                        "outline-variant": "#d2c4b9",
+                        "tertiary-fixed": "#ece2c9",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#efeeea",
+                        "outline-muted": "rgba(128, 117, 108, 0.2)"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-padding": "8rem",
+                        "margin-desktop": "80px",
+                        "gutter": "24px",
+                        "margin-mobile": "24px",
+                        "container-max": "1280px",
+                        "unit": "4px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["JetBrains Mono"],
+                        "headline-xl": ["EB Garamond"],
+                        "body-md": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "headline-lg": ["EB Garamond"],
+                        "headline-md": ["EB Garamond"],
+                        "label-md": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["EB Garamond"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "headline-xl": ["64px", { "lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+                        "headline-md": ["28px", { "lineHeight": "34px", "fontWeight": "500" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "38px", "fontWeight": "500" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .sela-grain-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.05;
+            background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+        }
+        .sela-line {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(128, 117, 108, 0.2), transparent);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-pulse {
+            animation: pulse-border 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse-border {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md selection:bg-heritage-cream selection:text-deep-espresso">
+<div class="sela-grain-overlay"></div>
+<!-- Header Navigation -->
+<div id="navbar-placeholder"></div>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 md:py-section-padding">
+<!-- Order Header -->
+<div class="flex flex-col md:flex-row justify-between items-baseline gap-4 mb-12">
+<div>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Ongoing Ritual</span>
+<h1 class="font-headline-lg text-headline-lg text-deep-espresso mt-2">Track Your Ritual</h1>
+</div>
+<div class="text-right">
+<div class="font-label-md text-label-md text-on-surface-variant">Order Reference</div>
+<div class="font-label-caps text-headline-md text-deep-espresso">#SC-2026-001245</div>
+</div>
+</div>
+<!-- Status Card -->
+<div class="bg-paper-white border border-outline-muted p-8 md:p-12 mb-16 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-deep-espresso"></div>
+<div class="flex flex-col md:flex-row items-center justify-between gap-12">
+<div class="text-center md:text-left flex-1">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-heritage-cream text-deep-espresso font-label-caps text-[10px] uppercase tracking-tighter mb-4">
+<span class="w-1.5 h-1.5 rounded-full bg-deep-espresso active-pulse"></span>
+                        Status: PREPARING
+                    </div>
+<div class="font-headline-xl text-headline-xl text-deep-espresso leading-none">
+                        12 Minutes
+                    </div>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-4">Estimated Ready Time</p>
+</div>
+<div class="flex-1 w-full">
+<!-- Progress Timeline -->
+<div class="relative pt-8">
+<!-- Connecting Line -->
+<div class="absolute top-[41px] left-0 w-full h-[1px] bg-outline-muted"></div>
+<div class="absolute top-[41px] left-0 w-1/2 h-[1px] bg-deep-espresso"></div>
+<!-- Steps -->
+<div class="flex justify-between relative">
+<!-- Step 1 -->
+<div class="flex flex-col items-center gap-4">
+<div class="w-3 h-3 rounded-full bg-deep-espresso ring-4 ring-paper-white relative z-10"></div>
+<span class="font-label-caps text-[10px] text-deep-espresso">RECEIVED</span>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center gap-4">
+<div class="w-3 h-3 rounded-full bg-deep-espresso ring-4 ring-paper-white relative z-10"></div>
+<span class="font-label-caps text-[10px] text-deep-espresso">CONFIRMED</span>
+</div>
+<!-- Step 3 (Active) -->
+<div class="flex flex-col items-center gap-4">
+<div class="w-5 h-5 rounded-full bg-paper-white border-2 border-deep-espresso ring-4 ring-paper-white relative z-10 flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-deep-espresso active-pulse"></div>
+</div>
+<span class="font-label-caps text-[10px] text-deep-espresso font-bold">PREPARING</span>
+</div>
+<!-- Step 4 -->
+<div class="flex flex-col items-center gap-4 opacity-30">
+<div class="w-3 h-3 rounded-full bg-outline-variant ring-4 ring-paper-white relative z-10"></div>
+<span class="font-label-caps text-[10px]">READY</span>
+</div>
+<!-- Step 5 -->
+<div class="flex flex-col items-center gap-4 opacity-30">
+<div class="w-3 h-3 rounded-full bg-outline-variant ring-4 ring-paper-white relative z-10"></div>
+<span class="font-label-caps text-[10px]">COMPLETED</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Details Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-start border-t border-outline-muted pt-16">
+<!-- Info Column -->
+<div class="space-y-12">
+<div>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-6 tracking-widest">Service Details</h3>
+<div class="grid grid-cols-2 gap-8">
+<div>
+<div class="font-label-md text-label-md text-on-surface-variant mb-1">Order Type</div>
+<div class="font-body-lg text-body-lg text-deep-espresso">Dine In — Table 04</div>
+</div>
+<div>
+<div class="font-label-md text-label-md text-on-surface-variant mb-1">Payment</div>
+<div class="font-body-lg text-body-lg text-deep-espresso">QRIS Premium</div>
+</div>
+</div>
+</div>
+<div class="p-6 bg-heritage-cream/20 border border-outline-muted rounded-sm">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-moss-green mt-0.5" data-icon="info">info</span>
+<div>
+<p class="font-body-md text-body-md text-deep-espresso">Your barista is currently preparing the Saffron Croissant. The aroma profile is expected to peak in 4 minutes.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Receipt Column -->
+<div class="space-y-8">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-6 tracking-widest">Digital Receipt</h3>
+<div class="space-y-6">
+<!-- Item 1 -->
+<div class="flex justify-between items-start group">
+<div class="flex-1">
+<div class="font-body-lg text-body-lg text-deep-espresso">Velvet Oat Latte</div>
+<div class="font-label-md text-label-md text-on-surface-variant mt-1">Qty: 1 • Oat Milk • 50% Sugar</div>
+</div>
+<div class="font-label-caps text-label-md text-deep-espresso">IDR 55.000</div>
+</div>
+<div class="sela-line"></div>
+<!-- Item 2 -->
+<div class="flex justify-between items-start group">
+<div class="flex-1">
+<div class="font-body-lg text-body-lg text-deep-espresso">Saffron Croissant</div>
+<div class="font-label-md text-label-md text-on-surface-variant mt-1">Qty: 1 • Warm Serving</div>
+</div>
+<div class="font-label-caps text-label-md text-deep-espresso">IDR 42.000</div>
+</div>
+</div>
+<!-- Summary Table -->
+<div class="mt-12 pt-8 border-t-2 border-deep-espresso space-y-4">
+<div class="flex justify-between items-center">
+<span class="font-body-md text-on-surface-variant">Subtotal</span>
+<span class="font-label-md text-on-surface">IDR 97.000</span>
+</div>
+<div class="flex justify-between items-center text-moss-green">
+<span class="font-body-md">Membership Discount</span>
+<span class="font-label-md">- IDR 5.000</span>
+</div>
+<div class="flex justify-between items-center pt-4">
+<span class="font-label-caps text-label-caps text-deep-espresso font-bold">Grand Total</span>
+<span class="font-headline-md text-headline-md text-deep-espresso">IDR 92.000</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="mt-20 flex flex-col md:flex-row items-center justify-center gap-6">
+<button class="w-full md:w-auto px-12 py-4 bg-deep-espresso text-surface font-label-caps text-label-caps tracking-widest hover:bg-black transition-all active:scale-95">
+                REFRESH STATUS
+            </button>
+<button class="w-full md:w-auto px-12 py-4 bg-transparent border border-deep-espresso text-deep-espresso font-label-caps text-label-caps tracking-widest hover:bg-deep-espresso hover:text-surface transition-all active:scale-95">
+                RETURN TO MENU
+            </button>
+</div>
+</main>
+<!-- Footer -->
+<div id="footer-placeholder"></div>
+<script>
+        // Simple Micro-interaction for status refresh simulation
+        const refreshBtn = document.querySelector('button:contains("REFRESH STATUS")') || document.querySelector('button');
+        if (refreshBtn) {
+            refreshBtn.addEventListener('click', function() {
+                this.textContent = 'SYNCHRONIZING...';
+                this.style.opacity = '0.7';
+                setTimeout(() => {
+                    this.textContent = 'REFRESH STATUS';
+                    this.style.opacity = '1';
+                }, 1500);
+            });
+        }
+
+        // Custom "contains" selector logic for button text if needed
+        document.querySelectorAll('button').forEach(btn => {
+            if(btn.textContent.trim() === 'REFRESH STATUS') {
+                btn.onclick = () => {
+                   btn.innerHTML = '<span class="flex items-center gap-2">SYNCHRONIZING <span class="animate-spin text-xs">/</span></span>';
+                   setTimeout(() => { btn.textContent = 'REFRESH STATUS'; }, 2000);
+                }
+            }
+        });
+    </script>
+</body></html>
