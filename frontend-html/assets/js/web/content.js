@@ -266,98 +266,11 @@ function renderCareers(container, careers) {
 }
 
 window.applyForJob = function(jobId, title) {
-    const modal = document.getElementById('apply-modal');
-    const jobTitleEl = document.getElementById('modal-job-title');
-    const jobIdInput = document.getElementById('modal-job-id');
-    
-    if (jobTitleEl) jobTitleEl.textContent = `Apply for ${title}`;
-    if (jobIdInput) jobIdInput.value = jobId;
-    
-    if (modal) {
-        modal.classList.remove('opacity-0', 'pointer-events-none');
-    }
-};
-
-window.closeApplyModal = function() {
-    const modal = document.getElementById('apply-modal');
-    if (modal) {
-        modal.classList.add('opacity-0', 'pointer-events-none');
-    }
-    document.getElementById('apply-form')?.reset();
-    const cvName = document.getElementById('cv-file-name');
-    if (cvName) cvName.textContent = 'Drag & drop or click to upload';
-};
-
-window.updateFileName = function(input) {
-    const nameEl = document.getElementById('cv-file-name');
-    if (nameEl && input.files && input.files[0]) {
-        nameEl.textContent = input.files[0].name;
-    }
-};
-
-window.submitApplication = async function(event) {
-    event.preventDefault();
-    const btn = document.getElementById('btn-submit-app');
-    const originalText = btn ? btn.innerHTML : '';
-    
-    if (btn) {
-        btn.disabled = true;
-        btn.innerHTML = `SUBMITTING... <span class="animate-spin material-symbols-outlined text-sm">autorenew</span>`;
-    }
-
-    const careerId = document.getElementById('modal-job-id')?.value;
-    const name = document.getElementById('apply-name')?.value?.trim();
-    const email = document.getElementById('apply-email')?.value?.trim();
-    const phone = document.getElementById('apply-phone')?.value?.trim();
-    const address = document.getElementById('apply-address')?.value?.trim();
-    const letter = document.getElementById('apply-letter')?.value?.trim();
-    const cvFile = document.getElementById('apply-cv')?.files[0];
-
-    if (!careerId || !name || !email || !phone || !address || !letter || !cvFile) {
-        window.showToast('Please fill all fields and upload your CV.', 'error');
-        if (btn) {
-            btn.disabled = false;
-            btn.innerHTML = originalText;
-        }
-        return;
-    }
-
-    const formData = new FormData();
-    formData.append('careerId', careerId);
-    formData.append('fullName', name);
-    formData.append('email', email);
-    formData.append('phone', phone);
-    formData.append('address', address);
-    formData.append('coverLetter', letter);
-    formData.append('cvFile', cvFile);
-
-    try {
-        const token = localStorage.getItem('token');
-        const headers = {};
-        if (token) headers['Authorization'] = `Bearer ${token}`;
-
-        const response = await fetch(`http://localhost:8090/api/applicants/apply`, {
-            method: 'POST',
-            headers,
-            body: formData
-        });
-
-        const data = await response.json().catch(() => ({}));
-        if (response.ok && data.success) {
-            window.showToast('Application submitted successfully!', 'success');
-            closeApplyModal();
-        } else {
-            window.showToast(data.message || 'Failed to submit application.', 'error');
-        }
-    } catch (err) {
-        console.error('Error submitting application:', err);
-        window.showToast('Network error. Please try again.', 'error');
-    } finally {
-        if (btn) {
-            btn.disabled = false;
-            btn.innerHTML = originalText;
-        }
-    }
+    // Show premium toast instructions
+    window.showToast(`Applying for ${title}... Please wait`, 'default');
+    setTimeout(() => {
+        window.showToast(`Application portal offline. Please send your CV to careers@selacafe.com with subject: [Application] ${title}`, 'error');
+    }, 1200);
 };
 
 // ─── Locations Module ──────────────────────────────────────────────────────────

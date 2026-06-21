@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Reviews | Sela Cafe</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=Manrope:wght@200..800&amp;family=JetBrains+Mono:wght@100..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-tertiary-fixed": "#201b0c",
+                "primary-container": "#33210d",
+                "on-primary-fixed-variant": "#58432c",
+                "inverse-primary": "#e1c1a3",
+                "on-error": "#ffffff",
+                "on-secondary-container": "#4a6a53",
+                "secondary": "#46654f",
+                "inverse-on-surface": "#f2f1ed",
+                "moss-green": "#386641",
+                "on-primary-container": "#a3876c",
+                "outline-variant": "#d2c4b9",
+                "on-primary-fixed": "#291805",
+                "surface-dim": "#dbdad6",
+                "on-secondary": "#ffffff",
+                "primary": "#1b0c00",
+                "on-secondary-fixed": "#022110",
+                "surface-container-lowest": "#ffffff",
+                "on-tertiary": "#ffffff",
+                "error-container": "#ffdad6",
+                "outline": "#80756c",
+                "on-primary": "#ffffff",
+                "on-surface": "#1b1c1a",
+                "inverse-surface": "#2f312e",
+                "tertiary-fixed": "#ece2c9",
+                "on-secondary-fixed-variant": "#2f4d39",
+                "heritage-cream": "#F2E8CF",
+                "surface-container-high": "#e9e8e4",
+                "outline-muted": "rgba(128, 117, 108, 0.2)",
+                "on-surface-variant": "#4e453d",
+                "surface-container-highest": "#e3e2df",
+                "error": "#ba1a1a",
+                "surface-bright": "#faf9f5",
+                "on-background": "#1b1c1a",
+                "surface-variant": "#e3e2df",
+                "surface": "#faf9f5",
+                "tertiary": "#141003",
+                "surface-tint": "#725a42",
+                "primary-fixed-dim": "#e1c1a3",
+                "surface-container": "#efeeea",
+                "on-error-container": "#93000a",
+                "tertiary-fixed-dim": "#cfc6ae",
+                "secondary-fixed-dim": "#adcfb4",
+                "on-tertiary-fixed-variant": "#4c4634",
+                "secondary-container": "#c5e8cc",
+                "deep-espresso": "#2A1B0E",
+                "tertiary-container": "#292515",
+                "surface-container-low": "#f4f4f0",
+                "primary-fixed": "#feddbe",
+                "background": "#faf9f5",
+                "paper-white": "#FDFCF8"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "margin-desktop": "80px",
+                "gutter": "24px",
+                "margin-mobile": "24px",
+                "unit": "4px",
+                "container-max": "1280px",
+                "section-padding": "8rem"
+            },
+            "fontFamily": {
+                "label-md": ["JetBrains Mono"],
+                "headline-md": ["EB Garamond"],
+                "body-lg": ["Manrope"],
+                "headline-xl": ["EB Garamond"],
+                "headline-lg": ["EB Garamond"],
+                "body-md": ["Manrope"],
+                "label-caps": ["JetBrains Mono"],
+                "headline-lg-mobile": ["EB Garamond"]
+            },
+            "fontSize": {
+                "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                "headline-md": ["28px", {"lineHeight": "34px", "fontWeight": "500"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "headline-xl": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "500"}],
+                "headline-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                "headline-lg-mobile": ["32px", {"lineHeight": "38px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #faf9f5;
+            color: #1b1c1a;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .paper-texture {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.05;
+            z-index: 9999;
+            background-image: url("https://www.transparenttextures.com/patterns/felt.png");
+        }
+
+        .sela-line {
+            height: 1px;
+            background-color: rgba(128, 117, 108, 0.2);
+            width: 100%;
+        }
+
+        .review-card {
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .review-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(42, 27, 14, 0.4);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .star-filled {
+            font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .modal-blur {
+            backdrop-filter: blur(8px);
+            background-color: rgba(253, 252, 248, 0.8);
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<div class="paper-texture"></div>
+<div id="navbar-placeholder"></div>
+<main class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop py-12 md:py-24">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+<div class="space-y-4">
+<span class="font-label-caps text-label-caps text-on-surface-variant tracking-widest block">PERSONAL JOURNALS</span>
+<h2 class="font-headline-xl text-headline-xl md:text-headline-xl text-deep-espresso">My Reviews</h2>
+<p class="max-w-xl text-on-surface-variant font-body-lg text-body-lg">A chronicle of moments spent at Sela. Each entry reflects our commitment to the artisan craft and your personal experience with our heritage blends.</p>
+</div>
+<button class="bg-deep-espresso text-paper-white px-8 py-4 flex items-center gap-3 active:scale-95 transition-transform duration-200 group" onclick="toggleModal(true)">
+<span class="material-symbols-outlined text-[20px]">edit_note</span>
+<span class="font-label-caps text-label-caps">Write Review</span>
+</button>
+</div>
+<!-- Reviews Grid -->
+<div id="reviews-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+</div>
+<!-- Aesthetic Empty Space / Decorative Element -->
+<div class="mt-32 flex justify-center">
+<div class="text-center max-w-sm">
+<span class="material-symbols-outlined text-[48px] text-outline-muted mb-4">coffee_maker</span>
+<p class="font-body-md text-on-surface-variant italic">"We don't just serve coffee; we preserve the silence between the pours."</p>
+</div>
+</div>
+</main>
+<!-- Modal Form (Write Review) -->
+<div class="fixed inset-0 z-[100] hidden items-center justify-center p-6" id="reviewModal">
+<div class="absolute inset-0 modal-blur" onclick="toggleModal(false)"></div>
+<div class="bg-paper-white border border-outline-muted w-full max-w-2xl relative z-10 p-8 md:p-12 animate-in fade-in zoom-in duration-300">
+<button class="absolute top-6 right-6 text-on-surface-variant hover:text-primary transition-colors" onclick="toggleModal(false)">
+<span class="material-symbols-outlined text-[32px]">close</span>
+</button>
+<div class="mb-10">
+<span class="font-label-caps text-label-caps text-on-surface-variant tracking-widest block mb-2">NEW ENTRY</span>
+<h3 class="font-headline-lg text-headline-lg text-deep-espresso">Share Your Experience</h3>
+</div>
+<form class="space-y-8" id="review-form">
+<input type="hidden" id="edit-review-id" value="" />
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-2">
+<label class="font-label-caps text-[11px] text-outline">MENU ITEM</label>
+<select id="review-menu-select" class="w-full bg-transparent border-0 border-b border-outline-variant focus:ring-0 focus:border-primary px-0 font-body-md py-3 appearance-none" required>
+<!-- Options populated dynamically -->
+</select>
+</div>
+<div class="space-y-2">
+<label class="font-label-caps text-[11px] text-outline">RATING</label>
+<div class="flex gap-2 py-3" id="rating-stars-container">
+<button class="material-symbols-outlined text-primary star-filled" type="button" data-value="1">star</button>
+<button class="material-symbols-outlined text-primary star-filled" type="button" data-value="2">star</button>
+<button class="material-symbols-outlined text-primary star-filled" type="button" data-value="3">star</button>
+<button class="material-symbols-outlined text-primary star-filled" type="button" data-value="4">star</button>
+<button class="material-symbols-outlined text-primary star-filled" type="button" data-value="5">star</button>
+</div>
+<input type="hidden" id="review-rating-value" value="5" />
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-caps text-[11px] text-outline">YOUR STORY</label>
+<textarea id="review-comment" class="w-full bg-transparent border-0 border-b border-outline-variant focus:ring-0 focus:border-primary px-0 font-body-md py-3 resize-none" placeholder="Describe the flavors, the atmosphere, the moment..." rows="4" required></textarea>
+</div>
+<div class="pt-6 flex justify-end gap-6 items-center">
+<button class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" onclick="toggleModal(false)" type="button">Cancel</button>
+<button class="bg-deep-espresso text-paper-white px-10 py-4 active:scale-95 transition-transform duration-200" type="submit">
+<span class="font-label-caps text-label-caps" id="submit-review-btn-text">Publish Review</span>
+</button>
+</div>
+</form>
+</div>
+</div>
+<div id="footer-placeholder"></div>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/customer-reviews.js"></script>
+</body></html>

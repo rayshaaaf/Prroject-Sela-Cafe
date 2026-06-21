@@ -60,6 +60,19 @@ public class OrderController {
                                                 .build());
         }
 
+        @GetMapping("/my")
+        public ResponseEntity<ApiRes<List<OrderRes>>> getMyOrders(
+                        @RequestHeader("X-User-Id") Long userId) {
+
+                return ResponseEntity.ok(
+                                ApiRes.<List<OrderRes>>builder()
+                                                .success(true)
+                                                .message("Orders retrieved successfully")
+                                                .data(
+                                                                orderService.getOrdersByUserId(userId))
+                                                .build());
+        }
+
         @PutMapping("/updateStatus/{id}")
         public ResponseEntity<ApiRes<OrderRes>> updateStatus(
                         @RequestHeader("X-Role") String role,

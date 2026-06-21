@@ -17,6 +17,7 @@ public interface OrderService {
     List<OrderRes> getOrdersByStatus(String status);
     List<OrderRes> getKitchenOrders();
     List<OrderRes> getCourierOrders(Long courierId);
+    List<OrderRes> getOrdersByUserId(Long userId);
     DashboardAnalyticsRes getAnalytics();
     List<BestSellingMenuRes> getBestSellingMenus();
 }

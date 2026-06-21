@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sela Cafe | The Art of Coffee Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&amp;family=Manrope:wght@300;400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-container": "#c5e8cc",
+                    "heritage-cream": "#F2E8CF",
+                    "inverse-primary": "#e1c1a3",
+                    "background": "#faf9f5",
+                    "secondary-fixed-dim": "#adcfb4",
+                    "deep-espresso": "#2A1B0E",
+                    "surface-container-low": "#f4f4f0",
+                    "primary": "#1b0c00",
+                    "on-tertiary-container": "#938c76",
+                    "surface-container": "#efeeea",
+                    "surface-bright": "#faf9f5",
+                    "primary-container": "#33210d",
+                    "surface-tint": "#725a42",
+                    "error-container": "#ffdad6",
+                    "tertiary": "#141003",
+                    "primary-fixed": "#feddbe",
+                    "surface": "#faf9f5",
+                    "primary-fixed-dim": "#e1c1a3",
+                    "tertiary-fixed": "#ece2c9",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#1b1c1a",
+                    "surface-container-high": "#e9e8e4",
+                    "tertiary-container": "#292515",
+                    "on-background": "#1b1c1a",
+                    "tertiary-fixed-dim": "#cfc6ae",
+                    "on-secondary-container": "#4a6a53",
+                    "on-error-container": "#93000a",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed": "#201b0c",
+                    "outline": "#80756c",
+                    "secondary": "#46654f",
+                    "on-tertiary": "#ffffff",
+                    "surface-dim": "#dbdad6",
+                    "on-primary-fixed-variant": "#58432c",
+                    "surface-variant": "#e3e2df",
+                    "on-tertiary-fixed-variant": "#4c4634",
+                    "outline-variant": "#d2c4b9",
+                    "surface-container-lowest": "#ffffff",
+                    "outline-muted": "rgba(128, 117, 108, 0.2)",
+                    "moss-green": "#386641",
+                    "secondary-fixed": "#c8ebcf",
+                    "on-primary-fixed": "#291805",
+                    "surface-container-highest": "#e3e2df",
+                    "on-secondary-fixed": "#022110",
+                    "error": "#ba1a1a",
+                    "inverse-on-surface": "#f2f1ed",
+                    "on-surface-variant": "#4e453d",
+                    "on-secondary-fixed-variant": "#2f4d39",
+                    "inverse-surface": "#2f312e",
+                    "paper-white": "#FDFCF8",
+                    "on-primary-container": "#a3876c",
+                    "on-secondary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "unit": "4px",
+                    "margin-mobile": "24px",
+                    "section-padding": "8rem",
+                    "gutter": "24px",
+                    "margin-desktop": "80px"
+            },
+            "fontFamily": {
+                    "label-caps": ["JetBrains Mono"],
+                    "body-lg": ["Manrope"],
+                    "body-md": ["Manrope"],
+                    "label-md": ["JetBrains Mono"],
+                    "headline-xl": ["EB Garamond"],
+                    "headline-lg-mobile": ["EB Garamond"],
+                    "headline-md": ["EB Garamond"],
+                    "headline-lg": ["EB Garamond"]
+            },
+            "fontSize": {
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-xl": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "38px", "fontWeight": "500"}],
+                    "headline-md": ["28px", {"lineHeight": "34px", "fontWeight": "500"}],
+                    "headline-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .sela-grain {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.04;
+            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+        }
+        .sela-line {
+            height: 1px;
+            background: rgba(42, 27, 14, 0.1);
+            width: 100%;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .dropdown-animate {
+            transform-origin: top right;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal-on-scroll.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-paper-white text-deep-espresso selection:bg-heritage-cream font-body-md overflow-x-hidden">
+<div class="sela-grain"></div>
+<div id="navbar-placeholder"></div>
+<!-- Hero Section -->
+<section class="relative h-[921px] flex flex-col justify-center items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover scale-105" data-alt="A cinematic, low-angle shot of a master barista pouring steamed milk into a dark ceramic cup. The background is a softly blurred architectural space with warm wood textures and subtle dust motes dancing in sunbeams." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvl9UVWS7qhcdlefNp01RPoye-OuUG8VR-sNQUjMC-eEwZ_JM4MKYCAdiMqowES-Pbswj2YAhcSrixLA96wqIwe1eUNUk1n8KdZ5i7cTJrYF09Org1F5i4Lyage73P8LRfRRqS0n65VabIe2VZHBUCdagieIKPCfxeaBZ3ami4G260w1LPjiP56ipHBettNJaIHJlbtPXwAAfruWx6ZW40-Dg0mnCI0t_z_aINarp1w9pw-mVaQ1TKvEBqRSf6Mln8At-eXZYsvvCY"/>
+<div class="absolute inset-0 bg-black/30 mix-blend-multiply"></div>
+</div>
+<div class="relative z-10 text-center max-w-4xl px-margin-mobile">
+<div class="reveal-on-scroll active">
+<span class="font-label-caps text-label-caps text-heritage-cream mb-6 block tracking-widest">ESTABLISHED 1924</span>
+<h1 class="font-headline-xl text-headline-xl text-white mb-4">The Art of Coffee Management</h1>
+<p id="welcome-message" class="font-body-lg text-body-lg text-heritage-cream/90 mb-8 max-w-2xl mx-auto italic">"Welcome back, Guest."</p>
+<div class="flex flex-col md:flex-row gap-4 justify-center items-center">
+<button class="px-8 py-4 bg-deep-espresso text-white font-label-caps text-label-caps hover:bg-primary transition-all active:scale-95">RESERVE MY TABLE</button>
+<button class="px-8 py-4 border border-white text-white font-label-caps text-label-caps hover:bg-white hover:text-deep-espresso transition-all active:scale-95">EXPLORE THE CRAFT</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Signature Stories -->
+<section class="bg-paper-white py-section-padding px-10 md:px-margin-desktop">
+<div class="max-w-[1280px] mx-auto text-center mb-20">
+<span class="font-label-caps text-label-caps text-outline mb-4 block">OUR PHILOSOPHY</span>
+<h2 class="font-headline-lg text-headline-lg text-deep-espresso">Crafted for the Conscious Mind</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-[1280px] mx-auto">
+<div class="reveal-on-scroll">
+<div class="aspect-[4/5] bg-surface-container mb-8 overflow-hidden">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 hover:scale-105" data-alt="Close up of a hand picking coffee beans" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6mKhrmu-0ldLebUFmAF7QeSh1gT2sxO51u5-EPImU8EuWN1mgMRp8Rjnup1a1rWbCnK8FHY_qS9k0oGmEZes38N0AxE69fJhaONovlNRYax9p9xMbaLV5PtfCbaTSKsqXP6meAHl4yk3b0Qhl_o63zXz125O8RF6TGbcRVZgPVIDFy87WqwJsW1QHImmhKzLkmrmQ9N1dcXM6owalFNGs1zxy11HVIP8iBvJC9R6HHiL3yxsx7l5XDc7SRHmzJxRd-_uCOUc8LGFW"/>
+</div>
+<h3 class="font-headline-md text-headline-md mb-4 text-deep-espresso">Signature Stories</h3>
+<p class="font-body-md text-on-surface-variant leading-relaxed">Each bean carries the whisper of the altitude it was grown in. We honor that narrative in every roast.</p>
+</div>
+<div class="reveal-on-scroll" style="transition-delay: 200ms;">
+<div class="aspect-[4/5] bg-surface-container mb-8 overflow-hidden">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 hover:scale-105" data-alt="Artisanal coffee brewing equipment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqi8jRofiVhdiMw8RAlI8VhL6iD-B8ElxRObioeZa2MYyL3wYjfZYWP3__Xm5W1B94Ur9A8pWcR4hRTiz174fp7Fdc7WwlOPi6q-0_GoVa7fz--bh87A_01AvBPFLR-GQbNNeIgM7j59aVs7WFzXSwQ8YHwhpMYcz3SElsgYeNDf3ArEMZZcHQkzxmalR7s3nB9hWZbgzznumCeoCYrnmxS_fTevgVNnhtcBRDflv9CMI5ionZuhCyLwBqSVXU6MdKC6Lghy15WqsC"/>
+</div>
+<h3 class="font-headline-md text-headline-md mb-4 text-deep-espresso">Real-Time Precision</h3>
+<p class="font-body-md text-on-surface-variant leading-relaxed">Temperature controlled to the decimal. Timing honed by decades. Precision is our greatest respect for the craft.</p>
+</div>
+<div class="reveal-on-scroll" style="transition-delay: 400ms;">
+<div class="aspect-[4/5] bg-surface-container mb-8 overflow-hidden">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 hover:scale-105" data-alt="Minimalist cafe interior" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDy9V6In7HOqFBNttpi7ru1nyPxSr4rD6Tt6OpyCQqU61YahELRkATo3G4ey5oVYk1zTIs8AQPUrRVj7Y66mt9ZjaUTbZx-ypuh9NVLv305C_ojjrr7S2qUe9LkfT0PEo2IvF7sQ0BRrNjq_jdZHmYfT294D80E2z9JGswM9NoN9Dn8YOOajizf7ctTRyQPCsymt37rw_2bnimwSGjphSpvx0j6h-hFAeWIOgwOxAui1dCQIi9qwK4hvlRHDokh9UoreyI8mYjxYBqM"/>
+</div>
+<h3 class="font-headline-md text-headline-md mb-4 text-deep-espresso">Sela Journal</h3>
+<p class="font-body-md text-on-surface-variant leading-relaxed">A repository of knowledge for the curious enthusiast. Explore the biology and poetry of coffee.</p>
+</div>
+</div>
+</section>
+<!-- My Orders Section -->
+<section class="bg-surface py-section-padding border-t border-outline-muted">
+<div class="max-w-[1280px] mx-auto px-10 md:px-margin-desktop">
+<div class="flex items-end justify-between mb-12 reveal-on-scroll">
+<div>
+<span class="font-label-caps text-label-caps text-outline mb-4 block">ACCOUNT OVERVIEW</span>
+<h2 class="font-headline-lg text-headline-lg text-deep-espresso">My Orders</h2>
+</div>
+<a class="font-label-caps text-label-caps text-deep-espresso border-b border-deep-espresso hover:opacity-70 transition-opacity pb-1 mb-2" href="#">VIEW FULL HISTORY</a>
+</div>
+<div class="bg-paper-white border border-outline-muted overflow-hidden reveal-on-scroll">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container border-b border-outline-muted">
+<th class="py-5 px-8 font-label-caps text-label-caps text-on-surface-variant">ORDER #</th>
+<th class="py-5 px-8 font-label-caps text-label-caps text-on-surface-variant">DATE</th>
+<th class="py-5 px-8 font-label-caps text-label-caps text-on-surface-variant">STATUS</th>
+<th class="py-5 px-8 font-label-caps text-label-caps text-on-surface-variant">TOTAL</th>
+<th class="py-5 px-8 font-label-caps text-label-caps text-on-surface-variant text-right">ACTION</th>
+</tr>
+</thead>
+<tbody id="orders-tbody" class="font-body-md text-deep-espresso">
+<!-- Dynamic orders injected here by customer-home.js -->
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<div id="footer-placeholder"></div>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/customer-home.js"></script>
+<script>
+        // Simple Intersection Observer for scroll reveal animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-on-scroll').forEach((el) => observer.observe(el));
+
+        // Parallax effect for hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroImg = document.querySelector('section img');
+            if (heroImg) {
+                heroImg.style.transform = `scale(1.05) translateY(${scrolled * 0.1}px)`;
+            }
+        });
+    </script>
+</body></html>

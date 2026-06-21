@@ -243,6 +243,56 @@
 </main>
 <!-- Footer: injected by components.js -->
 <div id="footer-placeholder"></div>
+
+<!-- Application Modal -->
+<div id="apply-modal" class="fixed inset-0 bg-deep-espresso/60 backdrop-blur-sm z-[100] flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300">
+    <div class="bg-paper-white border border-outline-variant/50 max-w-xl w-full p-8 md:p-10 shadow-2xl relative max-h-[90vh] overflow-y-auto m-4">
+        <button onclick="closeApplyModal()" class="absolute top-6 right-6 text-on-surface-variant hover:text-primary transition-colors">
+            <span class="material-symbols-outlined text-2xl">close</span>
+        </button>
+        <span class="font-label-caps text-label-caps text-moss-green uppercase tracking-[0.2em] mb-2 block">Application Portal</span>
+        <h2 id="modal-job-title" class="font-headline-lg text-headline-lg text-primary mb-8">Apply for Position</h2>
+        
+        <form id="apply-form" class="flex flex-col gap-6" onsubmit="submitApplication(event)">
+            <input type="hidden" id="modal-job-id" />
+            <div class="flex flex-col gap-2">
+                <label for="apply-name" class="font-label-caps text-label-caps text-on-surface-variant">Full Name</label>
+                <input type="text" id="apply-name" required class="w-full bg-transparent border-b border-outline-variant/60 focus:border-primary py-3 font-body-md text-on-surface outline-none focus:ring-0" placeholder="Your complete name" />
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="flex flex-col gap-2">
+                    <label for="apply-email" class="font-label-caps text-label-caps text-on-surface-variant">Email Address</label>
+                    <input type="email" id="apply-email" required class="w-full bg-transparent border-b border-outline-variant/60 focus:border-primary py-3 font-body-md text-on-surface outline-none focus:ring-0" placeholder="name@domain.com" />
+                </div>
+                <div class="flex flex-col gap-2">
+                    <label for="apply-phone" class="font-label-caps text-label-caps text-on-surface-variant">Phone Number</label>
+                    <input type="tel" id="apply-phone" required class="w-full bg-transparent border-b border-outline-variant/60 focus:border-primary py-3 font-body-md text-on-surface outline-none focus:ring-0" placeholder="+62..." />
+                </div>
+            </div>
+            <div class="flex flex-col gap-2">
+                <label for="apply-address" class="font-label-caps text-label-caps text-on-surface-variant">Home Address</label>
+                <input type="text" id="apply-address" required class="w-full bg-transparent border-b border-outline-variant/60 focus:border-primary py-3 font-body-md text-on-surface outline-none focus:ring-0" placeholder="Street, City, Postcode" />
+            </div>
+            <div class="flex flex-col gap-2">
+                <label for="apply-letter" class="font-label-caps text-label-caps text-on-surface-variant">Cover Letter</label>
+                <textarea id="apply-letter" required class="w-full bg-transparent border border-outline-variant/60 focus:border-primary p-4 font-body-md text-on-surface outline-none focus:ring-0 min-h-[100px]" placeholder="Briefly describe your passion for specialty coffee and Sela Cafe..."></textarea>
+            </div>
+            <div class="flex flex-col gap-2">
+                <label class="font-label-caps text-label-caps text-on-surface-variant">Curriculum Vitae (PDF/Word)</label>
+                <div class="border border-dashed border-outline-variant/60 hover:border-primary transition-colors p-6 text-center cursor-pointer relative">
+                    <input type="file" id="apply-cv" required accept=".pdf,.doc,.docx" class="absolute inset-0 opacity-0 cursor-pointer" onchange="updateFileName(this)" />
+                    <span class="material-symbols-outlined text-outline text-3xl mb-2 block">upload_file</span>
+                    <span id="cv-file-name" class="font-body-md text-on-surface-variant text-sm">Drag & drop or click to upload</span>
+                </div>
+            </div>
+            
+            <button type="submit" id="btn-submit-app" class="w-full bg-deep-espresso text-paper-white py-5 font-label-caps text-label-caps tracking-widest hover:bg-black transition-all active:scale-[0.98] mt-4 flex items-center justify-center gap-3">
+                SUBMIT APPLICATION
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </button>
+        </form>
+    </div>
+</div>
 <script src="../assets/js/components.js"></script>
 <script src="../assets/js/content.js" defer></script>
 

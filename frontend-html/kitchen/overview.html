@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Heritage Sanctuary | Executive Overview</title>
+    
+    <!-- Scripts & Fonts -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Manrope:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@100..900&family=JetBrains+Mono:wght@100..900&family=Manrope:wght@100..900&display=swap" rel="stylesheet"/>
+
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.04;
+            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+        }
+        .sela-line {
+            height: 1px;
+            background: linear-gradient(to right, rgba(128, 117, 108, 0), rgba(128, 117, 108, 0.2) 20%, rgba(128, 117, 108, 0.2) 80%, rgba(128, 117, 108, 0));
+        }
+        .chart-bar {
+            transition: height 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    </style>
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#58432c",
+                        "inverse-on-surface": "#f2f1ed",
+                        "surface-bright": "#faf9f5",
+                        "error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#cfc6ae",
+                        "primary-fixed-dim": "#e1c1a3",
+                        "surface": "#faf9f5",
+                        "surface-container-low": "#f4f4f0",
+                        "on-primary-container": "#a3876c",
+                        "tertiary-fixed": "#ece2c9",
+                        "on-primary-fixed": "#291805",
+                        "on-tertiary-fixed-variant": "#4c4634",
+                        "deep-espresso": "#2A1B0E",
+                        "surface-tint": "#725a42",
+                        "outline": "#80756c",
+                        "tertiary-container": "#292515",
+                        "on-surface-variant": "#4e453d",
+                        "secondary-fixed": "#c8ebcf",
+                        "on-secondary-container": "#4a6a53",
+                        "surface-container-high": "#e9e8e4",
+                        "background": "#faf9f5",
+                        "primary": "#1b0c00",
+                        "surface-container": "#efeeea",
+                        "outline-muted": "rgba(128, 117, 108, 0.2)",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#33210d",
+                        "outline-variant": "#d2c4b9",
+                        "heritage-cream": "#F2E8CF",
+                        "secondary-fixed-dim": "#adcfb4",
+                        "primary-fixed": "#feddbe",
+                        "on-primary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#022110",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#e1c1a3",
+                        "on-tertiary-fixed": "#201b0c",
+                        "on-secondary": "#ffffff",
+                        "surface-variant": "#e3e2df",
+                        "on-error-container": "#93000a",
+                        "paper-white": "#FDFCF8",
+                        "on-background": "#1b1c1a",
+                        "inverse-surface": "#2f312e",
+                        "surface-container-highest": "#e3e2df",
+                        "tertiary": "#141003",
+                        "on-tertiary-container": "#938c76",
+                        "on-secondary-fixed-variant": "#2f4d39",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#dbdad6",
+                        "on-surface": "#1b1c1a",
+                        "secondary-container": "#c5e8cc",
+                        "secondary": "#46654f",
+                        "moss-green": "#386641"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-padding": "8rem",
+                        "unit": "4px",
+                        "container-max": "1280px",
+                        "margin-mobile": "24px",
+                        "gutter": "24px",
+                        "margin-desktop": "80px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["JetBrains Mono"],
+                        "headline-xl": ["EB Garamond"],
+                        "headline-lg": ["EB Garamond"],
+                        "body-md": ["Manrope"],
+                        "label-caps": ["JetBrains Mono"],
+                        "headline-md": ["EB Garamond"],
+                        "body-lg": ["Manrope"],
+                        "headline-lg-mobile": ["EB Garamond"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-xl": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "500"}],
+                        "headline-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                        "headline-md": ["28px", {"lineHeight": "34px", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "38px", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-deep-espresso font-body-md overflow-x-hidden selection:bg-heritage-cream selection:text-deep-espresso">
+    
+    <div class="grain-overlay"></div>
+
+    <!-- SideNavBar -->
+    <aside class="fixed left-0 top-0 z-40 py-margin-desktop px-gutter h-screen w-72 flex flex-col border-r border-outline-muted bg-surface dark:bg-surface-container-low">
+        <div class="mb-12">
+            <h1 class="font-headline-md text-headline-md text-deep-espresso dark:text-inverse-primary tracking-tight">Heritage Sanctuary</h1>
+            <p class="font-label-caps text-label-caps opacity-60">Artisanal Coffee Management</p>
+        </div>
+        
+        <nav class="flex-1 space-y-4">
+            <a class="flex items-center gap-4 px-4 py-3 rounded-lg text-deep-espresso dark:text-inverse-primary font-bold border-r-4 border-deep-espresso bg-heritage-cream/30 active:scale-95 transition-all" href="#">
+                <span class="material-symbols-outlined">dashboard</span>
+                <span class="font-label-md text-label-md">Overview</span>
+            </a>
+            <a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:text-deep-espresso dark:hover:text-inverse-primary hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all duration-200" href="#">
+                <span class="material-symbols-outlined">restaurant</span>
+                <span class="font-label-md text-label-md">Kitchen</span>
+            </a>
+            <a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:text-deep-espresso dark:hover:text-inverse-primary hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all duration-200" href="#">
+                <span class="material-symbols-outlined">inventory_2</span>
+                <span class="font-label-md text-label-md">Inventory</span>
+            </a>
+            <a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:text-deep-espresso dark:hover:text-inverse-primary hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all duration-200" href="#">
+                <span class="material-symbols-outlined">groups</span>
+                <span class="font-label-md text-label-md">Team</span>
+            </a>
+        </nav>
+
+        <div class="mt-auto border-t border-outline-muted pt-8 space-y-4">
+            <a class="flex items-center gap-4 px-4 py-2 text-on-surface-variant hover:text-deep-espresso transition-colors" href="#">
+                <span class="material-symbols-outlined">settings</span>
+                <span class="font-label-md text-label-md">Settings</span>
+            </a>
+            <a class="flex items-center gap-4 px-4 py-2 text-on-surface-variant hover:text-deep-espresso transition-colors" href="#">
+                <span class="material-symbols-outlined">contact_support</span>
+                <span class="font-label-md text-label-md">Support</span>
+            </a>
+            <div class="mt-6 flex items-center gap-4 px-4">
+                <div class="w-10 h-10 rounded-full bg-deep-espresso flex items-center justify-center text-white font-headline-md">S</div>
+                <div>
+                    <p class="font-label-md text-label-md leading-none">Sela Admin</p>
+                    <p class="font-label-caps text-[10px] opacity-50">CURATOR</p>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content Canvas -->
+    <main class="ml-72 min-h-screen">
+        <!-- TopAppBar -->
+        <header class="flex items-center justify-between px-margin-desktop w-full h-20 bg-paper-white/80 dark:bg-surface/80 backdrop-blur-md border-b border-outline-muted sticky top-0 z-30">
+            <div class="flex items-center gap-8">
+                <span class="font-headline-md text-headline-md text-deep-espresso dark:text-inverse-primary">Executive Dashboard</span>
+                <div class="hidden md:flex gap-6">
+                    <span class="font-label-md text-label-md text-deep-espresso dark:text-inverse-primary border-b-2 border-deep-espresso cursor-default">Daily View</span>
+                    <span class="font-label-md text-label-md text-on-surface-variant hover:text-deep-espresso transition-colors cursor-pointer">Historical Archive</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="relative hidden lg:block">
+                    <input class="bg-surface-container-low border-none rounded-full px-6 py-2 text-sm w-64 focus:ring-1 focus:ring-deep-espresso placeholder:text-on-surface-variant/40" placeholder="Search insights..." type="text"/>
+                    <span class="material-symbols-outlined absolute right-4 top-2 text-on-surface-variant/40">search</span>
+                </div>
+                <button class="material-symbols-outlined text-deep-espresso hover:opacity-80 transition-opacity">notifications</button>
+                <button class="material-symbols-outlined text-deep-espresso hover:opacity-80 transition-opacity">account_circle</button>
+            </div>
+        </header>
+
+        <div class="p-margin-desktop max-w-[1400px] mx-auto space-y-section-padding">
+            <!-- TOP SECTION: High-Level Metrics -->
+            <section id="high-level-metrics">
+                <div class="flex justify-between items-end mb-12">
+                    <div>
+                        <span class="font-label-caps text-label-caps text-on-surface-variant block mb-2">CURRENT STATUS</span>
+                        <h2 class="font-headline-xl text-headline-xl">Morning Sanctuary Report</h2>
+                    </div>
+                    <div class="text-right">
+                        <p class="font-label-md text-label-md text-on-surface-variant">October 24, 2023</p>
+                        <p class="font-label-caps text-label-caps text-moss-green font-bold">OPERATIONAL EXCELLENCE</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+                    <!-- Metric Card 1 -->
+                    <div class="bg-paper-white p-8 border border-outline-muted group hover:border-deep-espresso transition-all duration-500">
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="material-symbols-outlined text-on-surface-variant/40 group-hover:text-deep-espresso transition-colors">payments</span>
+                            <span class="text-moss-green font-label-caps text-[10px] flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">trending_up</span> +12.4%
+                            </span>
+                        </div>
+                        <p class="font-label-caps text-label-caps text-on-surface-variant mb-1">DAILY REVENUE</p>
+                        <p class="font-headline-md text-headline-md text-deep-espresso">$4,284.50</p>
+                        <div class="mt-8 sela-line opacity-30"></div>
+                        <p class="mt-4 font-label-md text-label-md text-on-surface-variant/60 italic">Peak hour: 08:30 AM</p>
+                    </div>
+
+                    <!-- Metric Card 2 -->
+                    <div class="bg-paper-white p-8 border border-outline-muted group hover:border-deep-espresso transition-all duration-500">
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="material-symbols-outlined text-on-surface-variant/40 group-hover:text-deep-espresso transition-colors">science</span>
+                            <span class="text-moss-green font-label-caps text-[10px] flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">check_circle</span> OPTIMAL
+                            </span>
+                        </div>
+                        <p class="font-label-caps text-label-caps text-on-surface-variant mb-1">AVG. EXTRACTION</p>
+                        <p class="font-headline-md text-headline-md text-deep-espresso">98.2%</p>
+                        <div class="mt-8 sela-line opacity-30"></div>
+                        <p class="mt-4 font-label-md text-label-md text-on-surface-variant/60 italic">Consistent roast profile</p>
+                    </div>
+
+                    <!-- Metric Card 3 -->
+                    <div class="bg-paper-white p-8 border border-outline-muted group hover:border-deep-espresso transition-all duration-500">
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="material-symbols-outlined text-on-surface-variant/40 group-hover:text-deep-espresso transition-colors">mood</span>
+                            <span class="text-moss-green font-label-caps text-[10px] flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">keyboard_arrow_up</span> 4.9/5
+                            </span>
+                        </div>
+                        <p class="font-label-caps text-label-caps text-on-surface-variant mb-1">SENTIMENT</p>
+                        <p class="font-headline-md text-headline-md text-deep-espresso">Serene</p>
+                        <div class="mt-8 sela-line opacity-30"></div>
+                        <p class="mt-4 font-label-md text-label-md text-on-surface-variant/60 italic">Ambient levels normal</p>
+                    </div>
+
+                    <!-- Metric Card 4 -->
+                    <div class="bg-paper-white p-8 border border-outline-muted group hover:border-deep-espresso transition-all duration-500">
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="material-symbols-outlined text-on-surface-variant/40 group-hover:text-deep-espresso transition-colors">person_add</span>
+                            <span class="text-moss-green font-label-caps text-[10px] flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">stat_3</span> +8 NEW
+                            </span>
+                        </div>
+                        <p class="font-label-caps text-label-caps text-on-surface-variant mb-1">MEMBER GROWTH</p>
+                        <p class="font-headline-md text-headline-md text-deep-espresso">1,420</p>
+                        <div class="mt-8 sela-line opacity-30"></div>
+                        <p class="mt-4 font-label-md text-label-md text-on-surface-variant/60 italic">Legacy members: 42%</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MIDDLE SECTION: The Daily Pulse -->
+            <section class="grid grid-cols-1 lg:grid-cols-3 gap-16 items-start" id="daily-pulse">
+                <div class="lg:col-span-2 space-y-8">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-headline-lg text-headline-lg">The Daily Pulse</h3>
+                        <div class="flex gap-4">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-deep-espresso"></span>
+                                <span class="font-label-md text-label-md">Current Week</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-on-surface-variant/30"></span>
+                                <span class="font-label-md text-label-md">Last Week</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Trend Chart Placeholder -->
+                    <div class="bg-paper-white border border-outline-muted p-12 relative aspect-[21/9] flex items-end justify-between gap-4">
+                        <div class="absolute inset-0 flex flex-col justify-between p-12 pointer-events-none">
+                            <div class="sela-line opacity-10"></div>
+                            <div class="sela-line opacity-10"></div>
+                            <div class="sela-line opacity-10"></div>
+                            <div class="sela-line opacity-10"></div>
+                            <div class="sela-line opacity-10"></div>
+                        </div>
+                        <!-- Chart Bars -->
+                        <div class="flex-1 flex flex-col items-center gap-2 z-10">
+                            <div class="w-full flex items-end justify-center gap-1 h-full">
+                                <div class="chart-bar w-12 bg-on-surface-variant/10 rounded-t-sm" style="height: 60%"></div>
+                                <div class="chart-bar w-12 bg-deep-espresso rounded-t-sm" style="height: 75%"></div>
+                            </div>
+                            <span class="font-label-caps text-[10px]">MON</span>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center gap-2 z-10">
+                            <div class="w-full flex items-end justify-center gap-1 h-full">
+                                <div class="chart-bar w-12 bg-on-surface-variant/10 rounded-t-sm" style="height: 45%"></div>
+                                <div class="chart-bar w-12 bg-deep-espresso rounded-t-sm" style="height: 85%"></div>
+                            </div>
+                            <span class="font-label-caps text-[10px]">TUE</span>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center gap-2 z-10">
+                            <div class="w-full flex items-end justify-center gap-1 h-full">
+                                <div class="chart-bar w-12 bg-on-surface-variant/10 rounded-t-sm" style="height: 70%"></div>
+                                <div class="chart-bar w-12 bg-deep-espresso rounded-t-sm" style="height: 90%"></div>
+                            </div>
+                            <span class="font-label-caps text-[10px]">WED</span>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center gap-2 z-10">
+                            <div class="w-full flex items-end justify-center gap-1 h-full">
+                                <div class="chart-bar w-12 bg-on-surface-variant/10 rounded-t-sm" style="height: 55%"></div>
+                                <div class="chart-bar w-12 bg-deep-espresso rounded-t-sm" style="height: 40%"></div>
+                            </div>
+                            <span class="font-label-caps text-[10px]">THU</span>
+                        </div>
+                        <div class="flex-1 flex flex-col items-center gap-2 z-10">
+                            <div class="w-full flex items-end justify-center gap-1 h-full">
+                                <div class="chart-bar w-12 bg-on-surface-variant/10 rounded-t-sm" style="height: 80%"></div>
+                                <div class="chart-bar w-12 bg-deep-espresso rounded-t-sm" style="height: 95%"></div>
+                            </div>
+                            <span class="font-label-caps text-[10px]">FRI</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-8">
+                    <h3 class="font-headline-lg text-headline-lg">Signature Performance</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-4 group cursor-pointer">
+                            <div class="w-16 h-16 bg-surface-container overflow-hidden rounded-sm border border-outline-muted">
+                                <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Close up architectural detail of a bag of coffee beans resting on a weathered stone counter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADcbCv4rqnR2IWA_W63bBIP-EL8W1nftwW7ryCQpcW-Y2r5eQZJ1oFLtkQAJV2MqoVWfrzHDIgmzCGFvZHcvxRWCKtujcn9K2ImoSHQo9bdNKNWKLoS6g5SdtmWXJLVocTtnrfEdymj0cqE1x3hfyPi2Qe47VrmQy_9PNhdiErvVYX4QdpGy13syTfPpsQqjYrlKL0qx3w1k-bogsPISC5cgv4xXVLhu0IFhqdTAdlzS_uozMNSuj_mPHs268-gctcrr31ge-yxhgA"/>
+                            </div>
+                            <div class="flex-1 border-b border-outline-muted pb-4">
+                                <div class="flex justify-between items-start mb-1">
+                                    <p class="font-body-md font-semibold">Ethiopian Heirloom</p>
+                                    <span class="font-label-md text-label-md">142 cups</span>
+                                </div>
+                                <p class="font-label-caps text-[10px] text-on-surface-variant opacity-60">SINGLE ORIGIN • LIGHT ROAST</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 group cursor-pointer">
+                            <div class="w-16 h-16 bg-surface-container overflow-hidden rounded-sm border border-outline-muted">
+                                <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Artistic macro shot of espresso being poured into a delicate ceramic cup" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxIuY4xkIh3ZKgpFFEnhMgXHBXF5kYvAAW5OIlaK9G-0BV1un4u2861dMCBsxPJVIhXlDifOwJaeZb7QkrWtpRVgx1RbY_yjZYD8d_xEzKdqgETFckQO9TrNMfUOtJusw1W8Epw4SKW63BMLzk8k1lXJ4bBiTIZ5PL-4PYqAdoU3F6C20ITn0tEEykyrGJ0rx6E78_bOEGLNnEM3SI8lnbPYfyAralp7nYjZGyvWQyiO_P_Xl3ta1TgdaDFs8ctDBMqSay0ErPQlgX"/>
+                            </div>
+                            <div class="flex-1 border-b border-outline-muted pb-4">
+                                <div class="flex justify-between items-start mb-1">
+                                    <p class="font-body-md font-semibold">Monastery Blend</p>
+                                    <span class="font-label-md text-label-md">98 cups</span>
+                                </div>
+                                <p class="font-label-caps text-[10px] text-on-surface-variant opacity-60">SIGNATURE • DARK ROAST</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 group cursor-pointer">
+                            <div class="w-16 h-16 bg-surface-container overflow-hidden rounded-sm border border-outline-muted">
+                                <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="A minimalist composition of a vintage brass coffee grinder on a linen table cloth" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA34lbMnwZNai0xDTjS8dOsxskiWaoKqGbZxzhSKZuky7kAFjTKQUvUMHkGo0hYwqYuK_kC7Wg7m0oGetH1gx3A-XBGHAo0_DPV-jK3MGWRos1HQZxpMc5P9u-9SJm-f6d98pUb4he83eVeTy7lIvRGwshQnbt0Ify1oeP-9IrfJmhDEAwTf9P_v6b9QYuWmMHRanYhhd7UUNhs81T8WZFRYHSA8YgPzycPY9L29wBWhSmRDzVuTo-B1P-fERWgdnoe9b1u_bqs-5J7"/>
+                            </div>
+                            <div class="flex-1 border-b border-outline-muted pb-4">
+                                <div class="flex justify-between items-start mb-1">
+                                    <p class="font-body-md font-semibold">Sanctuary Decaf</p>
+                                    <span class="font-label-md text-label-md">45 cups</span>
+                                </div>
+                                <p class="font-label-caps text-[10px] text-on-surface-variant opacity-60">WATER PROCESS • MEDIUM ROAST</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- BOTTOM SECTION: Operational Stillness -->
+            <section id="operational-stillness">
+                <div class="mb-12">
+                    <h3 class="font-headline-lg text-headline-lg mb-2">Operational Stillness</h3>
+                    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl italic">The art of the kitchen lies in its rhythm; a quiet efficiency that honors the craft without the chaos.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+                    <!-- Kitchen Efficiency -->
+                    <div class="bg-heritage-cream/20 border border-outline-muted p-10 relative overflow-hidden">
+                        <div class="relative z-10">
+                            <span class="font-label-caps text-label-caps text-on-surface-variant mb-6 block">KITCHEN FLOW</span>
+                            <div class="flex items-end gap-2 mb-8">
+                                <span class="font-headline-xl text-headline-xl text-deep-espresso">0</span>
+                                <span class="font-label-md text-label-md mb-3">active orders</span>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="flex-1 h-1 bg-on-surface-variant/10 rounded-full overflow-hidden">
+                                    <div class="h-full bg-moss-green w-[85%]"></div>
+                                </div>
+                                <span class="font-label-caps text-[10px] text-moss-green font-bold">STABLE</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Staff Presence -->
+                    <div class="md:col-span-2 bg-paper-white border border-outline-muted p-10 flex flex-col md:flex-row gap-12 items-center">
+                        <div class="flex-1 space-y-4">
+                            <span class="font-label-caps text-label-caps text-on-surface-variant block">CURRENT STEWARDS</span>
+                            <div class="flex -space-x-3">
+                                <div class="w-12 h-12 rounded-full border-2 border-paper-white bg-surface-container-high flex items-center justify-center font-bold text-deep-espresso">AN</div>
+                                <div class="w-12 h-12 rounded-full border-2 border-paper-white bg-surface-container-high flex items-center justify-center font-bold text-deep-espresso">ML</div>
+                                <div class="w-12 h-12 rounded-full border-2 border-paper-white bg-surface-container-high flex items-center justify-center font-bold text-deep-espresso">RK</div>
+                                <div class="w-12 h-12 rounded-full border-2 border-paper-white bg-surface-container-high flex items-center justify-center font-bold text-deep-espresso">JD</div>
+                                <div class="w-12 h-12 rounded-full border-2 border-paper-white bg-on-surface-variant text-white flex items-center justify-center text-xs">+2</div>
+                            </div>
+                            <p class="font-body-md text-on-surface-variant">6 of 8 specialists on floor. Transition scheduled for 14:00.</p>
+                        </div>
+                        
+                        <div class="w-full md:w-px h-px md:h-24 bg-outline-muted"></div>
+                        
+                        <div class="flex-1 text-center md:text-left">
+                            <span class="font-label-caps text-label-caps text-on-surface-variant block mb-4">ENVIRONMENTAL SENSORS</span>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <p class="font-label-caps text-[10px] opacity-60">TEMP</p>
+                                    <p class="font-headline-md text-2xl">21.5°C</p>
+                                </div>
+                                <div>
+                                    <p class="font-label-caps text-[10px] opacity-60">HUMIDITY</p>
+                                    <p class="font-headline-md text-2xl">45%</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer / Technical Data -->
+        <footer class="mt-section-padding border-t border-outline-muted p-margin-desktop bg-surface-container-lowest">
+            <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+                <div class="space-y-2">
+                    <h4 class="font-headline-md text-lg">Heritage Sanctuary Curated Dash</h4>
+                    <p class="font-label-md text-label-md text-on-surface-variant opacity-60">Built for Sela Cafe | v2.4.0</p>
+                </div>
+                <div class="flex gap-12">
+                    <div>
+                        <p class="font-label-caps text-[10px] mb-2">LAST BACKUP</p>
+                        <p class="font-label-md text-label-md">03:45 AM Today</p>
+                    </div>
+                    <div>
+                        <p class="font-label-caps text-[10px] mb-2">SYSTEM STATUS</p>
+                        <p class="font-label-md text-label-md flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-moss-green animate-pulse"></span> All Systems Harmonious
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Hubungkan dengan berkas JavaScript backend terpisah -->
+    <script src="overview.js"></script>
+</body>
+</html>

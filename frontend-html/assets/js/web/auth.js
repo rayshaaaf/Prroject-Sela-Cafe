@@ -128,7 +128,7 @@ async function handleRegister(e) {
     const confirm = (document.getElementById('confirm_password') || document.getElementById('reg-confirm'))?.value;
     const termsChecked = document.getElementById('terms')?.checked;
 
-    if (!name || !email || !phone || !password) { showError('Full name, email, phone number, and password are required.'); return; }
+    if (!name || !email || !password) { showError('Full name, email, and password are required.'); return; }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showError('Invalid email address.'); return; }
     if (password.length < 8) { showError('Password must be at least 8 characters.'); return; }
     if (confirm && password !== confirm) { showError('Passwords do not match.'); return; }

@@ -1,0 +1,282 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Profile - Sela Cafe</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&amp;family=Manrope:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;family=Manrope:wght@100..900&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed": "#201b0c",
+                    "primary-container": "#33210d",
+                    "on-primary-fixed-variant": "#58432c",
+                    "inverse-primary": "#e1c1a3",
+                    "on-error": "#ffffff",
+                    "on-secondary-container": "#4a6a53",
+                    "secondary": "#46654f",
+                    "inverse-on-surface": "#f2f1ed",
+                    "moss-green": "#386641",
+                    "on-primary-container": "#a3876c",
+                    "outline-variant": "#d2c4b9",
+                    "on-primary-fixed": "#291805",
+                    "surface-dim": "#dbdad6",
+                    "on-tertiary-container": "#938c76",
+                    "paper-white": "#FDFCF8",
+                    "secondary-fixed": "#c8ebcf",
+                    "on-secondary": "#ffffff",
+                    "primary": "#1b0c00",
+                    "on-secondary-fixed": "#022110",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "outline": "#80756c",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#1b1c1a",
+                    "inverse-surface": "#2f312e",
+                    "tertiary-fixed": "#ece2c9",
+                    "on-secondary-fixed-variant": "#2f4d39",
+                    "heritage-cream": "#F2E8CF",
+                    "surface-container-high": "#e9e8e4",
+                    "outline-muted": "rgba(128, 117, 108, 0.2)",
+                    "on-surface-variant": "#4e453d",
+                    "surface-container-highest": "#e3e2df",
+                    "error": "#ba1a1a",
+                    "surface-bright": "#faf9f5",
+                    "on-background": "#1b1c1a",
+                    "surface-variant": "#e3e2df",
+                    "surface": "#faf9f5",
+                    "tertiary": "#141003",
+                    "surface-tint": "#725a42",
+                    "primary-fixed-dim": "#e1c1a3",
+                    "surface-container": "#efeeea",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed-dim": "#cfc6ae",
+                    "secondary-fixed-dim": "#adcfb4",
+                    "on-tertiary-fixed-variant": "#4c4634",
+                    "secondary-container": "#c5e8cc",
+                    "deep-espresso": "#2A1B0E",
+                    "tertiary-container": "#292515",
+                    "surface-container-low": "#f4f4f0",
+                    "primary-fixed": "#feddbe",
+                    "background": "#faf9f5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "80px",
+                    "gutter": "24px",
+                    "margin-mobile": "24px",
+                    "unit": "4px",
+                    "container-max": "1280px",
+                    "section-padding": "8rem"
+            },
+            "fontFamily": {
+                    "label-md": ["JetBrains Mono"],
+                    "headline-md": ["EB Garamond"],
+                    "body-lg": ["Manrope"],
+                    "headline-xl": ["EB Garamond"],
+                    "headline-lg": ["EB Garamond"],
+                    "body-md": ["Manrope"],
+                    "label-caps": ["JetBrains Mono"],
+                    "headline-lg-mobile": ["EB Garamond"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["28px", {"lineHeight": "34px", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-xl": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "500"}],
+                    "headline-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "38px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #faf9f5;
+            color: #1b1c1a;
+            -webkit-font-smoothing: antialiased;
+            position: relative;
+        }
+        
+        /* Subtle Paper Grain Texture Overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.04;
+            background-image: url("https://www.transparenttextures.com/patterns/felt.png");
+        }
+
+        .sela-line {
+            height: 1px;
+            background: rgba(128, 117, 108, 0.15);
+            width: 100%;
+        }
+
+        .active-scale:active {
+            transform: scale(0.96);
+            transition: transform 0.1s ease;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md">
+<div id="navbar-placeholder"></div>
+<main class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop py-section-padding">
+<!-- Profile Header Section -->
+<section class="flex flex-col items-center text-center mb-16">
+<div class="relative group cursor-pointer active-scale mb-8">
+<div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border border-outline-muted p-1 bg-surface-bright shadow-sm">
+<img class="w-full h-full object-cover rounded-full" data-alt="A close-up studio portrait of a person with a serene and refined look, captured in a bright and airy environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcR3zD30VZc9zVA0D5Y3JXXieylCrt77K-In5J8v4xMWpLoy6sujYdsVXnn0omr9FgFfwr_BRKbceaN_kGxJ1e9HVVxVw5cfEQBCdtXsAcab7a_vlXIqOGVbu7iANiB6hY-Lno23zrVcvXHcrFEWQw7h40R8zUwS_JRBLV1GrYEGLlFdj0RAO39fiNwjQ0F8dsfd-JDUxiLM89CJyGTmBUO0QfUJA3upKzlwX7yyEeAvjNCN0t7jP2BUeiZw_KN_pilPAH2IVRZcuk">
+</div>
+<div class="absolute bottom-1 right-1 bg-primary text-white p-2 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg">
+<span class="material-symbols-outlined text-sm">photo_camera</span>
+</div>
+</div>
+<h1 id="profile-display-name-title" class="font-headline-xl text-headline-xl text-deep-espresso mb-2">Julianne Sterling</h1>
+<p id="profile-member-since" class="font-label-caps text-label-caps text-on-surface-variant tracking-widest uppercase">Artisan Member • Since Oct 2022</p>
+</section>
+<!-- Account Settings Grid (Apple Inspired) -->
+<div class="max-w-3xl mx-auto space-y-12">
+<!-- Personal Information -->
+<div class="bg-surface-bright border border-outline-muted rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.02)]">
+<div class="px-8 py-6 flex justify-between items-center border-b border-outline-muted">
+<h2 class="font-body-lg text-body-lg font-semibold text-deep-espresso">Personal Information</h2>
+<button id="btn-edit-profile" class="font-label-md text-label-md text-secondary hover:underline transition-all">Edit Profile</button>
+</div>
+<div class="divide-y divide-outline-muted">
+<!-- Full Name -->
+<div class="px-8 py-5 flex flex-col md:flex-row md:items-center">
+<span class="w-40 font-label-caps text-label-caps text-on-surface-variant mb-1 md:mb-0">Full Name</span>
+<span id="profile-display-name" class="font-body-md text-body-md text-primary font-medium">Julianne Sterling</span>
+</div>
+<!-- Email -->
+<div class="px-8 py-5 flex flex-col md:flex-row md:items-center">
+<span class="w-40 font-label-caps text-label-caps text-on-surface-variant mb-1 md:mb-0">Email Address</span>
+<span id="profile-display-email" class="font-body-md text-body-md text-primary font-medium">j.sterling@heritage.com</span>
+</div>
+<!-- Phone -->
+<div class="px-8 py-5 flex flex-col md:flex-row md:items-center">
+<span class="w-40 font-label-caps text-label-caps text-on-surface-variant mb-1 md:mb-0">Phone Number</span>
+<span id="profile-display-phone" class="font-body-md text-body-md text-primary font-medium">+1 (555) 234-8890</span>
+</div>
+</div>
+</div>
+<!-- Security & Membership -->
+<div class="bg-surface-bright border border-outline-muted rounded-xl overflow-hidden shadow-[0_4px_24px_rgba(0,0,0,0.02)]">
+<div class="px-8 py-6 border-b border-outline-muted">
+<h2 class="font-body-lg text-body-lg font-semibold text-deep-espresso">Security &amp; Access</h2>
+</div>
+<div class="divide-y divide-outline-muted">
+<!-- Password -->
+<button class="w-full px-8 py-5 flex items-center justify-between group hover:bg-heritage-cream/10 transition-colors">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant">lock</span>
+<div class="text-left">
+<p class="font-body-md text-body-md text-primary font-medium">Change Password</p>
+<p class="text-[13px] text-on-surface-variant">Last updated 4 months ago</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:translate-x-1 transition-transform">chevron_right</span>
+</button>
+<!-- Two Factor -->
+<button class="w-full px-8 py-5 flex items-center justify-between group hover:bg-heritage-cream/10 transition-colors">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant">shield_person</span>
+<div class="text-left">
+<p class="font-body-md text-body-md text-primary font-medium">Two-Factor Authentication</p>
+<p class="text-[13px] text-moss-green font-medium">On • Highly Secure</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:translate-x-1 transition-transform">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Danger Zone/Logout (Minimalist) -->
+<div class="flex flex-col md:flex-row items-center justify-between gap-6 pt-4">
+<p class="font-label-md text-label-md text-on-surface-variant max-w-sm text-center md:text-left">
+                    Your profile data is stored securely in accordance with our Artisan Privacy Standards.
+                </p>
+<div class="flex gap-4">
+<button onclick="window.logout()" class="px-8 py-3 bg-deep-espresso text-paper-white font-label-md text-label-md rounded-lg active-scale hover:opacity-90 transition-all">Sign Out</button>
+</div>
+</div>
+</div>
+</main>
+<div id="footer-placeholder"></div>
+
+<!-- Modal Form (Edit Profile) -->
+<div class="fixed inset-0 z-[100] hidden items-center justify-center p-6" id="profileModal">
+    <div class="absolute inset-0 bg-white/80 backdrop-blur-md" onclick="toggleProfileModal(false)"></div>
+    <div class="bg-paper-white border border-outline-muted w-full max-w-md relative z-10 p-8 md:p-12">
+        <button class="absolute top-6 right-6 text-on-surface-variant hover:text-primary transition-colors" onclick="toggleProfileModal(false)" type="button">
+            <span class="material-symbols-outlined text-[32px]">close</span>
+        </button>
+        <div class="mb-10">
+            <span class="font-label-caps text-label-caps text-on-surface-variant tracking-widest block mb-2">UPDATE DETAIL</span>
+            <h3 class="font-headline-lg text-headline-lg text-deep-espresso">Edit Profile</h3>
+        </div>
+        <form class="space-y-6" id="edit-profile-form">
+            <div class="space-y-2">
+                <label class="font-label-caps text-[11px] text-outline">FULL NAME</label>
+                <input type="text" id="edit-profile-name" class="w-full bg-transparent border-0 border-b border-outline-variant focus:ring-0 focus:border-primary px-0 font-body-md py-3" required />
+            </div>
+            <div class="space-y-2">
+                <label class="font-label-caps text-[11px] text-outline">PHONE NUMBER</label>
+                <input type="text" id="edit-profile-phone" class="w-full bg-transparent border-0 border-b border-outline-variant focus:ring-0 focus:border-primary px-0 font-body-md py-3" required />
+            </div>
+            <div class="pt-6 flex justify-end gap-6 items-center">
+                <button class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" onclick="toggleProfileModal(false)" type="button">Cancel</button>
+                <button class="bg-deep-espresso text-paper-white px-10 py-4 active-scale" type="submit">
+                    <span class="font-label-caps text-label-caps">Save Changes</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/customer-profile.js"></script>
+<script>
+        // Simple Micro-interactions for that "Apple" feel
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Subtle feedback already handled via CSS active:scale
+            });
+        });
+
+        // Hover effect for image treatments (30% grayscale warm up)
+        const profileImgs = document.querySelectorAll('img');
+        profileImgs.forEach(img => {
+            img.style.filter = 'grayscale(30%)';
+            img.style.transition = 'filter 0.5s ease';
+            img.parentElement.addEventListener('mouseenter', () => {
+                img.style.filter = 'grayscale(0%)';
+            });
+            img.parentElement.addEventListener('mouseleave', () => {
+                img.style.filter = 'grayscale(30%)';
+            });
+        });
+    </script>
+</body></html>

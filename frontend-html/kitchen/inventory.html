@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Heritage Sanctuary | Inventory Management</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Manrope:wght@200..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary-fixed-variant": "#58432c",
+            "inverse-on-surface": "#f2f1ed",
+            "surface-bright": "#faf9f5",
+            "error-container": "#ffdad6",
+            "tertiary-fixed-dim": "#cfc6ae",
+            "primary-fixed-dim": "#e1c1a3",
+            "surface": "#faf9f5",
+            "surface-container-low": "#f4f4f0",
+            "on-primary-container": "#a3876c",
+            "tertiary-fixed": "#ece2c9",
+            "on-primary-fixed": "#291805",
+            "on-tertiary-fixed-variant": "#4c4634",
+            "deep-espresso": "#2A1B0E",
+            "surface-tint": "#725a42",
+            "outline": "#80756c",
+            "tertiary-container": "#292515",
+            "on-surface-variant": "#4e453d",
+            "secondary-fixed": "#c8ebcf",
+            "on-secondary-container": "#4a6a53",
+            "surface-container-high": "#e9e8e4",
+            "background": "#faf9f5",
+            "primary": "#1b0c00",
+            "surface-container": "#efeeea",
+            "outline-muted": "rgba(128, 117, 108, 0.2)",
+            "surface-container-lowest": "#ffffff",
+            "primary-container": "#33210d",
+            "outline-variant": "#d2c4b9",
+            "heritage-cream": "#F2E8CF",
+            "secondary-fixed-dim": "#adcfb4",
+            "primary-fixed": "#feddbe",
+            "on-primary": "#ffffff",
+            "error": "#ba1a1a",
+            "on-secondary-fixed": "#022110",
+            "on-error": "#ffffff",
+            "inverse-primary": "#e1c1a3",
+            "on-tertiary-fixed": "#201b0c",
+            "on-secondary": "#ffffff",
+            "surface-variant": "#e3e2df",
+            "on-error-container": "#93000a",
+            "paper-white": "#FDFCF8",
+            "on-background": "#1b1c1a",
+            "inverse-surface": "#2f312e",
+            "surface-container-highest": "#e3e2df",
+            "tertiary": "#141003",
+            "on-tertiary-container": "#938c76",
+            "on-secondary-fixed-variant": "#2f4d39",
+            "on-tertiary": "#ffffff",
+            "surface-dim": "#dbdad6",
+            "on-surface": "#1b1c1a",
+            "secondary-container": "#c5e8cc",
+            "secondary": "#46654f",
+            "moss-green": "#386641"
+          },
+          "fontFamily": {
+            "label-md": ["JetBrains Mono"],
+            "headline-xl": ["EB Garamond"],
+            "headline-lg": ["EB Garamond"],
+            "body-md": ["Manrope"],
+            "label-caps": ["JetBrains Mono"],
+            "headline-md": ["EB Garamond"],
+            "body-lg": ["Manrope"]
+          },
+          "fontSize": {
+            "label-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "headline-xl": ["64px", { "lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+            "headline-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500" }],
+            "headline-md": ["28px", { "lineHeight": "34px", "fontWeight": "500" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+          },
+          "spacing": {
+            "section-padding": "8rem",
+            "margin-desktop": "80px",
+            "gutter": "24px"
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    }
+    .grain-overlay {
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 999;
+      opacity: 0.05;
+      background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
+  <div class="grain-overlay"></div>
+  
+  <aside class="fixed left-0 top-0 h-full w-72 z-40 bg-surface border-r border-outline-muted py-10 px-8 flex flex-col">
+    <div class="mb-12">
+      <h1 class="font-headline-md text-headline-md text-deep-espresso tracking-tight">Heritage Sanctuary</h1>
+      <p class="font-label-caps text-label-caps text-on-surface-variant mt-1">Artisanal Coffee Management</p>
+    </div>
+    <nav class="flex-1 space-y-2">
+      <a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-all duration-200" href="#">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span class="font-body-md">Overview</span>
+      </a>
+      <a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-all duration-200" href="#">
+        <span class="material-symbols-outlined">restaurant</span>
+        <span class="font-body-md">Kitchen</span>
+      </a>
+      <a class="flex items-center gap-3 px-4 py-3 text-deep-espresso font-bold border-r-4 border-deep-espresso bg-heritage-cream/30" href="#">
+        <span class="material-symbols-outlined">inventory_2</span>
+        <span class="font-body-md">Inventory</span>
+      </a>
+      <a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-all duration-200" href="#">
+        <span class="material-symbols-outlined">groups</span>
+        <span class="font-body-md">Team</span>
+      </a>
+    </nav>
+    <div class="mt-auto pt-8 border-t border-outline-muted space-y-2">
+      <button id="btn-create-trigger" class="w-full bg-deep-espresso text-white py-4 px-6 font-label-md uppercase tracking-widest active:scale-95 transition-transform duration-150 mb-6">
+        New Provision
+      </button>
+      <a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-deep-espresso transition-colors" href="#">
+        <span class="material-symbols-outlined">settings</span>
+        <span class="font-label-md">Settings</span>
+      </a>
+      <a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:text-deep-espresso transition-colors" href="#">
+        <span class="material-symbols-outlined">contact_support</span>
+        <span class="font-label-md">Support</span>
+      </a>
+    </div>
+  </aside>
+
+  <main class="ml-72 min-h-screen">
+    <header class="sticky top-0 z-30 h-20 bg-paper-white/80 backdrop-blur-md border-b border-outline-muted flex items-center justify-between px-margin-desktop">
+      <div class="flex items-center gap-4">
+        <span class="font-label-caps text-label-caps text-on-surface-variant">Current View /</span>
+        <h2 class="font-headline-md text-deep-espresso">Master Pantry & Provisions</h2>
+      </div>
+      <div class="flex items-center gap-8">
+        <div class="relative w-64">
+          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+          <input id="search-input" class="w-full bg-transparent border border-outline-muted pl-10 pr-4 py-2 font-body-md text-sm focus:outline-none focus:border-deep-espresso transition-colors" placeholder="Search provisions..." type="text" />
+        </div>
+        <div class="flex items-center gap-4">
+          <button class="relative text-on-surface-variant hover:text-deep-espresso transition-colors">
+            <span class="material-symbols-outlined">notifications</span>
+            <span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"></span>
+          </button>
+          <div class="w-8 h-8 rounded-full border border-outline-muted flex items-center justify-center overflow-hidden">
+            <img class="w-full h-full object-cover" alt="Coffee roaster portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAswqpXXuZHdnUV4uv-xnknnf9j8_V0gLqvGPWx9TsUZGec8V0Mif2iGJPrB7uzCan_U-eQ0LlKwv5EpUKY5rMDmGGSKr-wNGvvXml6ghygUrs5vDfFEU18a105YKb8zojoI7bp6ag9rLJwi1XLQdOAw2DToGAZEggmViZVTcK507wdE4-wo7PScM1yWKYv0YWMvDrZXRgJCnpamP6RMXcxCLk-lMYdJ9NUU1skaZQOk0Aq9k3g55TW0bBBHO3bNjehFPom1PKoVjEL" />
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="p-margin-desktop max-w-[1280px] mx-auto space-y-12">
+      <div class="grid grid-cols-12 gap-gutter">
+        <div class="col-span-8 bg-paper-white border border-outline-muted p-10 flex flex-col justify-between group overflow-hidden relative">
+          <div>
+            <span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Total Sourced Volume</span>
+            <h3 class="font-headline-xl text-headline-xl text-deep-espresso mt-4">1,248.5<span class="text-headline-md ml-2 opacity-60">kg</span></h3>
+            <p class="font-body-md text-on-surface-variant mt-2 max-w-md">Aggregate raw bean stock across all 12 global estates. Currently at 88% of seasonal peak capacity.</p>
+          </div>
+          <div class="flex gap-12 mt-8">
+            <div>
+              <span class="font-label-caps text-label-caps text-on-surface-variant">Pending Shipments</span>
+              <p class="font-headline-md text-deep-espresso">04</p>
+            </div>
+            <div>
+              <span class="font-label-caps text-label-caps text-on-surface-variant">Avg. Roast Cycle</span>
+              <p class="font-headline-md text-deep-espresso">14 Days</p>
+            </div>
+            <div>
+              <span class="font-label-caps text-label-caps text-on-surface-variant">Active Estates</span>
+              <p class="font-headline-md text-deep-espresso">09</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-span-4 bg-heritage-cream/20 border border-outline-muted p-8 flex flex-col justify-between">
+          <div>
+            <div class="flex justify-between items-start mb-4">
+              <span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Estate Origins</span>
+              <span class="material-symbols-outlined text-deep-espresso">public</span>
+            </div>
+            <div class="w-full h-40 bg-surface-container-high relative overflow-hidden group">
+              <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDlFJdjSDMd2JE_8Ax-tUSsyFhyAM40n9ZjylQ01JTdXw03Kb_s8RZ_BgcPjA6MOeZM55HK_8U5_G_8ux7RlivER5mMUDVr7i2ZT7CtLECEJo7JlGv016fV5j9vJvR5_ZgSJYOP40lKjN2yyP9wmwyIOLsOdOFCwvIYPeaGbx_4C-kzoqXOpBZO7FMM0HLxSi5S42vPMb6vfmB7nqYhEOGUfsANKm7wjf9sU3ppJb4_qb08VRgyxbU0BJvblBH_-rR0-iPOU7DfRBtP')"></div>
+              <div class="absolute inset-0 bg-deep-espresso/10"></div>
+            </div>
+          </div>
+          <button class="mt-6 flex items-center justify-between group text-deep-espresso font-label-md border-b border-deep-espresso pb-1">
+            View Supply Chain
+            <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </button>
+        </div>
+      </div>
+
+      <section class="space-y-6">
+        <div class="flex items-end justify-between">
+          <div>
+            <h4 class="font-headline-lg text-deep-espresso">Provisions Registry</h4>
+            <p class="font-body-md text-on-surface-variant">Managing the lineage and availability of active pantry, cellar, and fresh stock.</p>
+          </div>
+          <div class="flex gap-4">
+            <button id="btn-filter" class="px-6 py-2 border border-outline-muted hover:border-deep-espresso transition-colors font-label-md flex items-center gap-2">
+              <span class="material-symbols-outlined text-sm">filter_list</span> <span id="filter-text">All Stock</span>
+            </button>
+            <button class="px-6 py-2 border border-outline-muted hover:border-deep-espresso transition-colors font-label-md flex items-center gap-2">
+              <span class="material-symbols-outlined text-sm">download</span> Export
+            </button>
+          </div>
+        </div>
+
+        <div class="border border-outline-muted bg-paper-white divide-y divide-outline-muted overflow-hidden">
+          <div class="grid grid-cols-12 px-8 py-4 bg-surface-container-low text-on-surface-variant font-label-caps text-xs tracking-widest uppercase">
+            <div class="col-span-4">Inventory Item</div>
+            <div class="col-span-2 text-center">In Stock</div>
+            <div class="col-span-2 text-center">Last Audit</div>
+            <div class="col-span-2 text-center">Status</div>
+            <div class="col-span-2 text-right">Actions</div>
+          </div>
+          
+          <div id="inventory-table-body" class="divide-y divide-outline-muted">
+            </div>
+
+          <div class="flex items-center justify-between bg-surface-container-low px-8 py-4">
+            <div class="font-label-md text-on-surface-variant opacity-70">
+              Showing <span id="page-start" class="font-bold text-deep-espresso">0</span> to <span id="page-end" class="font-bold text-deep-espresso">0</span> of <span id="total-elements" class="font-bold text-deep-espresso">0</span> ingredients
+            </div>
+            <div class="flex items-center gap-2">
+              <button id="btn-prev" class="p-2 border border-outline-muted hover:border-deep-espresso disabled:opacity-30 disabled:hover:border-outline-muted transition-colors font-label-md flex items-center justify-center" disabled>
+                <span class="material-symbols-outlined text-sm">chevron_left</span>
+              </button>
+              <div id="page-numbers" class="flex items-center gap-1"></div>
+              <button id="btn-next" class="p-2 border border-outline-muted hover:border-deep-espresso disabled:opacity-30 disabled:hover:border-outline-muted transition-colors font-label-md flex items-center justify-center">
+                <span class="material-symbols-outlined text-sm">chevron_right</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="grid grid-cols-12 gap-gutter">
+        <div class="col-span-7 space-y-6">
+          <h4 class="font-headline-md text-deep-espresso">Supply Chain Forecast</h4>
+          <div class="bg-paper-white border border-outline-muted p-8">
+            <div class="flex items-center justify-between mb-8">
+              <p class="font-body-md text-on-surface-variant">Predictive usage for the next 30 days based on historical holiday traffic.</p>
+              <span class="font-label-caps text-label-caps px-2 py-1 bg-heritage-cream">AI Analytics Active</span>
+            </div>
+            <div class="space-y-4">
+              <div class="flex items-end gap-2 h-32 px-4">
+                <div class="flex-1 bg-surface-container-high h-[40%] transition-all hover:bg-deep-espresso"></div>
+                <div class="flex-1 bg-surface-container-high h-[55%] transition-all hover:bg-deep-espresso"></div>
+                <div class="flex-1 bg-surface-container-high h-[45%] transition-all hover:bg-deep-espresso"></div>
+                <div class="flex-1 bg-surface-container-high h-[75%] transition-all hover:bg-deep-espresso"></div>
+                <div class="flex-1 bg-deep-espresso h-[95%]"></div>
+                <div class="flex-1 bg-surface-container-high h-[85%] border-t-2 border-dashed border-deep-espresso/50"></div>
+                <div class="flex-1 bg-surface-container-high h-[70%] border-t-2 border-dashed border-deep-espresso/50"></div>
+              </div>
+              <div class="flex justify-between font-label-caps text-[10px] text-on-surface-variant px-4">
+                <span>WK 40</span>
+                <span>WK 41</span>
+                <span>WK 42</span>
+                <span>WK 43</span>
+                <span class="text-deep-espresso font-bold">TODAY</span>
+                <span>WK 45 (PRED)</span>
+                <span>WK 46 (PRED)</span>
+              </div>
+            </div>
+            <div class="mt-10 p-4 border-l-2 border-deep-espresso bg-surface-container-low flex gap-4">
+              <span class="material-symbols-outlined text-deep-espresso">info</span>
+              <p class="font-label-md text-on-surface-variant italic">Supply alert: Demand for 'Heirloom Tomato' is projected to exceed current stock levels by Nov 08. Recommend reordering 20 units by EOD.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-span-5 flex flex-col gap-gutter">
+          <div class="flex-1 bg-deep-espresso text-paper-white p-8 relative overflow-hidden flex flex-col justify-between">
+            <div class="relative z-10">
+              <span class="font-label-caps text-label-caps text-primary-fixed uppercase tracking-[0.2em]">Partner Highlight</span>
+              <h4 class="font-headline-lg text-white mt-4">Estate San Rafael</h4>
+              <p class="font-body-md text-outline-variant mt-2">Third-generation family farm in Huila, Colombia. Producers of our top-selling anaerobic honey-process lot.</p>
+            </div>
+            <button class="relative z-10 self-start mt-8 flex items-center gap-2 font-label-md border-b border-primary-fixed pb-1 hover:text-primary-fixed transition-colors">
+              <span class="material-symbols-outlined text-sm">mail</span> Contact Manuel Santos
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="h-16"></div>
+    </div>
+  </main>
+
+  <div id="form-modal" class="fixed inset-0 z-50 invisible opacity-0 flex items-center justify-center p-4 transition-all duration-300">
+    <div id="modal-backdrop" class="absolute inset-0 bg-deep-espresso/40 backdrop-blur-sm"></div>
+    
+    <div class="relative w-full max-w-md bg-paper-white border border-outline-muted p-8 shadow-2xl z-10 transform scale-95 transition-transform duration-300">
+      <div class="flex justify-between items-start mb-6">
+        <div>
+          <h3 id="modal-title" class="font-headline-md text-2xl text-deep-espresso">Add Provision</h3>
+          <p class="font-body-md text-sm text-on-surface-variant">Update item registries inside the inventory database.</p>
+        </div>
+        <button id="btn-close-modal" class="text-on-surface-variant hover:text-deep-espresso p-1">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <form id="provision-form" class="space-y-4">
+        <input type="hidden" id="item-id" />
+        
+        <div>
+          <label class="block font-label-caps text-[11px] uppercase text-on-surface-variant mb-1" for="item-name">Item Name</label>
+          <input required class="w-full bg-transparent border border-outline-muted p-2 font-body-md text-sm focus:outline-none focus:border-deep-espresso transition-colors" type="text" id="item-name" placeholder="e.g. Sumatra Mandheling Lot B" />
+        </div>
+
+        <div>
+          <label class="block font-label-caps text-[11px] uppercase text-on-surface-variant mb-1" for="item-category">Category Descriptor</label>
+          <input required class="w-full bg-transparent border border-outline-muted p-2 font-body-md text-sm focus:outline-none focus:border-deep-espresso transition-colors" type="text" id="item-category" placeholder="e.g. Origin Roast / Microlot" />
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-label-caps text-[11px] uppercase text-on-surface-variant mb-1" for="item-stock">Stock Level</label>
+            <input required step="0.1" min="0" class="w-full bg-transparent border border-outline-muted p-2 font-body-md text-sm focus:outline-none focus:border-deep-espresso transition-colors" type="number" id="item-stock" placeholder="45.0" />
+          </div>
+          <div>
+            <label class="block font-label-caps text-[11px] uppercase text-on-surface-variant mb-1" for="item-unit">Unit Metric</label>
+            <input required class="w-full bg-transparent border border-outline-muted p-2 font-body-md text-sm focus:outline-none focus:border-deep-espresso transition-colors" type="text" id="item-unit" placeholder="kg, units, liters" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block font-label-caps text-[11px] uppercase text-on-surface-variant mb-1" for="item-icon">Icon Graphic</label>
+            <select class="w-full bg-paper-white border border-outline-muted p-2 font-body-md text-sm focus:outline-none focus:border-deep-espresso transition-colors" id="item-icon">
+              <option value="coffee">Coffee Bean</option>
+              <option value="nutrition">Produce (Tomato)</option>
+              <option value="water_drop">Liquid (Milk)</option>
+              <option value="liquor">Syrup Bot</option>
+              <option value="bakery_dining">Bakery (Bread)</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-label-caps text-[11px] uppercase text-on-surface-variant mb-1" for="item-status">Stock Evaluation</label>
+            <select class="w-full bg-paper-white border border-outline-muted p-2 font-body-md text-sm focus:outline-none focus:border-deep-espresso transition-colors" id="item-status">
+              <option value="Optimal">Optimal</option>
+              <option value="Critical">Critical</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="pt-4 flex gap-3">
+          <button type="button" id="btn-delete-item" class="hidden flex-1 border border-error text-error py-3 font-label-md uppercase tracking-widest active:scale-[0.98] hover:bg-error-container/20 transition-all">
+            Delete
+          </button>
+          <button type="submit" class="flex-[2] bg-deep-espresso text-white py-3 font-label-md uppercase tracking-widest active:scale-[0.98] transition-all">
+            Commit Data
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/frontend-html/assets/js/kitchen/inventory.js"></script>
+</body>
+</html>

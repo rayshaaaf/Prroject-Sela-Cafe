@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sela Cafe | Kitchen Orchestration</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&amp;family=Manrope:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#141003",
+                        "surface-container": "#efeeea",
+                        "secondary-container": "#c5e8cc",
+                        "on-primary-container": "#a3876c",
+                        "heritage-cream": "#F2E8CF",
+                        "tertiary-fixed-dim": "#cfc6ae",
+                        "on-secondary-container": "#4a6a53",
+                        "outline-variant": "#d2c4b9",
+                        "primary-fixed-dim": "#e1c1a3",
+                        "on-surface-variant": "#4e453d",
+                        "on-tertiary-container": "#938c76",
+                        "tertiary-container": "#292515",
+                        "on-error-container": "#93000a",
+                        "surface-bright": "#faf9f5",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "inverse-surface": "#2f312e",
+                        "primary-container": "#33210d",
+                        "secondary-fixed": "#c8ebcf",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#725a42",
+                        "outline": "#80756c",
+                        "on-primary": "#ffffff",
+                        "paper-white": "#FDFCF8",
+                        "on-secondary-fixed": "#022110",
+                        "on-error": "#ffffff",
+                        "background": "#faf9f5",
+                        "on-tertiary-fixed": "#201b0c",
+                        "inverse-on-surface": "#f2f1ed",
+                        "surface-container-highest": "#e3e2df",
+                        "on-primary-fixed-variant": "#58432c",
+                        "secondary": "#46654f",
+                        "primary-fixed": "#feddbe",
+                        "deep-espresso": "#2A1B0E",
+                        "surface-dim": "#dbdad6",
+                        "surface-variant": "#e3e2df",
+                        "on-surface": "#1b1c1a",
+                        "surface": "#faf9f5",
+                        "surface-container-low": "#f4f4f0",
+                        "on-secondary-fixed-variant": "#2f4d39",
+                        "tertiary-fixed": "#ece2c9",
+                        "on-background": "#1b1c1a",
+                        "moss-green": "#386641",
+                        "on-primary-fixed": "#291805",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#adcfb4",
+                        "outline-muted": "rgba(128, 117, 108, 0.2)",
+                        "primary": "#1b0c00",
+                        "inverse-primary": "#e1c1a3",
+                        "on-tertiary-fixed-variant": "#4c4634"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "80px",
+                        "unit": "4px",
+                        "margin-mobile": "24px",
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "section-padding": "8rem"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["EB Garamond"],
+                        "label-md": ["JetBrains Mono"],
+                        "body-md": ["Manrope"],
+                        "label-caps": ["JetBrains Mono"],
+                        "headline-lg": ["EB Garamond"],
+                        "headline-lg-mobile": ["EB Garamond"],
+                        "body-lg": ["Manrope"],
+                        "headline-md": ["EB Garamond"]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "500"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                        "headline-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "38px", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-md": ["28px", {"lineHeight": "34px", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #faf9f5;
+            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+            background-blend-mode: multiply;
+        }
+        .sela-line {
+            height: 1px;
+            background: rgba(128, 117, 108, 0.15);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .order-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .order-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(128, 117, 108, 0.4);
+        }
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #80756c33;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-background min-h-screen overflow-hidden flex">
+<!-- SideNavBar (Authority: JSON & Design System) -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-surface-container-low border-r border-outline-variant/50 flex flex-col py-6 px-4 gap-4 z-40">
+<div class="px-2 mb-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-deep-espresso flex items-center justify-center rounded">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">coffee</span>
+</div>
+<div>
+<h1 class="font-headline-sm text-headline-sm text-primary leading-tight">Sela Cafe</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant/70">Kitchen Hub</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-caps text-label-caps">Overview</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 bg-secondary-container text-on-secondary-container rounded-lg font-bold transition-transform duration-200" href="#">
+<span class="material-symbols-outlined">restaurant</span>
+<span class="font-label-caps text-label-caps">Kitchen</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">inventory</span>
+<span class="font-label-caps text-label-caps">Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-caps text-label-caps">Team</span>
+</a>
+</nav>
+<div class="mt-auto pt-4 border-t border-outline-variant/30 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-caps text-label-caps">Settings</span>
+</a>
+<button class="w-full mt-4 bg-deep-espresso text-paper-white py-3 font-label-caps text-label-caps tracking-widest active:scale-95 transition-all">
+                CLOSE SHIFT
+            </button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 flex-1 flex flex-col h-screen">
+<!-- Header (TopAppBar) -->
+<header class="h-16 flex items-center justify-between px-8 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 sticky top-0 z-30">
+<div class="flex items-center gap-4">
+<h2 class="font-headline-md text-headline-md font-bold text-primary">Kitchen Orchestration</h2>
+<div class="h-4 w-[1px] bg-outline-variant/50"></div>
+<div class="font-label-md text-label-md text-on-surface-variant opacity-60" id="live-clock">--:--:--</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 px-3 py-1 bg-secondary-fixed/30 rounded-full" id="status-indicator">
+<div class="w-2 h-2 bg-moss-green rounded-full animate-pulse"></div>
+<span class="font-label-caps text-label-caps text-on-secondary-fixed-variant">Live Sync</span>
+</div>
+<button class="p-2 hover:bg-on-surface/5 rounded-full transition-colors active:scale-95" id="refresh-btn" onclick="fetchOrders()">
+<span class="material-symbols-outlined text-primary">refresh</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-heritage-cream flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-[18px]">chef_hat</span>
+</div>
+</div>
+</header>
+<!-- Kitchen Board Grid -->
+<section class="flex-1 overflow-hidden flex p-6 gap-6">
+<!-- Column 1: Incoming (PAID) -->
+<div class="flex-1 flex flex-col min-w-[320px]">
+<div class="flex items-center justify-between mb-4 px-2">
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-label-caps tracking-[0.2em] text-on-surface-variant/60">INCOMING</span>
+<span class="bg-primary text-paper-white text-[10px] px-2 py-0.5 rounded-full font-bold" id="count-incoming">0</span>
+</div>
+</div>
+<div class="flex-1 space-y-4 overflow-y-auto pr-2 pb-8" id="col-incoming">
+<!-- Cards injected here -->
+</div>
+</div>
+<!-- Column 2: Preparing (PREPARING) -->
+<div class="flex-1 flex flex-col min-w-[320px]">
+<div class="flex items-center justify-between mb-4 px-2">
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-label-caps tracking-[0.2em] text-on-surface-variant/60">ACTIVE PREP</span>
+<span class="bg-primary text-paper-white text-[10px] px-2 py-0.5 rounded-full font-bold" id="count-preparing">0</span>
+</div>
+</div>
+<div class="flex-1 space-y-4 overflow-y-auto pr-2 pb-8" id="col-preparing">
+<!-- Cards injected here -->
+</div>
+</div>
+<!-- Column 3: Ready (READY) -->
+<div class="flex-1 flex flex-col min-w-[320px]">
+<div class="flex items-center justify-between mb-4 px-2">
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-label-caps tracking-[0.2em] text-on-surface-variant/60">READY FOR SERVICE</span>
+<span class="bg-primary text-paper-white text-[10px] px-2 py-0.5 rounded-full font-bold" id="count-ready">0</span>
+</div>
+</div>
+<div class="flex-1 space-y-4 overflow-y-auto pr-2 pb-8" id="col-ready">
+<!-- Cards injected here -->
+</div>
+</div>
+</section>
+</main>
+<!-- Overlay Loader (State Management) -->
+<div class="fixed inset-0 bg-paper-white/80 backdrop-blur-sm z-[100] flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300" id="global-loader">
+<div class="flex flex-col items-center gap-6">
+<div class="w-16 h-16 border-4 border-deep-espresso border-t-transparent rounded-full animate-spin"></div>
+<p class="font-label-caps text-label-caps tracking-widest text-deep-espresso animate-pulse">Syncing Artisan Hub...</p>
+</div>
+</div>
+<script src="../assets/js/kitchen/kitchen.js"></script>
+</body></html>

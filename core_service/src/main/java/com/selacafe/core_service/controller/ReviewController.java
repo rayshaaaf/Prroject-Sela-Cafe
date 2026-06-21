@@ -45,4 +45,41 @@ public class ReviewController {
                         .build()
         );
     }
+
+    @GetMapping("/my")
+    public ResponseEntity<ApiRes<List<ReviewRes>>> getMyReviews() {
+        return ResponseEntity.ok(
+                ApiRes.<List<ReviewRes>>builder()
+                        .success(true)
+                        .message("Success")
+                        .data(reviewService.getMyReviews())
+                        .build()
+        );
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<ApiRes<ReviewRes>> update(
+            @PathVariable Long id,
+            @Valid @RequestBody ReviewReq request) {
+        return ResponseEntity.ok(
+                ApiRes.<ReviewRes>builder()
+                        .success(true)
+                        .message("Review updated successfully")
+                        .data(reviewService.update(id, request))
+                        .build()
+        );
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<ApiRes<String>> delete(
+            @PathVariable Long id) {
+        reviewService.delete(id);
+        return ResponseEntity.ok(
+                ApiRes.<String>builder()
+                        .success(true)
+                        .message("Review deleted successfully")
+                        .data(null)
+                        .build()
+        );
+    }
 }

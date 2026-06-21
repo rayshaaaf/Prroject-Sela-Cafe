@@ -10,4 +10,10 @@ public interface ReviewService {
     void create(ReviewReq request);
 
     List<ReviewRes> getByMenu(Long menuId);
+
+    List<ReviewRes> getMyReviews();
+
+    ReviewRes update(Long id, ReviewReq request);
+
+    void delete(Long id);
 }

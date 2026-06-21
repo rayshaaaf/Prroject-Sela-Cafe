@@ -63,6 +63,45 @@ public class ReviewServiceImpl implements ReviewService {
                 .toList();
     }
 
+    @Override
+    public List<ReviewRes> getMyReviews() {
+        User user = authService.getCurrentUser();
+        return reviewRepository.findByUserId(user.getId())
+                .stream()
+                .map(this::mapToResponse)
+                .toList();
+    }
+
+    @Override
+    public ReviewRes update(Long id, ReviewReq request) {
+        User user = authService.getCurrentUser();
+        Review review = reviewRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Review not found"));
+
+        if (!review.getUser().getId().equals(user.getId())) {
+            throw new BadRequestException("You can only edit your own reviews");
+        }
+
+        review.setRating(request.getRating());
+        review.setComment(request.getComment());
+        
+        Review updated = reviewRepository.save(review);
+        return mapToResponse(updated);
+    }
+
+    @Override
+    public void delete(Long id) {
+        User user = authService.getCurrentUser();
+        Review review = reviewRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Review not found"));
+
+        if (!review.getUser().getId().equals(user.getId())) {
+            throw new BadRequestException("You can only delete your own reviews");
+        }
+
+        reviewRepository.delete(review);
+    }
+
     private ReviewRes mapToResponse(Review review) {
 
         return ReviewRes.builder()

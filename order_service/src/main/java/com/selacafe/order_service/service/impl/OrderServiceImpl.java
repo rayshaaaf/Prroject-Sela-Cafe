@@ -357,7 +357,7 @@ public class OrderServiceImpl implements OrderService {
         public List<OrderRes> getKitchenOrders() {
 
                 return orderRepository
-                                .findByStatusIn(List.of("PAID", "PREPARING"))
+                                .findByStatusIn(List.of("PAID", "PREPARING", "READY"))
                                 .stream()
                                 .map(this::mapToResponse)
                                 .toList();
@@ -445,6 +445,14 @@ public class OrderServiceImpl implements OrderService {
                                                                 b.getTotalSold(),
                                                                 a.getTotalSold()))
                                 .limit(5)
+                                .toList();
+        }
+
+        @Override
+        public List<OrderRes> getOrdersByUserId(Long userId) {
+                return orderRepository.findByUserId(userId)
+                                .stream()
+                                .map(this::mapToResponse)
                                 .toList();
         }
 

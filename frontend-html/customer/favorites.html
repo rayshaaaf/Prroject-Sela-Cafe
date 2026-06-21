@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Favorites | Sela Cafe</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Manrope:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@100..900&family=JetBrains+Mono:wght@100..900&family=Manrope:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed": "#201b0c",
+                    "primary-container": "#33210d",
+                    "on-primary-fixed-variant": "#58432c",
+                    "inverse-primary": "#e1c1a3",
+                    "on-error": "#ffffff",
+                    "on-secondary-container": "#4a6a53",
+                    "secondary": "#46654f",
+                    "inverse-on-surface": "#f2f1ed",
+                    "moss-green": "#386641",
+                    "on-primary-container": "#a3876c",
+                    "outline-variant": "#d2c4b9",
+                    "on-primary-fixed": "#291805",
+                    "surface-dim": "#dbdad6",
+                    "on-tertiary-container": "#938c76",
+                    "paper-white": "#FDFCF8",
+                    "secondary-fixed": "#c8ebcf",
+                    "on-secondary": "#ffffff",
+                    "primary": "#1b0c00",
+                    "on-secondary-fixed": "#022110",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "outline": "#80756c",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#1b1c1a",
+                    "inverse-surface": "#2f312e",
+                    "tertiary-fixed": "#ece2c9",
+                    "on-secondary-fixed-variant": "#2f4d39",
+                    "heritage-cream": "#F2E8CF",
+                    "surface-container-high": "#e9e8e4",
+                    "outline-muted": "rgba(128, 117, 108, 0.2)",
+                    "on-surface-variant": "#4e453d",
+                    "surface-container-highest": "#e3e2df",
+                    "error": "#ba1a1a",
+                    "surface-bright": "#faf9f5",
+                    "on-background": "#1b1c1a",
+                    "surface-variant": "#e3e2df",
+                    "surface": "#faf9f5",
+                    "tertiary": "#141003",
+                    "surface-tint": "#725a42",
+                    "primary-fixed-dim": "#e1c1a3",
+                    "surface-container": "#efeeea",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed-dim": "#cfc6ae",
+                    "secondary-fixed-dim": "#adcfb4",
+                    "on-tertiary-fixed-variant": "#4c4634",
+                    "secondary-container": "#c5e8cc",
+                    "deep-espresso": "#2A1B0E",
+                    "tertiary-container": "#292515",
+                    "surface-container-low": "#f4f4f0",
+                    "primary-fixed": "#feddbe",
+                    "background": "#faf9f5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "80px",
+                    "gutter": "24px",
+                    "margin-mobile": "24px",
+                    "unit": "4px",
+                    "container-max": "1280px",
+                    "section-padding": "8rem"
+            },
+            "fontFamily": {
+                    "label-md": ["JetBrains Mono"],
+                    "headline-md": ["EB Garamond"],
+                    "body-lg": ["Manrope"],
+                    "headline-xl": ["EB Garamond"],
+                    "headline-lg": ["EB Garamond"],
+                    "body-md": ["Manrope"],
+                    "label-caps": ["JetBrains Mono"],
+                    "headline-lg-mobile": ["EB Garamond"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["28px", {"lineHeight": "34px", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-xl": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "500"}],
+                    "headline-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "38px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #faf9f5;
+            color: #1b1c1a;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.05;
+            background-image: url("https://www.transparenttextures.com/patterns/felt.png");
+        }
+
+        .sela-line {
+            height: 1px;
+            background-color: rgba(128, 117, 108, 0.2);
+            width: 100%;
+        }
+
+        .image-warm-hover {
+            filter: grayscale(30%);
+            transition: filter 0.5s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .product-card:hover .image-warm-hover {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .active-heart {
+            font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            color: #ba1a1a;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md selection:bg-heritage-cream selection:text-deep-espresso">
+<div class="grain-overlay"></div>
+<div id="navbar-placeholder"></div>
+<main class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop py-section-padding">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+<div class="max-w-2xl">
+<span class="font-label-caps text-label-caps text-on-primary-fixed-variant mb-4 block">Curated Collection</span>
+<h1 class="font-headline-xl text-headline-xl md:text-headline-xl text-primary leading-none">My Favorites</h1>
+<p class="mt-6 font-body-lg text-body-lg text-on-surface-variant max-w-lg">A personal archive of your most cherished flavors. Each selection reflects the art of the slow pour and artisanal craftsmanship.</p>
+</div>
+<a class="inline-flex items-center justify-center px-8 py-4 bg-deep-espresso text-paper-white font-label-caps text-label-caps tracking-widest hover:bg-primary transition-all active:scale-95 duration-200" href="../web/menu.html">
+                BROWSE MENU
+            </a>
+</div>
+<div class="sela-line mb-16"></div>
+<!-- Favorites Grid (Editorial Layout) -->
+<div id="favorites-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-gutter gap-y-16">
+<!-- Dynamic items will be rendered by customer-favorites.js -->
+</div>
+</main>
+<!-- Call to Action Section -->
+<section class="bg-primary-container py-section-padding text-heritage-cream relative overflow-hidden">
+<!-- Subtle WebGL or Animated Background Effect Placeholder -->
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+<div class="w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-heritage-cream/20 to-transparent"></div>
+</div>
+<div class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop relative z-10 text-center">
+<h2 class="font-headline-lg text-headline-lg mb-6">Continue the Journey</h2>
+<p class="max-w-xl mx-auto font-body-lg text-body-lg text-on-primary-container mb-12 opacity-90">Every cup tells a story of heritage and patience. Rediscover our full artisan menu or book a reservation for a curated tasting experience.</p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+<a class="w-full sm:w-auto px-10 py-5 bg-heritage-cream text-deep-espresso font-label-caps text-label-caps tracking-widest hover:bg-white transition-all active:scale-95" href="../web/menu.html">GO TO MENU</a>
+</div>
+</div>
+</section>
+<div id="footer-placeholder"></div>
+
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/customer-favorites.js"></script>
+<script>
+        // Micro-interactions for favorites
+        document.querySelectorAll('.active-heart').forEach(heart => {
+            heart.parentElement.addEventListener('click', (e) => {
+                e.preventDefault();
+                const isFilled = heart.style.fontVariationSettings.includes("'FILL' 1");
+                if (isFilled) {
+                    heart.style.fontVariationSettings = "'FILL' 0, 'wght' 300";
+                    heart.classList.remove('active-heart');
+                    heart.classList.add('text-primary');
+                } else {
+                    heart.style.fontVariationSettings = "'FILL' 1, 'wght' 300";
+                    heart.classList.add('active-heart');
+                    heart.classList.remove('text-primary');
+                }
+            });
+        });
+
+        // Add to Cart Simulation
+        document.querySelectorAll('button:contains("QUICK ADD")').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const originalText = this.innerText;
+                this.innerText = 'ADDED TO BAG';
+                this.classList.add('bg-secondary', 'border-secondary', 'text-white');
+                setTimeout(() => {
+                    this.innerText = originalText;
+                    this.classList.remove('bg-secondary', 'border-secondary', 'text-white');
+                }, 2000);
+            });
+        });
+
+        // Polyfill for text selector if needed
+        document.querySelectorAll('button').forEach(btn => {
+            if(btn.textContent.trim() === 'QUICK ADD') {
+                 btn.addEventListener('click', function() {
+                    const originalText = this.innerText;
+                    this.innerText = 'ADDED';
+                    this.style.backgroundColor = '#46654f';
+                    this.style.color = '#ffffff';
+                    setTimeout(() => {
+                        this.innerText = originalText;
+                        this.style.backgroundColor = 'transparent';
+                        this.style.color = '#1b0c00';
+                    }, 1500);
+                });
+            }
+        });
+    </script>
+</body></html>

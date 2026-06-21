@@ -10,5 +10,7 @@ public interface ReviewRepository
 
     List<Review> findByMenuId(Long menuId);
 
+    List<Review> findByUserId(Long userId);
+
     boolean existsByUserIdAndMenuId(Long userId, Long menuId);
 }

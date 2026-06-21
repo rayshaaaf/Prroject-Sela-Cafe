@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Heritage Sanctuary | Team Management</title>
+  
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Manrope:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary-fixed-variant": "#58432c",
+            "inverse-on-surface": "#f2f1ed",
+            "surface-bright": "#faf9f5",
+            "error-container": "#ffdad6",
+            "tertiary-fixed-dim": "#cfc6ae",
+            "primary-fixed-dim": "#e1c1a3",
+            "surface": "#faf9f5",
+            "surface-container-low": "#f4f4f0",
+            "on-primary-container": "#a3876c",
+            "tertiary-fixed": "#ece2c9",
+            "on-primary-fixed": "#291805",
+            "on-tertiary-fixed-variant": "#4c4634",
+            "deep-espresso": "#2A1B0E",
+            "surface-tint": "#725a42",
+            "outline": "#80756c",
+            "tertiary-container": "#292515",
+            "on-surface-variant": "#4e453d",
+            "secondary-fixed": "#c8ebcf",
+            "on-secondary-container": "#4a6a53",
+            "surface-container-high": "#e9e8e4",
+            "background": "#faf9f5",
+            "primary": "#1b0c00",
+            "surface-container": "#efeeea",
+            "outline-muted": "rgba(128, 117, 108, 0.2)",
+            "surface-container-lowest": "#ffffff",
+            "primary-container": "#33210d",
+            "outline-variant": "#d2c4b9",
+            "heritage-cream": "#F2E8CF",
+            "secondary-fixed-dim": "#adcfb4",
+            "primary-fixed": "#feddbe",
+            "on-primary": "#ffffff",
+            "error": "#ba1a1a",
+            "on-secondary-fixed": "#022110",
+            "on-error": "#ffffff",
+            "inverse-primary": "#e1c1a3",
+            "on-tertiary-fixed": "#201b0c",
+            "on-secondary": "#ffffff",
+            "surface-variant": "#e3e2df",
+            "on-error-container": "#93000a",
+            "paper-white": "#FDFCF8",
+            "on-background": "#1b1c1a",
+            "inverse-surface": "#2f312e",
+            "surface-container-highest": "#e3e2df",
+            "tertiary": "#141003",
+            "on-tertiary-container": "#938c76",
+            "on-secondary-fixed-variant": "#2f4d39",
+            "on-tertiary": "#ffffff",
+            "surface-dim": "#dbdad6",
+            "on-surface": "#1b1c1a",
+            "secondary-container": "#c5e8cc",
+            "secondary": "#46654f",
+            "moss-green": "#386641"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "section-padding": "8rem",
+            "unit": "4px",
+            "container-max": "1280px",
+            "margin-mobile": "24px",
+            "gutter": "24px",
+            "margin-desktop": "80px"
+          },
+          "fontFamily": {
+            "label-md": ["JetBrains Mono"],
+            "headline-xl": ["EB Garamond"],
+            "headline-lg": ["EB Garamond"],
+            "body-md": ["Manrope"],
+            "label-caps": ["JetBrains Mono"],
+            "headline-md": ["EB Garamond"],
+            "body-lg": ["Manrope"],
+            "headline-lg-mobile": ["EB Garamond"]
+          },
+          "fontSize": {
+            "label-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "headline-xl": ["64px", { "lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+            "headline-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500" }],
+            "headline-md": ["28px", { "lineHeight": "34px", "fontWeight": "500" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+            "headline-lg-mobile": ["32px", { "lineHeight": "38px", "fontWeight": "500" }]
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    .paper-grain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 50;
+      opacity: 0.05;
+      background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(42, 27, 14, 0.1);
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface overflow-x-hidden">
+  <div class="paper-grain"></div>
+
+  <aside class="fixed left-0 top-0 z-40 py-margin-desktop px-gutter h-screen w-72 flex flex-col border-r border-outline-muted bg-surface dark:bg-surface-container-low">
+    <div class="mb-12">
+      <h1 class="font-headline-md text-headline-md text-deep-espresso dark:text-inverse-primary tracking-tight">Heritage Sanctuary</h1>
+      <p class="font-label-caps text-label-caps text-on-surface-variant opacity-70 mt-2">Artisanal Coffee Management</p>
+    </div>
+    <nav class="flex-grow space-y-2">
+      <a class="flex items-center gap-4 px-4 py-3 rounded text-on-surface-variant dark:text-surface-variant hover:text-deep-espresso dark:hover:text-inverse-primary transition-colors hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all duration-200" href="#">
+        <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+        <span class="font-label-caps text-label-caps">Overview</span>
+      </a>
+      <a class="flex items-center gap-4 px-4 py-3 rounded text-on-surface-variant dark:text-surface-variant hover:text-deep-espresso dark:hover:text-inverse-primary transition-colors hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all duration-200" href="#">
+        <span class="material-symbols-outlined" data-icon="restaurant">restaurant</span>
+        <span class="font-label-caps text-label-caps">Kitchen</span>
+      </a>
+      <a class="flex items-center gap-4 px-4 py-3 rounded text-on-surface-variant dark:text-surface-variant hover:text-deep-espresso dark:hover:text-inverse-primary transition-colors hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all duration-200" href="#">
+        <span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+        <span class="font-label-caps text-label-caps">Inventory</span>
+      </a>
+      <a class="flex items-center gap-4 px-4 py-3 rounded text-deep-espresso dark:text-inverse-primary font-bold border-r-4 border-deep-espresso bg-heritage-cream/30 active:scale-95 transition-transform duration-150" href="#">
+        <span class="material-symbols-outlined" data-icon="groups">groups</span>
+        <span class="font-label-caps text-label-caps">Team</span>
+      </a>
+    </nav>
+    <div class="mt-auto pt-8 border-t border-outline-muted">
+      <button class="w-full bg-deep-espresso text-white py-4 font-label-caps text-label-caps mb-8 active:scale-95 transition-transform">
+        New Order
+      </button>
+      <div class="space-y-2">
+        <a class="flex items-center gap-4 px-4 py-2 text-on-surface-variant hover:text-deep-espresso transition-colors" href="#">
+          <span class="material-symbols-outlined" data-icon="settings">settings</span>
+          <span class="font-label-caps text-label-caps">Settings</span>
+        </a>
+        <a class="flex items-center gap-4 px-4 py-2 text-on-surface-variant hover:text-deep-espresso transition-colors" href="#">
+          <span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
+          <span class="font-label-caps text-label-caps">Support</span>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <main class="ml-72 min-h-screen">
+    <header class="flex items-center justify-between px-margin-desktop w-full h-20 docked top-0 bg-paper-white/80 backdrop-blur-md sticky z-30 transition-shadow duration-300">
+      <div class="flex items-center gap-4">
+        <h2 class="font-headline-md text-headline-md text-deep-espresso">The Collective</h2>
+      </div>
+      <div class="flex items-center gap-8">
+        <div class="relative flex items-center bg-surface-container-low border border-outline-muted px-4 py-2 rounded-full w-64">
+          <span class="material-symbols-outlined text-sm opacity-50 mr-2" data-icon="search">search</span>
+          <input id="team-search" class="bg-transparent border-none p-0 focus:ring-0 text-label-md w-full placeholder:opacity-40 focus:outline-none" placeholder="Search the sanctuary..." type="text" />
+        </div>
+        <div class="flex items-center gap-6 text-deep-espresso">
+          <button class="relative active:scale-95 transition-transform">
+            <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+            <span class="absolute top-0 right-0 w-2 h-2 bg-moss-green rounded-full"></span>
+          </button>
+          <button class="active:opacity-80 transition-opacity">
+            <span class="material-symbols-outlined" data-icon="account_circle" style="font-size: 32px;">account_circle</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="px-margin-desktop py-12 max-w-container-max mx-auto">
+      <section class="mb-section-padding">
+        <div class="flex justify-between items-end mb-8">
+          <div>
+            <span class="font-label-caps text-label-caps text-on-surface-variant">Active Operations</span>
+            <h3 class="font-headline-lg text-headline-lg text-deep-espresso mt-2">Daily Schedule</h3>
+          </div>
+          <div class="flex gap-4">
+            <button class="px-6 py-2 border border-outline-muted font-label-caps text-label-caps hover:bg-surface-container transition-colors active:scale-95">
+              Print Log
+            </button>
+          </div>
+        </div>
+        <div class="bg-paper-white p-8 border border-outline-muted overflow-x-auto">
+          <div class="min-w-[800px]">
+            <div class="grid grid-cols-12 border-b border-outline-muted pb-4 mb-6">
+              <div class="col-span-2 font-label-caps text-label-caps opacity-40">08:00</div>
+              <div class="col-span-2 font-label-caps text-label-caps opacity-40">10:00</div>
+              <div class="col-span-2 font-label-caps text-label-caps opacity-40">12:00</div>
+              <div class="col-span-2 font-label-caps text-label-caps opacity-40">14:00</div>
+              <div class="col-span-2 font-label-caps text-label-caps opacity-40">16:00</div>
+              <div class="col-span-2 font-label-caps text-label-caps opacity-40 text-right">18:00</div>
+            </div>
+            <div class="space-y-6">
+              <div class="relative h-12 flex items-center">
+                <div class="absolute left-0 w-20 font-label-caps text-label-caps text-deep-espresso">Bar</div>
+                <div class="ml-24 flex-grow relative h-full">
+                  <div class="absolute left-[0%] w-[45%] h-full bg-heritage-cream/40 border-l-2 border-deep-espresso px-4 flex items-center group cursor-pointer hover:bg-heritage-cream/60 transition-colors">
+                    <span class="font-body-md text-body-md font-semibold text-deep-espresso">Elias Thorne</span>
+                    <span class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity font-label-caps text-label-caps">AM Shift</span>
+                  </div>
+                  <div class="absolute left-[45%] w-[40%] h-full bg-surface-container-highest border-l-2 border-outline px-4 flex items-center group cursor-pointer">
+                    <span class="font-body-md text-body-md text-on-surface-variant">Soren Vane</span>
+                  </div>
+                </div>
+              </div>
+              <div class="relative h-12 flex items-center">
+                <div class="absolute left-0 w-20 font-label-caps text-label-caps text-deep-espresso">Roastery</div>
+                <div class="ml-24 flex-grow relative h-full">
+                  <div class="absolute left-[10%] w-[30%] h-full bg-secondary-fixed/30 border-l-2 border-moss-green px-4 flex items-center">
+                    <span class="font-body-md text-body-md text-on-secondary-container">Aria Sol</span>
+                  </div>
+                </div>
+              </div>
+              <div class="relative h-12 flex items-center">
+                <div class="absolute left-0 w-20 font-label-caps text-label-caps text-deep-espresso">Service</div>
+                <div class="ml-24 flex-grow relative h-full">
+                  <div class="absolute left-[5%] w-[40%] h-full bg-surface-container border-l-2 border-outline-muted px-4 flex items-center">
+                    <span class="font-body-md text-body-md">Maren Koto</span>
+                  </div>
+                  <div class="absolute left-[50%] w-[35%] h-full bg-surface-container border-l-2 border-outline-muted px-4 flex items-center">
+                    <span class="font-body-md text-body-md">Julien Roux</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="mb-section-padding">
+        <div class="flex items-center gap-4 mb-12">
+          <div class="h-[1px] flex-grow bg-outline-muted"></div>
+          <h3 class="font-headline-lg text-headline-lg text-deep-espresso shrink-0">The Barista Collective</h3>
+          <div class="h-[1px] flex-grow bg-outline-muted"></div>
+        </div>
+        <div id="team-directory" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+          </div>
+      </section>
+
+      <section class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-5">
+          <span class="font-label-caps text-label-caps text-moss-green font-bold">Culture Hub</span>
+          <h3 class="font-headline-lg text-headline-lg text-deep-espresso mt-4 mb-6">The Weekly Ritual</h3>
+          <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed mb-8">Every Thursday morning, we gather before opening to explore a single origin through three different brewing methods. This week: The Geisha varietal from Finca Sophia.</p>
+          <div class="p-6 bg-heritage-cream/20 border-l-4 border-heritage-cream space-y-4">
+            <div class="flex items-center gap-4">
+              <span class="material-symbols-outlined text-deep-espresso" data-icon="event_note">event_note</span>
+              <span class="font-label-md text-label-md font-semibold">Thursday, Oct 12 — 07:30 AM</span>
+            </div>
+            <div class="flex items-center gap-4">
+              <span class="material-symbols-outlined text-deep-espresso" data-icon="menu_book">menu_book</span>
+              <span class="font-label-md text-label-md">Topic: Aeropress Inversion vs V60 Dynamics</span>
+            </div>
+            <button class="text-deep-espresso font-label-caps text-label-caps flex items-center gap-2 mt-4 group active:scale-95 transition-transform">
+              View Study Notes 
+              <span class="material-symbols-outlined text-sm group-hover:translate-x-2 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+            </button>
+          </div>
+        </div>
+        <div class="lg:col-span-7 relative">
+          <div class="aspect-[16/9] w-full bg-surface-container relative overflow-hidden">
+            <img class="w-full h-full object-cover" data-alt="Top-down minimalist shot of ceramic cups" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3hNYEBxknksIEwv0oz5oN31ZvOzeyGOmgb-tPpXfDye4pxh7eqmHI8YBsEVzoih65OM6VaBq8onFBAhrSJG01LSwVM2basSkafNxqNsz4Cj0XGFDkUndR-S6gBIVY7THBDb7jRV4M_rQwbqPcikusg3EZJZb_2r3yWd1zmpCIhP77u-pa8ln091kH5W0Y73SCjPUpFf8zNl5XfSd3AvhKEb0dn_1ilA3ZTfiRo7dY_FILz1QWugdzayuqnA_8vj5r5D-M9uEiT1MI" />
+            <div class="absolute inset-0 bg-deep-espresso/10"></div>
+            <div class="absolute bottom-8 left-8 bg-paper-white p-6 border border-outline-muted max-w-xs shadow-sm">
+              <h5 class="font-label-caps text-label-caps mb-2 text-deep-espresso">Featured Note</h5>
+              <p class="font-body-md text-body-md italic text-on-surface-variant">"The jasmine notes become much more pronounced when the extraction hits the 3:30 mark exactly..."</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer class="px-margin-desktop py-12 border-t border-outline-muted flex flex-col md:flex-row justify-between items-center gap-8 bg-surface-container-low mt-24">
+      <div class="flex items-center gap-4">
+        <span class="font-headline-md text-headline-md text-deep-espresso opacity-40">H.S.</span>
+        <span class="font-label-caps text-label-caps text-on-surface-variant">© 2023 Heritage Sanctuary Management</span>
+      </div>
+      <div class="flex gap-12">
+        <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-deep-espresso transition-colors" href="#">Staff Handbook</a>
+        <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-deep-espresso transition-colors" href="#">Privacy Policy</a>
+        <a class="font-label-caps text-label-caps text-on-surface-variant hover:text-deep-espresso transition-colors" href="#">Internal Portal</a>
+      </div>
+    </footer>
+  </main>
+
+  <script src="/frontend-html/assets/js/kitchen/team.js"></script>
+</body>
+</html>
