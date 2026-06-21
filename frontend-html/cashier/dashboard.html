@@ -153,7 +153,7 @@
             <span class="font-label-caps text-label-caps text-on-surface-variant">Total Orders Today</span>
             <span class="material-symbols-outlined text-outline" data-icon="shopping_basket">shopping_basket</span>
           </div>
-          <div class="font-headline-lg text-headline-lg text-deep-espresso">142</div>
+          <div class="font-headline-lg text-headline-lg text-deep-espresso" id="stats-total-orders">-</div>
           <div class="mt-4 font-label-md text-label-md text-moss-green flex items-center gap-1">
             <span class="material-symbols-outlined text-sm" data-icon="trending_up">trending_up</span>
             <span>12% from yesterday</span>
@@ -165,7 +165,7 @@
             <span class="font-label-caps text-label-caps text-on-surface-variant">Total Revenue Today</span>
             <span class="material-symbols-outlined text-outline" data-icon="payments">payments</span>
           </div>
-          <div class="font-headline-lg text-headline-lg text-deep-espresso">$3,842.50</div>
+          <div class="font-headline-lg text-headline-lg text-deep-espresso" id="stats-total-revenue">-</div>
           <div class="mt-4 font-label-md text-label-md text-moss-green flex items-center gap-1">
             <span class="material-symbols-outlined text-sm" data-icon="trending_up">trending_up</span>
             <span>8.4% growth</span>
@@ -177,75 +177,18 @@
             <span class="font-label-caps text-label-caps text-on-surface-variant">Total Paid Orders</span>
             <span class="material-symbols-outlined text-outline" data-icon="check_circle">check_circle</span>
           </div>
-          <div class="font-headline-lg text-headline-lg text-deep-espresso">128</div>
-          <div class="mt-4 font-label-md text-label-md text-on-surface-variant">14 pending payment</div>
+          <div class="font-headline-lg text-headline-lg text-deep-espresso" id="stats-paid-orders">-</div>
+          <div class="mt-4 font-label-md text-label-md text-on-surface-variant" id="stats-pending-actions">- pending payment</div>
         </div>
       </section>
 
       <section id="waiting-payment">
         <div class="flex items-center justify-between mb-6">
           <h3 class="font-headline-md text-headline-md text-deep-espresso">Waiting Payment</h3>
-          <div class="flex gap-2">
-            <span class="px-3 py-1 bg-heritage-cream text-deep-espresso font-label-caps text-label-caps rounded">4 Actions Needed</span>
-          </div>
         </div>
 
-        <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
-          <div class="bg-paper-white border border-outline-muted p-6 flex flex-col justify-between hover:border-deep-espresso transition-colors duration-300" id="order-HS-7721">
-            <div class="flex justify-between items-start mb-6">
-              <div>
-                <div class="font-label-caps text-label-caps text-on-surface-variant mb-1">Order #HS-7721</div>
-                <div class="font-headline-md text-headline-md text-deep-espresso">Eleanor Thorne</div>
-              </div>
-              <span class="px-3 py-1 bg-heritage-cream font-label-caps text-label-caps text-deep-espresso">Dine-in</span>
-            </div>
-            <div class="space-y-4 mb-8">
-              <div class="flex justify-between text-body-md">
-                <span class="text-on-surface-variant">Order Time</span>
-                <span class="font-label-md">10:42 AM</span>
-              </div>
-              <div class="flex justify-between text-body-md">
-                <span class="text-on-surface-variant">Payment Method</span>
-                <span class="font-label-md">Credit Card</span>
-              </div>
-              <div class="sela-line"></div>
-              <div class="flex justify-between items-end">
-                <span class="font-label-caps text-label-caps text-on-surface-variant">Total Amount</span>
-                <span class="font-headline-md text-headline-md text-deep-espresso">$42.00</span>
-              </div>
-            </div>
-            <button class="w-full bg-deep-espresso text-paper-white py-4 font-label-caps text-label-caps tracking-widest hover:bg-primary transition-all active:scale-95 duration-150" id="confirm-payment-btn-HS-7721">
-              Confirm Payment
-            </button>
-          </div>
-
-          <div class="bg-paper-white border border-outline-muted p-6 flex flex-col justify-between hover:border-deep-espresso transition-colors duration-300" id="order-HS-7725">
-            <div class="flex justify-between items-start mb-6">
-              <div>
-                <div class="font-label-caps text-label-caps text-on-surface-variant mb-1">Order #HS-7725</div>
-                <div class="font-headline-md text-headline-md text-deep-espresso">Dr. Aris Thorne</div>
-              </div>
-              <span class="px-3 py-1 bg-surface-container-highest font-label-caps text-label-caps text-on-surface-variant">Takeaway</span>
-            </div>
-            <div class="space-y-4 mb-8">
-              <div class="flex justify-between text-body-md">
-                <span class="text-on-surface-variant">Order Time</span>
-                <span class="font-label-md">10:45 AM</span>
-              </div>
-              <div class="flex justify-between text-body-md">
-                <span class="text-on-surface-variant">Payment Method</span>
-                <span class="font-label-md">Cash</span>
-              </div>
-              <div class="sela-line"></div>
-              <div class="flex justify-between items-end">
-                <span class="font-label-caps text-label-caps text-on-surface-variant">Total Amount</span>
-                <span class="font-headline-md text-headline-md text-deep-espresso">$18.50</span>
-              </div>
-            </div>
-            <button class="w-full bg-deep-espresso text-paper-white py-4 font-label-caps text-label-caps tracking-widest hover:bg-primary transition-all active:scale-95 duration-150" id="confirm-payment-btn-HS-7725">
-              Confirm Payment
-            </button>
-          </div>
+        <div class="grid grid-cols-1 xl:grid-cols-2 gap-6" id="waiting-payment-container">
+          <!-- Dynamically populated -->
         </div>
       </section>
 
@@ -279,77 +222,8 @@
                 <th class="py-4 text-right font-label-caps text-label-caps text-on-surface-variant">Actions</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-outline-muted/30">
-              <tr class="group hover:bg-heritage-cream/10 transition-colors">
-                <td class="py-6 font-label-md">#HS-7728</td>
-                <td class="py-6 font-body-md font-semibold">Marcus Aurelius</td>
-                <td class="py-6">
-                  <span class="inline-flex items-center gap-2 text-moss-green font-label-md">
-                    <span class="w-2 h-2 rounded-full bg-moss-green animate-pulse"></span>DELIVERY
-                  </span>
-                </td>
-                <td class="py-6 font-body-md">$32.50</td>
-                <td class="py-6">
-                  <input type="text" placeholder="Enter Courier Name" class="bg-transparent border-b border-outline-muted font-label-md text-label-md py-1 w-full focus:border-deep-espresso outline-none" />
-                </td>
-                <td class="py-6 font-label-md text-on-surface-variant">Just now</td>
-                <td class="py-6 text-right">
-                  <button class="text-on-surface-variant hover:text-deep-espresso transition-colors">
-                    <span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
-                  </button>
-                </td>
-              </tr>
-              <tr class="group hover:bg-heritage-cream/10 transition-colors">
-                <td class="py-6 font-label-md">#HS-7718</td>
-                <td class="py-6 font-body-md font-semibold">Julianna Vane</td>
-                <td class="py-6">
-                  <span class="inline-flex items-center gap-2 text-moss-green font-label-md">
-                    <span class="w-2 h-2 rounded-full bg-moss-green animate-pulse"></span>PREPARING
-                  </span>
-                </td>
-                <td class="py-6 font-body-md">$12.00</td>
-                <td class="py-6 font-label-md text-on-surface-variant">N/A</td>
-                <td class="py-6 font-label-md text-on-surface-variant">2 mins ago</td>
-                <td class="py-6 text-right">
-                  <button class="text-on-surface-variant hover:text-deep-espresso transition-colors">
-                    <span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
-                  </button>
-                </td>
-              </tr>
-              <tr class="group hover:bg-heritage-cream/10 transition-colors">
-                <td class="py-6 font-label-md">#HS-7715</td>
-                <td class="py-6 font-body-md font-semibold">Soren Kierk</td>
-                <td class="py-6">
-                  <span class="inline-flex items-center gap-2 text-deep-espresso font-label-md">
-                    <span class="w-2 h-2 rounded-full bg-deep-espresso"></span>READY
-                  </span>
-                </td>
-                <td class="py-6 font-body-md">$24.50</td>
-                <td class="py-6 font-label-md text-on-surface-variant">N/A</td>
-                <td class="py-6 font-label-md text-on-surface-variant">8 mins ago</td>
-                <td class="py-6 text-right">
-                  <button class="text-on-surface-variant hover:text-deep-espresso transition-colors">
-                    <span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
-                  </button>
-                </td>
-              </tr>
-              <tr class="group hover:bg-heritage-cream/10 transition-colors">
-                <td class="py-6 font-label-md">#HS-7710</td>
-                <td class="py-6 font-body-md font-semibold">Clara Oswald</td>
-                <td class="py-6">
-                  <span class="inline-flex items-center gap-2 text-on-surface-variant font-label-md">
-                    <span class="w-2 h-2 rounded-full bg-outline"></span>COMPLETED
-                  </span>
-                </td>
-                <td class="py-6 font-body-md">$9.00</td>
-                <td class="py-6 font-label-md text-on-surface-variant">N/A</td>
-                <td class="py-6 font-label-md text-on-surface-variant">15 mins ago</td>
-                <td class="py-6 text-right">
-                  <button class="text-on-surface-variant hover:text-deep-espresso transition-colors">
-                    <span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
-                  </button>
-                </td>
-              </tr>
+            <tbody class="divide-y divide-outline-muted/30" id="active-orders-table-body">
+              <!-- Dynamically populated -->
             </tbody>
           </table>
         </div>
@@ -368,37 +242,19 @@
     </footer>
   </main>
 
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/cashier/cashier.js"></script>
   <script>
-    // Micro-interaction for buttons
-    document.querySelectorAll('button').forEach(btn => {
-      btn.addEventListener('click', function() {
-        const id = this.getAttribute('id');
-        if (id && id.includes('confirm-payment')) {
-          this.innerText = 'PROCESSING...';
-          this.classList.add('opacity-70');
-          
-          setTimeout(() => {
-            const card = this.closest('div[id^="order-"]');
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(-10px)';
-            card.style.transition = 'all 0.5s ease-in-out';
-            
-            setTimeout(() => {
-              card.remove();
-            }, 500);
-          }, 800);
-        }
-      });
-    });
-
     // Search highlight effect
     const searchInput = document.getElementById('global-search');
-    searchInput.addEventListener('focus', () => {
-      searchInput.parentElement.classList.add('scale-105', 'shadow-xl');
-    });
-    searchInput.addEventListener('blur', () => {
-      searchInput.parentElement.classList.remove('scale-105', 'shadow-xl');
-    });
+    if (searchInput) {
+      searchInput.addEventListener('focus', () => {
+        searchInput.parentElement.classList.add('scale-105', 'shadow-xl');
+      });
+      searchInput.addEventListener('blur', () => {
+        searchInput.parentElement.classList.remove('scale-105', 'shadow-xl');
+      });
+    }
   </script>
 </body>
 </html>

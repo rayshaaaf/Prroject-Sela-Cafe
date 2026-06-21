@@ -144,19 +144,19 @@
         </div>
         
         <nav class="flex-1 space-y-4">
-            <a class="flex items-center gap-4 px-4 py-3 rounded-lg text-deep-espresso dark:text-inverse-primary font-bold border-r-4 border-deep-espresso bg-heritage-cream/30 active:scale-95 transition-all" href="#">
+            <a class="flex items-center gap-4 px-4 py-3 rounded-lg text-deep-espresso dark:text-inverse-primary font-bold border-r-4 border-deep-espresso bg-heritage-cream/30 active:scale-95 transition-all" href="overview.html">
                 <span class="material-symbols-outlined">dashboard</span>
                 <span class="font-label-md text-label-md">Overview</span>
             </a>
-            <a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:text-deep-espresso dark:hover:text-inverse-primary hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all duration-200" href="#">
+            <a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:text-deep-espresso dark:hover:text-inverse-primary hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all duration-200" href="kitchen.html">
                 <span class="material-symbols-outlined">restaurant</span>
                 <span class="font-label-md text-label-md">Kitchen</span>
             </a>
-            <a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:text-deep-espresso dark:hover:text-inverse-primary hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all duration-200" href="#">
+            <a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:text-deep-espresso dark:hover:text-inverse-primary hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all duration-200" href="inventory.html">
                 <span class="material-symbols-outlined">inventory_2</span>
                 <span class="font-label-md text-label-md">Inventory</span>
             </a>
-            <a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:text-deep-espresso dark:hover:text-inverse-primary hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all duration-200" href="#">
+            <a class="flex items-center gap-4 px-4 py-3 rounded-lg text-on-surface-variant dark:text-surface-variant hover:text-deep-espresso dark:hover:text-inverse-primary hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all duration-200" href="team.html">
                 <span class="material-symbols-outlined">groups</span>
                 <span class="font-label-md text-label-md">Team</span>
             </a>
@@ -171,6 +171,9 @@
                 <span class="material-symbols-outlined">contact_support</span>
                 <span class="font-label-md text-label-md">Support</span>
             </a>
+            <button onclick="window.logout()" class="w-full bg-deep-espresso text-white py-3 font-label-caps text-label-caps tracking-widest active:scale-95 transition-all">
+                CLOSE SHIFT
+            </button>
             <div class="mt-6 flex items-center gap-4 px-4">
                 <div class="w-10 h-10 rounded-full bg-deep-espresso flex items-center justify-center text-white font-headline-md">S</div>
                 <div>
@@ -466,6 +469,7 @@
     </main>
 
     <!-- Hubungkan dengan berkas JavaScript backend terpisah -->
-    <script src="overview.js"></script>
+    <script src="../assets/js/components.js"></script>
+    <script src="../assets/js/kitchen/overview.js"></script>
 </body>
 </html>

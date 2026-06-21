@@ -12,8 +12,12 @@ const API_BASE_URL = 'http://localhost:8090';
 window.apiFetch = async function(path, options = {}) {
     const url = path.startsWith('http') ? path : `${API_BASE_URL}${path}`;
     const token = localStorage.getItem('token');
-    options.headers = { 'Content-Type': 'application/json', ...options.headers };
-    if (token) options.headers['Authorization'] = `Bearer ${token}`;
+    const headers = { 'Content-Type': 'application/json', ...options.headers };
+    if (headers['Content-Type'] === 'multipart/form-data' || headers['Content-Type'] === null || headers['Content-Type'] === 'none') {
+        delete headers['Content-Type'];
+    }
+    if (token) headers['Authorization'] = `Bearer ${token}`;
+    options.headers = headers;
     try {
         const response = await fetch(url, options);
         if (response.status === 401) {
@@ -84,6 +88,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const grain = document.createElement('div');
         grain.className = 'grain-overlay';
         document.body.appendChild(grain);
+    }
+
+    // Capture scanned table from QR code URL query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const tableParam = urlParams.get('table');
+    if (tableParam) {
+        localStorage.setItem('scannedTable', tableParam);
     }
 });
 

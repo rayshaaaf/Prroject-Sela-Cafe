@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCheckoutSummary();
     prefillCustomerInfo();
     wireCheckoutForm();
+    loadDiningTables();
 });
 
 // ─── Cart Helpers ─────────────────────────────────────────────────────────────
@@ -117,7 +118,35 @@ function wireCheckoutForm() {
         btn.disabled = true;
         btn.innerHTML = `<span class="flex items-center gap-3">PLACING ORDER <span class="animate-spin material-symbols-outlined text-sm">autorenew</span></span>`;
 
+        let sessionId = null;
+        if (orderType === 'DINE_IN') {
+            const tableSelect = document.getElementById('checkout-table');
+            const selectedTable = tableSelect ? tableSelect.value : 'T04';
+            
+            try {
+                const scanRes = await fetch(`${ORDER_API}/api/tables/scan`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ qrCode: selectedTable })
+                });
+                const scanData = await scanRes.json();
+                if (scanRes.ok && scanData.success && scanData.data) {
+                    sessionId = scanData.data.id;
+                } else {
+                    showCheckoutError(scanData.message || 'Failed to scan table session.');
+                    resetPlaceOrderBtn(btn);
+                    return;
+                }
+            } catch (scanErr) {
+                console.error('Table session scan failed:', scanErr);
+                showCheckoutError('Table session initialization failed.');
+                resetPlaceOrderBtn(btn);
+                return;
+            }
+        }
+
         const payload = {
+            sessionId,
             orderType,
             paymentMethod,
             customerName: name,
@@ -157,38 +186,9 @@ function wireCheckoutForm() {
                 resetPlaceOrderBtn(btn);
             }
         } catch (err) {
-            // Offline fallback: still navigate to tracking with a local placeholder and cached order data
-            const fallbackId = 'LOCAL-' + Date.now();
-            const subtotal = cart.reduce((s, i) => s + i.price * (i.quantity || 1), 0);
-            const service = Math.round(subtotal * SERVICE_FEE_PCT);
-            const total = subtotal + service;
-            const localOrder = {
-                id: fallbackId,
-                orderCode: 'ORD-' + Date.now(),
-                orderType: orderType,
-                status: 'WAITING_PAYMENT',
-                paymentMethod: paymentMethod,
-                totalPrice: total,
-                discountAmount: 0,
-                deliveryFee: orderType === 'DELIVERY' ? 15000 : 0,
-                customerName: name,
-                customerPhone: phone,
-                deliveryAddress: deliveryAddress,
-                notes: note + (courierNotes ? ` | Courier notes: ${courierNotes}` : ''),
-                createdAt: new Date().toISOString(),
-                items: cart.map(i => ({
-                    menuId: Number(i.id),
-                    menuName: i.name,
-                    menuPrice: i.price,
-                    quantity: i.quantity || 1,
-                    subtotal: i.price * (i.quantity || 1),
-                    notes: i.notes || ''
-                }))
-            };
-            localStorage.setItem('localOrder_' + fallbackId, JSON.stringify(localOrder));
-            localStorage.setItem('lastOrderId', fallbackId);
-            localStorage.removeItem('cart');
-            window.location.href = `order-tracking.html?id=${fallbackId}`;
+            console.error('Checkout error:', err);
+            showCheckoutError('Unable to connect to server. Please try again.');
+            resetPlaceOrderBtn(btn);
         }
     });
 }
@@ -211,4 +211,42 @@ function clearCheckoutError() {
 function resetPlaceOrderBtn(btn) {
     btn.disabled = false;
     btn.innerHTML = `PLACE ORDER <span class="material-symbols-outlined text-sm">arrow_forward</span>`;
+}
+
+async function loadDiningTables() {
+    const tableSelect = document.getElementById('checkout-table');
+    if (!tableSelect) return;
+
+    try {
+        const token = localStorage.getItem('token');
+        const headers = {};
+        if (token) headers['Authorization'] = `Bearer ${token}`;
+
+        const res = await fetch(`${ORDER_API}/api/tables/getAll`, { headers });
+        const apiRes = await res.json();
+        
+        if (res.ok && apiRes.success && apiRes.data && apiRes.data.length > 0) {
+            tableSelect.innerHTML = apiRes.data
+                .map(table => {
+                    let desc = '';
+                    if (table.tableNumber === 'T01') desc = 'Main Hall - Table 01';
+                    else if (table.tableNumber === 'T04') desc = 'Garden View - Table 04';
+                    else if (table.tableNumber === 'T12') desc = 'Library Alcove - Table 12';
+                    else if (table.tableNumber === 'T22') desc = 'Patio - Table 22';
+                    else desc = `Table ${table.tableNumber} (Capacity: ${table.capacity})`;
+                    
+                    return `<option value="${table.qrCode}">${desc}</option>`;
+                })
+                .join('');
+
+            // Pre-select scanned table from URL query parameter or localStorage
+            const urlParams = new URLSearchParams(window.location.search);
+            const scannedTable = urlParams.get('table') || localStorage.getItem('scannedTable');
+            if (scannedTable) {
+                tableSelect.value = scannedTable;
+            }
+        }
+    } catch (err) {
+        console.error('Error fetching tables from backend:', err);
+    }
 }

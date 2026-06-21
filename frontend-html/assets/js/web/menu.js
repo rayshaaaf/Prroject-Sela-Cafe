@@ -140,7 +140,7 @@ function renderTodaysPicks() {
         
         return `
             <div class="flex flex-col">
-                <div class="relative aspect-[3/4] mb-6 overflow-hidden bg-surface-container group">
+                <a href="detailmenu.html?id=${product.id}" class="relative aspect-[3/4] mb-6 overflow-hidden bg-surface-container group block">
                     <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
                          src="${product.imageUrl}" alt="${product.name}">
                     <div class="absolute top-4 left-4 bg-secondary text-on-secondary px-3 py-1 font-label-caps text-[10px] tracking-widest">Barista Recommendation</div>
@@ -149,9 +149,11 @@ function renderTodaysPicks() {
                             <span class="bg-error text-white font-label-caps text-[10px] tracking-widest px-3 py-1.5">Habis</span>
                         </div>
                     ` : ''}
-                </div>
+                </a>
                 <div class="flex justify-between items-start mb-2">
-                    <h3 class="font-headline-md text-headline-md">${product.name}</h3>
+                    <a href="detailmenu.html?id=${product.id}" class="hover:underline">
+                        <h3 class="font-headline-md text-headline-md text-primary">${product.name}</h3>
+                    </a>
                     <span class="font-label-md text-label-md text-primary">Rp ${Number(product.price).toLocaleString('id-ID')}</span>
                 </div>
                 <p class="font-body-md text-on-surface-variant mb-6">${product.description}</p>
@@ -206,8 +208,10 @@ function renderFullMenu() {
             <div class="group flex flex-col justify-between">
                 <div>
                     <div class="relative aspect-square mb-6 overflow-hidden bg-surface-container">
-                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-                             src="${product.imageUrl}" alt="${product.name}"/>
+                        <a href="detailmenu.html?id=${product.id}">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                                 src="${product.imageUrl}" alt="${product.name}"/>
+                        </a>
                         <button onclick="event.preventDefault(); toggleMenuFavorite(${product.id}, this)"
                                 class="absolute top-4 right-4 w-10 h-10 bg-paper-white/80 rounded-full flex items-center justify-center backdrop-blur-sm hover:bg-paper-white transition-colors">
                             <span class="material-symbols-outlined text-[20px] ${favoriteMenuIds.has(product.id) ? 'text-error active-heart' : 'text-primary'}"
@@ -220,7 +224,9 @@ function renderFullMenu() {
                         ` : ''}
                     </div>
                     <div class="flex justify-between items-start mb-2">
-                        <h5 class="font-headline-md text-[20px] text-primary line-clamp-1">${product.name}</h5>
+                        <a href="detailmenu.html?id=${product.id}" class="hover:underline">
+                            <h5 class="font-headline-md text-[20px] text-primary line-clamp-1">${product.name}</h5>
+                        </a>
                         <span class="font-label-md text-primary pl-2 whitespace-nowrap">Rp ${Number(product.price).toLocaleString('id-ID')}</span>
                     </div>
                     <div class="flex items-center gap-1 mb-3">

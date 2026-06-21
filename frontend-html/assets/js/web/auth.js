@@ -54,6 +54,7 @@ function initLoginPage() {
             if (res.ok && (data.token || apiRes.token || data.accessToken)) {
                 const token = data.token || apiRes.token || data.accessToken;
                 const userName = data.name || apiRes.fullName || data.username || email.split('@')[0];
+                let userRole = data.role || '';
 
                 localStorage.setItem('token', token);
                 localStorage.setItem('userName', userName);
@@ -68,14 +69,28 @@ function initLoginPage() {
                         if (profileData && profileData.data) {
                             localStorage.setItem('userId', String(profileData.data.id));
                             localStorage.setItem('userName', profileData.data.name);
+                            userRole = profileData.data.role || userRole;
                         }
                     }
                 } catch (profileErr) {
                     console.error('Error fetching profile on login:', profileErr);
                 }
 
-                // Redirect to intended page or homepage
-                const redirect = new URLSearchParams(window.location.search).get('redirect') || '../customer/homepage.html';
+                localStorage.setItem('role', userRole);
+
+                // Redirect to intended page or role dashboard
+                let redirect = new URLSearchParams(window.location.search).get('redirect');
+                if (!redirect) {
+                    if (userRole === 'CASHIER') {
+                        redirect = '../cashier/dashboard.html';
+                    } else if (userRole === 'KITCHEN') {
+                        redirect = '../kitchen/kitchen.html';
+                    } else if (userRole === 'COURIER') {
+                        redirect = '../courier/dashboard.html';
+                    } else {
+                        redirect = '../customer/homepage.html';
+                    }
+                }
                 window.location.href = redirect;
             } else {
                 showError(apiRes.message || data.message || apiRes.error || 'Login failed. Please check your credentials.');
@@ -128,7 +143,7 @@ async function handleRegister(e) {
     const confirm = (document.getElementById('confirm_password') || document.getElementById('reg-confirm'))?.value;
     const termsChecked = document.getElementById('terms')?.checked;
 
-    if (!name || !email || !password) { showError('Full name, email, and password are required.'); return; }
+    if (!name || !email || !phone || !password) { showError('Full name, email, phone number, and password are required.'); return; }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showError('Invalid email address.'); return; }
     if (password.length < 8) { showError('Password must be at least 8 characters.'); return; }
     if (confirm && password !== confirm) { showError('Passwords do not match.'); return; }

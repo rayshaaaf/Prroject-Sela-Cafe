@@ -57,20 +57,16 @@ async function fetchOrders() {
     if (refreshBtn) refreshBtn.classList.add('animate-spin');
     
     try {
-        const token = localStorage.getItem('token');
-        const headers = {};
-        if (token) headers['Authorization'] = `Bearer ${token}`;
-
-        const response = await fetch(`${API_URL}/kitchen`, { headers });
+        const response = await window.apiFetch('/api/orders/kitchen');
         if (!response.ok) throw new Error('Network error');
         
         const apiRes = await response.json();
         if (apiRes.success) {
-            renderBoard(apiRes.data);
+            renderBoard(apiRes.data || []);
         }
     } catch (err) {
-        console.error("API Error (Menggunakan data dummy lokal):", err);
-        useMockData();
+        console.error("API Error fetching kitchen orders:", err);
+        renderBoard([]);
     } finally {
         if (refreshBtn) {
             setTimeout(() => refreshBtn.classList.remove('animate-spin'), 600);
@@ -82,16 +78,11 @@ async function fetchOrders() {
 async function updateOrderStatus(orderId, newStatus) {
     showLoader(true);
     try {
-        const token = localStorage.getItem('token');
-        const headers = { 
-            'Content-Type': 'application/json',
-            'X-Role': CURRENT_ROLE
-        };
-        if (token) headers['Authorization'] = `Bearer ${token}`;
-
-        const response = await fetch(`${API_URL}/updateStatus/${orderId}?status=${newStatus}`, {
+        const response = await window.apiFetch(`/api/orders/updateStatus/${orderId}?status=${newStatus}`, {
             method: 'PUT',
-            headers
+            headers: { 
+                'X-Role': CURRENT_ROLE
+            }
         });
         
         const apiRes = await response.json();
@@ -101,31 +92,11 @@ async function updateOrderStatus(orderId, newStatus) {
             alert(`Gagal mengupdate status: ${apiRes.message}`);
         }
     } catch (err) {
-        console.error("Update Status Error (Menggunakan mock lokal):", err);
-        mockUpdateStatus(orderId, newStatus);
+        console.error("Update Status Error:", err);
+        alert("Gagal mengupdate status karena masalah koneksi.");
     } finally {
         showLoader(false);
     }
-}
-
-// ==========================================
-// RENDER ENGINE & MOCK FALLBACK
-// ==========================================
-
-let currentOrders = [
-    { id: "1082", customerName: "Eleanor Vance", createdAt: new Date(Date.now() - 1000 * 60 * 5), type: "Dine-In", items: [{name: "Heirloom Tomato Tart", quantity: 2}, {name: "Espresso Romano", quantity: 1}], notes: "Extra zest on the espresso please.", status: "PAID" },
-    { id: "1083", customerName: "Theodore Crain", createdAt: new Date(Date.now() - 1000 * 60 * 12), type: "Delivery", items: [{name: "Sourdough Croque", quantity: 1}], notes: "Contactless delivery.", status: "PREPARING" },
-    { id: "1084", customerName: "Shirley Jackson", createdAt: new Date(Date.now() - 1000 * 60 * 25), type: "Dine-In", items: [{name: "Lavender Honey Latte", quantity: 3}], notes: "", status: "READY" }
-];
-
-function useMockData() {
-    renderBoard(currentOrders);
-}
-
-function mockUpdateStatus(id, status) {
-    const idx = currentOrders.findIndex(o => o.id == id);
-    if(idx > -1) currentOrders[idx].status = status;
-    renderBoard(currentOrders);
 }
 
 function renderBoard(orders) {

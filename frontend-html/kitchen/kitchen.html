@@ -151,19 +151,19 @@
 </div>
 </div>
 <nav class="flex-1 flex flex-col gap-1">
-<a class="flex items-center gap-3 px-3 py-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 hover:translate-x-1" href="#">
+<a class="flex items-center gap-3 px-3 py-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 hover:translate-x-1" href="overview.html">
 <span class="material-symbols-outlined">dashboard</span>
 <span class="font-label-caps text-label-caps">Overview</span>
 </a>
-<a class="flex items-center gap-3 px-3 py-3 bg-secondary-container text-on-secondary-container rounded-lg font-bold transition-transform duration-200" href="#">
+<a class="flex items-center gap-3 px-3 py-3 bg-secondary-container text-on-secondary-container rounded-lg font-bold transition-transform duration-200" href="kitchen.html">
 <span class="material-symbols-outlined">restaurant</span>
 <span class="font-label-caps text-label-caps">Kitchen</span>
 </a>
-<a class="flex items-center gap-3 px-3 py-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 hover:translate-x-1" href="#">
+<a class="flex items-center gap-3 px-3 py-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 hover:translate-x-1" href="inventory.html">
 <span class="material-symbols-outlined">inventory</span>
 <span class="font-label-caps text-label-caps">Inventory</span>
 </a>
-<a class="flex items-center gap-3 px-3 py-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 hover:translate-x-1" href="#">
+<a class="flex items-center gap-3 px-3 py-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 hover:translate-x-1" href="team.html">
 <span class="material-symbols-outlined">group</span>
 <span class="font-label-caps text-label-caps">Team</span>
 </a>
@@ -173,7 +173,7 @@
 <span class="material-symbols-outlined">settings</span>
 <span class="font-label-caps text-label-caps">Settings</span>
 </a>
-<button class="w-full mt-4 bg-deep-espresso text-paper-white py-3 font-label-caps text-label-caps tracking-widest active:scale-95 transition-all">
+<button onclick="window.logout()" class="w-full mt-4 bg-deep-espresso text-paper-white py-3 font-label-caps text-label-caps tracking-widest active:scale-95 transition-all">
                 CLOSE SHIFT
             </button>
 </div>
@@ -247,5 +247,6 @@
 <p class="font-label-caps text-label-caps tracking-widest text-deep-espresso animate-pulse">Syncing Artisan Hub...</p>
 </div>
 </div>
+<script src="../assets/js/components.js"></script>
 <script src="../assets/js/kitchen/kitchen.js"></script>
 </body></html>

@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=JetBrains+Mono:wght@100..800&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="../assets/css/components.css" rel="stylesheet"/>
-<script src="../assets/js/components.js" defer></script>
+<script src="../assets/js/web/components.js" defer></script>
 <!-- Tailwind Configuration -->
 <script id="tailwind-config">
       tailwind.config = {
@@ -369,6 +369,47 @@
 <!-- Footer -->
 <div id="footer-placeholder"></div>
 <script>
+        // Dynamic Menu Detail Loader
+        document.addEventListener('DOMContentLoaded', async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+            if (id) {
+                try {
+                    const res = await window.apiFetch('/api/menus/getById/' + id);
+                    if (res.ok) {
+                        const apiRes = await res.json();
+                        if (apiRes.success && apiRes.data) {
+                            const p = apiRes.data;
+                            document.title = `Sela Cafe | ${p.nameId || p.nameEn}`;
+                            const img = document.querySelector('section img');
+                            if (img) {
+                                img.src = p.imageUrl || 'https://images.unsplash.com/photo-1534778101976-62847782c213?q=80&w=600&auto=format&fit=crop';
+                                img.alt = p.nameId || p.nameEn;
+                            }
+                            const titleEl = document.querySelector('h1.font-headline-xl');
+                            if (titleEl) titleEl.innerText = p.nameId || p.nameEn;
+                            
+                            const priceEl = document.querySelector('header .font-headline-md');
+                            if (priceEl) priceEl.innerText = `Rp ${Number(p.price).toLocaleString('id-ID')}`;
+                            
+                            const descEl = document.querySelector('section p.font-body-lg');
+                            if (descEl) descEl.innerText = p.descriptionId || p.descriptionEn || 'Handcrafted specialty coffee blend.';
+
+                            const isOutOfStock = !p.isAvailable || p.stock <= 0;
+                            const submitBtn = document.querySelector('button[type="submit"]');
+                            if (isOutOfStock && submitBtn) {
+                                submitBtn.innerText = 'Habis';
+                                submitBtn.disabled = true;
+                                submitBtn.classList.replace('bg-deep-espresso', 'opacity-50');
+                            }
+                        }
+                    }
+                } catch (err) {
+                    console.error('Failed to load menu details:', err);
+                }
+            }
+        });
+
         // Quantity Selector Logic
         let currentQty = 1;
         const qtyElement = document.getElementById('qty');
@@ -423,16 +464,23 @@
             const price = parseFloat(priceText.replace(/[^0-9]/g, '')) || 0;
             const imageUrl = document.querySelector('section img')?.src || '';
 
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = Number(urlParams.get('id')) || 2; // default to 2 if missing
+
             if (typeof window.handleMenuAddToCart === 'function') {
                 for (let i = 0; i < qty; i++) {
-                    window.handleMenuAddToCart(Date.now(), name, price, imageUrl);
+                    window.handleMenuAddToCart(productId, name, price, imageUrl);
                 }
             } else {
                 // Fallback: write directly to localStorage
                 let cart = [];
                 try { cart = JSON.parse(localStorage.getItem('cart') || '[]'); } catch(e) { cart = []; }
                 const idx = cart.findIndex(item => item.name === name);
-                if (idx > -1) { cart[idx].quantity += qty; } else { cart.push({ id: Date.now(), name, price, imageUrl, quantity: qty }); }
+                if (idx > -1) {
+                    cart[idx].quantity += qty;
+                } else {
+                    cart.push({ id: productId, name, price, imageUrl, quantity: qty });
+                }
                 localStorage.setItem('cart', JSON.stringify(cart));
                 if (typeof window.showToast === 'function') window.showToast(`${name} added to your bag.`);
             }

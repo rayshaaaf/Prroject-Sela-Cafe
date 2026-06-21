@@ -20,8 +20,8 @@ async function initKitchenDashboard() {
     try {
         // Parallel Fetch: Mengambil semua order untuk revenue & order spesifik kitchen
         const [allOrdersRes, kitchenOrdersRes] = await Promise.all([
-            fetch(`${API_BASE_URL}/getAll`).then(res => res.json()),
-            fetch(`${API_BASE_URL}/kitchen`).then(res => res.json())
+            window.apiFetch(`${API_BASE_URL}/getAll`).then(res => res.json()),
+            window.apiFetch(`${API_BASE_URL}/kitchen`).then(res => res.json())
         ]);
 
         if (allOrdersRes.success && kitchenOrdersRes.success) {
@@ -39,10 +39,11 @@ async function initKitchenDashboard() {
  */
 function updateHighLevelMetrics(orders) {
     const revenueElement = document.querySelector('#high-level-metrics .font-headline-md');
-    const totalRevenue = orders.reduce((sum, order) => sum + (order.totalAmount || 0), 0);
+    // Using price or totalAmount or totalPrice depending on actual object field
+    const totalRevenue = orders.reduce((sum, order) => sum + (order.totalPrice || order.totalAmount || 0), 0);
     
     if (revenueElement) {
-        revenueElement.textContent = `$${totalRevenue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        revenueElement.textContent = `Rp ${totalRevenue.toLocaleString('id-ID')}`;
     }
 }
 
@@ -68,7 +69,10 @@ function updateSignaturePerformance(orders) {
     orders.forEach(order => {
         if (order.items && Array.isArray(order.items)) {
             order.items.forEach(item => {
-                productCounts[item.productName] = (productCounts[item.productName] || 0) + item.quantity;
+                const name = item.productName || item.name;
+                if (name) {
+                    productCounts[name] = (productCounts[name] || 0) + (item.quantity || 1);
+                }
             });
         }
     });
@@ -92,7 +96,7 @@ function updateSignaturePerformance(orders) {
 async function handleKitchenStatusUpdate(orderId, nextStatus) {
     try {
         // Mengirimkan X-Role: KITCHEN ke backend melalui Header
-        const response = await fetch(`${API_BASE_URL}/updateStatus/${orderId}?status=${nextStatus}`, {
+        const response = await window.apiFetch(`${API_BASE_URL}/updateStatus/${orderId}?status=${nextStatus}`, {
             method: 'PUT',
             headers: {
                 'X-Role': CURRENT_USER_ROLE

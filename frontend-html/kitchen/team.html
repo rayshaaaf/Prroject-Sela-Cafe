@@ -143,19 +143,19 @@
       <p class="font-label-caps text-label-caps text-on-surface-variant opacity-70 mt-2">Artisanal Coffee Management</p>
     </div>
     <nav class="flex-grow space-y-2">
-      <a class="flex items-center gap-4 px-4 py-3 rounded text-on-surface-variant dark:text-surface-variant hover:text-deep-espresso dark:hover:text-inverse-primary transition-colors hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all duration-200" href="#">
+      <a class="flex items-center gap-4 px-4 py-3 rounded text-on-surface-variant dark:text-surface-variant hover:text-deep-espresso dark:hover:text-inverse-primary transition-colors hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all duration-200" href="overview.html">
         <span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
         <span class="font-label-caps text-label-caps">Overview</span>
       </a>
-      <a class="flex items-center gap-4 px-4 py-3 rounded text-on-surface-variant dark:text-surface-variant hover:text-deep-espresso dark:hover:text-inverse-primary transition-colors hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all duration-200" href="#">
+      <a class="flex items-center gap-4 px-4 py-3 rounded text-on-surface-variant dark:text-surface-variant hover:text-deep-espresso dark:hover:text-inverse-primary transition-colors hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all duration-200" href="kitchen.html">
         <span class="material-symbols-outlined" data-icon="restaurant">restaurant</span>
         <span class="font-label-caps text-label-caps">Kitchen</span>
       </a>
-      <a class="flex items-center gap-4 px-4 py-3 rounded text-on-surface-variant dark:text-surface-variant hover:text-deep-espresso dark:hover:text-inverse-primary transition-colors hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all duration-200" href="#">
+      <a class="flex items-center gap-4 px-4 py-3 rounded text-on-surface-variant dark:text-surface-variant hover:text-deep-espresso dark:hover:text-inverse-primary transition-colors hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all duration-200" href="inventory.html">
         <span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
         <span class="font-label-caps text-label-caps">Inventory</span>
       </a>
-      <a class="flex items-center gap-4 px-4 py-3 rounded text-deep-espresso dark:text-inverse-primary font-bold border-r-4 border-deep-espresso bg-heritage-cream/30 active:scale-95 transition-transform duration-150" href="#">
+      <a class="flex items-center gap-4 px-4 py-3 rounded text-deep-espresso dark:text-inverse-primary font-bold border-r-4 border-deep-espresso bg-heritage-cream/30 active:scale-95 transition-transform duration-150" href="team.html">
         <span class="material-symbols-outlined" data-icon="groups">groups</span>
         <span class="font-label-caps text-label-caps">Team</span>
       </a>
@@ -173,6 +173,9 @@
           <span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
           <span class="font-label-caps text-label-caps">Support</span>
         </a>
+        <button onclick="window.logout()" class="w-full mt-4 bg-deep-espresso text-white py-3 font-label-caps text-label-caps tracking-widest active:scale-95 transition-all">
+          CLOSE SHIFT
+        </button>
       </div>
     </div>
   </aside>
@@ -315,6 +318,7 @@
     </footer>
   </main>
 
-  <script src="/frontend-html/assets/js/kitchen/team.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/kitchen/team.js"></script>
 </body>
 </html>

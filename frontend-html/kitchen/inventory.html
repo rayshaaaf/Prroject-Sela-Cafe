@@ -120,19 +120,19 @@
       <p class="font-label-caps text-label-caps text-on-surface-variant mt-1">Artisanal Coffee Management</p>
     </div>
     <nav class="flex-1 space-y-2">
-      <a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-all duration-200" href="#">
+      <a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-all duration-200" href="overview.html">
         <span class="material-symbols-outlined">dashboard</span>
         <span class="font-body-md">Overview</span>
       </a>
-      <a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-all duration-200" href="#">
+      <a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-all duration-200" href="kitchen.html">
         <span class="material-symbols-outlined">restaurant</span>
         <span class="font-body-md">Kitchen</span>
       </a>
-      <a class="flex items-center gap-3 px-4 py-3 text-deep-espresso font-bold border-r-4 border-deep-espresso bg-heritage-cream/30" href="#">
+      <a class="flex items-center gap-3 px-4 py-3 text-deep-espresso font-bold border-r-4 border-deep-espresso bg-heritage-cream/30" href="inventory.html">
         <span class="material-symbols-outlined">inventory_2</span>
         <span class="font-body-md">Inventory</span>
       </a>
-      <a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-all duration-200" href="#">
+      <a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-all duration-200" href="team.html">
         <span class="material-symbols-outlined">groups</span>
         <span class="font-body-md">Team</span>
       </a>
@@ -149,6 +149,9 @@
         <span class="material-symbols-outlined">contact_support</span>
         <span class="font-label-md">Support</span>
       </a>
+      <button onclick="window.logout()" class="w-full mt-4 bg-deep-espresso text-paper-white py-3 font-label-caps text-label-caps tracking-widest active:scale-95 transition-all">
+        CLOSE SHIFT
+      </button>
     </div>
   </aside>
 
@@ -385,6 +388,7 @@
     </div>
   </div>
 
-  <script src="/frontend-html/assets/js/kitchen/inventory.js"></script>
+  <script src="../assets/js/components.js"></script>
+  <script src="../assets/js/kitchen/inventory.js"></script>
 </body>
 </html>
