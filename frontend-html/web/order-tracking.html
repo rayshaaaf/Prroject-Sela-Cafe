@@ -13,8 +13,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="components.css" rel="stylesheet"/>
-<script src="components.js" defer></script>
+<link href="../assets/css/components.css" rel="stylesheet"/>
+<script src="../assets/js/components.js" defer></script>
+<script src="../assets/js/tracking.js" defer></script>
 <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -150,7 +151,7 @@
 </div>
 <div class="text-right">
 <div class="font-label-md text-label-md text-on-surface-variant">Order Reference</div>
-<div class="font-label-caps text-headline-md text-deep-espresso">#SC-2026-001245</div>
+<div class="font-label-caps text-headline-md text-deep-espresso" id="order-number">#SC-2026-——</div>
 </div>
 </div>
 <!-- Status Card -->
@@ -158,154 +159,98 @@
 <div class="absolute top-0 left-0 w-1 h-full bg-deep-espresso"></div>
 <div class="flex flex-col md:flex-row items-center justify-between gap-12">
 <div class="text-center md:text-left flex-1">
-<div class="inline-flex items-center gap-2 px-3 py-1 bg-heritage-cream text-deep-espresso font-label-caps text-[10px] uppercase tracking-tighter mb-4">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-heritage-cream text-deep-espresso font-label-caps text-[10px] uppercase tracking-tighter mb-4" id="order-status-badge">
 <span class="w-1.5 h-1.5 rounded-full bg-deep-espresso active-pulse"></span>
-                        Status: PREPARING
-                    </div>
-<div class="font-headline-xl text-headline-xl text-deep-espresso leading-none">
-                        12 Minutes
-                    </div>
+Status: LOADING...
+</div>
+<div class="font-headline-xl text-headline-xl text-deep-espresso leading-none" id="order-eta">
+    — Minutes
+</div>
 <p class="font-body-lg text-body-lg text-on-surface-variant mt-4">Estimated Ready Time</p>
 </div>
 <div class="flex-1 w-full">
 <!-- Progress Timeline -->
 <div class="relative pt-8">
-<!-- Connecting Line -->
-<div class="absolute top-[41px] left-0 w-full h-[1px] bg-outline-muted"></div>
-<div class="absolute top-[41px] left-0 w-1/2 h-[1px] bg-deep-espresso"></div>
-<!-- Steps -->
-<div class="flex justify-between relative">
-<!-- Step 1 -->
-<div class="flex flex-col items-center gap-4">
-<div class="w-3 h-3 rounded-full bg-deep-espresso ring-4 ring-paper-white relative z-10"></div>
-<span class="font-label-caps text-[10px] text-deep-espresso">RECEIVED</span>
-</div>
-<!-- Step 2 -->
-<div class="flex flex-col items-center gap-4">
-<div class="w-3 h-3 rounded-full bg-deep-espresso ring-4 ring-paper-white relative z-10"></div>
-<span class="font-label-caps text-[10px] text-deep-espresso">CONFIRMED</span>
-</div>
-<!-- Step 3 (Active) -->
-<div class="flex flex-col items-center gap-4">
-<div class="w-5 h-5 rounded-full bg-paper-white border-2 border-deep-espresso ring-4 ring-paper-white relative z-10 flex items-center justify-center">
-<div class="w-2 h-2 rounded-full bg-deep-espresso active-pulse"></div>
-</div>
-<span class="font-label-caps text-[10px] text-deep-espresso font-bold">PREPARING</span>
-</div>
-<!-- Step 4 -->
-<div class="flex flex-col items-center gap-4 opacity-30">
-<div class="w-3 h-3 rounded-full bg-outline-variant ring-4 ring-paper-white relative z-10"></div>
-<span class="font-label-caps text-[10px]">READY</span>
-</div>
-<!-- Step 5 -->
-<div class="flex flex-col items-center gap-4 opacity-30">
-<div class="w-3 h-3 rounded-full bg-outline-variant ring-4 ring-paper-white relative z-10"></div>
-<span class="font-label-caps text-[10px]">COMPLETED</span>
-</div>
-</div>
-</div>
-</div>
-</div>
+                <!-- Connecting Line -->
+                <div class="absolute top-[41px] left-0 w-full h-[1px] bg-outline-muted"></div>
+                <div id="progress-line" class="absolute top-[41px] left-0 w-0 h-[1px] bg-deep-espresso transition-all duration-500"></div>
+                <!-- Steps -->
+                <div id="timeline-steps" class="flex justify-between relative">
+                    <!-- Steps will be dynamically injected by tracking.js -->
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- Details Grid -->
 <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-start border-t border-outline-muted pt-16">
-<!-- Info Column -->
-<div class="space-y-12">
-<div>
-<h3 class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-6 tracking-widest">Service Details</h3>
-<div class="grid grid-cols-2 gap-8">
-<div>
-<div class="font-label-md text-label-md text-on-surface-variant mb-1">Order Type</div>
-<div class="font-body-lg text-body-lg text-deep-espresso">Dine In — Table 04</div>
-</div>
-<div>
-<div class="font-label-md text-label-md text-on-surface-variant mb-1">Payment</div>
-<div class="font-body-lg text-body-lg text-deep-espresso">QRIS Premium</div>
-</div>
-</div>
-</div>
-<div class="p-6 bg-heritage-cream/20 border border-outline-muted rounded-sm">
-<div class="flex items-start gap-4">
-<span class="material-symbols-outlined text-moss-green mt-0.5" data-icon="info">info</span>
-<div>
-<p class="font-body-md text-body-md text-deep-espresso">Your barista is currently preparing the Saffron Croissant. The aroma profile is expected to peak in 4 minutes.</p>
-</div>
-</div>
-</div>
-</div>
-<!-- Receipt Column -->
-<div class="space-y-8">
-<h3 class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-6 tracking-widest">Digital Receipt</h3>
-<div class="space-y-6">
-<!-- Item 1 -->
-<div class="flex justify-between items-start group">
-<div class="flex-1">
-<div class="font-body-lg text-body-lg text-deep-espresso">Velvet Oat Latte</div>
-<div class="font-label-md text-label-md text-on-surface-variant mt-1">Qty: 1 • Oat Milk • 50% Sugar</div>
-</div>
-<div class="font-label-caps text-label-md text-deep-espresso">IDR 55.000</div>
-</div>
-<div class="sela-line"></div>
-<!-- Item 2 -->
-<div class="flex justify-between items-start group">
-<div class="flex-1">
-<div class="font-body-lg text-body-lg text-deep-espresso">Saffron Croissant</div>
-<div class="font-label-md text-label-md text-on-surface-variant mt-1">Qty: 1 • Warm Serving</div>
-</div>
-<div class="font-label-caps text-label-md text-deep-espresso">IDR 42.000</div>
-</div>
-</div>
-<!-- Summary Table -->
-<div class="mt-12 pt-8 border-t-2 border-deep-espresso space-y-4">
-<div class="flex justify-between items-center">
-<span class="font-body-md text-on-surface-variant">Subtotal</span>
-<span class="font-label-md text-on-surface">IDR 97.000</span>
-</div>
-<div class="flex justify-between items-center text-moss-green">
-<span class="font-body-md">Membership Discount</span>
-<span class="font-label-md">- IDR 5.000</span>
-</div>
-<div class="flex justify-between items-center pt-4">
-<span class="font-label-caps text-label-caps text-deep-espresso font-bold">Grand Total</span>
-<span class="font-headline-md text-headline-md text-deep-espresso">IDR 92.000</span>
-</div>
-</div>
-</div>
+    <!-- Info Column -->
+    <div class="space-y-12">
+        <div>
+            <h3 class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-6 tracking-widest">Service Details</h3>
+            <div class="grid grid-cols-2 gap-8">
+                <div>
+                    <div class="font-label-md text-label-md text-on-surface-variant mb-1">Order Type</div>
+                    <div class="font-body-lg text-body-lg text-deep-espresso" id="order-type-display">Dine In</div>
+                </div>
+                <div>
+                    <div class="font-label-md text-label-md text-on-surface-variant mb-1">Payment</div>
+                    <div class="font-body-lg text-body-lg text-deep-espresso" id="order-payment-display">QRIS</div>
+                </div>
+            </div>
+        </div>
+        <div class="p-6 bg-heritage-cream/20 border border-outline-muted rounded-sm">
+            <div class="flex items-start gap-4">
+                <span class="material-symbols-outlined text-moss-green mt-0.5" data-icon="info">info</span>
+                <div>
+                    <p class="font-body-md text-body-md text-deep-espresso" id="order-info-text">Loading status details...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Receipt Column -->
+    <div class="space-y-8">
+        <h3 class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-6 tracking-widest">Digital Receipt</h3>
+        <div class="space-y-6" id="order-items-list">
+            <!-- Items dynamically rendered by tracking.js -->
+            <div class="flex justify-between items-start group">
+                <div class="flex-1">
+                    <div class="font-body-lg text-body-lg text-deep-espresso">Loading items...</div>
+                </div>
+            </div>
+        </div>
+        <!-- Summary Table -->
+        <div class="mt-12 pt-8 border-t-2 border-deep-espresso space-y-4">
+            <div class="flex justify-between items-center">
+                <span class="font-body-md text-on-surface-variant">Subtotal</span>
+                <span class="font-label-md text-on-surface" id="order-subtotal">Rp —</span>
+            </div>
+            <div id="delivery-row" class="flex justify-between items-center text-on-surface" style="display: none;">
+                <span class="font-body-md text-on-surface-variant">Delivery Fee</span>
+                <span class="font-label-md text-on-surface" id="order-delivery-fee">Rp 0</span>
+            </div>
+            <div id="discount-row" class="flex justify-between items-center text-moss-green" style="display: none;">
+                <span class="font-body-md">Discount</span>
+                <span class="font-label-md" id="order-discount">- Rp 0</span>
+            </div>
+            <div class="flex justify-between items-center pt-4">
+                <span class="font-label-caps text-label-caps text-deep-espresso font-bold">Grand Total</span>
+                <span class="font-headline-md text-headline-md text-deep-espresso" id="order-total">Rp —</span>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- Action Buttons -->
 <div class="mt-20 flex flex-col md:flex-row items-center justify-center gap-6">
-<button class="w-full md:w-auto px-12 py-4 bg-deep-espresso text-surface font-label-caps text-label-caps tracking-widest hover:bg-black transition-all active:scale-95">
-                REFRESH STATUS
-            </button>
-<button class="w-full md:w-auto px-12 py-4 bg-transparent border border-deep-espresso text-deep-espresso font-label-caps text-label-caps tracking-widest hover:bg-deep-espresso hover:text-surface transition-all active:scale-95">
-                RETURN TO MENU
-            </button>
+    <button id="btn-refresh-tracking" class="w-full md:w-auto px-12 py-4 bg-deep-espresso text-surface font-label-caps text-label-caps tracking-widest hover:bg-black transition-all active:scale-95">
+        REFRESH STATUS
+    </button>
+    <button onclick="window.location.href='menu.html'" class="w-full md:w-auto px-12 py-4 bg-transparent border border-deep-espresso text-deep-espresso font-label-caps text-label-caps tracking-widest hover:bg-deep-espresso hover:text-surface transition-all active:scale-95">
+        RETURN TO MENU
+    </button>
 </div>
 </main>
 <!-- Footer -->
 <div id="footer-placeholder"></div>
-<script>
-        // Simple Micro-interaction for status refresh simulation
-        const refreshBtn = document.querySelector('button:contains("REFRESH STATUS")') || document.querySelector('button');
-        if (refreshBtn) {
-            refreshBtn.addEventListener('click', function() {
-                this.textContent = 'SYNCHRONIZING...';
-                this.style.opacity = '0.7';
-                setTimeout(() => {
-                    this.textContent = 'REFRESH STATUS';
-                    this.style.opacity = '1';
-                }, 1500);
-            });
-        }
-
-        // Custom "contains" selector logic for button text if needed
-        document.querySelectorAll('button').forEach(btn => {
-            if(btn.textContent.trim() === 'REFRESH STATUS') {
-                btn.onclick = () => {
-                   btn.innerHTML = '<span class="flex items-center gap-2">SYNCHRONIZING <span class="animate-spin text-xs">/</span></span>';
-                   setTimeout(() => { btn.textContent = 'REFRESH STATUS'; }, 2000);
-                }
-            }
-        });
-    </script>
-</body></html>
+</body>
+</html>

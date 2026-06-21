@@ -8,8 +8,9 @@
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=Manrope:wght@200..800&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@300,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="components.css" rel="stylesheet"/>
-<script src="components.js" defer></script>
+<link href="../assets/css/components.css" rel="stylesheet"/>
+<script src="../assets/js/components.js" defer></script>
+<script src="../assets/js/cart.js" defer></script>
 <!-- Tailwind Configuration -->
 <script id="tailwind-config">
       tailwind.config = {
@@ -133,20 +134,24 @@
 <main class="pt-32 pb-section-padding px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
 <!-- Cart Header -->
 <header class="mb-12">
-<div class="flex items-center space-x-2 text-on-surface-variant mb-4 group cursor-pointer w-fit active-scale">
+<div class="flex items-center space-x-2 text-on-surface-variant mb-4 group cursor-pointer w-fit active-scale" onclick="window.location.href='menu.html'">
 <span class="material-symbols-outlined text-body-md">arrow_back</span>
 <span class="font-label-md text-label-md uppercase tracking-widest transition-all">Continue Curating</span>
 </div>
 <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2">
 <h1 class="font-headline-xl text-headline-xl text-deep-espresso">Your Curated Ritual</h1>
-<span class="font-label-caps text-label-caps text-on-surface-variant bg-surface-container px-3 py-1 rounded-full">2 ITEMS IN BASKET</span>
+<span id="cart-item-count" class="font-label-caps text-label-caps text-on-surface-variant bg-surface-container px-3 py-1 rounded-full">0 ITEMS IN BASKET</span>
 </div>
 </header>
 <div class="flex flex-col lg:flex-row gap-12 items-start">
-<!-- Left Side: Cart Items (65%) -->
-<section class="w-full lg:w-[65%] space-y-8">
-<!-- Item 1: Velvet Oat Latte -->
-<div class="group relative flex flex-col sm:flex-row gap-6 p-6 bg-paper-white rounded-xl border border-outline-muted transition-all hover:border-outline">
+<!-- Cart Items: dynamically rendered by cart.js -->
+<section id="cart-items-container" class="w-full lg:w-[65%] space-y-8">
+    <!-- Items will be injected here by cart.js -->
+    <div class="flex flex-col items-center justify-center py-24 text-center opacity-50">
+        <span class="material-symbols-outlined text-5xl mb-4">shopping_bag</span>
+        <p class="font-body-md text-on-surface-variant">Loading your ritual...</p>
+    </div>
+</section>
 <div class="w-full sm:w-48 h-48 rounded-lg overflow-hidden bg-surface-container shrink-0">
 <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A premium close-up of a velvet oat milk latte in a textured ceramic cup. The foam is perfectly micro-textured with a subtle sea salt garnish visible on top. The lighting is moody and dramatic, casting soft shadows on a rustic wooden table. The overall mood is artisan and slow-living with warm heritage colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKUQVM47jQtcXSzFMbjTeJ83YfN6aMrA9jjw3NPJ8IveZB-2KSucrgESYPtr8Uk3ngmXe9z1BJLV0RUf3SSEHov90bCPEVtwrIiNl9j0JMUhRO9aPTCksgIPG030nEvEJcOfQ5kcOkAUfK-wYKjlLoPGUnu6s0bdamQw-kSh1LEngk56GDG0Q10c8bG01-_fKtDczuUELeJHDCj-xKBjU-kAZoGuaIP6z_i-_0eBwQbIFte-1_PZGM1pZAHVQWS3EuCWqgrBNjZi21"/>
 </div>
@@ -207,9 +212,8 @@
 </div>
 </div>
 </div>
-<!-- Complete the Ritual Section -->
-<section class="pt-12">
-<h2 class="font-headline-md text-headline-md text-deep-espresso mb-8">Complete the Ritual</h2>
+</div>
+</div>
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
 <!-- Pairing 1 -->
 <div class="flex items-center gap-4 p-4 bg-surface-container-low border border-outline-muted rounded-lg group">
@@ -243,18 +247,18 @@
 <!-- Right Side: Order Summary (35%) -->
 <aside class="w-full lg:w-[35%] lg:sticky lg:top-32">
 <div class="bg-paper-white rounded-xl p-8 border border-outline-muted space-y-6">
-<h2 class="font-headline-md text-headline-md text-deep-espresso pb-4 border-b border-outline-muted">Summary</h2>
+<h2 class="font-headline-md text-headline-md text-deep-espresso pb-4 border-b border-outline-muted" id="cart-summary-title">Summary</h2>
 <div class="space-y-4">
 <div class="flex justify-between items-center">
 <span class="font-body-md text-body-md text-on-surface-variant">Subtotal</span>
-<span class="font-body-md text-body-md text-deep-espresso">$12.00</span>
+<span class="font-body-md text-body-md text-deep-espresso" id="cart-subtotal">Rp 0</span>
 </div>
 <div class="flex justify-between items-center">
 <div class="flex items-center gap-1 group">
 <span class="font-body-md text-body-md text-on-surface-variant">Artisan Hospitality</span>
 <span class="material-symbols-outlined text-sm text-on-surface-variant cursor-help">info</span>
 </div>
-<span class="font-body-md text-body-md text-deep-espresso">$1.50</span>
+<span class="font-body-md text-body-md text-deep-espresso" id="cart-service-fee">Rp 0</span>
 </div>
 <div class="flex justify-between items-center">
 <span class="font-body-md text-body-md text-on-surface-variant">Packaging (Compostable)</span>
@@ -264,9 +268,9 @@
 <div class="sela-line"></div>
 <div class="flex justify-between items-center py-2">
 <span class="font-body-lg text-body-lg font-bold text-deep-espresso">Grand Total</span>
-<span class="font-headline-md text-headline-md font-bold text-deep-espresso">$13.50</span>
+<span class="font-headline-md text-headline-md font-bold text-deep-espresso" id="cart-grand-total">Rp 0</span>
 </div>
-<button class="w-full bg-deep-espresso text-paper-white font-label-md text-label-md uppercase tracking-widest py-5 rounded-lg active-scale transition-all hover:bg-primary border border-deep-espresso">
+<button id="btn-checkout" onclick="window.location.href='checkout.html'" class="w-full bg-deep-espresso text-paper-white font-label-md text-label-md uppercase tracking-widest py-5 rounded-lg active-scale transition-all hover:bg-primary border border-deep-espresso">
                         Continue to Checkout
                     </button>
 <div class="pt-4 flex flex-col items-center gap-4">

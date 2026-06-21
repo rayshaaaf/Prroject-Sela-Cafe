@@ -8,8 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="components.css" rel="stylesheet"/>
-<script src="components.js" defer></script>
 <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
@@ -133,10 +131,10 @@
                 },
             },
         }
-    </script>
+<link href="../assets/css/components.css" rel="stylesheet"/>
 </head>
 <body class="bg-background text-on-surface font-body-md selection:bg-tertiary-fixed-dim">
-<!-- TopNavBar -->
+<!-- Navbar: injected by components.js -->
 <div id="navbar-placeholder"></div>
 <main class="overflow-hidden">
 <!-- Promo Hero -->
@@ -221,7 +219,7 @@
                     VIEW ALL <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
 </a>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+<div id="promos-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
 <!-- Promo 1 -->
 <div class="group border border-outline/10 bg-paper-white overflow-hidden transition-all duration-500 hover:border-outline/30">
 <div class="relative h-64 overflow-hidden">
@@ -405,8 +403,10 @@
 </div>
 </section>
 </main>
-<!-- Footer -->
+<!-- Footer: injected by components.js -->
 <div id="footer-placeholder"></div>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/content.js" defer></script>
 <script>
         // Simple countdown timer animation
         function updateTimer() {
@@ -419,9 +419,9 @@
             const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
 
-            document.getElementById('timer-days').innerText = days.toString().padStart(2, '0');
-            document.getElementById('timer-hours').innerText = hours.toString().padStart(2, '0');
-            document.getElementById('timer-mins').innerText = mins.toString().padStart(2, '0');
+            if (document.getElementById('timer-days')) document.getElementById('timer-days').innerText = days.toString().padStart(2, '0');
+            if (document.getElementById('timer-hours')) document.getElementById('timer-hours').innerText = hours.toString().padStart(2, '0');
+            if (document.getElementById('timer-mins')) document.getElementById('timer-mins').innerText = mins.toString().padStart(2, '0');
         }
 
         setInterval(updateTimer, 60000);

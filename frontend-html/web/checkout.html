@@ -8,8 +8,9 @@
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&amp;family=Manrope:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="components.css" rel="stylesheet"/>
-<script src="components.js" defer></script>
+<link href="../assets/css/components.css" rel="stylesheet"/>
+<script src="../assets/js/components.js" defer></script>
+<script src="../assets/js/checkout.js" defer></script>
 <style>
         .material-symbols-outlined {
             font-variation-settings: 'wght' 300, 'opsz' 24;
@@ -205,11 +206,11 @@
 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 <div class="flex flex-col gap-2">
 <label class="font-label-caps text-label-caps text-on-surface-variant">Full Name</label>
-<input class="w-full bg-paper-white border border-outline-muted p-4 font-body-md text-on-surface" type="text" value="Julian Alexander"/>
+<input id="checkout-name" class="w-full bg-paper-white border border-outline-muted p-4 font-body-md text-on-surface" type="text" placeholder="Your full name"/>
 </div>
 <div class="flex flex-col gap-2">
 <label class="font-label-caps text-label-caps text-on-surface-variant">Phone Number</label>
-<input class="w-full bg-paper-white border border-outline-muted p-4 font-body-md text-on-surface" type="tel" value="+62 812 3456 7890"/>
+<input id="checkout-phone" class="w-full bg-paper-white border border-outline-muted p-4 font-body-md text-on-surface" type="tel" placeholder="+62 812 xxxx xxxx"/>
 </div>
 </div>
 </section>
@@ -254,43 +255,22 @@
 <div class="lg:col-span-5">
 <div class="sticky top-32 flex flex-col gap-8 bg-paper-white border border-outline-muted p-8 md:p-10">
 <h2 class="font-headline-md text-headline-md text-primary border-b border-outline-muted pb-6">Curated Ritual</h2>
-<!-- Items -->
-<div class="flex flex-col gap-8">
-<div class="flex gap-4 items-start">
-<div class="w-20 h-20 bg-surface-container overflow-hidden">
-<img class="w-full h-full object-cover" data-alt="A close-up high-angle shot of a creamy velvet oat latte in a handcrafted ceramic mug, featuring intricate latte art of a fern leaf. The lighting is soft morning sun, highlighting the smooth texture of the microfoam. The aesthetic is clean and minimalist, focusing on the earthy tones of the coffee and the rustic charm of the pottery." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRZfkf4kOkaFlHISMjoVN2NPdA-EM-0jH29IDfhMNexy6FMbRZyAgNYr-zCyMgpo2VnLfYy-gieq9u5DThTW3D4cZ76fjEJLtn98zd5SeFnnHBkZ9q5M6KdlByBtGhTb0At_IyXbWW6x22Lg_OxjH0G04p644FAXOX7UsHIgK_gbxzqPii-LIqJWNQYy9pgFeUH5eKl2DfYudA7JWFhbc77pggSKNxA7ojdhX_t_OASpmWeKwVqQfN3JApvYDRXq69qGDLebp4h4JK"/>
-</div>
-<div class="flex-grow">
-<div class="flex justify-between items-start">
-<h3 class="font-body-lg text-body-lg text-primary">Velvet Oat Latte</h3>
-<span class="font-label-md text-label-md">IDR 55k</span>
-</div>
-<p class="font-label-caps text-xs text-on-surface-variant mt-1">Oat Milk, 50% Sugar, Hot</p>
-</div>
-</div>
-<div class="flex gap-4 items-start">
-<div class="w-20 h-20 bg-surface-container overflow-hidden">
-<img class="w-full h-full object-cover" data-alt="A golden, flaky saffron-infused croissant resting on a simple white marble surface. The pastry's layers are perfectly defined and dusted with a hint of pulverized saffron. The surrounding environment is a bright, high-end cafe with blurred hints of heritage architectural details. Warm, natural side lighting emphasizes the crispy texture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBm3Vw_7H_bk65btaMu34NzOqVdA4rAbYXz5MQ7STH1R5_88bhw6VqRV4Gg5sDblGNHI0FClBxJUB4vsxt_go83HkQPRKiC03N0ctKdFQIxQDOkkrHy5AKclBiPljnCWPHL9X4jcXzOoPtlqd5cs2lTRZnsYEq0RyRB-m3arnW6fF4fj0meH98FODQj7-PVuCJAMiWl_H6F2l9MHcuy-qpIYvPW89-4iSiHeqZNctNgwJt877MX4XRIvaZoRU6KRdo3zb5FzzPV_X5E"/>
-</div>
-<div class="flex-grow">
-<div class="flex justify-between items-start">
-<h3 class="font-body-lg text-body-lg text-primary">Saffron Croissant</h3>
-<span class="font-label-md text-label-md">IDR 42k</span>
-</div>
-<p class="font-label-caps text-xs text-on-surface-variant mt-1">Lightly Toasted</p>
-</div>
-</div>
+<!-- Items dynamically rendered by checkout.js -->
+<div id="checkout-items-container" class="flex flex-col gap-8">
+    <div class="text-center py-8 opacity-50">
+        <p class="font-body-md text-on-surface-variant">Loading your order...</p>
+    </div>
 </div>
 <div class="sela-line mt-4"></div>
 <!-- Pricing Breakdown -->
 <div class="flex flex-col gap-3">
 <div class="flex justify-between">
 <span class="font-body-md text-on-surface-variant">Subtotal</span>
-<span class="font-label-md text-label-md">IDR 97,000</span>
+<span class="font-label-md text-label-md" id="checkout-subtotal">Rp 0</span>
 </div>
 <div class="flex justify-between">
 <span class="font-body-md text-on-surface-variant">Service (10%)</span>
-<span class="font-label-md text-label-md">IDR 9,700</span>
+<span class="font-label-md text-label-md" id="checkout-service">Rp 0</span>
 </div>
 <div class="flex justify-between">
 <span class="font-body-md text-on-surface-variant">Voucher</span>
@@ -298,12 +278,15 @@
 </div>
 <div class="flex justify-between mt-4 pt-4 border-t border-primary">
 <span class="font-headline-md text-headline-md text-primary">Grand Total</span>
-<span class="font-headline-md text-headline-md text-primary">IDR 96,700</span>
+<span class="font-headline-md text-headline-md text-primary" id="checkout-total">Rp 0</span>
 </div>
 </div>
-<button class="w-full bg-deep-espresso text-on-primary py-6 font-label-caps text-label-caps tracking-widest hover:bg-black transition-all duration-300 transform active:scale-95 flex items-center justify-center gap-3">
-                        PLACE ORDER
-                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+<div id="checkout-status" class="hidden text-center py-2">
+    <p class="font-label-caps text-xs text-error" id="checkout-error-msg"></p>
+</div>
+<button id="btn-place-order" class="w-full bg-deep-espresso text-on-primary py-6 font-label-caps text-label-caps tracking-widest hover:bg-black transition-all duration-300 transform active:scale-95 flex items-center justify-center gap-3">
+    PLACE ORDER
+    <span class="material-symbols-outlined text-sm">arrow_forward</span>
 </button>
 <p class="text-center font-label-caps text-[10px] text-outline tracking-wider uppercase">Your sanctuary experience begins upon completion.</p>
 </div>

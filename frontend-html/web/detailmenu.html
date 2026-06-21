@@ -8,8 +8,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=JetBrains+Mono:wght@100..800&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="components.css" rel="stylesheet"/>
-<script src="components.js" defer></script>
+<link href="../assets/css/components.css" rel="stylesheet"/>
+<script src="../assets/js/components.js" defer></script>
 <!-- Tailwind Configuration -->
 <script id="tailwind-config">
       tailwind.config = {
@@ -163,7 +163,7 @@
 <header class="flex flex-col gap-2">
 <div class="flex justify-between items-baseline">
 <h1 class="font-headline-xl text-headline-xl text-primary">The Velvet Oat Latte</h1>
-<span class="font-headline-md text-headline-md text-on-surface-variant">$6.50</span>
+<span class="font-headline-md text-headline-md text-on-surface-variant">Rp 95.000</span>
 </div>
 <div class="flex items-center gap-2">
 <div class="flex text-on-primary-container">
@@ -412,23 +412,39 @@
             });
         });
 
-        // Form submission simulation
+        // Form submission — add to localStorage cart
         document.getElementById('order-form').addEventListener('submit', function(e) {
             e.preventDefault();
             const btn = this.querySelector('button[type="submit"]');
             const originalText = btn.innerText;
-            btn.innerText = "Adding to Ritual...";
+            const qty = parseInt(document.getElementById('qty').innerText) || 1;
+            const name = document.querySelector('h1.font-headline-xl')?.innerText || 'Menu Item';
+            const priceText = document.querySelector('header .font-headline-md')?.innerText || '0';
+            const price = parseFloat(priceText.replace(/[^0-9]/g, '')) || 0;
+            const imageUrl = document.querySelector('section img')?.src || '';
+
+            if (typeof window.handleMenuAddToCart === 'function') {
+                for (let i = 0; i < qty; i++) {
+                    window.handleMenuAddToCart(Date.now(), name, price, imageUrl);
+                }
+            } else {
+                // Fallback: write directly to localStorage
+                let cart = [];
+                try { cart = JSON.parse(localStorage.getItem('cart') || '[]'); } catch(e) { cart = []; }
+                const idx = cart.findIndex(item => item.name === name);
+                if (idx > -1) { cart[idx].quantity += qty; } else { cart.push({ id: Date.now(), name, price, imageUrl, quantity: qty }); }
+                localStorage.setItem('cart', JSON.stringify(cart));
+                if (typeof window.showToast === 'function') window.showToast(`${name} added to your bag.`);
+            }
+
+            btn.innerText = 'Added ✓';
             btn.disabled = true;
-            
+            btn.classList.replace('bg-deep-espresso', 'bg-moss-green');
             setTimeout(() => {
-                btn.innerText = "Added";
-                btn.classList.replace('bg-deep-espresso', 'bg-moss-green');
-                setTimeout(() => {
-                    btn.innerText = originalText;
-                    btn.classList.replace('bg-moss-green', 'bg-deep-espresso');
-                    btn.disabled = false;
-                }, 2000);
-            }, 800);
+                btn.innerText = originalText;
+                btn.classList.replace('bg-moss-green', 'bg-deep-espresso');
+                btn.disabled = false;
+            }, 2000);
         });
     </script>
 </body></html>

@@ -6,6 +6,7 @@
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=Manrope:wght@200..800&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="../assets/css/components.css" rel="stylesheet">
 <script id="tailwind-config">
         tailwind.config = {
           darkMode: "class",
@@ -112,28 +113,8 @@
     </style>
 </head>
 <body class="bg-background text-on-surface font-body-md selection:bg-primary/10">
-<!-- TopNavBar -->
-<header class="sticky top-0 w-full z-50 bg-surface/95 dark:bg-surface-container/95 backdrop-blur-md border-b border-outline/10 dark:border-outline/20"><div class="flex justify-between items-center w-full px-margin-desktop py-6 max-w-container-max mx-auto">
-<div class="font-headline-md text-headline-md tracking-tight text-deep-espresso dark:text-primary-fixed">Sela Cafe</div>
-<nav class="hidden md:flex items-center gap-8">
-<a class="text-on-surface-variant font-label-caps tracking-widest hover:text-deep-espresso transition-colors" href="#">Home</a>
-<a class="text-on-surface-variant font-label-caps tracking-widest hover:text-deep-espresso transition-colors" href="#">Menu</a>
-<a class="text-on-surface-variant font-label-caps tracking-widest hover:text-deep-espresso transition-colors" href="#">Promo</a>
-<a class="text-deep-espresso dark:text-primary-fixed border-b border-deep-espresso dark:border-primary-fixed pb-1 font-label-caps tracking-widest" href="#">Career</a>
-<a class="text-on-surface-variant font-label-caps tracking-widest hover:text-deep-espresso transition-colors" href="#">Locations</a>
-</nav>
-<div class="flex items-center gap-6 text-deep-espresso">
-<button class="hover:opacity-80 transition-all duration-300 active:scale-95">
-<span class="material-symbols-outlined" data-icon="search">search</span>
-</button>
-<button class="hover:opacity-80 transition-all duration-300 active:scale-95">
-<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
-</button>
-<button class="hover:opacity-80 transition-all duration-300 active:scale-95">
-<span class="material-symbols-outlined" data-icon="person">person</span>
-</button>
-</div>
-</div></header>
+<!-- Navbar: injected by components.js -->
+<div id="navbar-placeholder"></div>
 <main>
 <!-- Hero Section -->
 <section class="relative w-full overflow-hidden">
@@ -147,8 +128,8 @@
 <h1 class="font-headline-xl text-headline-xl text-primary max-w-3xl mb-6">Build Something Meaningful With Us</h1>
 <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mb-8">Join passionate people who create memorable coffee experiences every day. We don't just serve drinks; we curate moments of connection through artisan craft.</p>
 <div class="flex flex-col md:flex-row gap-4">
-<button class="bg-primary text-paper-white px-8 py-4 font-label-caps text-label-caps uppercase tracking-widest rounded transition-all hover:opacity-90 active:scale-95">Explore Roles</button>
-<button class="border border-primary text-primary px-8 py-4 font-label-caps text-label-caps uppercase tracking-widest rounded transition-all hover:bg-primary/5 active:scale-95">Our Story</button>
+<button onclick="document.getElementById('positions').scrollIntoView({behavior:'smooth'})" class="bg-primary text-paper-white px-8 py-4 font-label-caps text-label-caps uppercase tracking-widest rounded transition-all hover:opacity-90 active:scale-95">Explore Roles</button>
+<button onclick="window.location.href='home.html'" class="border border-primary text-primary px-8 py-4 font-label-caps text-label-caps uppercase tracking-widest rounded transition-all hover:bg-primary/5 active:scale-95">Our Story</button>
 </div>
 </div>
 </section>
@@ -218,7 +199,7 @@
 
 <!-- Employee Stories -->
 <!-- Open Positions Section -->
-<section class="py-32 max-w-container-max mx-auto px-margin-desktop" id="positions"><div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8"><div class="max-w-2xl"><span class="font-label-caps text-label-caps uppercase tracking-[0.2em] text-primary mb-4 block">Opportunity Awaits</span><h2 class="font-headline-lg text-headline-lg text-primary">Open Roles</h2><p class="font-body-md text-body-md text-on-surface-variant mt-4">Join our pursuit of coffee excellence. We are looking for individuals who share our passion for craft and community.</p></div><div class="flex gap-4"><select class="bg-transparent border-b border-outline text-label-caps font-label-caps py-2 focus:ring-0 focus:border-primary outline-none"><option>All Locations</option><option>Downtown</option><option>Heritage Row</option><option>HQ</option></select></div></div><div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16"><div class="group border-b border-outline-variant/30 pb-8 flex flex-col justify-between transition-all duration-300 hover:border-primary"><div><div class="flex items-center justify-between mb-4"><span class="bg-moss-green/10 text-moss-green px-3 py-1 rounded-full text-[10px] font-label-caps uppercase tracking-widest">Full Time</span><span class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest">Downtown Flagship</span></div><h3 class="font-headline-md text-headline-md text-primary mb-3">Lead Barista</h3><p class="font-body-md text-body-md text-on-surface-variant mb-6">Expert in espresso craft, workflow management, and team mentoring. 2+ years experience preferred.</p></div><button class="text-primary font-label-caps text-label-caps uppercase tracking-widest flex items-center gap-2 group-hover:gap-4 transition-all">Apply Now <span class="material-symbols-outlined text-sm">arrow_forward</span></button></div><div class="group border-b border-outline-variant/30 pb-8 flex flex-col justify-between transition-all duration-300 hover:border-primary"><div><div class="flex items-center justify-between mb-4"><span class="bg-moss-green/10 text-moss-green px-3 py-1 rounded-full text-[10px] font-label-caps uppercase tracking-widest">Full Time</span><span class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest">Heritage Row</span></div><h3 class="font-headline-md text-headline-md text-primary mb-3">Store Supervisor</h3><p class="font-body-md text-body-md text-on-surface-variant mb-6">Leadership role overseeing daily operations, inventory, and ensuring elite hospitality standards.</p></div><button class="text-primary font-label-caps text-label-caps uppercase tracking-widest flex items-center gap-2 group-hover:gap-4 transition-all">Apply Now <span class="material-symbols-outlined text-sm">arrow_forward</span></button></div><div class="group border-b border-outline-variant/30 pb-8 flex flex-col justify-between transition-all duration-300 hover:border-primary"><div><div class="flex items-center justify-between mb-4"><span class="bg-tertiary-container/10 text-tertiary-container px-3 py-1 rounded-full text-[10px] font-label-caps uppercase tracking-widest">Flexible</span><span class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest">All Locations</span></div><h3 class="font-headline-md text-headline-md text-primary mb-3">Kitchen Crew</h3><p class="font-body-md text-body-md text-on-surface-variant mb-6">Creating our artisan food menu. Focus on seasonal ingredients and beautiful presentation.</p></div><button class="text-primary font-label-caps text-label-caps uppercase tracking-widest flex items-center gap-2 group-hover:gap-4 transition-all">Apply Now <span class="material-symbols-outlined text-sm">arrow_forward</span></button></div><div class="group border-b border-outline-variant/30 pb-8 flex flex-col justify-between transition-all duration-300 hover:border-primary"><div><div class="flex items-center justify-between mb-4"><span class="bg-moss-green/10 text-moss-green px-3 py-1 rounded-full text-[10px] font-label-caps uppercase tracking-widest">Full Time</span><span class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest">Heritage Row</span></div><h3 class="font-headline-md text-headline-md text-primary mb-3">Roastery Assistant</h3><p class="font-body-md text-body-md text-on-surface-variant mb-6">Assist in our artisan roasting process. Learn the science behind our signature heritage profiles.</p></div><button class="text-primary font-label-caps text-label-caps uppercase tracking-widest flex items-center gap-2 group-hover:gap-4 transition-all">Apply Now <span class="material-symbols-outlined text-sm">arrow_forward</span></button></div><div class="group border-b border-outline-variant/30 pb-8 flex flex-col justify-between transition-all duration-300 hover:border-primary"><div><div class="flex items-center justify-between mb-4"><span class="bg-moss-green/10 text-moss-green px-3 py-1 rounded-full text-[10px] font-label-caps uppercase tracking-widest">Full Time</span><span class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest">HQ</span></div><h3 class="font-headline-md text-headline-md text-primary mb-3">Marketing Specialist</h3><p class="font-body-md text-body-md text-on-surface-variant mb-6">Help tell the Sela story to the world. Manage digital presence and community engagement.</p></div><button class="text-primary font-label-caps text-label-caps uppercase tracking-widest flex items-center gap-2 group-hover:gap-4 transition-all">Apply Now <span class="material-symbols-outlined text-sm">arrow_forward</span></button></div><div class="group border-b border-outline-variant/30 pb-8 flex flex-col justify-between transition-all duration-300 hover:border-primary"><div><div class="flex items-center justify-between mb-4"><span class="bg-moss-green/10 text-moss-green px-3 py-1 rounded-full text-[10px] font-label-caps uppercase tracking-widest">Full Time</span><span class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest">Main Lab</span></div><h3 class="font-headline-md text-headline-md text-primary mb-3">Quality Control</h3><p class="font-body-md text-body-md text-on-surface-variant mb-6">Ensure every bean meets our heritage standards through rigorous cupping and analysis.</p></div><button class="text-primary font-label-caps text-label-caps uppercase tracking-widest flex items-center gap-2 group-hover:gap-4 transition-all">Apply Now <span class="material-symbols-outlined text-sm">arrow_forward</span></button></div></div></section>
+<section class="py-32 max-w-container-max mx-auto px-margin-desktop" id="positions"><div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8"><div class="max-w-2xl"><span class="font-label-caps text-label-caps uppercase tracking-[0.2em] text-primary mb-4 block">Opportunity Awaits</span><h2 class="font-headline-lg text-headline-lg text-primary">Open Roles</h2><p class="font-body-md text-body-md text-on-surface-variant mt-4">Join our pursuit of coffee excellence. We are looking for individuals who share our passion for craft and community.</p></div><div class="flex gap-4"><select class="bg-transparent border-b border-outline text-label-caps font-label-caps py-2 focus:ring-0 focus:border-primary outline-none"><option>All Locations</option><option>Downtown</option><option>Heritage Row</option><option>HQ</option></select></div></div><div id="careers-container" class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16"><div class="group border-b border-outline-variant/30 pb-8 flex flex-col justify-between transition-all duration-300 hover:border-primary"><div><div class="flex items-center justify-between mb-4"><span class="bg-moss-green/10 text-moss-green px-3 py-1 rounded-full text-[10px] font-label-caps uppercase tracking-widest">Full Time</span><span class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest">Downtown Flagship</span></div><h3 class="font-headline-md text-headline-md text-primary mb-3">Lead Barista</h3><p class="font-body-md text-body-md text-on-surface-variant mb-6">Expert in espresso craft, workflow management, and team mentoring. 2+ years experience preferred.</p></div><button class="text-primary font-label-caps text-label-caps uppercase tracking-widest flex items-center gap-2 group-hover:gap-4 transition-all">Apply Now <span class="material-symbols-outlined text-sm">arrow_forward</span></button></div><div class="group border-b border-outline-variant/30 pb-8 flex flex-col justify-between transition-all duration-300 hover:border-primary"><div><div class="flex items-center justify-between mb-4"><span class="bg-moss-green/10 text-moss-green px-3 py-1 rounded-full text-[10px] font-label-caps uppercase tracking-widest">Full Time</span><span class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest">Heritage Row</span></div><h3 class="font-headline-md text-headline-md text-primary mb-3">Store Supervisor</h3><p class="font-body-md text-body-md text-on-surface-variant mb-6">Leadership role overseeing daily operations, inventory, and ensuring elite hospitality standards.</p></div><button class="text-primary font-label-caps text-label-caps uppercase tracking-widest flex items-center gap-2 group-hover:gap-4 transition-all">Apply Now <span class="material-symbols-outlined text-sm">arrow_forward</span></button></div><div class="group border-b border-outline-variant/30 pb-8 flex flex-col justify-between transition-all duration-300 hover:border-primary"><div><div class="flex items-center justify-between mb-4"><span class="bg-tertiary-container/10 text-tertiary-container px-3 py-1 rounded-full text-[10px] font-label-caps uppercase tracking-widest">Flexible</span><span class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest">All Locations</span></div><h3 class="font-headline-md text-headline-md text-primary mb-3">Kitchen Crew</h3><p class="font-body-md text-body-md text-on-surface-variant mb-6">Creating our artisan food menu. Focus on seasonal ingredients and beautiful presentation.</p></div><button class="text-primary font-label-caps text-label-caps uppercase tracking-widest flex items-center gap-2 group-hover:gap-4 transition-all">Apply Now <span class="material-symbols-outlined text-sm">arrow_forward</span></button></div><div class="group border-b border-outline-variant/30 pb-8 flex flex-col justify-between transition-all duration-300 hover:border-primary"><div><div class="flex items-center justify-between mb-4"><span class="bg-moss-green/10 text-moss-green px-3 py-1 rounded-full text-[10px] font-label-caps uppercase tracking-widest">Full Time</span><span class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest">Heritage Row</span></div><h3 class="font-headline-md text-headline-md text-primary mb-3">Roastery Assistant</h3><p class="font-body-md text-body-md text-on-surface-variant mb-6">Assist in our artisan roasting process. Learn the science behind our signature heritage profiles.</p></div><button class="text-primary font-label-caps text-label-caps uppercase tracking-widest flex items-center gap-2 group-hover:gap-4 transition-all">Apply Now <span class="material-symbols-outlined text-sm">arrow_forward</span></button></div><div class="group border-b border-outline-variant/30 pb-8 flex flex-col justify-between transition-all duration-300 hover:border-primary"><div><div class="flex items-center justify-between mb-4"><span class="bg-moss-green/10 text-moss-green px-3 py-1 rounded-full text-[10px] font-label-caps uppercase tracking-widest">Full Time</span><span class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest">HQ</span></div><h3 class="font-headline-md text-headline-md text-primary mb-3">Marketing Specialist</h3><p class="font-body-md text-body-md text-on-surface-variant mb-6">Help tell the Sela story to the world. Manage digital presence and community engagement.</p></div><button class="text-primary font-label-caps text-label-caps uppercase tracking-widest flex items-center gap-2 group-hover:gap-4 transition-all">Apply Now <span class="material-symbols-outlined text-sm">arrow_forward</span></button></div><div class="group border-b border-outline-variant/30 pb-8 flex flex-col justify-between transition-all duration-300 hover:border-primary"><div><div class="flex items-center justify-between mb-4"><span class="bg-moss-green/10 text-moss-green px-3 py-1 rounded-full text-[10px] font-label-caps uppercase tracking-widest">Full Time</span><span class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest">Main Lab</span></div><h3 class="font-headline-md text-headline-md text-primary mb-3">Quality Control</h3><p class="font-body-md text-body-md text-on-surface-variant mb-6">Ensure every bean meets our heritage standards through rigorous cupping and analysis.</p></div><button class="text-primary font-label-caps text-label-caps uppercase tracking-widest flex items-center gap-2 group-hover:gap-4 transition-all">Apply Now <span class="material-symbols-outlined text-sm">arrow_forward</span></button></div></div></section>
 <!-- Recruitment Process -->
 <section class="py-32 bg-surface-container">
 <div class="max-w-container-max mx-auto px-margin-desktop text-center">
@@ -260,46 +241,11 @@
 <!-- FAQ Section -->
 <!-- Final CTA -->
 </main>
-<!-- Footer -->
-<footer class="bg-deep-espresso dark:bg-surface-container-lowest border-t border-outline/20">
-<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-20 max-w-container-max mx-auto">
-<div class="col-span-1 md:col-span-1">
-<div class="font-headline-lg text-headline-lg text-paper-white dark:text-deep-espresso mb-6">Sela Cafe</div>
-<p class="font-body-md text-on-primary-container opacity-60 mb-8 max-w-xs">Cultivating heritage in every cup through artisan roasting and community focused spaces.</p>
-</div>
-<div>
-<h4 class="font-label-caps text-label-caps text-paper-white dark:text-deep-espresso tracking-widest mb-8">JOURNEY</h4>
-<ul class="space-y-4">
-<li><a class="text-on-primary-container dark:text-on-surface-variant font-label-caps tracking-widest hover:text-tertiary-fixed transition-colors" href="#">Our Story</a></li>
-<li><a class="text-on-primary-container dark:text-on-surface-variant font-label-caps tracking-widest hover:text-tertiary-fixed transition-colors" href="#">Locations</a></li>
-<li><a class="text-on-primary-container dark:text-on-surface-variant font-label-caps tracking-widest hover:text-tertiary-fixed transition-colors" href="#">Sustainability</a></li>
-</ul>
-</div>
-<div>
-<h4 class="font-label-caps text-label-caps text-paper-white dark:text-deep-espresso tracking-widest mb-8">PARTNERSHIP</h4>
-<ul class="space-y-4">
-<li><a class="text-on-primary-container dark:text-on-surface-variant font-label-caps tracking-widest hover:text-tertiary-fixed transition-colors" href="#">Wholesale</a></li>
-<li><a class="text-on-primary-container dark:text-on-surface-variant font-label-caps tracking-widest hover:text-tertiary-fixed transition-colors" href="#">Career</a></li>
-<li><a class="text-on-primary-container dark:text-on-surface-variant font-label-caps tracking-widest hover:text-tertiary-fixed transition-colors" href="#">Press Kit</a></li>
-</ul>
-</div>
-<div>
-<h4 class="font-label-caps text-label-caps text-paper-white dark:text-deep-espresso tracking-widest mb-8">LEGAL</h4>
-<ul class="space-y-4">
-<li><a class="text-on-primary-container dark:text-on-surface-variant font-label-caps tracking-widest hover:text-tertiary-fixed transition-colors" href="#">Privacy</a></li>
-<li><a class="text-on-primary-container dark:text-on-surface-variant font-label-caps tracking-widest hover:text-tertiary-fixed transition-colors" href="#">Terms</a></li>
-</ul>
-</div>
-</div>
-<div class="px-margin-desktop py-8 border-t border-white/5 max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-<span class="font-label-caps text-[10px] text-on-primary-container opacity-40">© 2024 Sela Cafe. Cultivating heritage in every cup.</span>
-<div class="flex gap-6">
-<a class="text-on-primary-container opacity-40 hover:opacity-100 transition-opacity" href="#"><span class="material-symbols-outlined text-lg" data-icon="brand_family">public</span></a>
-<a class="text-on-primary-container opacity-40 hover:opacity-100 transition-opacity" href="#"><span class="material-symbols-outlined text-lg" data-icon="chat">chat</span></a>
-<a class="text-on-primary-container opacity-40 hover:opacity-100 transition-opacity" href="#"><span class="material-symbols-outlined text-lg" data-icon="share">share</span></a>
-</div>
-</div>
-</footer>
+<!-- Footer: injected by components.js -->
+<div id="footer-placeholder"></div>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/content.js" defer></script>
+
 
 <script>
         // Simple micro-interaction for card hover effects

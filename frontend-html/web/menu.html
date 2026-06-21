@@ -8,8 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=Manrope:wght@200..800&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="components.css" rel="stylesheet"/>
-<script src="components.js" defer></script>
 <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -123,9 +121,7 @@
     </style>
 </head>
 <body class="bg-background text-on-background font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
-<!-- TopNavBar -->
 <div id="navbar-placeholder"></div>
-
 <main class="max-w-container-max mx-auto">
 <!-- Hero Header -->
 <section class="px-margin-mobile md:px-margin-desktop py-12 md:py-24 grid md:grid-cols-12 gap-gutter items-center">
@@ -137,34 +133,34 @@
 </div>
 <div class="relative group max-w-md">
 <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
-<input class="w-full bg-surface border-0 border-b border-outline-variant focus:border-primary focus:ring-0 py-4 pl-12 pr-4 font-label-md transition-all" placeholder="Search our menu..." type="text"/>
+<input id="menu-search-input" class="w-full bg-surface border-0 border-b border-outline-variant focus:border-primary focus:ring-0 py-4 pl-12 pr-4 font-label-md transition-all" placeholder="Search our menu..." type="text"/>
 </div>
 <div class="flex flex-wrap gap-4">
-<button class="flex flex-col items-center gap-2 group">
+<button onclick="filterByQuickCategory('coffee')" class="flex flex-col items-center gap-2 group">
 <div class="w-14 h-14 rounded-full bg-heritage-cream flex items-center justify-center group-hover:bg-primary-fixed transition-colors">
 <span class="material-symbols-outlined text-primary">local_cafe</span>
 </div>
 <span class="font-label-caps text-[10px]">Coffee</span>
 </button>
-<button class="flex flex-col items-center gap-2 group">
+<button onclick="filterByQuickCategory('non-coffee')" class="flex flex-col items-center gap-2 group">
 <div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-primary-fixed transition-colors">
 <span class="material-symbols-outlined text-primary">water_drop</span>
 </div>
 <span class="font-label-caps text-[10px]">Non-Coffee</span>
 </button>
-<button class="flex flex-col items-center gap-2 group">
+<button onclick="filterByQuickCategory('tea')" class="flex flex-col items-center gap-2 group">
 <div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-primary-fixed transition-colors">
 <span class="material-symbols-outlined text-primary">emoji_food_beverage</span>
 </div>
 <span class="font-label-caps text-[10px]">Tea</span>
 </button>
-<button class="flex flex-col items-center gap-2 group">
+<button onclick="filterByQuickCategory('pastry')" class="flex flex-col items-center gap-2 group">
 <div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-primary-fixed transition-colors">
 <span class="material-symbols-outlined text-primary">bakery_dining</span>
 </div>
 <span class="font-label-caps text-[10px]">Pastry</span>
 </button>
-<button class="flex flex-col items-center gap-2 group">
+<button onclick="filterByQuickCategory('dessert')" class="flex flex-col items-center gap-2 group">
 <div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-primary-fixed transition-colors">
 <span class="material-symbols-outlined text-primary">icecream</span>
 </div>
@@ -192,7 +188,7 @@
 </div>
 <button class="font-label-caps text-label-caps text-primary border-b border-primary hover:opacity-70 transition-opacity pb-1">View Archive</button>
 </div>
-<div class="grid md:grid-cols-3 gap-12">
+<div id="todays-picks-grid" class="grid md:grid-cols-3 gap-12">
 <!-- Pick 1 -->
 <div class="flex flex-col">
 <div class="relative aspect-[3/4] mb-6 overflow-hidden bg-surface-container group">
@@ -285,26 +281,27 @@
 <h2 class="font-headline-lg text-headline-lg text-primary">Full Menu</h2>
 <p class="font-body-md text-on-surface-variant">Browse our complete collection of artisan roasts and handcrafted treats.</p>
 </div><div class="flex flex-col md:flex-row md:items-center justify-between gap-8">
-<div class="flex items-center gap-8 overflow-x-auto no-scrollbar pb-2">
-<button class="font-label-caps text-label-caps text-primary border-b-2 border-primary pb-1 whitespace-nowrap">All Items</button>
-<button class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors pb-1 whitespace-nowrap">Espresso Bar</button>
-<button class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors pb-1 whitespace-nowrap">Manual Brew</button>
-<button class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors pb-1 whitespace-nowrap">Cold Brew</button>
-<button class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors pb-1 whitespace-nowrap">The Bakery</button>
+<div id="category-tabs-container" class="flex items-center gap-8 overflow-x-auto no-scrollbar pb-2">
+<button onclick="filterCategory('all', this)" class="font-label-caps text-label-caps text-primary border-b-2 border-primary pb-1 whitespace-nowrap">All Items</button>
+<button onclick="filterCategory('coffee', this)" class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors pb-1 whitespace-nowrap">Coffee</button>
+<button onclick="filterCategory('pastry', this)" class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors pb-1 whitespace-nowrap">Pastry</button>
+<button onclick="filterCategory('tea', this)" class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors pb-1 whitespace-nowrap">Tea</button>
+<button onclick="filterCategory('dessert', this)" class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors pb-1 whitespace-nowrap">Dessert</button>
 </div>
 <div class="flex items-center gap-4">
 <div class="relative">
-<select class="appearance-none bg-transparent border-0 border-b border-outline-variant font-label-md text-label-md pr-8 py-1 focus:ring-0 cursor-pointer">
-<option>Sort: Popular</option>
-<option>Sort: Newest</option>
-<option>Sort: Price Low-High</option>
+<select id="menu-sort-select" class="appearance-none bg-transparent border-0 border-b border-outline-variant font-label-md text-label-md pr-8 py-1 focus:ring-0 cursor-pointer">
+<option value="popular">Sort: Popular</option>
+<option value="newest">Sort: Newest</option>
+<option value="low-high">Sort: Price Low-High</option>
+<option value="high-low">Sort: Price High-Low</option>
 </select>
 <span class="material-symbols-outlined absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-[16px]">expand_more</span>
 </div>
 </div>
 </div>
 </div>
-<div class="px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-x-gutter gap-y-16">
+<div id="full-menu-grid" class="px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-x-gutter gap-y-16">
 <!-- Menu Item 1 -->
 <div class="md:col-span-1 group">
 <div class="relative aspect-square mb-6 overflow-hidden bg-surface-container">
@@ -479,8 +476,9 @@
 </section>
 <!-- Quick Order Banner -->
 </main>
-<!-- Footer -->
 <div id="footer-placeholder"></div>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/menu.js"></script>
 <script>
         // Micro-interactions & Logic
         document.addEventListener('DOMContentLoaded', () => {
