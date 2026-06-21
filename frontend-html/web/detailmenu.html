@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sela Cafe | The Velvet Oat Latte</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=JetBrains+Mono:wght@100..800&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-bright": "#faf9f5",
+                    "on-primary-container": "#a3876c",
+                    "error-container": "#ffdad6",
+                    "outline-variant": "#d2c4b9",
+                    "on-error-container": "#93000a",
+                    "surface-container-low": "#f4f4f0",
+                    "secondary-fixed-dim": "#adcfb4",
+                    "on-background": "#1b1c1a",
+                    "outline": "#80756c",
+                    "secondary": "#46654f",
+                    "on-secondary-fixed-variant": "#2f4d39",
+                    "on-primary-fixed": "#291805",
+                    "surface-tint": "#725a42",
+                    "inverse-surface": "#2f312e",
+                    "outline-muted": "rgba(128, 117, 108, 0.2)",
+                    "tertiary-fixed-dim": "#cfc6ae",
+                    "primary": "#1b0c00",
+                    "tertiary-container": "#292515",
+                    "surface-container": "#efeeea",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-container": "#4a6a53",
+                    "primary-fixed": "#feddbe",
+                    "on-tertiary-container": "#938c76",
+                    "moss-green": "#386641",
+                    "tertiary-fixed": "#ece2c9",
+                    "surface-dim": "#dbdad6",
+                    "tertiary": "#141003",
+                    "primary-fixed-dim": "#e1c1a3",
+                    "surface-container-high": "#e9e8e4",
+                    "on-secondary-fixed": "#022110",
+                    "inverse-on-surface": "#f2f1ed",
+                    "inverse-primary": "#e1c1a3",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-container": "#33210d",
+                    "on-tertiary-fixed-variant": "#4c4634",
+                    "secondary-container": "#c5e8cc",
+                    "on-surface-variant": "#4e453d",
+                    "on-surface": "#1b1c1a",
+                    "on-primary": "#ffffff",
+                    "paper-white": "#FDFCF8",
+                    "background": "#faf9f5",
+                    "surface-variant": "#e3e2df",
+                    "surface": "#faf9f5",
+                    "secondary-fixed": "#c8ebcf",
+                    "heritage-cream": "#F2E8CF",
+                    "on-error": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed": "#201b0c",
+                    "deep-espresso": "#2A1B0E",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed-variant": "#58432c",
+                    "surface-container-highest": "#e3e2df"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "section-padding": "8rem",
+                    "margin-mobile": "24px",
+                    "container-max": "1280px",
+                    "gutter": "24px",
+                    "margin-desktop": "80px",
+                    "unit": "4px"
+            },
+            "fontFamily": {
+                    "label-caps": ["JetBrains Mono"],
+                    "headline-lg": ["EB Garamond"],
+                    "label-md": ["JetBrains Mono"],
+                    "headline-lg-mobile": ["EB Garamond"],
+                    "body-md": ["Manrope"],
+                    "headline-xl": ["EB Garamond"],
+                    "headline-md": ["EB Garamond"],
+                    "body-lg": ["Manrope"]
+            },
+            "fontSize": {
+                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                    "headline-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "38px", "fontWeight": "500"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-xl": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "500"}],
+                    "headline-md": ["28px", {"lineHeight": "34px", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #faf9f5;
+            color: #1b1c1a;
+            position: relative;
+        }
+        
+        .grain-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+            opacity: 0.05;
+        }
+
+        .sela-line {
+            height: 1px;
+            background-color: rgba(128, 117, 108, 0.2);
+            width: 100%;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .custom-radio:checked + label {
+            background-color: #2A1B0E;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<div class="grain-overlay"></div>
+<!-- Navigation Header -->
+<header class="bg-surface-bright sticky top-0 z-50 border-b border-outline-muted">
+<nav class="flex justify-between items-center px-6 md:px-margin-desktop py-6 max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md text-primary tracking-tight">Sela Cafe</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Home</a>
+<a class="font-label-caps text-label-caps text-primary border-b-2 border-primary pb-1" href="#">Menu</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Promo</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Locations</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" href="#">Careers</a>
+</div>
+<button class="bg-primary text-on-primary px-6 py-3 font-label-caps text-label-caps hover:bg-deep-espresso active:scale-95 transition-all">Order Now</button>
+</nav>
+</header>
+<main class="max-w-container-max mx-auto px-6 md:px-margin-desktop py-12 md:py-24">
+<!-- Product Hero Section -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-32 items-start">
+<!-- Left Column: Cinematic Image -->
+<div class="relative group">
+<div class="aspect-[4/5] overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter grayscale-[30%] hover:grayscale-0" data-alt="A high-resolution, cinematic close-up shot of a creamy oat milk latte in a handcrafted ceramic mug. The latte features delicate microfoam art on top, resting on a rustic wooden table in a sun-drenched heritage cafe. The lighting is soft and warm, highlighting the rich textures of the coffee and the matte finish of the clay mug, evoking a serene and premium morning ritual." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpfDjwZhufMkxsVRcaAxVrU-sRZzFZnMBG4yC0LTwXtgDkyySd9wEfybuPoOvzZ0jvj1fphSwJXPu4z3rc9FtRoDVlAoqxJR9y-wM8ZGURWwaOAGGZ5pXTX_a6G6TZ-4g2HnQwX1g3ddAcpGJcFVgtfRWcNFtEgOVe4O8Rz9i8q2hNBs8xpw5dj9GYVVp4x6S8-RQPym4UaDoGp3y4lBWBRXlmBSSxf7VI8dG1ZHjOoGOXWtmTKflYtZeO3hN-pkm-bsb1XDWeY_hH"/>
+</div>
+<div class="absolute bottom-8 left-8 flex items-center gap-4 bg-paper-white/90 backdrop-blur-sm p-4 border border-outline-muted">
+<span class="font-label-caps text-label-caps text-primary">Est. 2024</span>
+<div class="sela-line w-12"></div>
+<span class="font-label-caps text-label-caps text-primary">Artisan Batch</span>
+</div>
+</div>
+<!-- Right Column: Details & Customization -->
+<div class="flex flex-col gap-10">
+<header class="flex flex-col gap-2">
+<div class="flex justify-between items-baseline">
+<h1 class="font-headline-xl text-headline-xl text-primary">The Velvet Oat Latte</h1>
+<span class="font-headline-md text-headline-md text-on-surface-variant">$6.50</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="flex text-on-primary-container">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star_half</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">4.9 / 5.0 (2.4k Rituals)</span>
+</div>
+</header>
+<div class="sela-line"></div>
+<!-- Customization Engine -->
+<form class="flex flex-col gap-10" id="order-form">
+<!-- Size -->
+<div class="flex flex-col gap-4">
+<span class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Select Size</span>
+<div class="flex flex-wrap gap-3">
+<input class="hidden custom-radio" id="small" name="size" type="radio" value="small"/>
+<label class="px-6 py-2 border border-outline-muted font-label-caps text-label-caps cursor-pointer hover:bg-surface-container transition-colors" for="small">Small</label>
+<input checked="" class="hidden custom-radio" id="regular" name="size" type="radio" value="regular"/>
+<label class="px-6 py-2 border border-outline-muted font-label-caps text-label-caps cursor-pointer hover:bg-surface-container transition-colors" for="regular">Regular</label>
+<input class="hidden custom-radio" id="large" name="size" type="radio" value="large"/>
+<label class="px-6 py-2 border border-outline-muted font-label-caps text-label-caps cursor-pointer hover:bg-surface-container transition-colors" for="large">Large</label>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Sugar -->
+<div class="flex flex-col gap-4">
+<span class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Sugar Levels</span>
+<select class="bg-transparent border border-outline-muted px-4 py-3 font-body-md focus:ring-0 focus:border-primary outline-none appearance-none cursor-pointer">
+<option>None</option>
+<option>25% - Subtle</option>
+<option selected="">50% - Balanced</option>
+<option>100% - Classic</option>
+</select>
+</div>
+<!-- Ice -->
+<div class="flex flex-col gap-4">
+<span class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Ice Preference</span>
+<select class="bg-transparent border border-outline-muted px-4 py-3 font-body-md focus:ring-0 focus:border-primary outline-none appearance-none cursor-pointer">
+<option>None</option>
+<option>Less</option>
+<option selected="">Normal</option>
+</select>
+</div>
+<!-- Milk -->
+<div class="flex flex-col gap-4">
+<span class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Milk Foundation</span>
+<div class="flex flex-wrap gap-2">
+<button class="px-4 py-2 bg-heritage-cream text-primary font-label-caps text-[10px] uppercase border border-primary" type="button">Oat</button>
+<button class="px-4 py-2 bg-surface-bright text-on-surface-variant font-label-caps text-[10px] uppercase border border-outline-muted hover:border-primary transition-colors" type="button">Almond</button>
+<button class="px-4 py-2 bg-surface-bright text-on-surface-variant font-label-caps text-[10px] uppercase border border-outline-muted hover:border-primary transition-colors" type="button">Whole</button>
+</div>
+</div>
+<!-- Toppings -->
+<div class="flex flex-col gap-4">
+<span class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Finishing Touches</span>
+<div class="flex gap-4">
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="w-4 h-4 border-outline-muted text-primary focus:ring-0" type="checkbox"/>
+<span class="font-body-md text-sm">Sea Salt</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer">
+<input class="w-4 h-4 border-outline-muted text-primary focus:ring-0" type="checkbox"/>
+<span class="font-body-md text-sm">Cinnamon</span>
+</label>
+</div>
+</div>
+</div>
+<!-- Primary Action -->
+<div class="flex gap-4 mt-4">
+<div class="flex items-center border border-outline-muted">
+<button class="px-4 py-4 hover:bg-surface-container transition-colors" onclick="decrement()" type="button">
+<span class="material-symbols-outlined text-sm">remove</span>
+</button>
+<span class="px-6 font-label-md" id="qty">1</span>
+<button class="px-4 py-4 hover:bg-surface-container transition-colors" onclick="increment()" type="button">
+<span class="material-symbols-outlined text-sm">add</span>
+</button>
+</div>
+<button class="flex-1 bg-deep-espresso text-on-primary font-label-caps text-label-caps tracking-widest py-4 hover:opacity-90 active:scale-95 transition-all" type="submit">
+                            Add to Ritual
+                        </button>
+</div>
+</form>
+</div>
+</section>
+<!-- Story & Science Section -->
+<section class="mt-section-padding grid grid-cols-1 md:grid-cols-12 gap-12 border-t border-outline-muted pt-24">
+<div class="md:col-span-5 flex flex-col gap-8">
+<h2 class="font-headline-lg text-headline-lg text-primary">The Heritage of the Bean</h2>
+<div class="flex flex-col gap-6">
+<p class="font-body-lg text-body-lg leading-relaxed text-on-surface-variant">
+                        Our Velvet Oat Latte begins in the high-altitude forests of Sidamo, Ethiopia. These heirloom beans are hand-harvested by local cooperatives and undergo a meticulous honey-processing method, preserving the fruit's natural sweetness.
+                    </p>
+<p class="font-body-md text-body-md text-on-surface-variant italic">
+                        Roasted to a precise "Medium-Light" profile, we extract notes of wild jasmine, stone fruit, and a lingering cocoa finish that pairs seamlessly with our creamy house-made oat milk.
+                    </p>
+</div>
+<!-- Nutrition Table -->
+<div class="border border-outline-muted p-6">
+<button class="w-full flex justify-between items-center group" onclick="toggleNutrition()">
+<span class="font-label-caps text-label-caps text-primary">Nutritional Information</span>
+<span class="material-symbols-outlined transition-transform duration-300" id="nutrition-icon">expand_more</span>
+</button>
+<div class="hidden overflow-hidden transition-all duration-300 mt-6" id="nutrition-content">
+<div class="flex flex-col gap-3 font-body-md text-sm text-on-surface-variant">
+<div class="flex justify-between border-b border-outline-muted pb-2">
+<span>Calories</span>
+<span>180 kcal</span>
+</div>
+<div class="flex justify-between border-b border-outline-muted pb-2">
+<span>Total Fat</span>
+<span>6g</span>
+</div>
+<div class="flex justify-between border-b border-outline-muted pb-2">
+<span>Total Sugars</span>
+<span>12g</span>
+</div>
+<div class="flex justify-between">
+<span>Caffeine</span>
+<span>150mg</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md:col-start-8 md:col-span-5">
+<div class="aspect-square bg-surface-container relative">
+<img class="w-full h-full object-cover filter grayscale-[40%]" data-alt="An architectural detail of a modern coffee roastery interior. Large copper pipes, warm wood paneling, and soft gallery lighting create a sophisticated industrial atmosphere. A focused barista is seen in the distance, partially blurred, emphasizing the precision and artisan craft behind the brewing process in this heritage sanctuary." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCx67a2leA3HP22sA1xKEiml0LJZKHROSf1QCxSBJKgJ6TFhdIBzpRPcv7Et2Qu7PGpzCw8FL74pmkbCHCfcqIKORvQODI3md7eXeg6xYqBx42FLikz-KYIQ5mPyjuxWkdaumsTMbLWSslDrpJzTNFJB9dDYCdvUDmYJZe2dyPtEzmnJVAbj3CFsTYjnWfF9YJFiZqOpDaxDKUlDpugOVgQR4ujR8Ck5TMdaQg_N8XNikLJqEBO7C8bfRxXZO27x5xY41djBJCDWQwR"/>
+</div>
+</div>
+</section>
+<!-- Curation: Pairs Well With -->
+<section class="mt-section-padding">
+<div class="flex justify-between items-end mb-12">
+<h2 class="font-headline-lg text-headline-lg text-primary">Pairs Well With</h2>
+<a class="font-label-caps text-[10px] text-on-surface-variant border-b border-on-surface-variant pb-1 hover:text-primary transition-colors" href="#">View All Provisions</a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Card 1 -->
+<div class="flex flex-col gap-6 group cursor-pointer">
+<div class="aspect-[4/3] overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A macro photograph of an artisan almond croissant on a white ceramic plate. The pastry is flaky with a golden-brown crust, dusted lightly with powdered sugar and topped with toasted almond slices. The setting is minimal and clean, focusing on the texture and craftsmanship of the bakery item." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcRv21Qeyx51B45NwR0OBahRuhK0-03NxWM7Hmg8ihnlLXobQ7KTD9BX-Q0U5C_KERPIZZE3-7pxtyTxcm_5Oa5wpyDknp2edKxZID4w27eU4aSqvzpUA3fAOOnGB9UHH_-cl803DuvLbHjjXuV4eXsYRir-EavkWWcdtSLCO45GxrBTyCU6HwIxH4BUkDtlXhda3jLimae6NAdXgyJLoLdxn0RoxoR5TyWTFrtD6WBLpJORVJXQNw3Aaj4PsCm1O9WNjZZVYBIT-5"/>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="font-headline-md text-headline-md text-primary">Saffron Croissant</h3>
+<div class="flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">$5.50</span>
+<span class="font-label-caps text-[10px] px-2 py-1 bg-heritage-cream text-primary">Baker's Choice</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="flex flex-col gap-6 group cursor-pointer">
+<div class="aspect-[4/3] overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A piece of dark chocolate sea salt tart served on a small heritage-style plate. The tart has a rich, matte chocolate filling and a crumbly cocoa crust, garnished with a few large flakes of Maldon sea salt. The image is shot from a top-down perspective with moody, low-key lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPwWUPYamooZfIkU4kk2oaxiQ0iD8P5X5W60m2p2MY0sZ79CFU7l_mvUoVSh0on5XePeh0tCjkqeQH1lG2KZWc9AKLNI0icktoUr7ZTEIVF5d_SBo3d8PUW9BKcYsyCqoYwzop0IUTgdDPL6f9s677Gkd6-ZajtSiZ91ObCwWq88XkIX_-xPbSoMXnPguJrWNoQy7XAjmQKq1odCUJy_gUfhc2Hf-LhsTo9uIc4J0zqLLyM-d5LyzpNvoU5ZnBZZsErYOg_obME0_a"/>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="font-headline-md text-headline-md text-primary">Sea Salt Tart</h3>
+<div class="flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">$6.00</span>
+<span class="font-label-caps text-[10px] px-2 py-1 bg-surface-container text-on-surface-variant">Dark Roast</span>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="hidden lg:flex flex-col gap-6 group cursor-pointer">
+<div class="aspect-[4/3] overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A minimalist presentation of a lavender-infused shortbread cookie resting on a linen napkin. The cookie is rectangular and elegant, with tiny dried lavender buds visible on its surface. The background is a soft beige tone, emphasizing a calm and gentle aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBG0lgwyXTRqUhGUQ6ruzo2qzprqRxzy_fFZUwZItqdi-NWb2bjRuldqyz4UWp8ddMCa9ofAX7OyPk9e1OLlxFy08FAK7GlwEhLB0qBaQ_zLjqootSb_G0DBfmIvpveXg8r82hrtnYwX7wZ_LF7W2agw6U9OXBCqRjU6ds0ACNnHal9xG8a2TQoDfn3WrTJfvBKfbFBhN_6ZM_nVT4mgzA8X9pOgnx00Wkx584nWIG5A-bJn7wYgkRZbS9-Ep9e-6SHXnYDAb7wY8q5"/>
+</div>
+<div class="flex flex-col gap-2">
+<h3 class="font-headline-md text-headline-md text-primary">Lavender Shortbread</h3>
+<div class="flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">$4.25</span>
+<span class="font-label-caps text-[10px] px-2 py-1 bg-surface-container text-on-surface-variant">Botanic</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Recent Rituals -->
+<section class="mt-section-padding border-t border-outline-muted pt-16">
+<h2 class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-8 opacity-60">Recent Rituals</h2>
+<div class="flex gap-8 overflow-x-auto pb-6 no-scrollbar">
+<div class="flex items-center gap-4 flex-shrink-0 opacity-40 hover:opacity-100 transition-opacity cursor-pointer">
+<div class="w-16 h-16 bg-surface-container rounded-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Small thumbnail of a dark, rich double espresso with thick crema in a glass cup." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSVOv9RzUskZ8rG5hd78HSRnAUKDZfcHtnK6YYFEEZ7qQCX6sB8GaA-xx6r9OKlFePGkye_jtJCDdvaKkpy7il0pdGzqpuym35gaqQgPVQ_G4GxsZAJIeP6rBf8oNvtJ9_lojFK_9oRcfDpVgQoQL7FckpIl50Te8k9UhBu_0K9Dkh61ifYOW7Pxm0NfunVGiBD6shkiB8SdTJxfkGXO1yDVOyHaBvHcJIAQFndPcG1dFTsFx2FQhjfKRdIjIeuRMyIuPvO3zAshgw"/>
+</div>
+<span class="font-body-md text-sm">Double Espresso</span>
+</div>
+<div class="flex items-center gap-4 flex-shrink-0 opacity-40 hover:opacity-100 transition-opacity cursor-pointer">
+<div class="w-16 h-16 bg-surface-container rounded-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Small thumbnail of a bright, clear iced tea with a sprig of mint and a lemon slice." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjoVGjWJOfP019LlM3b4A-P5ojdem7iZduSFKXtHWHwAZsBtHqsIHEOB6PWnobYko5hTm8yfFpOQmePGL-oLBYHQkk0Vh6ZhKc5C0K76ao3zHA74q8BEe93qVd9EbKgZdgs6bzvnKWACAXx156Twlu3tZubamJ9BEPFRGB3Vvv7WHbSUrliJF9mj4Fl1MuDFJq1VsltUdpAJ27Kncq1jHHrTnw31oQaNV1QByFT-9c4tJCXrlBOqNmoQaqNQ18bQbQpG4BZ6iysiWK"/>
+</div>
+<span class="font-body-md text-sm">Wild Mint Tea</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-deep-espresso text-on-primary">
+<div class="max-w-container-max mx-auto px-6 md:px-margin-desktop py-section-padding">
+<div class="flex flex-col md:flex-row justify-between items-start gap-12">
+<div class="flex flex-col gap-6">
+<div class="font-headline-md text-headline-md tracking-tight">Sela Cafe</div>
+<p class="font-body-md text-on-primary-container max-w-sm">
+                        Dedicated to the preservation of slow moments and artisan heritage. Join us in our sanctuary for quiet contemplation and exceptional coffee.
+                    </p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-12">
+<div class="flex flex-col gap-4">
+<span class="font-label-caps text-label-caps uppercase opacity-50">Menu</span>
+<a class="font-body-md text-sm hover:text-primary-fixed transition-colors" href="#">Daily Brews</a>
+<a class="font-body-md text-sm hover:text-primary-fixed transition-colors" href="#">The Pastry Lab</a>
+<a class="font-body-md text-sm hover:text-primary-fixed transition-colors" href="#">Retail Grains</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-label-caps text-label-caps uppercase opacity-50">Culture</span>
+<a class="font-body-md text-sm hover:text-primary-fixed transition-colors" href="#">Our Origin</a>
+<a class="font-body-md text-sm hover:text-primary-fixed transition-colors" href="#">Artisan Grants</a>
+<a class="font-body-md text-sm hover:text-primary-fixed transition-colors" href="#">The Press</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-label-caps text-label-caps uppercase opacity-50">Contact</span>
+<a class="font-body-md text-sm hover:text-primary-fixed transition-colors" href="#">Privacy</a>
+<a class="font-body-md text-sm hover:text-primary-fixed transition-colors" href="#">Terms</a>
+<a class="font-body-md text-sm hover:text-primary-fixed transition-colors" href="#">Careers</a>
+</div>
+</div>
+</div>
+<div class="sela-line my-12 opacity-10"></div>
+<div class="flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-label-caps text-[10px] opacity-40">© 2024 Sela Cafe. All rights reserved. Crafted for the slow living artisan.</p>
+<div class="flex gap-6">
+<a class="material-symbols-outlined text-on-primary-container hover:text-on-primary transition-colors" href="#">share</a>
+<a class="material-symbols-outlined text-on-primary-container hover:text-on-primary transition-colors" href="#">public</a>
+<a class="material-symbols-outlined text-on-primary-container hover:text-on-primary transition-colors" href="#">coffee</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Quantity Selector Logic
+        let currentQty = 1;
+        const qtyElement = document.getElementById('qty');
+
+        function increment() {
+            currentQty++;
+            qtyElement.innerText = currentQty;
+        }
+
+        function decrement() {
+            if (currentQty > 1) {
+                currentQty--;
+                qtyElement.innerText = currentQty;
+            }
+        }
+
+        // Nutrition Toggle Logic
+        function toggleNutrition() {
+            const content = document.getElementById('nutrition-content');
+            const icon = document.getElementById('nutrition-icon');
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                content.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Micro-interactions for selections
+        document.querySelectorAll('button[type="button"]').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if(this.parentElement.children.length > 2) { // Logic for button groups
+                    Array.from(this.parentElement.children).forEach(b => {
+                        b.classList.remove('bg-heritage-cream', 'border-primary', 'text-primary');
+                        b.classList.add('bg-surface-bright', 'text-on-surface-variant', 'border-outline-muted');
+                    });
+                    this.classList.add('bg-heritage-cream', 'border-primary', 'text-primary');
+                    this.classList.remove('bg-surface-bright', 'text-on-surface-variant', 'border-outline-muted');
+                }
+            });
+        });
+
+        // Form submission simulation
+        document.getElementById('order-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('button[type="submit"]');
+            const originalText = btn.innerText;
+            btn.innerText = "Adding to Ritual...";
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.innerText = "Added";
+                btn.classList.replace('bg-deep-espresso', 'bg-moss-green');
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.classList.replace('bg-moss-green', 'bg-deep-espresso');
+                    btn.disabled = false;
+                }, 2000);
+            }, 800);
+        });
+    </script>
+</body></html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Locations | Sela Cafe</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#46654f",
+                    "paper-white": "#FDFCF8",
+                    "on-secondary": "#ffffff",
+                    "on-primary-container": "#bd9f83",
+                    "moss-green": "#386641",
+                    "surface-bright": "#fcf9f3",
+                    "on-error-container": "#93000a",
+                    "secondary-container": "#c8ebce",
+                    "on-error": "#ffffff",
+                    "deep-espresso": "#2A1B0E",
+                    "inverse-surface": "#31312d",
+                    "on-surface-variant": "#4e453d",
+                    "on-tertiary": "#ffffff",
+                    "heritage-cream": "#F2E8CF",
+                    "tertiary-container": "#54330c",
+                    "primary": "#33210d",
+                    "on-secondary-fixed-variant": "#2f4d38",
+                    "surface-tint": "#725a42",
+                    "secondary-fixed": "#c8ebce",
+                    "tertiary": "#391e00",
+                    "on-tertiary-fixed": "#2c1600",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed-dim": "#adcfb3",
+                    "inverse-on-surface": "#f3f0ea",
+                    "surface-container-lowest": "#ffffff",
+                    "background": "#fcf9f3",
+                    "on-tertiary-container": "#cb9b6c",
+                    "tertiary-fixed": "#ffdcbd",
+                    "error": "#ba1a1a",
+                    "on-surface": "#1c1c18",
+                    "surface-container-low": "#f6f3ed",
+                    "primary-fixed": "#fedcbe",
+                    "on-tertiary-fixed-variant": "#623f18",
+                    "on-primary-fixed": "#291806",
+                    "inverse-primary": "#e1c1a4",
+                    "surface-variant": "#e5e2dc",
+                    "outline-variant": "#d2c4ba",
+                    "outline": "#80756c",
+                    "primary-container": "#4b3621",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#f0bd8b",
+                    "surface-dim": "#dcdad4",
+                    "on-secondary-fixed": "#03210f",
+                    "primary-fixed-dim": "#e1c1a4",
+                    "on-secondary-container": "#4c6b54",
+                    "surface-container-highest": "#e5e2dc",
+                    "surface-container-high": "#ebe8e2",
+                    "on-background": "#1c1c18",
+                    "surface": "#fcf9f3",
+                    "surface-container": "#f0eee8",
+                    "on-primary-fixed-variant": "#59422c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-desktop": "80px",
+                    "margin-mobile": "24px",
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "unit": "4px"
+            },
+            "fontFamily": {
+                        "headline-xl": ["EB Garamond"],
+                        "label-caps": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["EB Garamond"],
+                        "body-lg": ["Manrope"],
+                        "headline-lg": ["EB Garamond"],
+                        "label-md": ["JetBrains Mono"],
+                        "headline-md": ["EB Garamond"],
+                        "body-md": ["Manrope"]
+                    },
+            "fontSize": {
+                        "headline-xl": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "500"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "38px", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["28px", {"lineHeight": "34px", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .sela-line {
+            height: 1px;
+            background-color: rgba(128, 117, 108, 0.2);
+            width: 100%;
+        }
+        .grain-overlay {
+            position: relative;
+        }
+        .grain-overlay::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+            opacity: 0.05;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-paper-white text-primary font-body-md overflow-x-hidden grain-overlay">
+<!-- TopNavBar -->
+<header class="sticky top-0 w-full z-50 bg-surface/95 dark:bg-surface-container/95 backdrop-blur-md border-b border-outline/10 dark:border-outline/20"><div class="flex justify-between items-center w-full px-margin-desktop py-6 max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md tracking-tight text-deep-espresso dark:text-primary-fixed">Sela Cafe</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-on-surface-variant font-label-caps tracking-widest hover:text-deep-espresso transition-colors" href="#">Home</a>
+<a class="text-on-surface-variant font-label-caps tracking-widest hover:text-deep-espresso transition-colors" href="#">Menu</a>
+<a class="text-on-surface-variant font-label-caps tracking-widest hover:text-deep-espresso transition-colors" href="#">Promo</a>
+<a class="text-on-surface-variant font-label-caps tracking-widest hover:text-deep-espresso transition-colors" href="#">Career</a>
+<a class="text-deep-espresso dark:text-primary-fixed border-b border-deep-espresso dark:border-primary-fixed pb-1 font-label-caps tracking-widest" href="#">Locations</a>
+</nav>
+<div class="flex items-center gap-6 text-deep-espresso">
+<button class="hover:opacity-80 transition-all duration-300 active:scale-95">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<button class="hover:opacity-80 transition-all duration-300 active:scale-95">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</button>
+<button class="hover:opacity-80 transition-all duration-300 active:scale-95">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</button>
+</div>
+</div></header>
+<main>
+<!-- Hero Section -->
+<section class="relative h-[80vh] flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="w-full h-full bg-cover bg-center scale-105 transition-all duration-1000 opacity-100 translate-y-0" data-alt="A warm and inviting interior shot of a luxury cafe with high ceilings, large wooden communal tables, and soft morning light streaming through tall windows. The aesthetic is heritage-inspired with dark espresso wood accents, antique furniture, and lush green plants. The atmosphere is peaceful, capturing the essence of slow living and artisan coffee culture." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCbMgczAFj7fAtbqkeshoU376mSx_yS9pDy24iiUKx88_V3ywvU6mjiTVos5ljpHBfcoDJcXurAAbpRyV9xAGQbr13x6wR5B8zVPohUfLCBfQfqPcZ10ScgX3igwREPQSvoi4kTs-tYHq8y4zpIckCPPqTvJHR2CP-tuGaQf4iZKJcBerkVXmPXI8CPw3x89tPNmfn9hoWyxQ4iNRBFG1frpnE3VbQsndhZsELYbN84ZltCVaTJLWXdQuWU54ECqG67uU_wyZEIh8Sx')"></div>
+<div class="absolute inset-0 bg-deep-espresso/40 transition-all duration-1000 opacity-100 translate-y-0"></div>
+</div>
+<div class="relative z-10 px-margin-desktop max-w-container-max mx-auto w-full text-paper-white">
+<div class="max-w-2xl transition-all duration-1000 opacity-100 translate-y-0">
+<span class="font-label-caps text-label-caps tracking-widest uppercase mb-4 block">Destination Heritage</span>
+<h1 class="font-headline-xl text-headline-xl mb-6">Find Your Nearest Sela Cafe</h1>
+<p class="font-body-lg text-body-lg text-heritage-cream/90 mb-10">Step into a space where time slows down. Discover our curated collection of sanctuaries, each designed with local heritage and handcrafted coffee at its heart.</p>
+<a class="inline-flex items-center gap-3 bg-heritage-cream text-deep-espresso px-10 py-4 font-label-caps text-label-caps hover:bg-white transition-all" href="#locations">
+                        Explore Locations
+                        <span class="material-symbols-outlined">arrow_downward</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Statistics Section -->
+
+<!-- Featured Locations -->
+<section class="py-32" id="locations">
+<div class="px-margin-desktop max-w-container-max mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 transition-all duration-1000 opacity-100 translate-y-0">
+<div class="max-w-xl">
+<span class="font-label-caps text-label-caps text-outline block mb-2">The Collection</span>
+<h2 class="font-headline-lg text-headline-lg text-primary">Featured Branches</h2>
+</div>
+<div class="sela-line hidden md:block w-1/3 mb-4"></div>
+</div>
+<div class="space-y-32 transition-all duration-1000 opacity-100 translate-y-0">
+<!-- Branch 1: Braga -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+<div class="md:col-span-7 order-2 md:order-1">
+<div class="aspect-[4/3] overflow-hidden">
+<img class="w-full h-full object-cover grayscale-[0.3] hover:grayscale-0 transition-all duration-700" data-alt="A cinematic architectural photograph of Sela Cafe Braga, situated in a restored Art Deco heritage building. The exterior features white stone and elegant black ironwork. Interior glimpses show low-hanging brass lamps, vintage velvet chairs, and a long marble espresso bar. The street view includes cobblestones and a soft dusk glow, emphasizing a timeless European-influenced Indonesian heritage." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnxk08Xcd2iw63tvIXlib-cVGld0EkJhxyJEJFlBIzvlfxjRSp7OMY67TGbx20pBOD4xZvKdyrL_grCnal4R7nu-_H98C7iOfkICiuiVMsPmPJLT7h_igFkKrw2KV0e6iIjqGxBd5dcWoxi3DDZhZrOSSVOFPU_EgaII-GB3haHnYWwkfTdv7GEAs5NaP_uM0-_9GhGiHPz2rWUgc1FY3HqKFJ-Yv7bjdktKmE3XUK3PGlDIGwpLAcYyZwvPks0nV3gOYyhnz2w4D-">
+</div>
+</div>
+<div class="md:col-span-5 order-1 md:order-2 flex flex-col justify-center">
+<span class="font-label-caps text-label-caps text-moss-green mb-4">Historic District</span>
+<h3 class="font-headline-lg text-headline-lg text-deep-espresso mb-6">Sela Cafe Braga</h3>
+<p class="font-body-md text-on-surface-variant mb-8 leading-relaxed">Immerse yourself in the colonial charm of Bandung's most iconic street. Our Braga branch is housed in a meticulously restored 1920s building, featuring high ceilings and original mosaic flooring.</p>
+<div class="space-y-4 mb-10">
+<div class="flex items-center gap-4 text-on-surface">
+<span class="material-symbols-outlined text-outline">location_on</span>
+<span class="font-label-md text-label-md">Jl. Braga No. 12, Bandung</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface">
+<span class="material-symbols-outlined text-outline">schedule</span>
+<span class="font-label-md text-label-md">Daily: 07:00 — 22:00</span>
+</div>
+<div class="flex gap-3 pt-4">
+<span class="bg-heritage-cream px-3 py-1 font-label-caps text-[10px] text-primary">FREE WIFI</span>
+<span class="bg-heritage-cream px-3 py-1 font-label-caps text-[10px] text-primary">INDOOR/OUTDOOR</span>
+<span class="bg-heritage-cream px-3 py-1 font-label-caps text-[10px] text-primary">MEETING SPACE</span>
+</div>
+</div>
+<div class="flex gap-4">
+<button class="flex-1 border border-primary py-4 font-label-caps text-label-caps hover:bg-primary hover:text-white transition-all">View Details</button>
+<button class="flex-1 bg-primary text-white py-4 font-label-caps text-label-caps hover:opacity-90 transition-all">Get Directions</button>
+</div>
+</div>
+</div>
+<!-- Branch 2: Dago -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+<div class="md:col-span-5 flex flex-col justify-center">
+<span class="font-label-caps text-label-caps text-moss-green mb-4">Mountain View</span>
+<h3 class="font-headline-lg text-headline-lg text-deep-espresso mb-6">Sela Cafe Dago</h3>
+<p class="font-body-md text-on-surface-variant mb-8 leading-relaxed">Perched on the highlands, our Dago location offers breathtaking views of the valley. A minimalist sanctuary where the crisp mountain air complements our signature dark roasts.</p>
+<div class="space-y-4 mb-10">
+<div class="flex items-center gap-4 text-on-surface">
+<span class="material-symbols-outlined text-outline">location_on</span>
+<span class="font-label-md text-label-md">Jl. Ir. H. Juanda No. 240, Bandung</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface">
+<span class="material-symbols-outlined text-outline">schedule</span>
+<span class="font-label-md text-label-md">Daily: 08:00 — 23:00</span>
+</div>
+<div class="flex gap-3 pt-4">
+<span class="bg-heritage-cream px-3 py-1 font-label-caps text-[10px] text-primary">MOUNTAIN VIEW</span>
+<span class="bg-heritage-cream px-3 py-1 font-label-caps text-[10px] text-primary">AMPHITHEATER</span>
+</div>
+</div>
+<div class="flex gap-4">
+<button class="flex-1 border border-primary py-4 font-label-caps text-label-caps hover:bg-primary hover:text-white transition-all">View Details</button>
+<button class="flex-1 bg-primary text-white py-4 font-label-caps text-label-caps hover:opacity-90 transition-all">Get Directions</button>
+</div>
+</div>
+<div class="md:col-span-7">
+<div class="aspect-[4/3] overflow-hidden">
+<img class="w-full h-full object-cover grayscale-[0.3] hover:grayscale-0 transition-all duration-700" data-alt="A lush architectural photograph of Sela Cafe Dago, a contemporary glass-walled structure overlooking a green valley in the Bandung highlands. The terrace features minimalist black seating and wood-slatted roofs. The scene is captured at 'golden hour' with a warm sun setting behind the mountains, highlighting the organic integration of the building into the nature. The atmosphere is serene, airy, and premium." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2AYMl44swD2Hs3NHPNgkaePyFw6n0Roy6uxsUo5glSYTan8Qm-3xRe_Bwd_dyFPMK6LUQFAcjmPr9fAWf-iS_M7jWzaoZUypwnJs767EPjBAmVEtBWwYMR0obSNITZfyGvKs6JI-Bmijc9PvzoBo_OU8KyH5P7oe4s47_Pbzhz7lhfpM-BeA9oRzVWHm7XX-t49mGf5ms5cPC6JuhCyHsaHy2goWWyQ0RKFk7HNZVoWgSgBKHfJxySAuFNMZW6tLwyIMtU40XJR4T">
+</div>
+</div>
+</div>
+<!-- Branch 3: Cihampelas -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+<div class="md:col-span-7 order-2 md:order-1">
+<div class="aspect-[4/3] overflow-hidden">
+<img class="w-full h-full object-cover grayscale-[0.3] hover:grayscale-0 transition-all duration-700" data-alt="A vibrant yet sophisticated lifestyle shot of Sela Cafe Cihampelas, showcasing a lively community hub. The interior is modern industrial with raw brick walls, exposed copper piping, and large windows looking out onto a bustling urban landscape. People are seen engaged in quiet conversation or working on laptops at small, intimate tables. The lighting is warm and directional, focusing on the craftsmanship of the coffee preparation at the bar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCU4mAXwh9HCmXrfD1F67_HcuMv1uNcVASDFT3w6K3StFpWKCptnqjiI6RPZx2Hxm0LoHZGl4OktB7gvgFtYhxmBQdT3gidX5U2qFxQUFUQIE9ePCvqUt9nPzbS48WLlSftzq1xUmLo_0t_L72UbtZv7EGvJ9foWDdEdO1_GG3qdItz2ewfHBF4WCZGy0AabkwlmjdrulX0WFYTD2wGhvk6A-T5W8lcye1QYxrFmbC3QkSMZ7fDVJBH1G63iOQc1qz1O1o9HU9pBEU_">
+</div>
+</div>
+<div class="md:col-span-5 order-1 md:order-2 flex flex-col justify-center">
+<span class="font-label-caps text-label-caps text-moss-green mb-4">Urban Pulse</span>
+<h3 class="font-headline-lg text-headline-lg text-deep-espresso mb-6">Sela Cafe Cihampelas</h3>
+<p class="font-body-md text-on-surface-variant mb-8 leading-relaxed">A modern industrial haven nestled in the heart of the city's creative district. Designed for thinkers, makers, and dreamers who need a quiet corner in a fast-paced world.</p>
+<div class="space-y-4 mb-10">
+<div class="flex items-center gap-4 text-on-surface">
+<span class="material-symbols-outlined text-outline">location_on</span>
+<span class="font-label-md text-label-md">Jl. Cihampelas No. 158, Bandung</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface">
+<span class="material-symbols-outlined text-outline">schedule</span>
+<span class="font-label-md text-label-md">Daily: 07:00 — 21:00</span>
+</div>
+<div class="flex gap-3 pt-4">
+<span class="bg-heritage-cream px-3 py-1 font-label-caps text-[10px] text-primary">COMMUNITY DESK</span>
+<span class="bg-heritage-cream px-3 py-1 font-label-caps text-[10px] text-primary">URBAN TERRACE</span>
+</div>
+</div>
+<div class="flex gap-4">
+<button class="flex-1 border border-primary py-4 font-label-caps text-label-caps hover:bg-primary hover:text-white transition-all">View Details</button>
+<button class="flex-1 bg-primary text-white py-4 font-label-caps text-label-caps hover:opacity-90 transition-all">Get Directions</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Map Section -->
+
+<!-- Facilities Grid -->
+<section class="py-32">
+<div class="px-margin-desktop max-w-container-max mx-auto text-center mb-20">
+<h2 class="font-headline-lg text-headline-lg mb-4">Crafted for Connection</h2>
+<p class="font-body-lg text-on-surface-variant max-w-2xl mx-auto">More than just a seat. Every Sela location is equipped with the tools for your best work and deepest conversations.</p>
+</div>
+<div class="px-margin-desktop max-w-container-max mx-auto grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<div class="text-center p-10 border border-outline-variant/20 hover:border-primary transition-all duration-500 duration-1000 opacity-100 translate-y-0">
+<span class="material-symbols-outlined text-primary text-4xl mb-6">coffee_maker</span>
+<h4 class="font-label-caps text-label-md mb-2">Specialty Roasts</h4>
+<p class="text-xs text-outline uppercase tracking-tighter">Artisan Sourcing</p>
+</div>
+<div class="text-center p-10 border border-outline-variant/20 hover:border-primary transition-all duration-500 duration-1000 opacity-100 translate-y-0">
+<span class="material-symbols-outlined text-primary text-4xl mb-6">wifi</span>
+<h4 class="font-label-caps text-label-md mb-2">Gigabit Fiber</h4>
+<p class="text-xs text-outline uppercase tracking-tighter">Lag-Free Work</p>
+</div>
+<div class="text-center p-10 border border-outline-variant/20 hover:border-primary transition-all duration-500 duration-1000 opacity-100 translate-y-0">
+<span class="material-symbols-outlined text-primary text-4xl mb-6">electrical_services</span>
+<h4 class="font-label-caps text-label-md mb-2">Universal Power</h4>
+<p class="text-xs text-outline uppercase tracking-tighter">Every Table</p>
+</div>
+<div class="text-center p-10 border border-outline-variant/20 hover:border-primary transition-all duration-500 duration-1000 opacity-100 translate-y-0">
+<span class="material-symbols-outlined text-primary text-4xl mb-6">groups</span>
+<h4 class="font-label-caps text-label-md mb-2">Meeting Zones</h4>
+<p class="text-xs text-outline uppercase tracking-tighter">Private Spaces</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-deep-espresso dark:bg-surface-container-lowest border-t border-outline/20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-20 max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<div class="font-headline-lg text-headline-lg text-paper-white dark:text-deep-espresso mb-6">Sela Cafe</div>
+<p class="font-body-md text-on-primary-container opacity-60 mb-8 max-w-xs">Cultivating heritage in every cup through artisan roasting and community focused spaces.</p>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-paper-white dark:text-deep-espresso tracking-widest mb-8">JOURNEY</h4>
+<ul class="space-y-4">
+<li><a class="text-on-primary-container dark:text-on-surface-variant font-label-caps tracking-widest hover:text-tertiary-fixed transition-colors" href="#">Our Story</a></li>
+<li><a class="text-on-primary-container dark:text-on-surface-variant font-label-caps tracking-widest hover:text-tertiary-fixed transition-colors" href="#">Locations</a></li>
+<li><a class="text-on-primary-container dark:text-on-surface-variant font-label-caps tracking-widest hover:text-tertiary-fixed transition-colors" href="#">Sustainability</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-paper-white dark:text-deep-espresso tracking-widest mb-8">PARTNERSHIP</h4>
+<ul class="space-y-4">
+<li><a class="text-on-primary-container dark:text-on-surface-variant font-label-caps tracking-widest hover:text-tertiary-fixed transition-colors" href="#">Wholesale</a></li>
+<li><a class="text-on-primary-container dark:text-on-surface-variant font-label-caps tracking-widest hover:text-tertiary-fixed transition-colors" href="#">Career</a></li>
+<li><a class="text-on-primary-container dark:text-on-surface-variant font-label-caps tracking-widest hover:text-tertiary-fixed transition-colors" href="#">Press Kit</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-paper-white dark:text-deep-espresso tracking-widest mb-8">LEGAL</h4>
+<ul class="space-y-4">
+<li><a class="text-on-primary-container dark:text-on-surface-variant font-label-caps tracking-widest hover:text-tertiary-fixed transition-colors" href="#">Privacy</a></li>
+<li><a class="text-on-primary-container dark:text-on-surface-variant font-label-caps tracking-widest hover:text-tertiary-fixed transition-colors" href="#">Terms</a></li>
+</ul>
+</div>
+</div>
+<div class="px-margin-desktop py-8 border-t border-white/5 max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<span class="font-label-caps text-[10px] text-on-primary-container opacity-40">© 2024 Sela Cafe. Cultivating heritage in every cup.</span>
+<div class="flex gap-6">
+<a class="text-on-primary-container opacity-40 hover:opacity-100 transition-opacity" href="#"><span class="material-symbols-outlined text-lg" data-icon="brand_family">public</span></a>
+<a class="text-on-primary-container opacity-40 hover:opacity-100 transition-opacity" href="#"><span class="material-symbols-outlined text-lg" data-icon="chat">chat</span></a>
+<a class="text-on-primary-container opacity-40 hover:opacity-100 transition-opacity" href="#"><span class="material-symbols-outlined text-lg" data-icon="share">share</span></a>
+</div>
+</div>
+</footer>
+<script>
+        // Simple parallax effect for images on scroll
+        window.addEventListener('scroll', () => {
+            const scroll = window.pageYOffset;
+            document.querySelectorAll('img').forEach(img => {
+                const speed = 0.05;
+                img.style.transform = `translateY(${scroll * speed}px)`;
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section > div > div').forEach(el => {
+            el.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+            observer.observe(el);
+        });
+    </script>
+
+
+
+
+
+
+</body></html>

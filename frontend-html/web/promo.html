@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Sela Anthology of Moments | Sela Cafe</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .sela-line {
+            height: 1px;
+            background: currentColor;
+            opacity: 0.2;
+        }
+        .vertical-line {
+            width: 1px;
+            background: currentColor;
+            opacity: 0.1;
+        }
+        .pressed-state:active {
+            transform: scale(0.98);
+        }
+        .grain-overlay::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            z-index: 10;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#f0eee8",
+                        "outline": "#80756c",
+                        "deep-espresso": "#2A1B0E",
+                        "error": "#ba1a1a",
+                        "primary-container": "#4b3621",
+                        "surface-bright": "#fcf9f3",
+                        "inverse-on-surface": "#f3f0ea",
+                        "tertiary-fixed": "#ffdcbd",
+                        "secondary-container": "#c8ebce",
+                        "surface": "#fcf9f3",
+                        "on-primary-fixed": "#291806",
+                        "surface-container-high": "#ebe8e2",
+                        "on-background": "#1c1c18",
+                        "on-surface-variant": "#4e453d",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#e1c1a4",
+                        "on-surface": "#1c1c18",
+                        "tertiary": "#391e00",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#cb9b6c",
+                        "paper-white": "#FDFCF8",
+                        "surface-container-low": "#f6f3ed",
+                        "secondary-fixed-dim": "#adcfb3",
+                        "background": "#fcf9f3",
+                        "on-tertiary-fixed-variant": "#623f18",
+                        "tertiary-container": "#54330c",
+                        "surface-variant": "#e5e2dc",
+                        "primary-fixed": "#fedcbe",
+                        "inverse-surface": "#31312d",
+                        "primary": "#33210d",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#03210f",
+                        "on-secondary-container": "#4c6b54",
+                        "heritage-cream": "#F2E8CF",
+                        "on-secondary-fixed-variant": "#2f4d38",
+                        "secondary": "#46654f",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#dcdad4",
+                        "on-primary-fixed-variant": "#59422c",
+                        "surface-tint": "#725a42",
+                        "primary-fixed-dim": "#e1c1a4",
+                        "on-tertiary": "#ffffff",
+                        "outline-variant": "#d2c4ba",
+                        "tertiary-fixed-dim": "#f0bd8b",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#c8ebce",
+                        "on-tertiary-fixed": "#2c1600",
+                        "on-primary-container": "#bd9f83",
+                        "surface-container-highest": "#e5e2dc",
+                        "moss-green": "#386641"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "margin-mobile": "24px",
+                        "margin-desktop": "80px"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["EB Garamond"],
+                        "label-caps": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["EB Garamond"],
+                        "body-lg": ["Manrope"],
+                        "headline-lg": ["EB Garamond"],
+                        "label-md": ["JetBrains Mono"],
+                        "headline-md": ["EB Garamond"],
+                        "body-md": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "500"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "38px", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["28px", {"lineHeight": "34px", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-tertiary-fixed-dim">
+<!-- TopNavBar -->
+<header class="sticky top-0 w-full z-50 bg-surface/95 dark:bg-surface-container/95 backdrop-blur-md border-b border-outline/10 dark:border-outline/20"><div class="flex justify-between items-center w-full px-margin-desktop py-6 max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md tracking-tight text-deep-espresso dark:text-primary-fixed">Sela Cafe</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-on-surface-variant font-label-caps tracking-widest hover:text-deep-espresso transition-colors" href="#">Home</a>
+<a class="text-on-surface-variant font-label-caps tracking-widest hover:text-deep-espresso transition-colors" href="#">Menu</a>
+<a class="text-deep-espresso dark:text-primary-fixed border-b border-deep-espresso dark:border-primary-fixed pb-1 font-label-caps tracking-widest" href="#">Promo</a>
+<a class="text-on-surface-variant font-label-caps tracking-widest hover:text-deep-espresso transition-colors" href="#">Career</a>
+<a class="text-on-surface-variant font-label-caps tracking-widest hover:text-deep-espresso transition-colors" href="#">Locations</a>
+</nav>
+<div class="flex items-center gap-6 text-deep-espresso">
+<button class="hover:opacity-80 transition-all duration-300 active:scale-95">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<button class="hover:opacity-80 transition-all duration-300 active:scale-95">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</button>
+<button class="hover:opacity-80 transition-all duration-300 active:scale-95">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</button>
+</div>
+</div></header>
+<main class="overflow-hidden">
+<!-- Promo Hero -->
+<section class="pt-20 pb-32 px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-end">
+<div class="lg:col-span-7">
+<span class="font-label-caps text-label-caps text-on-surface-variant mb-6 block">THE SELA ANTHOLOGY OF MOMENTS</span>
+<h1 class="font-headline-xl text-headline-xl text-deep-espresso mb-8 leading-tight">Special Moments,<br/>Better Coffee.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl mb-12">
+                        Discover exclusive offers, seasonal collections, and limited-time experiences crafted for every coffee lover.
+                    </p>
+<div class="flex gap-12 pt-8 border-t border-outline/10">
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-deep-espresso">12</span>
+<span class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant/70">Active Promotions</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-deep-espresso">3</span>
+<span class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant/70">Seasonal Collections</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-deep-espresso">5</span>
+<span class="font-label-caps text-label-caps uppercase tracking-widest text-on-surface-variant/70">Exclusive Deals</span>
+</div>
+</div>
+</div>
+<div class="lg:col-span-5 relative aspect-[4/5] bg-surface-container overflow-hidden rounded-lg group shadow-sm">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A premium close-up photograph of a steaming latte being poured into a handmade ceramic cup. The background shows a refined artisan coffee shop with dark wood accents and soft morning sunlight. The color palette is warm espresso, cream, and deep umber, evoking a high-end heritage feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7RQkjgDg-_X7y3D9mBTprAr6FG6i-3copmSkrJYn4BQiLIakvLBEfNwzrxBIJIgCa478qEkWJda2VWCAMwD6TjFU4bQi8X2X9UqpfJblE0yYtou7t-pb1TuKj-dsA8khZgtEr6iAr1DbfXkIuSIIKcTzg9wONOQX7f2jYQfoDcNToscTDkujzjpHnQ3lRFU9UGtWyGsCz91MuCNQLPIDeq1-x7_ToccUYQmPoI0A5nE6Bmnn5A7q69Y1OpVxFHihc54TUCyuWKmsQ"/>
+<div class="absolute inset-0 bg-deep-espresso/10"></div>
+</div>
+</div>
+</section>
+<!-- Featured Promotion (Spotlight) -->
+<section class="bg-surface-container-low py-32 border-y border-outline/5">
+<div class="px-margin-desktop max-w-container-max mx-auto">
+<div class="relative overflow-hidden rounded-xl bg-deep-espresso text-paper-white">
+<div class="grid grid-cols-1 lg:grid-cols-2">
+<div class="p-16 flex flex-col justify-center relative z-20">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-tertiary-container text-tertiary-fixed rounded-full mb-8 self-start">
+<span class="material-symbols-outlined text-[14px]" data-icon="star">star</span>
+<span class="font-label-caps text-[10px] tracking-widest">WEEKEND EXCLUSIVE</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg mb-4">Weekend Coffee Celebration</h2>
+<p class="font-body-lg text-on-primary-container mb-10 text-opacity-80 max-w-md">Purchase any two signature roasts and receive a third one as our gift. Perfect for sharing the artisan experience with friends.</p>
+<div class="flex gap-4 items-center mb-10 bg-white/5 border border-white/10 p-6 rounded-lg backdrop-blur-sm">
+<div class="flex flex-col items-center">
+<span class="font-label-caps text-[20px] text-paper-white" id="timer-days">02</span>
+<span class="font-label-caps text-[10px] opacity-50">DAYS</span>
+</div>
+<span class="opacity-30">:</span>
+<div class="flex flex-col items-center">
+<span class="font-label-caps text-[20px] text-paper-white" id="timer-hours">14</span>
+<span class="font-label-caps text-[10px] opacity-50">HRS</span>
+</div>
+<span class="opacity-30">:</span>
+<div class="flex flex-col items-center">
+<span class="font-label-caps text-[20px] text-paper-white" id="timer-mins">56</span>
+<span class="font-label-caps text-[10px] opacity-50">MINS</span>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="bg-paper-white text-deep-espresso px-8 py-4 font-label-caps tracking-widest hover:bg-tertiary-fixed transition-colors pressed-state">CLAIM OFFER</button>
+<span class="font-label-caps text-label-caps opacity-50">Valid until 30 June 2026</span>
+</div>
+</div>
+<div class="relative min-h-[400px] h-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A luxury top-down view of three elegant espresso cups on a marble tabletop. The lighting is moody and dramatic with focused warm spotlights. One cup has intricate latte art, while the other two are black espresso with rich crema. The composition feels editorial and high-end, using rich umber and charcoal tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkCW3hlBv1RJrD8mfHtRdJxdk17AlnuQ-nNU79Ijl4HNr-2hS3Ep1U5PcqBL3CQw_wCwaTJVnQy8Rd-Qblomcn94FVHt-fsh27QPtQLJRaoYunECrfp753c2o6_WjNaz6iORgtaSe_FTVD0DXDo5OTuROMJhfV5oWuu5VXFy4nBJPyIGhJVShAHocwn91ZUomd3rTY_u7IeVrWhgyXHLcvhJT9AOoZ0uRiDz098njD_kYlquW9eJeaPz8Oxc9BGDgk4Aej8esJ7aEv"/>
+<div class="absolute inset-0 bg-gradient-to-r from-deep-espresso via-transparent to-transparent"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Active Promotions -->
+<section class="py-32 px-margin-desktop max-w-container-max mx-auto">
+<div class="flex justify-between items-end mb-16">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-deep-espresso mb-4">Limited Edition Moments</h2>
+<div class="w-12 h-[2px] bg-outline-variant"></div>
+</div>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-deep-espresso transition-colors flex items-center gap-2" href="#">
+                    VIEW ALL <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+<!-- Promo 1 -->
+<div class="group border border-outline/10 bg-paper-white overflow-hidden transition-all duration-500 hover:border-outline/30">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A student sitting in a cozy, sunlit cafe nook with a laptop and a large artisan latte. The atmosphere is studious yet relaxed. The lighting is soft and golden, highlighting the texture of a knitted sweater and the ceramic cup. Minimalist heritage interior with wooden bookshelves in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFZUxVsxmPHxvqQofCogiSq3R662JeZorPbxFEHxmb1KpAPE0srY4cvlp3tflWRo3HapYMCLy8poKumcjopJKwEXM3tr7BX4x9dYi-s8CN6rsP73wbI2p5vms3-n0ylkCoqEY8DRGHdmjBm22hcr5wppWtnA33vY3JE6Y9zBAChQUd0i8JG5viQncfCkO1bOEu_Ry0MAkB8uKkN8wU3ECu_JX1xoQxRHLC1_wIvxBdxqUz3c0JbSfeFm3ft7617F-I_H93zPFkQn2y"/>
+<div class="absolute top-4 left-4 px-3 py-1 bg-moss-green text-paper-white font-label-caps text-[10px] tracking-widest">SAVINGS</div>
+</div>
+<div class="p-8">
+<span class="font-label-caps text-[11px] text-on-surface-variant opacity-60 mb-2 block uppercase tracking-widest">Available Daily</span>
+<h3 class="font-headline-md text-headline-md text-deep-espresso mb-4">Student Special</h3>
+<p class="font-body-md text-on-surface-variant mb-8 line-clamp-2">Fuel your focus with a 15% discount on all hand-crafted beverages upon presentation of a valid student identity.</p>
+<button class="w-full border border-deep-espresso text-deep-espresso py-4 font-label-caps text-xs tracking-widest hover:bg-deep-espresso hover:text-paper-white transition-all pressed-state">VIEW DETAILS</button>
+</div>
+</div>
+<!-- Promo 2 -->
+<div class="group border border-outline/10 bg-paper-white overflow-hidden transition-all duration-500 hover:border-outline/30">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A close-up of a fresh morning coffee next to a newspaper on a wooden table. Morning light streams through a window creating long shadows. The scene is quiet and peaceful, representing a morning ritual. Earthy tones of brown, beige, and soft white dominate the palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuClSN0WSw5QW51YJPeEqOSeTX1QSTCoe6tBQLSFN9ffJw7izfHeg-PLeYwWRQ0xVXvI-oIfbJERicCaFHeeWxJGSYx5uiYnTTyUNW_bPoG9wbTVhD86g1_H9jjYzRbIp2JBZeETeGOCVYe_RdsQyzMjiUDQMQVMZ0HU4nTdrUH3jVqF-Fm5kNmdWgldS_LmH--x0oYbc5prYbyj9jwxDo8co6Yp6b8obbgTJVe4Scsx--JQg1n9e0QV6vgRAxuZSluxE5_67uPl9NFa"/>
+<div class="absolute top-4 left-4 px-3 py-1 bg-primary text-paper-white font-label-caps text-[10px] tracking-widest">MORNINGS</div>
+</div>
+<div class="p-8">
+<span class="font-label-caps text-[11px] text-on-surface-variant opacity-60 mb-2 block uppercase tracking-widest">Before 10:00 AM</span>
+<h3 class="font-headline-md text-headline-md text-deep-espresso mb-4">Morning Coffee Deal</h3>
+<p class="font-body-md text-on-surface-variant mb-8 line-clamp-2">Start your journey with us. Enjoy any classic brew and a pastry of your choice for a special morning price.</p>
+<button class="w-full border border-deep-espresso text-deep-espresso py-4 font-label-caps text-xs tracking-widest hover:bg-deep-espresso hover:text-paper-white transition-all pressed-state">VIEW DETAILS</button>
+</div>
+</div>
+<!-- Promo 3 -->
+<div class="group border border-outline/10 bg-paper-white overflow-hidden transition-all duration-500 hover:border-outline/30">
+<div class="relative h-64 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Artisanal coffee bags beautifully displayed on a wooden shelf in a heritage shop. The lighting is warm and invites a sense of quality and craftsmanship. The bags have minimalist, premium labels. Soft focus background showing a traditional coffee roaster." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJ4v61TFfEnq8jdcrZKoy5lchuUnYltJUujp5fB9GzRooZ7_JZngdIBbt8vG_SfV3yKKhmst2dtzJnVuOpVCoHlLqpNuZ9C4EamsGJetP6g9yX5wdxellrNn0HjZX59Erp260ZGXCEDUF7v7oeCISPe1Uqn0LDJWl2pWCr_C9nyPocbWcm9BPm_EZLSQYbUvSTLzQG36QsQ6YHBQUfIy80gqQzsxiASscRHaDSp2lS1UFSWzzChZOsSahbpfDGEC2GgKO-Rl8pT16k"/>
+<div class="absolute top-4 left-4 px-3 py-1 bg-tertiary-container text-tertiary-fixed font-label-caps text-[10px] tracking-widest">RETAIL</div>
+</div>
+<div class="p-8">
+<span class="font-label-caps text-[11px] text-on-surface-variant opacity-60 mb-2 block uppercase tracking-widest">Limited Availability</span>
+<h3 class="font-headline-md text-headline-md text-deep-espresso mb-4">Roaster's Choice</h3>
+<p class="font-body-md text-on-surface-variant mb-8 line-clamp-2">Take the Sela experience home. 20% off our seasonal bean collections when you purchase two or more bags.</p>
+<button class="w-full border border-deep-espresso text-deep-espresso py-4 font-label-caps text-xs tracking-widest hover:bg-deep-espresso hover:text-paper-white transition-all pressed-state">VIEW DETAILS</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Seasonal Collection -->
+<section class="relative min-h-[700px] flex items-center bg-moss-green overflow-hidden">
+<div class="absolute inset-0 opacity-40">
+<img class="w-full h-full object-cover" data-alt="A lush, ethereal forest setting with vibrant green foliage and soft morning mist. The image is blurred and atmospheric, serving as a background for a Matcha promotion. The color palette is dominated by deep moss greens and soft whites." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvdOUiLTMH7r8w2CfrXwvD5VU2rNFH2OrD0bh-XTjGvyOBqL2-wJX8JFe30FXhEYANt5AQM9_UUJF9C4PcufXZV_eluDErfJZug9VCdL8LxcBp8pw9VLsp1YWFk5KyzVNHfXoj2wgzZO8WVjUoronrte_rD53aw-wSbscMCN7HA2PMwzoNSqk3SAttPogyMFsKMpACJjno7ZuAtpzhOdafCqyVvg3hZSIfRqFnlSy4N9gECHipIXGnpY5_WIxYdOEW2h4ocdQWBoZP"/>
+</div>
+<div class="px-margin-desktop max-w-container-max mx-auto relative z-20 grid grid-cols-1 lg:grid-cols-2 gap-20 py-24">
+<div class="flex flex-col justify-center text-paper-white">
+<span class="font-label-caps text-label-caps text-secondary-fixed-dim tracking-[0.3em] mb-6">SUMMER 2026 EDITION</span>
+<h2 class="font-headline-xl text-headline-xl mb-8">Summer Matcha Festival</h2>
+<p class="font-body-lg text-body-lg text-paper-white/80 mb-10 max-w-lg">
+                        A celebration of serenity. Discover our curated collection of premium ceremonial grade matcha, infused with seasonal summer botanicals to elevate your spirit.
+                    </p>
+<div class="flex flex-col gap-6 mb-12">
+<div class="flex items-center gap-6 group cursor-pointer">
+<div class="w-16 h-16 rounded-full overflow-hidden border border-white/20">
+<img class="w-full h-full object-cover" data-alt="A vibrant green iced matcha latte with a layer of cream on top, served in a tall glass. The light is bright and summery. Fresh green leaves in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmefjy2laBiBqu1lqzV_CvAVHvmSvr1Q85nsAd71SzWw2twsdYFkRr-h-QGeh6878cEoEHzvbG9Wri3R9mDe4lQHNYmq8W_TkoL6ed8X73xflgflxu8SeB1Gb9hFrK-5uZRSiW7l1pU7qAutviTcsaXjrfGkHrqejjIQ0UP9N2_rd2YrYTpCr3k_Bs57eOdSgWwPrntoct_7DIsC2BQUEdBOVjISUVHSo4AfRaWD017T0OOG1HnDiWYYnHRXV8A34SkDnFZjEpJRFk"/>
+</div>
+<div>
+<h4 class="font-headline-md text-[20px]">Botanical Iced Matcha</h4>
+<span class="font-label-caps text-[10px] opacity-60">Infused with Elderflower &amp; Mint</span>
+</div>
+</div>
+<div class="sela-line opacity-10"></div>
+<div class="flex items-center gap-6 group cursor-pointer">
+<div class="w-16 h-16 rounded-full overflow-hidden border border-white/20">
+<img class="w-full h-full object-cover" data-alt="A delicate slice of matcha cheesecake with a dusty green top layer on a white plate. Minimalist dessert photography. High-end aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3WBds-g9hOprqvyoJoZuastc2FLNCHqFik8H2EjmMDqXysQs1Yo7XqxackvsuWjpcoagQQYQ9o7ce3yNXKe8aDJ_VZ5XZLeSjNpbz6zXJvgVuttM2XGedpdM63MkLU2sRy3sC77jwV2aM6nHTl1uBuk7_wLWISQSlpockl7sVQIx-zf-CIUdHsi6y1Qfz5CaLbDcBN6y6H645-3oqxwsgM0j_tZLXfr63lFi1L7aFtKoffEzFXfzX0zanoI3A7UsoKD-K2ai8cdPq"/>
+</div>
+<div>
+<h4 class="font-headline-md text-[20px]">Matcha Cheesecake</h4>
+<span class="font-label-caps text-[10px] opacity-60">Hand-whipped with White Chocolate</span>
+</div>
+</div>
+</div>
+<button class="self-start px-10 py-5 bg-paper-white text-moss-green font-label-caps tracking-[0.2em] hover:bg-secondary-fixed transition-colors pressed-state">EXPLORE COLLECTION</button>
+</div>
+<div class="hidden lg:block relative">
+<div class="absolute -top-10 -right-10 w-64 h-64 border border-paper-white/10 rounded-full animate-pulse"></div>
+<div class="relative z-10 rounded-lg overflow-hidden aspect-[3/4] shadow-2xl scale-110">
+<img class="w-full h-full object-cover" data-alt="An artistic portrait of a ceremonial matcha bowl being whisked. Vibrant green bubbles on the surface. Traditional wooden whisk. Hand-held shot with focus on the texture of the foam. Soft, natural lighting. Professional culinary photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxP8iNa9k0qHk7I8-ROSX8v_0Fqi4w1WbWszgl9adaVfr3V2zEsSSjfyOOzJ37gweQ21nV0pNWp-nhhcEp_Vdj3Nrq984bBSoj8ioWQWU9KBMyC2WBA7fO_qGiy5S3GprG_1nNcte0QAXNTf52lGQfW03veozAJjDUjenxj84ysE1eorfOffG3hiEqVz7pQoHwG3AQPxPUYGsnNetUlmbqMxX1K44736HP2bxG9x4w_-48rhJpDYxG6mmH7Bs6jfBP7i6aA0QzoJU6"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Combo Deals -->
+<section class="py-32 px-margin-desktop max-w-container-max mx-auto">
+<h2 class="font-headline-lg text-headline-lg text-deep-espresso mb-16 text-center italic">Curated Pairings</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Combo 1 -->
+<div class="flex flex-col md:flex-row bg-surface border border-outline/5 hover:border-outline/20 transition-all group overflow-hidden">
+<div class="w-full md:w-1/3 aspect-square md:aspect-auto overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A flaky, golden croissant next to a dark roast coffee in a white porcelain cup. The surface is rustic wood. Warm and inviting light. The image emphasizes the crisp texture of the pastry." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1sEN5qG7qv8BCJuf6rrcI4rcVF9oGJWMtTwh5TziMRS8DLMlnL2j57wbDo4K0JmRwC4WJpd8bsDjTwrSn9Mwctijq8EoBrK6yAiUaUpXozX8l39sCQEUSJh9I618sBat8OYNGWInL4rtACQTRilfJAulzbYwbZS_gFpl0Zn_TgkiOgRgTufNiITyitskZzVA4bWPVmE4PTRkKrvvLBu93osIa0Kzs9TvXf9-xZLGCP-PN07s2SXkCBlNKZKQUX7anBEwkcw3bWk0b"/>
+</div>
+<div class="w-full md:w-2/3 p-10 flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md text-deep-espresso mb-2">The Parisian Morning</h3>
+<p class="font-body-md text-on-surface-variant mb-6">Our signature buttery croissant paired with a double-shot Long Black.</p>
+</div>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex items-baseline gap-3">
+<span class="font-headline-md text-headline-md text-deep-espresso">$8.50</span>
+<span class="font-label-caps text-sm text-on-surface-variant line-through opacity-40">$11.00</span>
+</div>
+<button class="bg-deep-espresso text-paper-white px-6 py-3 font-label-caps text-[10px] tracking-widest hover:bg-tertiary transition-colors">ADD TO ORDER</button>
+</div>
+</div>
+</div>
+<!-- Combo 2 -->
+<div class="flex flex-col md:flex-row bg-surface border border-outline/5 hover:border-outline/20 transition-all group overflow-hidden">
+<div class="w-full md:w-1/3 aspect-square md:aspect-auto overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A tall matcha latte next to a slice of creamy cheesecake on a minimalist table. The matcha has a beautiful gradient of green and white. Elegant and refined presentation." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyeO90HLQI5mju7WuTWCwA_BgUF859OD6XtyLUX9pwlBWPnBW69utt75PH6o0qUgo8jJodTjtCJOcu1JOxeNF9E6jhqbcXmoEFwMAcBeAtb7FfYklApgzS42sUrvgTuaTyvHGqaEyV6YAJ80_GgLm_VbhiHbdWY26Io3YUrDVoD2k8uSZ9KBgRqbN6R6dSYuwzHGhhpzS3UOhvlEmcQZGcXw88qDnobFC8D8rUMADBxyPK41uP_O3VwjeyMQIkpLz5td6dvC5JXiwX"/>
+</div>
+<div class="w-full md:w-2/3 p-10 flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md text-deep-espresso mb-2">Afternoon Serenity</h3>
+<p class="font-body-md text-on-surface-variant mb-6">Ceremonial Grade Matcha Latte and a slice of our Basque Burnt Cheesecake.</p>
+</div>
+<div class="flex items-center justify-between mt-auto">
+<div class="flex items-baseline gap-3">
+<span class="font-headline-md text-headline-md text-deep-espresso">$12.00</span>
+<span class="font-label-caps text-sm text-on-surface-variant line-through opacity-40">$15.50</span>
+</div>
+<button class="bg-deep-espresso text-paper-white px-6 py-3 font-label-caps text-[10px] tracking-widest hover:bg-tertiary transition-colors">ADD TO ORDER</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Happy Hour -->
+<section class="py-32 bg-surface-container-high relative">
+<div class="px-margin-desktop max-w-container-max mx-auto relative z-10">
+<div class="max-w-3xl mx-auto border border-outline/20 bg-paper-white p-12 lg:p-20 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-8 opacity-10">
+<span class="material-symbols-outlined text-[120px]" data-icon="schedule">schedule</span>
+</div>
+<div class="text-center mb-16">
+<span class="font-label-caps text-label-caps text-on-surface-variant tracking-[0.4em] uppercase mb-4 block">THE AFTERNOON RITUAL</span>
+<h2 class="font-headline-lg text-headline-lg text-deep-espresso mb-2">Daily Happy Hour</h2>
+<div class="w-20 h-[1px] bg-outline/30 mx-auto my-6"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+<div class="space-y-8">
+<div class="flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant">MONDAY - FRIDAY</span>
+<span class="font-headline-md text-[20px] text-deep-espresso">15:00 — 18:00</span>
+</div>
+<div class="sela-line"></div>
+<div class="flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant">OFFER</span>
+<span class="font-headline-md text-[24px] text-moss-green">20% OFF ALL DRINKS</span>
+</div>
+</div>
+<div class="bg-heritage-cream/30 p-8 text-center border border-heritage-cream">
+<p class="font-body-md text-on-surface-variant italic mb-6">"A quiet intermission in your day, crafted with the same dedication as our dawn brews."</p>
+<button class="font-label-caps text-[11px] tracking-widest text-deep-espresso border-b border-deep-espresso pb-1 hover:opacity-70 transition-opacity">FIND NEAREST CAFE</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Trending Deals & Social Proof -->
+<!-- Member Exclusive Benefits (Guest State) -->
+<!-- Quick Order Banner -->
+<section class="py-32 px-margin-desktop max-w-container-max mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div class="order-2 lg:order-1">
+<h2 class="font-headline-lg text-headline-lg text-deep-espresso mb-6">Ready for Your Next Coffee Break?</h2>
+<p class="font-body-lg text-on-surface-variant mb-10">Order ahead for pickup or discover our full heritage menu. Your perfect cup is just moments away.</p>
+<div class="flex gap-6">
+<button class="bg-deep-espresso text-paper-white px-8 py-4 font-label-caps tracking-widest hover:bg-primary transition-colors pressed-state flex items-center gap-3">
+                            ORDER NOW <span class="material-symbols-outlined text-sm" data-icon="shopping_bag">shopping_bag</span>
+</button>
+<button class="border border-deep-espresso text-deep-espresso px-8 py-4 font-label-caps tracking-widest hover:bg-deep-espresso hover:text-paper-white transition-all pressed-state">
+                            EXPLORE MENU
+                        </button>
+</div>
+</div>
+<div class="order-1 lg:order-2 rounded-xl overflow-hidden aspect-video shadow-xl">
+<img class="w-full h-full object-cover" data-alt="A cinematic video still showing a barista expertly finishing a latte with intricate art. The setting is a warm, luxury cafe with golden hour light hitting the surface of the coffee. The focus is sharp on the cup and the hands of the artisan. Rich brown and cream color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUP-RbwMzshyWijXKIOpYAu0lxyJoAPCWw_2BWP0N8QNqjSvMt4GIg3TDXZzXY5lvcbmB5eE0qdPWNuQMA3Kgw700A-xwruFSHj4uVVgAxc4xsU7o1RJ4eRhkLEl_X6KnI1yzx94m5lIHpofclxQ66tmqsOD_cKZRbQkafXvOrBVC1Ka0oGyJNtad08NTFdYMxigtpez5XLPi9OGgXI9Kel1GJYCP8X7ipz7YjFlGpMecYmsJxOzlQgVIdX4KaCyfIB0flfnBZd5s2"/>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-deep-espresso dark:bg-surface-container-lowest border-t border-outline/20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-20 max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<div class="font-headline-lg text-headline-lg text-paper-white dark:text-deep-espresso mb-6">Sela Cafe</div>
+<p class="font-body-md text-on-primary-container opacity-60 mb-8 max-w-xs">Cultivating heritage in every cup through artisan roasting and community focused spaces.</p>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-paper-white dark:text-deep-espresso tracking-widest mb-8">JOURNEY</h4>
+<ul class="space-y-4">
+<li><a class="text-on-primary-container dark:text-on-surface-variant font-label-caps tracking-widest hover:text-tertiary-fixed transition-colors" href="#">Our Story</a></li>
+<li><a class="text-on-primary-container dark:text-on-surface-variant font-label-caps tracking-widest hover:text-tertiary-fixed transition-colors" href="#">Locations</a></li>
+<li><a class="text-on-primary-container dark:text-on-surface-variant font-label-caps tracking-widest hover:text-tertiary-fixed transition-colors" href="#">Sustainability</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-paper-white dark:text-deep-espresso tracking-widest mb-8">PARTNERSHIP</h4>
+<ul class="space-y-4">
+<li><a class="text-on-primary-container dark:text-on-surface-variant font-label-caps tracking-widest hover:text-tertiary-fixed transition-colors" href="#">Wholesale</a></li>
+<li><a class="text-on-primary-container dark:text-on-surface-variant font-label-caps tracking-widest hover:text-tertiary-fixed transition-colors" href="#">Career</a></li>
+<li><a class="text-on-primary-container dark:text-on-surface-variant font-label-caps tracking-widest hover:text-tertiary-fixed transition-colors" href="#">Press Kit</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-paper-white dark:text-deep-espresso tracking-widest mb-8">LEGAL</h4>
+<ul class="space-y-4">
+<li><a class="text-on-primary-container dark:text-on-surface-variant font-label-caps tracking-widest hover:text-tertiary-fixed transition-colors" href="#">Privacy</a></li>
+<li><a class="text-on-primary-container dark:text-on-surface-variant font-label-caps tracking-widest hover:text-tertiary-fixed transition-colors" href="#">Terms</a></li>
+</ul>
+</div>
+</div>
+<div class="px-margin-desktop py-8 border-t border-white/5 max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<span class="font-label-caps text-[10px] text-on-primary-container opacity-40">© 2026 Sela Cafe. Cultivating heritage in every cup.</span>
+<div class="flex gap-6">
+<a class="text-on-primary-container opacity-40 hover:opacity-100 transition-opacity" href="#"><span class="material-symbols-outlined text-lg" data-icon="brand_family">public</span></a>
+<a class="text-on-primary-container opacity-40 hover:opacity-100 transition-opacity" href="#"><span class="material-symbols-outlined text-lg" data-icon="chat">chat</span></a>
+<a class="text-on-primary-container opacity-40 hover:opacity-100 transition-opacity" href="#"><span class="material-symbols-outlined text-lg" data-icon="share">share</span></a>
+</div>
+</div>
+</footer>
+<script>
+        // Simple countdown timer animation
+        function updateTimer() {
+            const now = new Date();
+            // Mock end date: end of current month
+            const endDate = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59);
+            const diff = endDate - now;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+            document.getElementById('timer-days').innerText = days.toString().padStart(2, '0');
+            document.getElementById('timer-hours').innerText = hours.toString().padStart(2, '0');
+            document.getElementById('timer-mins').innerText = mins.toString().padStart(2, '0');
+        }
+
+        setInterval(updateTimer, 60000);
+        updateTimer();
+
+        // Parallax effect for hero image
+        window.addEventListener('scroll', () => {
+            const scroll = window.pageYOffset;
+            const heroImage = document.querySelector('section:first-of-type img');
+            if (heroImage) {
+                heroImage.style.transform = `scale(1.05) translateY(${scroll * 0.1}px)`;
+            }
+        });
+    </script>
+</body></html>

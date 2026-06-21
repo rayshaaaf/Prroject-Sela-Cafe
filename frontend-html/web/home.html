@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SELA CAFE | The Art of Coffee Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&amp;family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#1c1c18",
+                        "inverse-surface": "#31312d",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#f3f0ea",
+                        "surface": "#fcf9f3",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#fcf9f3",
+                        "surface-container-low": "#f6f3ed",
+                        "on-secondary-fixed": "#03210f",
+                        "tertiary-container": "#54330c",
+                        "tertiary": "#391e00",
+                        "paper-white": "#FDFCF8",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#59422c",
+                        "on-tertiary-fixed": "#2c1600",
+                        "secondary-fixed": "#c8ebce",
+                        "on-error-container": "#93000a",
+                        "outline": "#80756c",
+                        "background": "#fcf9f3",
+                        "on-secondary-fixed-variant": "#2f4d38",
+                        "on-background": "#1c1c18",
+                        "tertiary-fixed": "#ffdcbd",
+                        "surface-tint": "#725a42",
+                        "on-tertiary-fixed-variant": "#623f18",
+                        "primary-fixed": "#fedcbe",
+                        "outline-variant": "#d2c4ba",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#bd9f83",
+                        "primary-container": "#4b3621",
+                        "surface-variant": "#e5e2dc",
+                        "surface-container-high": "#ebe8e2",
+                        "surface-container": "#f0eee8",
+                        "heritage-cream": "#F2E8CF",
+                        "surface-dim": "#dcdad4",
+                        "error-container": "#ffdad6",
+                        "surface-container-highest": "#e5e2dc",
+                        "primary": "#33210d",
+                        "deep-espresso": "#2A1B0E",
+                        "on-tertiary-container": "#cb9b6c",
+                        "primary-fixed-dim": "#e1c1a4",
+                        "secondary-container": "#c8ebce",
+                        "on-surface-variant": "#4e453d",
+                        "tertiary-fixed-dim": "#f0bd8b",
+                        "inverse-primary": "#e1c1a4",
+                        "on-primary-fixed": "#291806",
+                        "secondary": "#46654f",
+                        "secondary-fixed-dim": "#adcfb3",
+                        "moss-green": "#386641",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#4c6b54"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "unit": "4px",
+                        "gutter": "24px",
+                        "margin-desktop": "80px",
+                        "margin-mobile": "24px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Manrope", "sans-serif"],
+                        "headline-lg": ["EB Garamond", "serif"],
+                        "headline-lg-mobile": ["EB Garamond", "serif"],
+                        "label-md": ["JetBrains Mono", "monospace"],
+                        "headline-xl": ["EB Garamond", "serif"],
+                        "headline-md": ["EB Garamond", "serif"],
+                        "body-lg": ["Manrope", "sans-serif"],
+                        "label-caps": ["JetBrains Mono", "monospace"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "38px", "fontWeight": "500"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-xl": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "500"}],
+                        "headline-md": ["28px", {"lineHeight": "34px", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .sela-line-h { height: 1px; width: 100%; background-color: rgba(128, 117, 108, 0.2); }
+        .sela-line-v { width: 1px; height: 100%; background-color: rgba(128, 117, 108, 0.2); }
+        
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+
+        .grain-overlay {
+            pointer-events: none;
+            position: fixed;
+            inset: 0;
+            z-index: 50;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden mb-0">
+<div class="grain-overlay"></div>
+<!-- TopNavBar -->
+<header class="sticky top-0 w-full z-50 bg-surface/95 dark:bg-surface-container/95 backdrop-blur-md border-b border-outline/10 dark:border-outline/20"><div class="flex justify-between items-center w-full px-margin-desktop py-6 max-w-container-max mx-auto">
+<div class="font-headline-md text-headline-md tracking-tight text-deep-espresso dark:text-primary-fixed">Sela Cafe</div>
+<nav class="hidden md:flex items-center gap-8">
+    <a class="text-deep-espresso dark:text-primary-fixed border-b border-deep-espresso dark:border-primary-fixed pb-1 font-label-caps tracking-widest" href="#">Home</a>
+    <a class="text-on-surface-variant font-label-caps tracking-widest hover:text-deep-espresso transition-colors" href="#">Menu</a>
+    <a class="text-on-surface-variant font-label-caps tracking-widest hover:text-deep-espresso transition-colors" href="#">Promo</a>
+    <a class="text-on-surface-variant font-label-caps tracking-widest hover:text-deep-espresso transition-colors" href="#">Career</a>
+    <a class="text-on-surface-variant font-label-caps tracking-widest hover:text-deep-espresso transition-colors" href="#">Locations</a>
+</nav>
+<div class="flex items-center gap-6 text-deep-espresso">
+<button class="hover:opacity-80 transition-all duration-300 active:scale-95">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<button class="hover:opacity-80 transition-all duration-300 active:scale-95">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+</button>
+<button class="hover:opacity-80 transition-all duration-300 active:scale-95">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</button>
+</div>
+</div></header>
+
+<main>
+<!-- Hero Section: The Art of Coffee Management -->
+<section class="relative min-h-[921px] flex flex-col items-center justify-center pt-20 px-8 md:px-20 overflow-hidden bg-surface-container-low">
+<div class="max-w-[1280px] w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center z-10">
+<div class="lg:col-span-6 flex flex-col gap-8">
+<span class="font-label-caps text-label-caps uppercase tracking-[0.2em] text-primary">Est. 1924 | Artisanal Rigor</span>
+<h1 class="font-headline-xl text-headline-xl text-deep-espresso leading-tight">
+                        The Art of <br/><span class="italic font-normal">Coffee Management</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                        Applying the meticulous precision of heritage craftsmanship to the complex ecosystem of modern hospitality. We don't just brew; we engineer moments of stillness.
+                    </p>
+<div class="flex gap-4 items-center">
+<button class="bg-primary text-paper-white px-8 py-4 font-label-caps text-label-caps uppercase tracking-widest hover:bg-deep-espresso transition-all">
+                            Experience the Blend
+                        </button>
+<button class="border border-primary text-primary px-8 py-4 font-label-caps text-label-caps uppercase tracking-widest hover:bg-primary hover:text-paper-white transition-all">
+                            Our Methodology
+                        </button>
+</div>
+</div>
+<div class="lg:col-span-6 relative">
+<div class="aspect-[4/5] w-full bg-heritage-cream border border-outline-variant/30 overflow-hidden">
+<img class="w-full h-full object-cover grayscale-[0.2] contrast-[1.1]" data-alt="A cinematic, high-fidelity close-up of a professional chrome espresso machine in a dimly lit, high-end cafe. Soft warm morning light hits the steam and the polished metal surfaces. The background shows a minimalist wood-paneled interior. The style is premium, editorial, with rich deep espresso tones and warm heritage cream highlights, evoking a sense of calm and precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuACsYqDamp1L6ka9Fc4nmOJmCVShgS3Ly-dFHQkNWaHsPxvgp6y91eHMz58X90dT_8OA0dN4gkNZ_w7MuV84Z0chdgYM-C8S7AaUNGqa0g6AquSxU0CQNmc-1ZLG6fxs_VNlQObJK6mgf5ccHEqf5UkR1IPIRa5iOR2OvKjgtGW5iZaTHV3CmLVbCU2maGeT-zlxDO_sfGIgF0bru06kS9jyrbw3lQl6J2cjbO0bcRC8YH7mX10eOgtsVcXsjJt5f6TWUbrWjYtbwLv"/>
+</div>
+<!-- Tactile Overlay Card -->
+<div class="absolute -bottom-10 -left-10 bg-paper-white border border-outline-variant/20 p-8 hidden md:block max-w-[240px] shadow-sm rounded-xl">
+<span class="font-label-caps text-[10px] uppercase text-outline tracking-widest block mb-2">Technical Specification</span>
+<p class="font-label-md text-label-md text-primary leading-relaxed">Pressure: 9.2 Bar<br/>Temp: 93.5°C<br/>Extraction: 28s</p>
+<div class="sela-line-h my-4"></div>
+<p class="font-body-md text-body-md italic text-on-surface-variant">Precision in every drip.</p>
+</div>
+</div>
+</div>
+<!-- Background Detail -->
+<div class="absolute top-0 right-0 w-1/3 h-full bg-surface-container border-l border-outline-variant/10 -z-0"></div>
+</section>
+<!-- Section 2: Signature Stories -->
+<section class="py-32 px-8 md:px-20 max-w-[1280px] mx-auto">
+<div class="mb-20 text-center flex flex-col items-center">
+<span class="font-label-caps text-label-caps text-moss-green mb-4">THE SELA NARRATIVE</span>
+<h2 class="font-headline-lg text-headline-lg text-deep-espresso">Signature Stories</h2>
+<div class="sela-line-h w-24 mt-8 bg-primary/30"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+<div class="flex flex-col gap-6">
+<div class="aspect-square bg-surface-container border border-outline-variant/20 overflow-hidden group">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A top-down view of a hand-poured coffee being served on a textured ceramic saucer next to a vintage leather journal and a brass fountain pen. The lighting is soft and natural, emphasizing the texture of the paper and the rich color of the coffee. Premium artisan aesthetic with warm wood tones and cream accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaScAXuaEyC3NJNX_fU_UtX6jmGMwAPFlhJM2IwdHilOCl5NceVVOSJHmS42l2HRzjrqDrZg2GfGSgpfEHVPClLuSFsbgvtF1f0Bfwpw1mggWZVtH4z6bvi17KLOfW-USXC8IHATbXTfUtuWxf1VnvwuY7hauPocFVIXGKFWl_PP2Dg_BceVd_EwlHb-mlqrh6iGUCCU2FePsn9_jaNJ9QDeM3iNQatSMi5SpF_EKgIywvQgjHMntJ0qhiG7ED-FlV4uT1cez7aS2b"/>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary">The Heritage Pour</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">A revival of the 1924 manual technique, perfected with contemporary thermal insights. A bridge between eras.</p>
+<a class="font-label-md text-label-md text-primary flex items-center gap-2 group" href="#">
+                        Read Story <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+<div class="flex flex-col gap-6 md:translate-y-12">
+<div class="aspect-square bg-surface-container border border-outline-variant/20 overflow-hidden group">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A portrait of a master roaster inspecting coffee beans in a vintage warehouse setting. High-contrast lighting highlights the textures of the burlap sacks and the golden brown coffee beans. The mood is focused and artisanal, using deep umber and warm cream color tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuE1CotJmLr80TMb5HH9nQMaDXrGrRe0YlE37MWVvqUWhc7IglPuUV9ctit35IRO9pcRJpCRNETLPRsDQ1OA55gk2TUqi4uamTeYRkAA6ppE9DUtiKvPVzFFil-SFLygUNsWChsOrXmwiooiQXFtM-xUQATEhrxORtkbXQROfLrdTzvX2x2R6ZQJjJowsw1HxouVLfzn3lysbG6y_V8k0VJYW1COd8zpzBYZ1qA8_tSX_AtktXsnU6JkGKZ8ltAwCOrWEjW21lN5cD"/>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary">Umber &amp; Archive</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Exploring the chemistry of the roast through the lens of historical temperature logs. Science meets intuition.</p>
+<a class="font-label-md text-label-md text-primary flex items-center gap-2 group" href="#">
+                        Read Story <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+<div class="flex flex-col gap-6">
+<div class="aspect-square bg-surface-container border border-outline-variant/20 overflow-hidden group">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Minimalist architectural shot of a modern cafe interior featuring heavy stone counters and warm wooden shelving. Large windows allow soft daylight to wash over the clean lines and artisan ceramics. The aesthetic is extremely refined, minimal, and high-end, using a palette of creams, browns, and soft greens." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWGuoPOFMfTE5xedCRcJrhrGhNXZ1kN80JnXK3RVS-chrba1HuFUdSgwMeqpBsaYVu70jo0w_jEArUESnyOlOdchg7PX4FjMC8C35HNbEVVP0N5lppg2FxuEUq9M-jDxPwopOIVqv6P9jckfI74M1OWVP1xCHFQWxTFbwHXudZK22_XIRkNGrJEjpAaX1kCZeMYPthRBlU0eCtEv9G5nNrcenlytFE5tirLR6j7j9ileVp8nfzh4BE4ygSgv3Ikx5-6sb-hMiWZXu7"/>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary">The Third Space</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Designing environments that facilitate the slow conversation. Architecture as a brewing variable.</p>
+<a class="font-label-md text-label-md text-primary flex items-center gap-2 group" href="#">
+                        Read Story <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Section 3: Real-Time Precision (Data & Movement) -->
+<section class="bg-on-surface py-32 overflow-hidden">
+<div class="max-w-[1280px] mx-auto px-8 md:px-20">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div class="relative h-[500px]">
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="bg-surface/10 backdrop-blur-md border border-paper-white/20 p-12 text-paper-white text-center rounded-full">
+<span class="font-label-caps text-label-caps uppercase tracking-widest text-primary-fixed">Network Status</span>
+<div class="text-[80px] font-headline-lg my-4">98.4%</div>
+<p class="font-label-md text-label-md">Global Extraction Sync</p>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-8 text-paper-white">
+<span class="font-label-caps text-label-caps text-tertiary-fixed tracking-widest uppercase">The Precision Core</span>
+<h2 class="font-headline-lg text-headline-lg">Real-Time Precision</h2>
+<p class="font-body-lg text-body-lg text-surface-variant/80">
+                            Our proprietary Sela OS monitors roast curves, humidity levels, and extraction ratios across every flagship location. A global standard, managed locally by master baristas.
+                        </p>
+<ul class="flex flex-col gap-6 mt-4">
+<li class="flex items-center gap-4 border-b border-paper-white/10 pb-4">
+<span class="material-symbols-outlined text-tertiary-fixed">monitoring</span>
+<span class="font-label-md text-label-md uppercase tracking-wide">Live Bean-to-Cup Telemetry</span>
+</li>
+<li class="flex items-center gap-4 border-b border-paper-white/10 pb-4">
+<span class="material-symbols-outlined text-tertiary-fixed">thermostat</span>
+<span class="font-label-md text-label-md uppercase tracking-wide">Adaptive Thermal Profiling</span>
+</li>
+<li class="flex items-center gap-4 border-b border-paper-white/10 pb-4">
+<span class="material-symbols-outlined text-tertiary-fixed">history_edu</span>
+<span class="font-label-md text-label-md uppercase tracking-wide">Immutable Ledger of Quality</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 4: Barista Insights & The Daily Grind (Bento) -->
+<section class="py-32 px-8 md:px-20 max-w-[1280px] mx-auto">
+<div class="mb-16">
+<h2 class="font-headline-lg text-headline-lg text-deep-espresso mb-4">Operations &amp; Insights</h2>
+<div class="sela-line-h mb-12"></div>
+</div>
+<div class="bento-grid">
+<!-- Large Feature -->
+<div class="col-span-12 lg:col-span-8 bg-heritage-cream/30 border border-outline-variant/30 p-10 flex flex-col justify-between min-h-[400px] rounded-xl">
+<div>
+<span class="font-label-caps text-label-caps text-moss-green block mb-4 uppercase tracking-widest">Barista Insights</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-6">Optimizing Workflow for Stillness</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-lg">
+                            An interview with Chief Curator Marcus Thorne on how we reduced average movement by 22% to prioritize customer engagement over logistics.
+                        </p>
+</div>
+<div class="flex items-end justify-between mt-12">
+<div class="flex -space-x-4">
+<div class="w-12 h-12 rounded-full border-2 border-surface overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A professional close-up headshot of a mature barista with a kind expression and silver hair, wearing a clean linen apron. The lighting is soft and studio-quality. Editorial style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfVLoh3IHgRy6Tl456O4f0Tcz1XIHDPRsLx1ob-6_vi0kwpC3eflW9PBYNBjZLd9J0RRxa4rxNG4In9socsNEWh5t4xFOagz3OTGmSQawZYcn555pPu435ZgP-gg1XaVf6OxB4WF2B8LEeRBGJJVWLIYMQPmZ1fGRTHlcrNE2nvKUAqcifqxfRVmYpHJDD0xFkh0k9JzK6XBaELZAxqRHMpoXsU2BaHLjawfGIxdd-6o_oJu_D0vUx9rKCm2ilSGPOJ5wfxgtbAE43"/>
+</div>
+</div>
+<button class="bg-primary text-paper-white px-6 py-3 font-label-caps text-label-caps uppercase tracking-widest">Explore Metrics</button>
+</div>
+</div>
+<!-- Side Feature -->
+<div class="col-span-12 lg:col-span-4 bg-surface-container-high border border-outline-variant/30 p-10 flex flex-col justify-center rounded-xl">
+<span class="material-symbols-outlined text-[48px] text-primary mb-6">coffee_maker</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-4">The Daily Grind</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Daily maintenance protocols for the commercial espresso fleet.
+                    </p>
+<div class="mt-8 flex flex-col gap-2">
+<div class="flex justify-between font-label-md text-[12px] uppercase">
+<span class="">Boiler Stability</span>
+<span class="">Optimal</span>
+</div>
+<div class="w-full h-1 bg-outline-variant/30">
+<div class="w-[92%] h-full bg-moss-green"></div>
+</div>
+</div>
+</div>
+<!-- Bottom Triple -->
+<div class="col-span-12 md:col-span-4 border border-outline-variant/30 p-8 hover:bg-paper-white transition-colors">
+<h4 class="font-label-caps text-label-caps text-primary mb-4">Supply Chain</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">Tracking the journey from high-altitude estates to our roastery.</p>
+<div class="h-32 bg-surface-container relative overflow-hidden">
+<img class="w-full h-full object-cover grayscale-[0.3]" data-alt="A lush green coffee plantation on a misty mountainside during sunrise. The colors are vibrant yet natural, with deep forest greens and soft morning golds. High-end landscape photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFcrzVLMjm3gzCAbKjSPGEf1X_pPnbEVQhPNDfNntcxVbW792ggmB_IgP8WE6_iSrSoNvPOOWvQDv2zLbeRbxY5ozA1Ov3yS5oHcv0omn3YaNFoxtpDt-68Yohs427KSh-nJI6buil9Lw9-2grbdGQ9hJEtPVUPDCvPBYlk55yz6sqwNsZXvb1D2dI6L0O99STTFXhV3leu_OxHE0FoeslLH-x1yA4SkziBl1bxxDWu5Fw3X54yX5VQN7PQn1DMp2Fa6lqfMf_O9JW"/>
+</div>
+</div>
+<div class="col-span-12 md:col-span-4 border border-outline-variant/30 p-8 hover:bg-paper-white transition-colors">
+<h4 class="font-label-caps text-label-caps text-primary mb-4">Training Lab</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-6">The certification program for our Sela Certified Baristas.</p>
+<div class="h-32 bg-surface-container relative overflow-hidden">
+<img class="w-full h-full object-cover grayscale-[0.3]" data-alt="Detail of hands precisely pouring steamed milk into a dark ceramic coffee cup, creating a complex latte art pattern. The focus is sharp on the liquid surface, with a shallow depth of field. Warm, rich brown and cream colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJAUDbyd1w1YEsB_FNWkNskVCveb10Rq6XXPh0vIJ8Pxo92jD-AN5t2MFf4y4HWLD3lTSvSq7y0otC04XMhYzagR4lFpLCFE0G92W7uMMNux8jqdf1cujSmFuA6fwcIUFyxprxv_cHYudz-5nIU0kRV0RHEL3TOzW0xLsnso_Sf5RRnd2LHUzXv9GvdNJ5yexwPWKEWcEq1CF1KvPp7lNXb4kXkt-5qIXNILl0r4kFuNeHr6kXwg4KMEionecPAkPJM2t061TnZ4hV"/>
+</div>
+</div>
+<div class="col-span-12 md:col-span-4 border border-outline-variant/30 p-8 bg-primary text-paper-white">
+<h4 class="font-label-caps text-label-caps text-primary-fixed mb-4">Sustainability</h4>
+<p class="font-body-md text-body-md mb-6">Our 2024 initiative: Zero-waste management across all cafe operations.</p>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">eco</span>
+<span class="font-label-md text-label-md">Report Published</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 5: Sela Journal (Editorial) -->
+<section class="bg-surface-container-low py-32 px-8 md:px-20 overflow-hidden">
+<div class="max-w-[1280px] mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+<div class="max-w-2xl">
+<span class="font-label-caps text-label-caps text-primary uppercase tracking-[0.3em] block mb-4">The Anthology</span>
+<h2 class="font-headline-xl text-headline-xl text-deep-espresso">Sela Journal</h2>
+</div>
+<a class="font-label-caps text-label-caps uppercase tracking-widest text-primary border-b border-primary pb-1" href="#">View Archive</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-24">
+<article class="flex flex-col gap-8 group cursor-pointer">
+<div class="aspect-[16/9] overflow-hidden rounded-xl">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" data-alt="Minimalist artistic close-up of coffee steam rising against a dark, moody background. The steam forms ethereal, flowing shapes. Highly cinematic and artistic, with heavy contrast and a sophisticated, slow mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3ESLk3P-gbarwQm4Ids6mcxJG1PNwUTYU2-5lGaCdc45dsdjr8zgD7K2FTWNlVPXrfG-dUcM0oRjQYnTB-wVNE-A0H_xkePRshJT3d40QLSno4tZnWC4DWZ94Z4CmIWj3_C5iCzuvIw6fqiEoDh0biW20xYrnXzImDcTfmVfM7jFEUuJTexs2PrBfIhST5T2wXxlYj9awddXnYqCcdc8qZjjfPETlrosbReXChkHCerqtwJM6UzPeXWh_oBzIb-k3Uj1RwVWL7H6H"/>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-label-caps text-[12px] text-outline">Issue 04 | Spring 2024</span>
+<h3 class="font-headline-md text-headline-md group-hover:text-primary transition-colors">The Silence of the Pour-Over</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">An exploration of ritual in a world of instant gratification. Why we choose the long way home.</p>
+</div>
+</article>
+<article class="flex flex-col gap-8 group cursor-pointer">
+<div class="aspect-[16/9] overflow-hidden rounded-xl">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" data-alt="Macro shot of a single drop of coffee falling into a filled cup, creating a perfect symmetrical crown splash. Captured at high speed. The lighting is golden and warm, with clean reflections. Professional studio aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxb41-OuM6YOZDCrr1Df5q-zBUS9zHwnMM2CdY-MQorXY2sil6Nj6qwEACcZqJHfdOpkE2j9WwIO5Ec1Kg6Ei8Y71k_ZF2Df9tfVi7NmfOCrcEtHhv-q4cJtOGWarmA-Nb2j5g0tlQ-A0ED3t_pEeeJSN-K69hPXGGa8mk6DvlqL4pTgcGS10O3zz-pSjXAeOH9IQ6FW9y5JadPeHn8w_GN_MC0VoDu5aRyJFXtgiIB73LgOSn2rhE-OV39RZV-mPJJh90xwQzbAHk"/>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-label-caps text-[12px] text-outline">Issue 03 | Winter 2023</span>
+<h3 class="font-headline-md text-headline-md group-hover:text-primary transition-colors">Viscosity and Vibe</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Technical analysis of milk texture and its psychological impact on the morning routine.</p>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- Section 6: Loyalty (High-End Invitation) -->
+</main>
+<!-- Footer -->
+<footer class="bg-deep-espresso dark:bg-surface-container-lowest border-t border-outline/20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-20 max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-1">
+<div class="font-headline-lg text-headline-lg text-paper-white dark:text-deep-espresso mb-6">Sela Cafe</div>
+<p class="font-body-md text-on-primary-container opacity-60 mb-8 max-w-xs">Cultivating heritage in every cup through artisan roasting and community focused spaces.</p>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-paper-white dark:text-deep-espresso tracking-widest mb-8">JOURNEY</h4>
+<ul class="space-y-4">
+<li><a class="text-on-primary-container dark:text-on-surface-variant font-label-caps tracking-widest hover:text-tertiary-fixed transition-colors" href="#">Our Story</a></li>
+<li><a class="text-on-primary-container dark:text-on-surface-variant font-label-caps tracking-widest hover:text-tertiary-fixed transition-colors" href="#">Locations</a></li>
+<li><a class="text-on-primary-container dark:text-on-surface-variant font-label-caps tracking-widest hover:text-tertiary-fixed transition-colors" href="#">Sustainability</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-paper-white dark:text-deep-espresso tracking-widest mb-8">PARTNERSHIP</h4>
+<ul class="space-y-4">
+<li><a class="text-on-primary-container dark:text-on-surface-variant font-label-caps tracking-widest hover:text-tertiary-fixed transition-colors" href="#">Wholesale</a></li>
+<li><a class="text-on-primary-container dark:text-on-surface-variant font-label-caps tracking-widest hover:text-tertiary-fixed transition-colors" href="#">Career</a></li>
+<li><a class="text-on-primary-container dark:text-on-surface-variant font-label-caps tracking-widest hover:text-tertiary-fixed transition-colors" href="#">Press Kit</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-label-caps text-paper-white dark:text-deep-espresso tracking-widest mb-8">LEGAL</h4>
+<ul class="space-y-4">
+<li><a class="text-on-primary-container dark:text-on-surface-variant font-label-caps tracking-widest hover:text-tertiary-fixed transition-colors" href="#">Privacy</a></li>
+<li><a class="text-on-primary-container dark:text-on-surface-variant font-label-caps tracking-widest hover:text-tertiary-fixed transition-colors" href="#">Terms</a></li>
+</ul>
+</div>
+</div>
+<div class="px-margin-desktop py-8 border-t border-white/5 max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<span class="font-label-caps text-[10px] text-on-primary-container opacity-40">© 2026 Sela Cafe. Cultivating heritage in every cup.</span>
+<div class="flex gap-6">
+<a class="text-on-primary-container opacity-40 hover:opacity-100 transition-opacity" href="#"><span class="material-symbols-outlined text-lg" data-icon="brand_family">public</span></a>
+<a class="text-on-primary-container opacity-40 hover:opacity-100 transition-opacity" href="#"><span class="material-symbols-outlined text-lg" data-icon="chat">chat</span></a>
+<a class="text-on-primary-container opacity-40 hover:opacity-100 transition-opacity" href="#"><span class="material-symbols-outlined text-lg" data-icon="share">share</span></a>
+</div>
+</div>
+</footer>
+<script>
+        // Simple parallax or micro-interactions can go here
+        document.querySelectorAll('a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body></html>
