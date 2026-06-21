@@ -1,4 +1,3 @@
-Sela Cafe
 Sela Cafe adalah sistem manajemen operasional cafe berbasis microservices yang dirancang untuk mendukung proses pemesanan pelanggan, manajemen menu, operasional dapur, layanan delivery, serta pengelolaan konten website cafe dalam satu ekosistem terintegrasi.
 Project ini dibangun menggunakan Java 21, Spring Boot, Spring Security JWT, PostgreSQL, dan arsitektur Microservices untuk memisahkan tanggung jawab setiap layanan sehingga lebih mudah dikembangkan, dipelihara, dan diskalakan.
 
