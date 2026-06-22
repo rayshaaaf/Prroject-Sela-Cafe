@@ -473,28 +473,28 @@ async function handleQrisPayment(order) {
                 if (instructionText) {
                     instructionText.innerHTML = 'Scan the QR code above to pay exactly <strong class="text-moss-green font-bold">' + formatIDR(payment.amount) + '</strong>. Your order status will update automatically once verified.';
                 }
-
-                // Start polling payment status from backend
-                if (qrisPollInterval) clearInterval(qrisPollInterval);
-                qrisPollInterval = setInterval(async () => {
-                    try {
-                        const statusRes = await window.apiFetch(`/api/payments/order/${order.id}`);
-                        if (statusRes.ok) {
-                            const statusData = await statusRes.json();
-                            const currentPayment = statusData.data;
-
-                            if (currentPayment.status === 'SUCCESS') {
-                                clearInterval(qrisPollInterval);
-                                qrisPollInterval = null;
-                                window.showToast('Payment received! Thank you.', 'success');
-                                fetchAndRenderOrder(order.id, false);
-                            }
-                        }
-                    } catch (e) {
-                        console.warn('Error polling payment status:', e);
-                    }
-                }, 5000);
             }
+
+            // Start polling payment status from backend (runs for both local and dynamic)
+            if (qrisPollInterval) clearInterval(qrisPollInterval);
+            qrisPollInterval = setInterval(async () => {
+                try {
+                    const statusRes = await window.apiFetch(`/api/payments/order/${order.id}`);
+                    if (statusRes.ok) {
+                        const statusData = await statusRes.json();
+                        const currentPayment = statusData.data;
+
+                        if (currentPayment.status === 'SUCCESS') {
+                            clearInterval(qrisPollInterval);
+                            qrisPollInterval = null;
+                            window.showToast('Payment received! Thank you.', 'success');
+                            fetchAndRenderOrder(order.id, false);
+                        }
+                    }
+                } catch (e) {
+                    console.warn('Error polling payment status:', e);
+                }
+            }, 3000);
         } else {
             if (statusLabel) statusLabel.textContent = 'Failed to load payment';
             window.showToast('Could not initialize payment.', 'error');

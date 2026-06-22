@@ -7,4 +7,5 @@ public interface PaymentService {
     PaymentRes charge(ChargePaymentReq request);
     PaymentRes simulateSuccess(String transactionId);
     PaymentRes getPaymentByOrderId(Long orderId);
+    PaymentRes getPaymentByTransactionId(String transactionId);
 }

@@ -203,9 +203,54 @@ public class PaymentServiceImpl implements PaymentService {
         return mapToResponse(payment);
     }
 
+    @Override
+    public PaymentRes getPaymentByTransactionId(String transactionId) {
+        Payment payment = paymentRepository.findByTransactionId(transactionId)
+                .orElseThrow(() -> new ResourceNotFoundException("Payment transaction not found: " + transactionId));
+        return mapToResponse(payment);
+    }
+
+    private String getActiveIpAddress() {
+        try {
+            java.util.Enumeration<java.net.NetworkInterface> interfaces = java.net.NetworkInterface.getNetworkInterfaces();
+            String candidate = null;
+            while (interfaces.hasMoreElements()) {
+                java.net.NetworkInterface iface = interfaces.nextElement();
+                if (iface.isLoopback() || !iface.isUp()) {
+                    continue;
+                }
+                java.util.Enumeration<java.net.InetAddress> addresses = iface.getInetAddresses();
+                while (addresses.hasMoreElements()) {
+                    java.net.InetAddress addr = addresses.nextElement();
+                    if (addr instanceof java.net.Inet4Address) {
+                        String ip = addr.getHostAddress();
+                        if (ip.startsWith("192.168.") || ip.startsWith("172.")) {
+                            return ip; // Highly prefer active local network / mobile hotspot range
+                        }
+                        if (ip.startsWith("10.")) {
+                            candidate = ip; // Keep as lower priority fallback
+                        }
+                    }
+                }
+            }
+            if (candidate != null) {
+                return candidate;
+            }
+        } catch (Exception e) {
+            System.err.println("Error reading network interfaces: " + e.getMessage());
+        }
+        try {
+            return java.net.InetAddress.getLocalHost().getHostAddress();
+        } catch (Exception e) {
+            return "127.0.0.1";
+        }
+    }
+
     private PaymentRes mapToResponse(Payment payment) {
-        String encodedQris = java.net.URLEncoder.encode(payment.getQrisCode(), StandardCharsets.UTF_8);
-        String qrisImageUrl = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + encodedQris;
+        String ipAddress = getActiveIpAddress();
+        String mobileConfirmUrl = "http://" + ipAddress + ":8090/api/payments/web/confirm-payment.html?trx=" + payment.getTransactionId();
+        String encodedUrl = java.net.URLEncoder.encode(mobileConfirmUrl, StandardCharsets.UTF_8);
+        String qrisImageUrl = "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=" + encodedUrl;
 
         return PaymentRes.builder()
                 .id(payment.getId())
@@ -220,6 +265,7 @@ public class PaymentServiceImpl implements PaymentService {
                 .paidAt(payment.getPaidAt())
                 .build();
     }
+
 
     private String generateQrisCode(String merchantName, String orderCode, BigDecimal amount) {
         // Format amount as integer string (e.g. 15000)

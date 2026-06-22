@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qrisly Pay Gateway - Secure Checkout</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-slate: #F8FAFC;
+            --primary-blue: #2563EB;
+            --primary-dark: #1E293B;
+            --success-green: #10B981;
+            --text-main: #334155;
+            --text-light: #64748B;
+            --border-color: #E2E8F0;
+            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-slate);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 24px 16px;
+        }
+
+        /* ─── Gateway Header ──────────────────────── */
+        .gateway-header {
+            width: 100%;
+            max-width: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .gateway-brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 800;
+            font-size: 1.15rem;
+            color: var(--primary-dark);
+            letter-spacing: -0.5px;
+        }
+
+        .gateway-brand .brand-icon {
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+        }
+
+        .secure-badge {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--success-green);
+            background-color: #ECFDF5;
+            padding: 4px 8px;
+            border-radius: 6px;
+            text-transform: uppercase;
+        }
+
+        /* ─── Main Payment Card ───────────────────── */
+        main {
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .card {
+            background-color: #FFFFFF;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--card-shadow);
+            padding: 24px;
+            margin-bottom: 16px;
+        }
+
+        /* ─── Skeleton Loading ────────────────────── */
+        .skeleton {
+            background: linear-gradient(90deg, #F1F5F9 25%, #E2E8F0 50%, #F1F5F9 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            border-radius: 8px;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .skeleton-title { height: 24px; width: 40%; margin-bottom: 12px; }
+        .skeleton-amount { height: 40px; width: 60%; margin-bottom: 24px; }
+        .skeleton-block { height: 80px; width: 100%; }
+
+        /* ─── Billing Box ─────────────────────────── */
+        .billing-box {
+            background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+            color: #FFFFFF;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .merchant-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #94A3B8;
+            font-weight: 700;
+        }
+
+        .merchant-name {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #FFFFFF;
+            margin-top: 2px;
+        }
+
+        .billing-divider {
+            height: 1px;
+            background-color: #334155;
+            margin: 4px 0;
+        }
+
+        .amount-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .amount-val {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #F8FAFC;
+        }
+
+        /* ─── Info List ───────────────────────────── */
+        .info-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+        }
+
+        .info-label {
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .info-value {
+            color: var(--primary-dark);
+            font-weight: 700;
+            text-align: right;
+        }
+
+        /* ─── E-wallet Methods ────────────────────── */
+        .methods-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .method-selector {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .method-option {
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .method-option:hover {
+            border-color: #CBD5E1;
+            background-color: #F1F5F9;
+        }
+
+        .method-option.selected {
+            border-color: var(--primary-blue);
+            background-color: #EFF6FF;
+            color: var(--primary-blue);
+        }
+
+        .method-radio {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 2px solid #94A3B8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .method-option.selected .method-radio {
+            border-color: var(--primary-blue);
+        }
+
+        .method-radio::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--primary-blue);
+            display: none;
+        }
+
+        .method-option.selected .method-radio::after {
+            display: block;
+        }
+
+        /* ─── Button ──────────────────────────────── */
+        .btn {
+            width: 100%;
+            padding: 16px 24px;
+            border-radius: 12px;
+            border: none;
+            font-size: 0.95rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            outline: none;
+        }
+
+        .btn-pay {
+            background-color: var(--primary-blue);
+            color: #FFFFFF;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+        }
+
+        .btn-pay:hover:not(:disabled) {
+            background-color: #1D4ED8;
+            transform: translateY(-1px);
+        }
+
+        .btn:disabled {
+            background-color: #E2E8F0;
+            color: #94A3B8;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .spinner {
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ─── Success Screen ──────────────────────── */
+        .success-view {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            animation: slideUp 0.3s ease-out forwards;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .success-ring {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #D1FAE5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .checkmark-svg {
+            width: 44px;
+            height: 44px;
+        }
+
+        .checkmark-path {
+            stroke: #059669;
+            stroke-width: 5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+            stroke-dasharray: 60;
+            stroke-dashoffset: 60;
+            animation: drawCheck 0.5s 0.1s ease-out forwards;
+        }
+
+        @keyframes drawCheck {
+            to { stroke-dashoffset: 0; }
+        }
+
+        .success-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #065F46;
+            margin-bottom: 8px;
+        }
+
+        .success-desc {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+
+        /* ─── Error Notification ─────────────────── */
+        .error-banner {
+            display: none;
+            background-color: #FEE2E2;
+            border: 1px solid #FCA5A5;
+            color: #991B1B;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 16px;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .error-banner span {
+            font-size: 1.25rem;
+        }
+
+        /* ─── Footer ──────────────────────────────── */
+        footer {
+            margin-top: auto;
+            padding-top: 32px;
+            font-size: 0.75rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        footer span {
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Gateway Header -->
+    <div class="gateway-header">
+        <div class="gateway-brand">
+            <span class="material-symbols-outlined brand-icon">payments</span>
+            <span>QrislyPay</span>
+        </div>
+        <div class="secure-badge">
+            <span class="material-symbols-outlined" style="font-size: 12px;">lock</span>
+            <span>SECURE PROCESSED</span>
+        </div>
+    </div>
+
+    <main>
+        <!-- Error Banner -->
+        <div id="error-banner" class="error-banner">
+            <span class="material-symbols-outlined">error</span>
+            <span id="error-text">Detail transaksi gagal dimuat.</span>
+        </div>
+
+        <!-- Loading Skeleton -->
+        <div id="loading-card" class="card">
+            <div class="skeleton skeleton-title"></div>
+            <div class="skeleton skeleton-amount"></div>
+            <div class="skeleton skeleton-block"></div>
+        </div>
+
+        <!-- Checkout Simulator Interface -->
+        <div id="payment-card" class="card" style="display: none;">
+            
+            <!-- Billing Details Card -->
+            <div class="billing-box">
+                <div>
+                    <span class="merchant-label">Penerima (Merchant)</span>
+                    <h2 class="merchant-name" id="merchant-name">Sela Cafe</h2>
+                </div>
+                <div class="billing-divider"></div>
+                <div class="amount-row">
+                    <span class="merchant-label">Total Tagihan</span>
+                    <span class="amount-val" id="payment-amount">Rp 0</span>
+                </div>
+            </div>
+
+            <!-- Transaction Metadata -->
+            <div class="info-list">
+                <div class="info-item">
+                    <span class="info-label">ID Transaksi</span>
+                    <span class="info-value" id="trx-id-display">...</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Kode Ref Order</span>
+                    <span class="info-value" id="order-ref-display">...</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Metode Pembayaran</span>
+                    <span class="info-value" id="payment-method-display">QRIS DYNAMIC</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Tipe Layanan</span>
+                    <span class="info-value" id="order-type-display">...</span>
+                </div>
+            </div>
+
+            <h3 class="methods-title">Pilih E-Wallet Simulasi</h3>
+            <div class="method-selector">
+                <div class="method-option selected" onclick="selectMethod(this, 'GoPay')">
+                    <div class="method-radio"></div>
+                    <span>GoPay</span>
+                </div>
+                <div class="method-option" onclick="selectMethod(this, 'OVO')">
+                    <div class="method-radio"></div>
+                    <span>OVO</span>
+                </div>
+                <div class="method-option" onclick="selectMethod(this, 'DANA')">
+                    <div class="method-radio"></div>
+                    <span>DANA</span>
+                </div>
+                <div class="method-option" onclick="selectMethod(this, 'ShopeePay')">
+                    <div class="method-radio"></div>
+                    <span>ShopeePay</span>
+                </div>
+            </div>
+
+            <button class="btn btn-pay" id="btn-pay" onclick="executePaymentSim()">
+                <span>BAYAR SEKARANG</span>
+            </button>
+        </div>
+
+        <!-- Checkout Success screen -->
+        <div id="success-card" class="card success-view">
+            <div class="success-ring">
+                <svg class="checkmark-svg" viewBox="0 0 52 52">
+                    <path class="checkmark-path" d="M14 27 l8 8 l16 -16" />
+                </svg>
+            </div>
+            <h2 class="success-title">Transaksi Berhasil!</h2>
+            <p class="success-desc">
+                Pembayaran Anda sebesar <strong id="success-amount-display" style="color: var(--primary-dark);">Rp 0</strong> telah sukses diverifikasi oleh QrislyPay.
+            </p>
+            <div style="background-color: var(--bg-slate); border-radius: 12px; padding: 16px; margin-bottom: 24px; text-align: left; width: 100%;">
+                <div class="info-item" style="margin-bottom: 8px;">
+                    <span class="info-label">ID Transaksi</span>
+                    <span class="info-value" id="success-trx-display">...</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Waktu Transaksi</span>
+                    <span class="info-value" id="success-time-display">...</span>
+                </div>
+            </div>
+            
+            <p style="font-size: 0.8rem; color: var(--text-light); line-height: 1.4;">
+                Halaman pemesanan di kasir / tracking desktop Anda akan otomatis terupdate dalam beberapa detik. Anda dapat menutup tab browser ini.
+            </p>
+        </div>
+    </main>
+
+    <footer>
+        <span class="material-symbols-outlined" style="font-size: 14px;">shield</span>
+        <span>Secure payment engine powered by QrislyPay.</span>
+    </footer>
+
+    <script>
+        // Completely self-contained native fetch wrapper with relative paths
+        async function apiFetch(path, options = {}) {
+            const url = path;
+            const headers = { 'Content-Type': 'application/json', ...options.headers };
+            options.headers = headers;
+            return fetch(url, options);
+        }
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const trxId = urlParams.get('trx');
+        
+        let paymentData = null;
+        let orderData = null;
+        let selectedEwallet = 'GoPay';
+
+        function selectMethod(element, name) {
+            document.querySelectorAll('.method-option').forEach(el => el.classList.remove('selected'));
+            element.classList.add('selected');
+            selectedEwallet = name;
+        }
+
+        function formatIDR(amount) {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0
+            }).format(amount);
+        }
+
+        window.addEventListener('DOMContentLoaded', async () => {
+            if (!trxId) {
+                showError('Parameter transaksi (trx) tidak valid atau kosong.');
+                hideLoading();
+                return;
+            }
+
+            try {
+                // Fetch Payment Details from relative path (gateway)
+                const payRes = await apiFetch(`/api/payments/trx/${trxId}`);
+                if (!payRes.ok) {
+                    throw new Error('Pembayaran tidak terdaftar atau telah kadaluarsa.');
+                }
+                const payPayload = await payRes.json();
+                paymentData = payPayload.data;
+
+                // Fetch Order details for metadata
+                const orderRes = await apiFetch(`/api/orders/getById/${paymentData.orderId}`);
+                if (!orderRes.ok) {
+                    throw new Error('Gagal mencocokkan data transaksi order.');
+                }
+                const orderPayload = await orderRes.json();
+                orderData = orderPayload.data;
+
+                // If already paid, direct to success view
+                if (paymentData.status === 'SUCCESS') {
+                    showSuccessState(paymentData);
+                    return;
+                }
+
+                renderForm();
+            } catch (err) {
+                console.error(err);
+                showError(err.message || 'Terjadi gangguan jaringan, silakan hubungi merchant.');
+                hideLoading();
+            }
+        });
+
+        function hideLoading() {
+            document.getElementById('loading-card').style.display = 'none';
+        }
+
+        function showError(msg) {
+            const banner = document.getElementById('error-banner');
+            const textEl = document.getElementById('error-text');
+            textEl.textContent = msg;
+            banner.style.display = 'flex';
+        }
+
+        function renderForm() {
+            hideLoading();
+            
+            document.getElementById('payment-amount').textContent = formatIDR(paymentData.amount);
+            document.getElementById('trx-id-display').textContent = paymentData.transactionId;
+            document.getElementById('order-ref-display').textContent = orderData.orderCode;
+            document.getElementById('order-type-display').textContent = orderData.orderType;
+
+            document.getElementById('payment-card').style.display = 'block';
+        }
+
+        async function executePaymentSim() {
+            const btn = document.getElementById('btn-pay');
+            btn.disabled = true;
+            btn.innerHTML = `<span class="spinner"></span> <span>MEMPROSES TRANSAKSI...</span>`;
+
+            try {
+                // Call simulate-success in relative path
+                const response = await apiFetch(`/api/payments/${trxId}/simulate-success`, {
+                    method: 'POST'
+                });
+
+                if (response.ok) {
+                    const payload = await response.json();
+                    showSuccessState(payload.data);
+                } else {
+                    const errPayload = await response.json().catch(() => ({}));
+                    showError(errPayload.message || 'Pembayaran ditolak oleh gateway.');
+                    btn.disabled = false;
+                    btn.innerHTML = `<span>BAYAR SEKARANG</span>`;
+                }
+            } catch (err) {
+                showError('Koneksi terputus. Mohon periksa internet Anda.');
+                btn.disabled = false;
+                btn.innerHTML = `<span>BAYAR SEKARANG</span>`;
+            }
+        }
+
+        function showSuccessState(payment) {
+            hideLoading();
+            document.getElementById('payment-card').style.display = 'none';
+            
+            document.getElementById('success-amount-display').textContent = formatIDR(payment.amount);
+            document.getElementById('success-trx-display').textContent = payment.transactionId;
+            
+            const date = payment.paidAt ? new Date(payment.paidAt) : new Date();
+            const formattedTime = date.toLocaleDateString('id-ID', {
+                day: '2-digit',
+                month: 'long',
+                year: 'numeric'
+            }) + ' - ' + date.toLocaleTimeString('id-ID', {
+                hour: '2-digit',
+                minute: '2-digit'
+            }) + ' WIB';
+            
+            document.getElementById('success-time-display').textContent = formattedTime;
+            document.getElementById('success-card').style.display = 'flex';
+        }
+    </script>
+</body>
+</html>

@@ -35,6 +35,8 @@ public class SecurityConfig {
                                 "/api/orders/getById/**",
                                 "/api/payments/charge",
                                 "/api/payments/order/**",
+                                "/api/payments/trx/**",
+                                "/api/payments/web/**",
                                 "/api/payments/callback",
                                 "/api/payments/*/simulate-success"
                         ).permitAll()

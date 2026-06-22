@@ -3,7 +3,7 @@
  * Master visual reference: promo.html
  */
 
-const API_BASE_URL = 'http://localhost:8090';
+const API_BASE_URL = `http://${window.location.hostname}:8090`;
 
 // ─── Global API Fetch Wrapper ─────────────────────────────────────────────────
 window.apiFetch = async function(path, options = {}) {

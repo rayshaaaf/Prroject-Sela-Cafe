@@ -54,4 +54,17 @@ public class PaymentController {
                         .build()
         );
     }
+
+    @GetMapping("/trx/{transactionId}")
+    public ResponseEntity<ApiRes<PaymentRes>> getPaymentByTransactionId(
+            @PathVariable String transactionId) {
+
+        return ResponseEntity.ok(
+                ApiRes.<PaymentRes>builder()
+                        .success(true)
+                        .message("Payment retrieved successfully")
+                        .data(paymentService.getPaymentByTransactionId(transactionId))
+                        .build()
+        );
+    }
 }

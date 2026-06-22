@@ -120,7 +120,7 @@ public class JwtAuthGatewayFilter
             if (path.startsWith("/api/orders/getById/")) {
                 return true;
             }
-            if (path.startsWith("/api/payments/order/")) {
+            if (path.startsWith("/api/payments/order/") || path.startsWith("/api/payments/trx/") || path.startsWith("/api/payments/web/")) {
                 return true;
             }
             if (path.equals("/api/tables/get") || path.equals("/api/tables/getAll")) {
