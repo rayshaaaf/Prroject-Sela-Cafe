@@ -42,11 +42,24 @@ async function initProfilePage() {
                 window.showToast('Please fill in all fields.', 'error');
                 return;
             }
+            if (name.length < 3) {
+                window.showToast('Full name must be at least 3 characters.', 'error');
+                return;
+            }
+            if (!/^[a-zA-Z\s'.]+$/.test(name)) {
+                window.showToast('Full name can only contain letters, spaces, dots, and single quotes.', 'error');
+                return;
+            }
+            const cleanPhone = phone.replace(/[\s\-()]/g, '');
+            if (!/^\+?[0-9]{10,15}$/.test(cleanPhone)) {
+                window.showToast('Phone number must be digits only and between 10 and 15 digits long.', 'error');
+                return;
+            }
 
             try {
                 const res = await window.apiFetch('/api/users/profile', {
                     method: 'PUT',
-                    body: JSON.stringify({ name, phone })
+                    body: JSON.stringify({ name, phone: cleanPhone })
                 });
 
                 if (res.ok) {

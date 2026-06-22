@@ -71,6 +71,38 @@ async function initEditPromoForm() {
         e.preventDefault();
         
         const formData = new FormData(form);
+
+        const titleId = formData.get('titleId')?.trim();
+        const titleEn = formData.get('titleEn')?.trim();
+        const promoCode = formData.get('promoCode')?.toUpperCase()?.trim();
+        const discountPctVal = formData.get('discountPct');
+
+        if (!titleId || titleId.length < 3) {
+            if (typeof window.showToast === 'function') {
+                window.showToast("Title (ID) must be at least 3 characters.", "error");
+            }
+            return;
+        }
+        if (!titleEn || titleEn.length < 3) {
+            if (typeof window.showToast === 'function') {
+                window.showToast("Title (EN) must be at least 3 characters.", "error");
+            }
+            return;
+        }
+        if (!promoCode || !/^[A-Z0-9]{3,15}$/.test(promoCode)) {
+            if (typeof window.showToast === 'function') {
+                window.showToast("Promo Code must be alphanumeric and between 3 and 15 characters.", "error");
+            }
+            return;
+        }
+        const discountPct = parseInt(discountPctVal);
+        if (isNaN(discountPct) || discountPct < 1 || discountPct > 100) {
+            if (typeof window.showToast === 'function') {
+                window.showToast("Discount Percentage must be a number between 1 and 100.", "error");
+            }
+            return;
+        }
+
         const startDate = formData.get('startDate');
         const endDate = formData.get('endDate');
 
@@ -88,10 +120,10 @@ async function initEditPromoForm() {
         if (endTimeStr.split(':').length === 2) endTimeStr += ':00';
 
         const promoPayload = {
-            titleId: formData.get('titleId').trim(),
-            titleEn: formData.get('titleEn').trim(),
-            promoCode: formData.get('promoCode').toUpperCase().trim(),
-            discountPct: parseInt(formData.get('discountPct')),
+            titleId: titleId,
+            titleEn: titleEn,
+            promoCode: promoCode,
+            discountPct: discountPct,
             startDate: startDate,
             endDate: endDate,
             startTime: startTimeStr,

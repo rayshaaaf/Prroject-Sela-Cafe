@@ -6,10 +6,13 @@
 const SERVICE_FEE_PCT = 0.10;
 const ORDER_API = 'http://localhost:8090';
 
+let appliedPromo = null;
+
 document.addEventListener('DOMContentLoaded', () => {
     renderCheckoutSummary();
     prefillCustomerInfo();
     wireCheckoutForm();
+    wireVoucherForm();
     loadDiningTables();
 });
 
@@ -26,6 +29,8 @@ function renderCheckoutSummary() {
     const container  = document.getElementById('checkout-items-container');
     const subtotalEl = document.getElementById('checkout-subtotal');
     const serviceEl  = document.getElementById('checkout-service');
+    const voucherRow = document.getElementById('voucher-row');
+    const voucherEl  = document.getElementById('checkout-voucher');
     const totalEl    = document.getElementById('checkout-total');
 
     const cart = getCart();
@@ -60,7 +65,17 @@ function renderCheckoutSummary() {
 
     const subtotal = cart.reduce((s, i) => s + i.price * (i.quantity || 1), 0);
     const service  = Math.round(subtotal * SERVICE_FEE_PCT);
-    const total    = subtotal + service;
+    
+    let discount = 0;
+    if (appliedPromo) {
+        discount = Math.round(subtotal * (appliedPromo.discountPct / 100));
+        if (voucherRow) voucherRow.style.display = 'flex';
+        if (voucherEl) voucherEl.textContent = '- ' + formatIDR(discount);
+    } else {
+        if (voucherRow) voucherRow.style.display = 'none';
+    }
+    
+    const total = subtotal + service - discount;
 
     if (subtotalEl) subtotalEl.textContent = formatIDR(subtotal);
     if (serviceEl)  serviceEl.textContent  = formatIDR(service);
@@ -111,12 +126,17 @@ function wireCheckoutForm() {
         const cart = getCart();
 
         if (!name)  { showCheckoutError('Please enter your full name.'); return; }
-        if (!phone) { showCheckoutError('Please enter your phone number.'); return; }
-        if (cart.length === 0) { showCheckoutError('Your cart is empty.'); return; }
+        if (name.length < 3) { showCheckoutError('Name must be at least 3 characters.'); return; }
+        if (!/^[a-zA-Z\s'.]+$/.test(name)) { showCheckoutError('Name can only contain letters, spaces, dots, and single quotes.'); return; }
 
-        // Loading state
-        btn.disabled = true;
-        btn.innerHTML = `<span class="flex items-center gap-3">PLACING ORDER <span class="animate-spin material-symbols-outlined text-sm">autorenew</span></span>`;
+        if (!phone) { showCheckoutError('Please enter your phone number.'); return; }
+        const cleanPhone = phone.replace(/[\s\-()]/g, '');
+        if (!/^\+?[0-9]{10,15}$/.test(cleanPhone)) { showCheckoutError('Phone number must be digits only and between 10 and 15 digits long.'); return; }
+
+        if (orderType === 'DELIVERY' && !deliveryAddress) {
+            showCheckoutError('Please enter a delivery address.');
+            return;
+        }
 
         let tableId = null;
         if (orderType === 'DINE_IN') {
@@ -130,14 +150,21 @@ function wireCheckoutForm() {
             }
         }
 
+        if (cart.length === 0) { showCheckoutError('Your cart is empty.'); return; }
+
+        // Loading state
+        btn.disabled = true;
+        btn.innerHTML = `<span class="flex items-center gap-3">PLACING ORDER <span class="animate-spin material-symbols-outlined text-sm">autorenew</span></span>`;
+
         const payload = {
             tableId,
             sessionId: null,
             orderType,
             paymentMethod,
             customerName: name,
-            customerPhone: phone,
+            customerPhone: cleanPhone,
             deliveryAddress: deliveryAddress,
+            voucherCode: appliedPromo ? appliedPromo.promoCode : null,
             notes: note + (courierNotes ? ` | Courier notes: ${courierNotes}` : ''),
             items: cart.map(i => ({
                 menuId:   Number(i.id),
@@ -240,5 +267,61 @@ async function loadDiningTables() {
         }
     } catch (err) {
         console.error('Error fetching tables from backend:', err);
+    }
+}
+
+function wireVoucherForm() {
+    const applyBtn = document.getElementById('btn-apply-voucher');
+    if (applyBtn) {
+        applyBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const input = document.getElementById('voucher-input');
+            const code = input?.value?.trim();
+
+            if (!code) {
+                showVoucherFeedback('Please enter a voucher code.', 'error');
+                return;
+            }
+
+            applyBtn.disabled = true;
+            const originalText = applyBtn.textContent;
+            applyBtn.textContent = 'Applying...';
+
+            try {
+                const response = await fetch(`${ORDER_API}/api/promos/getByCode/${code}`);
+                const apiRes = await response.json().catch(() => ({}));
+                
+                if (response.ok && apiRes.success && apiRes.data) {
+                    appliedPromo = apiRes.data;
+                    showVoucherFeedback(`Voucher code applied successfully! (${appliedPromo.discountPct}% OFF)`, 'success');
+                    renderCheckoutSummary();
+                } else {
+                    appliedPromo = null;
+                    showVoucherFeedback(apiRes.message || 'Invalid or expired voucher code.', 'error');
+                    renderCheckoutSummary();
+                }
+            } catch (err) {
+                console.error('Error applying voucher:', err);
+                appliedPromo = null;
+                showVoucherFeedback('Network error. Unable to validate voucher.', 'error');
+                renderCheckoutSummary();
+            } finally {
+                applyBtn.disabled = false;
+                applyBtn.textContent = originalText;
+            }
+        });
+    }
+}
+
+function showVoucherFeedback(msg, type) {
+    const statusMsg = document.getElementById('voucher-status-msg');
+    if (!statusMsg) return;
+
+    statusMsg.textContent = msg;
+    statusMsg.classList.remove('hidden', 'text-moss-green', 'text-error');
+    if (type === 'success') {
+        statusMsg.classList.add('text-moss-green');
+    } else {
+        statusMsg.classList.add('text-error');
     }
 }

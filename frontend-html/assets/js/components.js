@@ -98,6 +98,81 @@ window.showToast = function(msg, type = 'default') {
     }, 3200);
 };
 
+// ─── Custom Premium Alert Modal ──────────────────────────────────────────────
+window.showAlertModal = function(title, message, type = 'error') {
+    let modal = document.getElementById('sela-alert-modal');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'sela-alert-modal';
+        modal.className = 'fixed inset-0 bg-deep-espresso/50 backdrop-blur-sm z-[250] flex items-center justify-center opacity-0 pointer-events-none transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]';
+        modal.innerHTML = `
+            <div class="bg-paper-white border border-outline-variant/30 w-full max-w-md mx-4 p-8 md:p-10 shadow-2xl relative transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] transform scale-95 translate-y-4" id="sela-alert-modal-content">
+                <button onclick="window.closeAlertModal()" class="absolute top-6 right-6 text-on-surface-variant hover:text-deep-espresso transition-colors p-2 hover:bg-surface-container rounded-full cursor-pointer">
+                    <span class="material-symbols-outlined text-[20px]">close</span>
+                </button>
+                <div class="flex flex-col items-center text-center gap-4">
+                    <div id="sela-alert-icon-container" class="w-16 h-16 rounded-full flex items-center justify-center mb-2">
+                        <span id="sela-alert-icon" class="material-symbols-outlined text-[32px]">error</span>
+                    </div>
+                    <h3 id="sela-alert-title" class="font-headline-md text-headline-md text-deep-espresso">Alert</h3>
+                    <p id="sela-alert-message" class="font-body-md text-on-surface-variant text-sm leading-relaxed"></p>
+                    <button onclick="window.closeAlertModal()" class="mt-6 w-full bg-deep-espresso text-white py-3 font-label-caps text-xs tracking-widest hover:bg-black transition-all active:scale-95">OK</button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+        
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) window.closeAlertModal();
+        });
+    }
+
+    const titleEl = document.getElementById('sela-alert-title');
+    const msgEl = document.getElementById('sela-alert-message');
+    const iconEl = document.getElementById('sela-alert-icon');
+    const iconContainer = document.getElementById('sela-alert-icon-container');
+
+    if (titleEl) titleEl.textContent = title;
+    if (msgEl) msgEl.textContent = message;
+
+    iconContainer.className = 'w-16 h-16 rounded-full flex items-center justify-center mb-2';
+
+    if (type === 'success') {
+        iconContainer.classList.add('bg-secondary-container', 'text-on-secondary-container');
+        if (iconEl) iconEl.textContent = 'check_circle';
+    } else if (type === 'warning') {
+        iconContainer.classList.add('bg-tertiary-fixed', 'text-on-tertiary-fixed');
+        if (iconEl) iconEl.textContent = 'warning';
+    } else { 
+        iconContainer.classList.add('bg-error-container', 'text-on-error-container');
+        if (iconEl) iconEl.textContent = 'error';
+    }
+
+    modal.classList.remove('pointer-events-none', 'opacity-0');
+    document.body.classList.add('overflow-hidden');
+
+    setTimeout(() => {
+        const content = document.getElementById('sela-alert-modal-content');
+        if (content) {
+            content.classList.remove('scale-95', 'translate-y-4');
+            content.classList.add('scale-100', 'translate-y-0');
+        }
+    }, 20);
+};
+
+window.closeAlertModal = function() {
+    const modal = document.getElementById('sela-alert-modal');
+    const content = document.getElementById('sela-alert-modal-content');
+    if (modal && content) {
+        content.classList.remove('scale-100', 'translate-y-0');
+        content.classList.add('scale-95', 'translate-y-4');
+        setTimeout(() => {
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            document.body.classList.remove('overflow-hidden');
+        }, 300);
+    }
+};
+
 // ─── Main Initialization ──────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
     const navbarPlaceholder = document.getElementById('navbar-placeholder');

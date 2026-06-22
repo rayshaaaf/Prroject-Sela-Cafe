@@ -11,5 +11,6 @@ public interface PromoService {
     PromoRes update(Long id,PromoReq request);
     void delete(Long id);
     PromoRes getById(Long id);    
+    PromoRes getByCode(String code);
     List<PromoRes> getAll();
 }

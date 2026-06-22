@@ -160,6 +160,12 @@ async function handleRegister(e) {
     const termsChecked = document.getElementById('terms')?.checked;
 
     if (!name || !email || !phone || !password) { showError('Full name, email, phone number, and password are required.'); return; }
+    if (name.length < 3) { showError('Full name must be at least 3 characters.'); return; }
+    if (!/^[a-zA-Z\s'.]+$/.test(name)) { showError('Full name can only contain letters, spaces, dots, and single quotes.'); return; }
+    
+    const cleanPhone = phone.replace(/[\s\-()]/g, '');
+    if (!/^\+?[0-9]{10,15}$/.test(cleanPhone)) { showError('Phone number must be digits only and between 10 and 15 digits long.'); return; }
+
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showError('Invalid email address.'); return; }
     if (password.length < 8) { showError('Password must be at least 8 characters.'); return; }
     if (confirm && password !== confirm) { showError('Passwords do not match.'); return; }
@@ -171,7 +177,7 @@ async function handleRegister(e) {
         const res = await fetch(`${AUTH_API}/api/auth/register`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, email, phone: phone || '', password })
+            body: JSON.stringify({ name, email, phone: cleanPhone, password })
         });
 
         const data = await res.json().catch(() => ({}));

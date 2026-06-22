@@ -9,6 +9,7 @@ import com.selacafe.core_service.repository.PromoRepository;
 import com.selacafe.core_service.service.PromoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -71,6 +72,26 @@ public class PromoServiceImpl implements PromoService {
     @Override
     public PromoRes getById(Long id) {
         Promo promo = promoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Promo not found"));
+        return mapToResponse(promo);
+    }
+
+    @Override
+    public PromoRes getByCode(String code) {
+        Promo promo = promoRepository.findByPromoCodeIgnoreCase(code)
+                .orElseThrow(() -> new ResourceNotFoundException("Promo code not found: " + code));
+        
+        if (!Boolean.TRUE.equals(promo.getIsActive())) {
+            throw new BadRequestException("Promo is inactive");
+        }
+        
+        LocalDate today = LocalDate.now();
+        if (promo.getStartDate() != null && today.isBefore(promo.getStartDate())) {
+            throw new BadRequestException("Promo has not started yet");
+        }
+        if (promo.getEndDate() != null && today.isAfter(promo.getEndDate())) {
+            throw new BadRequestException("Promo has expired");
+        }
+        
         return mapToResponse(promo);
     }
 

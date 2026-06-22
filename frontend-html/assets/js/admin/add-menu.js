@@ -96,15 +96,47 @@ async function initAddMenuForm() {
         
         const formData = new FormData(form);
         
+        const name = formData.get('name')?.trim();
+        const description = formData.get('description')?.trim();
+        const priceVal = formData.get('price');
+        const categoryIdVal = formData.get('category');
+
+        if (!name || name.length < 3) {
+            if (typeof window.showToast === 'function') {
+                window.showToast('Product name must be at least 3 characters.', 'error');
+            }
+            return;
+        }
+        if (!description || description.length < 10) {
+            if (typeof window.showToast === 'function') {
+                window.showToast('Description must be at least 10 characters.', 'error');
+            }
+            return;
+        }
+        const price = parseFloat(priceVal);
+        if (isNaN(price) || price <= 0) {
+            if (typeof window.showToast === 'function') {
+                window.showToast('Price must be a valid positive number.', 'error');
+            }
+            return;
+        }
+        const categoryId = parseInt(categoryIdVal);
+        if (isNaN(categoryId)) {
+            if (typeof window.showToast === 'function') {
+                window.showToast('Please select a valid category.', 'error');
+            }
+            return;
+        }
+
         // Prepare correct MenuReq payload matching backend spring boot validator
         const menuPayload = {
-            nameId: formData.get('name').trim(),
-            nameEn: formData.get('name').trim(), // Replicate same string for both ID and EN versions
-            descriptionId: formData.get('description').trim(),
-            descriptionEn: formData.get('description').trim(),
-            price: parseFloat(formData.get('price')),
+            nameId: name,
+            nameEn: name, // Replicate same string for both ID and EN versions
+            descriptionId: description,
+            descriptionEn: description,
+            price: price,
             stock: 100, // Default stock quantity
-            categoryId: parseInt(formData.get('category')),
+            categoryId: categoryId,
             imageUrl: formData.get('imageUrl')?.trim() || 'https://images.unsplash.com/photo-1534778101976-62847782c213?q=80&w=600'
         };
 

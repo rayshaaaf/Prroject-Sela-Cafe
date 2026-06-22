@@ -53,6 +53,18 @@ public class PromoController {
         );
     }
 
+    @GetMapping("/getByCode/{code}")
+    public ResponseEntity<ApiRes<PromoRes>> getByCode(@PathVariable String code) {
+        PromoRes response = promoService.getByCode(code);
+        return ResponseEntity.ok(
+                ApiRes.<PromoRes>builder()
+                        .success(true)
+                        .message("Promo retrieved successfully")
+                        .data(response)
+                        .build()
+        );
+    }
+
     @PutMapping("/update/{id}")
     public ResponseEntity<ApiRes<PromoRes>> update(@PathVariable Long id, @Valid @RequestBody PromoReq request) {
         PromoRes response =promoService.update(id, request);

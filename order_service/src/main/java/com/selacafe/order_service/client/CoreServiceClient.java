@@ -1,6 +1,7 @@
 package com.selacafe.order_service.client;
 
 import com.selacafe.order_service.payload.res.MenuRes;
+import com.selacafe.order_service.payload.res.PromoRes;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -10,6 +11,19 @@ import org.springframework.web.reactive.function.client.WebClient;
 public class CoreServiceClient {
 
     private final WebClient webClient;
+
+    public PromoRes getPromoByCode(String code) {
+        try {
+            return webClient
+                    .get()
+                    .uri("/api/internal/promos/code/" + code)
+                    .retrieve()
+                    .bodyToMono(PromoRes.class)
+                    .block();
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
     public MenuRes getMenu(Long menuId) {
 

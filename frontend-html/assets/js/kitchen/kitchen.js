@@ -89,11 +89,11 @@ async function updateOrderStatus(orderId, newStatus) {
         if (apiRes.success) {
             await fetchOrders();
         } else {
-            alert(`Gagal mengupdate status: ${apiRes.message}`);
+            window.showAlertModal("Gagal Update Status", `Gagal mengupdate status: ${apiRes.message}`, "error");
         }
     } catch (err) {
         console.error("Update Status Error:", err);
-        alert("Gagal mengupdate status karena masalah koneksi.");
+        window.showAlertModal("Gagal Update Status", "Gagal mengupdate status karena masalah koneksi.", "error");
     } finally {
         showLoader(false);
     }

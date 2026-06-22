@@ -216,9 +216,10 @@
 <section class="flex flex-col gap-4">
 <label class="font-label-caps text-label-caps text-on-surface-variant">Ritual Gift / Voucher</label>
 <div class="flex gap-4">
-<input class="flex-grow bg-paper-white border border-outline-muted p-4 font-label-md text-label-md uppercase tracking-widest" placeholder="SELASANCTUARY24" type="text"/>
-<button class="bg-deep-espresso text-on-primary px-8 font-label-caps text-label-caps hover:bg-black transition-colors active:scale-95">Apply</button>
+<input id="voucher-input" class="flex-grow bg-paper-white border border-outline-muted p-4 font-label-md text-label-md uppercase tracking-widest" placeholder="SELASANCTUARY24" type="text"/>
+<button id="btn-apply-voucher" class="bg-deep-espresso text-on-primary px-8 font-label-caps text-label-caps hover:bg-black transition-colors active:scale-95">Apply</button>
 </div>
+<p id="voucher-status-msg" class="font-label-caps text-xs hidden mt-1"></p>
 </section>
 <div class="sela-line"></div>
 <!-- Payment Method -->
@@ -235,7 +236,7 @@
 <span class="material-symbols-outlined text-primary opacity-0 peer-checked:opacity-100">check_circle</span>
 </div>
 </div>
-<div class="relative group cursor-pointer" onclick="selectPayment('cash')">
+<div class="relative group cursor-pointer" id="payment-cash-container" onclick="selectPayment('cash')">
 <input class="hidden peer" id="pay-cash" name="payment" type="radio"/>
 <div class="p-6 border border-outline-muted bg-paper-white peer-checked:border-primary peer-checked:bg-surface-container transition-all flex items-start justify-between">
 <div class="flex flex-col gap-1">
@@ -269,9 +270,9 @@
 <span class="font-body-md text-on-surface-variant">Service (10%)</span>
 <span class="font-label-md text-label-md" id="checkout-service">Rp 0</span>
 </div>
-<div class="flex justify-between">
+<div class="flex justify-between" id="voucher-row" style="display: none;">
 <span class="font-body-md text-on-surface-variant">Voucher</span>
-<span class="font-label-md text-label-md text-moss-green">- IDR 10,000</span>
+<span class="font-label-md text-label-md text-moss-green" id="checkout-voucher">- Rp 0</span>
 </div>
 <div class="flex justify-between mt-4 pt-4 border-t border-primary">
 <span class="font-headline-md text-headline-md text-primary">Grand Total</span>
@@ -311,16 +312,21 @@
             const deliveryField = document.getElementById('field-delivery');
 
             // Table selection is ONLY for Dine In
+            const cashContainer = document.getElementById('payment-cash-container');
             if (type === 'dine-in') {
                 dineInField.classList.remove('hidden');
                 deliveryField.classList.add('hidden');
+                if (cashContainer) cashContainer.classList.remove('hidden');
             } else if (type === 'delivery') {
                 dineInField.classList.add('hidden');
                 deliveryField.classList.remove('hidden');
+                if (cashContainer) cashContainer.classList.add('hidden');
+                selectPayment('qris');
             } else {
                 // Take Away: hide both dine-in (table) and delivery fields
                 dineInField.classList.add('hidden');
                 deliveryField.classList.add('hidden');
+                if (cashContainer) cashContainer.classList.remove('hidden');
             }
         }
 

@@ -139,14 +139,54 @@ async function initEditMenuForm() {
         
         const formData = new FormData(form);
         
+        const name = formData.get('name')?.trim();
+        const description = formData.get('description')?.trim();
+        const priceVal = formData.get('price');
+        const stockVal = formData.get('stock');
+        const categoryIdVal = formData.get('category');
+
+        if (!name || name.length < 3) {
+            if (typeof window.showToast === 'function') {
+                window.showToast('Product name must be at least 3 characters.', 'error');
+            }
+            return;
+        }
+        if (!description || description.length < 10) {
+            if (typeof window.showToast === 'function') {
+                window.showToast('Description must be at least 10 characters.', 'error');
+            }
+            return;
+        }
+        const price = parseFloat(priceVal);
+        if (isNaN(price) || price <= 0) {
+            if (typeof window.showToast === 'function') {
+                window.showToast('Price must be a valid positive number.', 'error');
+            }
+            return;
+        }
+        const stock = parseInt(stockVal);
+        if (isNaN(stock) || stock < 0) {
+            if (typeof window.showToast === 'function') {
+                window.showToast('Stock must be a non-negative number.', 'error');
+            }
+            return;
+        }
+        const categoryId = parseInt(categoryIdVal);
+        if (isNaN(categoryId)) {
+            if (typeof window.showToast === 'function') {
+                window.showToast('Please select a valid category.', 'error');
+            }
+            return;
+        }
+
         const menuPayload = {
-            nameId: formData.get('name').trim(),
-            nameEn: formData.get('name').trim(),
-            descriptionId: formData.get('description').trim(),
-            descriptionEn: formData.get('description').trim(),
-            price: parseFloat(formData.get('price')),
-            stock: parseInt(formData.get('stock')),
-            categoryId: parseInt(formData.get('category')),
+            nameId: name,
+            nameEn: name,
+            descriptionId: description,
+            descriptionEn: description,
+            price: price,
+            stock: stock,
+            categoryId: categoryId,
             imageUrl: formData.get('imageUrl')?.trim() || 'https://images.unsplash.com/photo-1534778101976-62847782c213?q=80&w=600'
         };
 

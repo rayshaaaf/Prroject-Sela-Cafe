@@ -56,6 +56,7 @@ public class SecurityConfig {
                                                                 "/api/categories/getById/**",
                                                                 "/api/promos/getAll",
                                                                 "/api/promos/getById/**",
+                                                                "/api/promos/getByCode/**",
                                                                 "/api/reviews/menu/**")
                                                 .permitAll()
 

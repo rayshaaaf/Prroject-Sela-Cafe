@@ -1,5 +1,18 @@
 const CURRENT_ROLE = 'CASHIER';
 
+const COURIERS = [
+    { id: 101, name: "Ahmad" },
+    { id: 102, name: "Budi" },
+    { id: 103, name: "Candra" },
+    { id: 104, name: "Dedi" },
+    { id: 105, name: "Eko" },
+    { id: 106, name: "Fandi" },
+    { id: 107, name: "Gilang" },
+    { id: 108, name: "Hadi" },
+    { id: 109, name: "Indra" },
+    { id: 110, name: "Joko" }
+];
+
 document.addEventListener('DOMContentLoaded', () => {
     fetchCashierOrders();
     fetchTableSessions();
@@ -131,9 +144,13 @@ function renderDashboard(orders) {
                     if (order.courierName) {
                         courierHTML = `<span class="font-body-md font-semibold">${order.courierName}</span>`;
                     } else if (order.status === 'READY') {
+                        const courierOptions = COURIERS.map(c => `<option value="${c.name}" data-id="${c.id}">${c.name}</option>`).join('');
                         courierHTML = `
                             <div class="flex gap-2 items-center">
-                                <input type="text" id="courier-input-${order.id}" placeholder="Courier Name" class="bg-transparent border-b border-outline-muted font-label-md text-label-md py-1 w-28 focus:border-deep-espresso outline-none" />
+                                <select id="courier-select-${order.id}" class="bg-transparent border-b border-outline-muted font-label-md text-label-md py-1 w-28 focus:border-deep-espresso outline-none cursor-pointer">
+                                    <option value="" disabled selected>Select Courier</option>
+                                    ${courierOptions}
+                                </select>
                                 <button onclick="assignCourier(${order.id})" class="bg-deep-espresso text-white px-2 py-1 text-[10px] font-label-caps hover:brightness-110 active:scale-95 transition-all">ASSIGN</button>
                             </div>
                         `;
@@ -216,12 +233,15 @@ async function completeOrder(orderId) {
 }
 
 async function assignCourier(orderId) {
-    const input = document.getElementById(`courier-input-${orderId}`);
-    const courierName = input ? input.value.trim() : '';
+    const select = document.getElementById(`courier-select-${orderId}`);
+    const courierName = select ? select.value : '';
     if (!courierName) {
-        window.showToast('Please enter courier name.', 'error');
+        window.showToast('Please select a courier.', 'error');
         return;
     }
+
+    const selectedOption = select.options[select.selectedIndex];
+    const courierId = selectedOption ? Number(selectedOption.getAttribute('data-id')) : 99;
 
     try {
         const res = await window.apiFetch(`/api/orders/${orderId}/assign-courier`, {
@@ -231,7 +251,7 @@ async function assignCourier(orderId) {
                 'X-Role': CURRENT_ROLE
             },
             body: JSON.stringify({
-                courierId: 99, 
+                courierId: courierId, 
                 courierName: courierName
             })
         });

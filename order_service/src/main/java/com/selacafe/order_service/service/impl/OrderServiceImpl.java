@@ -13,6 +13,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -143,7 +145,32 @@ public class OrderServiceImpl implements OrderService {
                                                         .build());
                 }
 
-                order.setTotalPrice(totalPrice);
+                BigDecimal discountAmount = BigDecimal.ZERO;
+                if (request.getVoucherCode() != null && !request.getVoucherCode().isBlank()) {
+                    PromoRes promo = coreServiceClient.getPromoByCode(request.getVoucherCode());
+                    if (promo == null) {
+                        throw new BadRequestException("Voucher code is invalid");
+                    }
+                    if (!Boolean.TRUE.equals(promo.getIsActive())) {
+                        throw new BadRequestException("Voucher is inactive");
+                    }
+                    
+                    LocalDate today = LocalDate.now();
+                    if (promo.getStartDate() != null && today.isBefore(promo.getStartDate())) {
+                        throw new BadRequestException("Voucher has not started yet");
+                    }
+                    if (promo.getEndDate() != null && today.isAfter(promo.getEndDate())) {
+                        throw new BadRequestException("Voucher has expired");
+                    }
+                    
+                    if (promo.getDiscountPct() != null && promo.getDiscountPct() > 0) {
+                        discountAmount = totalPrice.multiply(BigDecimal.valueOf(promo.getDiscountPct()))
+                                .divide(BigDecimal.valueOf(100), 2, RoundingMode.HALF_UP);
+                    }
+                }
+
+                order.setDiscountAmount(discountAmount);
+                order.setTotalPrice(totalPrice.subtract(discountAmount));
                 order.setUpdatedAt(LocalDateTime.now());
 
                 orderRepository.save(order);
