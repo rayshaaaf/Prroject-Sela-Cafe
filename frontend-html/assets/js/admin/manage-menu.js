@@ -164,10 +164,30 @@ window.filterAdminCategory = function(category, element) {
 
 window.toggleProductAvailability = async function(id, currentStatus) {
     try {
-        const response = await window.apiFetch(`/api/menus/updateStatus/${id}`, {
+        const getResponse = await window.apiFetch(`/api/menus/getById/${id}`);
+        if (!getResponse.ok) {
+            console.error('Failed to retrieve menu details for toggle.');
+            return;
+        }
+        const apiRes = await getResponse.json();
+        const menu = apiRes.data;
+        if (!menu) return;
+
+        const menuPayload = {
+            nameId: menu.nameId,
+            nameEn: menu.nameEn,
+            descriptionId: menu.descriptionId,
+            descriptionEn: menu.descriptionEn,
+            price: parseFloat(menu.price),
+            stock: currentStatus ? 0 : 100, // Toggle stock to toggle isAvailable status
+            categoryId: menu.categoryId,
+            imageUrl: menu.imageUrl
+        };
+
+        const response = await window.apiFetch(`/api/menus/update/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ isAvailable: !currentStatus })
+            body: JSON.stringify(menuPayload)
         });
         
         if (response.ok) {

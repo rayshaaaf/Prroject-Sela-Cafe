@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Sela Cafe | Executive Intelligence</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=Manrope:wght@400;500;700&family=JetBrains+Mono:wght@400;500&family=Material+Symbols+Outlined:wght,FILL@300,0..1&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@100..900&family=JetBrains+Mono:wght@100..900&family=Manrope:wght@100..900&display=swap"
+        rel="stylesheet">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-container": "#292515",
+                        "surface-variant": "#e3e2df",
+                        "on-background": "#1b1c1a",
+                        "on-primary-container": "#a3876c",
+                        "on-error-container": "#93000a",
+                        "primary": "#1b0c00",
+                        "paper-white": "#FDFCF8",
+                        "on-tertiary-container": "#938c76",
+                        "surface-container": "#efeeea",
+                        "deep-espresso": "#2A1B0E",
+                        "on-secondary-fixed": "#022110",
+                        "primary-fixed-dim": "#e1c1a3",
+                        "secondary-container": "#c5e8cc",
+                        "secondary-fixed": "#c8ebcf",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#d2c4b9",
+                        "surface-container-highest": "#e3e2df",
+                        "surface-tint": "#725a42",
+                        "surface-bright": "#faf9f5",
+                        "inverse-surface": "#2f312e",
+                        "surface-container-high": "#e9e8e4",
+                        "heritage-cream": "#F2E8CF",
+                        "surface-container-low": "#f4f4f0",
+                        "tertiary-fixed": "#ece2c9",
+                        "on-surface": "#1b1c1a",
+                        "error-container": "#ffdad6",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed": "#201b0c",
+                        "surface": "#faf9f5",
+                        "on-secondary-container": "#4a6a53",
+                        "surface-dim": "#dbdad6",
+                        "outline": "#80756c",
+                        "on-surface-variant": "#4e453d",
+                        "secondary-fixed-dim": "#adcfb4",
+                        "secondary": "#46654f",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed-variant": "#58432c",
+                        "inverse-on-surface": "#f2f1ed",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#feddbe",
+                        "outline-muted": "rgba(128, 117, 108, 0.2)",
+                        "on-tertiary-fixed-variant": "#4c4634",
+                        "tertiary-fixed-dim": "#cfc6ae",
+                        "inverse-primary": "#e1c1a3",
+                        "on-secondary-fixed-variant": "#2f4d39",
+                        "primary-container": "#33210d",
+                        "tertiary": "#141003",
+                        "moss-green": "#386641",
+                        "background": "#faf9f5",
+                        "on-error": "#ffffff",
+                        "on-primary-fixed": "#291805"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "container-max": "1280px",
+                        "margin-desktop": "80px",
+                        "gutter": "24px",
+                        "section-padding": "8rem",
+                        "margin-mobile": "24px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["JetBrains Mono"],
+                        "headline-xl": ["EB Garamond"],
+                        "headline-md": ["EB Garamond"],
+                        "headline-lg-mobile": ["EB Garamond"],
+                        "headline-lg": ["EB Garamond"],
+                        "body-lg": ["Manrope"],
+                        "label-md": ["JetBrains Mono"],
+                        "body-md": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "headline-xl": ["64px", { "lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+                        "headline-md": ["28px", { "lineHeight": "34px", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "38px", "fontWeight": "500" }],
+                        "headline-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            background-color: #faf9f5;
+            color: #2A1B0E;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.04;
+            background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png');
+        }
+
+        .sela-line {
+            height: 1px;
+            background-color: rgba(128, 117, 108, 0.2);
+            width: 100%;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #faf9f5;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #d2c4b9;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+
+<body class="font-body-md text-body-md">
+    <div class="grain-overlay"></div>
+    <aside
+        class="bg-surface-container-low dark:bg-surface-container-lowest h-screen w-72 fixed left-0 top-0 border-r border-outline-muted dark:border-outline-variant flex flex-col h-full py-8 z-50">
+        <div class="px-8 mb-12">
+            <h1 class="font-headline-md text-headline-md text-deep-espresso dark:text-primary-fixed leading-tight">Sela
+                Cafe</h1>
+            <p class="font-label-caps text-label-caps text-on-surface-variant opacity-60">Management Suite</p>
+        </div>
+        <nav class="flex-1 px-4 space-y-1">
+            <a class="text-on-background dark:text-on-primary-fixed font-bold border-l-2 border-primary p-4 flex items-center gap-3 transition-colors hover:bg-heritage-cream/50"
+                href="#">
+                <span class="material-symbols-outlined">dashboard</span>
+                <span class="font-label-caps text-label-caps">Overview</span>
+            </a>
+            <a class="text-on-surface-variant dark:text-outline p-4 flex items-center gap-3 transition-colors hover:bg-heritage-cream/50"
+                href="performance.html">
+                <span class="material-symbols-outlined">monitoring</span>
+                <span class="font-label-caps text-label-caps">Performance</span>
+            </a>
+            <a class="text-on-surface-variant dark:text-outline p-4 flex items-center gap-3 transition-colors hover:bg-heritage-cream/50"
+                href="#">
+                <span class="material-symbols-outlined">lightbulb</span>
+                <span class="font-label-caps text-label-caps">Insights</span>
+            </a>
+            <a class="text-on-surface-variant dark:text-outline p-4 flex items-center gap-3 transition-colors hover:bg-heritage-cream/50"
+                href="#">
+                <span class="material-symbols-outlined">assessment</span>
+                <span class="font-label-caps text-label-caps">Reports</span>
+            </a>
+        </nav>
+        <div class="px-4 mt-auto space-y-1">
+            <button
+                class="w-full bg-deep-espresso text-paper-white font-label-caps text-label-caps py-4 mb-4 transition-transform active:scale-95">
+                Create Report
+            </button>
+            <div class="sela-line mb-4"></div>
+            <a class="text-on-surface-variant dark:text-outline p-4 flex items-center gap-3 hover:bg-heritage-cream/50"
+                href="#">
+                <span class="material-symbols-outlined">settings</span>
+                <span class="font-label-caps text-label-caps">Settings</span>
+            </a>
+            <a class="text-on-surface-variant dark:text-outline p-4 flex items-center gap-3 hover:bg-heritage-cream/50"
+                href="#">
+                <span class="material-symbols-outlined">help</span>
+                <span class="font-label-caps text-label-caps">Support</span>
+            </a>
+        </div>
+    </aside>
+    <header
+        class="fixed top-0 right-0 w-[calc(100%-18rem)] h-20 bg-paper-white dark:bg-surface-dim border-b border-outline-muted dark:border-outline-variant flex justify-between items-center px-8 z-40">
+        <div>
+            <h2 class="font-headline-md text-headline-md text-primary dark:text-primary-fixed">Executive Intelligence
+            </h2>
+        </div>
+        <div class="flex items-center gap-8">
+            <div class="flex bg-surface-container-low p-1 rounded-lg">
+                <button
+                    class="px-4 py-1.5 font-label-caps text-label-caps bg-white shadow-sm rounded-md text-primary">Today</button>
+                <button
+                    class="px-4 py-1.5 font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors">Week</button>
+                <button
+                    class="px-4 py-1.5 font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors">Month</button>
+                <button
+                    class="px-4 py-1.5 font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors">Custom</button>
+            </div>
+            <div class="flex items-center gap-4 border-l border-outline-muted pl-8">
+                <span
+                    class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">notifications</span>
+                <div class="w-8 h-8 rounded-full bg-outline-muted overflow-hidden">
+                    <img class="w-full h-full object-cover"
+                        data-alt="A professional close-up portrait of a cafe manager in an artisanal dark brown apron, softly lit in a warm heritage style coffee shop environment with high-end photography qualities."
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5wNNIQVvIbtgd5-WgMC3n77fD2wDdvkqR9HUNbPvwJcniQTJKFNuubzKtLylEUMWJOjz6rWpHlZikdoSmFbqykE3GbciV8BH2ZBe1gnbU_VDPwm06RJC8DJpWtpuHszcoc7ZlWTMExO__8OqHwmpPlLzU3OSgFCxALY1yZQHJJcjGrAkilvo2XjOPjckyIYFbG4bQqWR7iaKEBKqMC9-2Pru0zcdayKC3c3AiL9Ky9i5i5WCN33dJ0BdhLYqALsCMhT6eoh4mD8U7">
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="ml-72 pt-20 p-12 min-h-screen">
+        <div class="max-w-7xl mx-auto space-y-12">
+            <section class="grid grid-cols-1 md:grid-cols-4 gap-6 pt-8">
+                <div
+                    class="bg-white p-8 border border-outline-muted relative overflow-hidden group hover:border-primary transition-colors duration-500">
+                    <p class="font-label-caps text-label-caps text-on-surface-variant opacity-60 mb-2">Today's Revenue
+                    </p>
+                    <div class="flex items-end gap-2">
+                        <h3 class="font-headline-md text-headline-md" id="today-revenue">Loading...</h3>
+                        <span class="text-moss-green font-label-caps text-label-caps pb-1"
+                            id="today-revenue-change">...</span>
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 w-full h-1 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left">
+                    </div>
+                </div>
+                <div
+                    class="bg-white p-8 border border-outline-muted relative overflow-hidden group hover:border-primary transition-colors duration-500">
+                    <p class="font-label-caps text-label-caps text-on-surface-variant opacity-60 mb-2">Weekly Revenue
+                    </p>
+                    <div class="flex items-end gap-2">
+                        <h3 class="font-headline-md text-headline-md" id="weekly-revenue">Loading...</h3>
+                        <span class="text-moss-green font-label-caps text-label-caps pb-1"
+                            id="weekly-revenue-change">...</span>
+                    </div>
+                </div>
+                <div
+                    class="bg-white p-8 border border-outline-muted relative overflow-hidden group hover:border-primary transition-colors duration-500">
+                    <p class="font-label-caps text-label-caps text-on-surface-variant opacity-60 mb-2">Monthly Target
+                    </p>
+                    <div class="flex items-end gap-2">
+                        <h3 class="font-headline-md text-headline-md" id="monthly-target">Loading...</h3>
+                        <span class="text-on-surface-variant font-label-caps text-label-caps pb-1"
+                            id="monthly-goal">...</span>
+                    </div>
+                </div>
+                <div
+                    class="bg-white p-8 border border-outline-muted relative overflow-hidden group hover:border-primary transition-colors duration-500">
+                    <p class="font-label-caps text-label-caps text-on-surface-variant opacity-60 mb-2">Total Orders</p>
+                    <div class="flex items-end gap-2">
+                        <h3 class="font-headline-md text-headline-md" id="total-orders">Loading...</h3>
+                        <span class="text-moss-green font-label-caps text-label-caps pb-1" id="orders-status">...</span>
+                    </div>
+                </div>
+            </section>
+            <div class="sela-line"></div>
+            <section>
+                <div class="mb-6 flex justify-between items-center">
+                    <h4 class="font-label-caps text-label-caps">Real-time Operational Pulse</h4>
+                    <span class="text-xs text-on-surface-variant opacity-60">Auto-refreshing every 30s</span>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-7 gap-4">
+                    <div
+                        class="bg-heritage-cream/30 p-4 border border-outline-muted flex flex-col items-center text-center">
+                        <span class="font-headline-md text-headline-md mb-1" id="pulse-waiting-payment">0</span>
+                        <span class="font-label-caps text-[10px] leading-tight">Waiting Payment</span>
+                    </div>
+                    <div
+                        class="bg-heritage-cream/30 p-4 border border-outline-muted flex flex-col items-center text-center">
+                        <span class="font-headline-md text-headline-md mb-1" id="pulse-paid">0</span>
+                        <span class="font-label-caps text-[10px] leading-tight">Paid</span>
+                    </div>
+                    <div
+                        class="bg-heritage-cream/30 p-4 border border-outline-muted flex flex-col items-center text-center">
+                        <span class="font-headline-md text-headline-md mb-1 text-primary" id="pulse-preparing">0</span>
+                        <span class="font-label-caps text-[10px] leading-tight">Preparing</span>
+                    </div>
+                    <div
+                        class="bg-heritage-cream/30 p-4 border border-outline-muted flex flex-col items-center text-center">
+                        <span class="font-headline-md text-headline-md mb-1" id="pulse-ready">0</span>
+                        <span class="font-label-caps text-[10px] leading-tight">Ready</span>
+                    </div>
+                    <div
+                        class="bg-heritage-cream/30 p-4 border border-outline-muted flex flex-col items-center text-center">
+                        <span class="font-headline-md text-headline-md mb-1" id="pulse-on-delivery">0</span>
+                        <span class="font-label-caps text-[10px] leading-tight">On Delivery</span>
+                    </div>
+                    <div
+                        class="bg-moss-green/10 p-4 border border-outline-muted flex flex-col items-center text-center">
+                        <span class="font-headline-md text-headline-md mb-1 text-moss-green"
+                            id="pulse-completed">0</span>
+                        <span class="font-label-caps text-[10px] leading-tight">Completed</span>
+                    </div>
+                    <div
+                        class="bg-error-container/10 p-4 border border-outline-muted flex flex-col items-center text-center">
+                        <span class="font-headline-md text-headline-md mb-1 text-error" id="pulse-cancelled">0</span>
+                        <span class="font-label-caps text-[10px] leading-tight">Cancelled</span>
+                    </div>
+                </div>
+            </section>
+            <section class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <div class="lg:col-span-2 bg-white p-10 border border-outline-muted">
+                    <h4 class="font-headline-md text-headline-md mb-8">Artisanal Favorites</h4>
+                    <div class="space-y-6" id="favorites-container">
+                        <p class="text-sm text-on-surface-variant">Loading items...</p>
+                    </div>
+                </div>
+                <div class="bg-deep-espresso text-paper-white p-10 flex flex-col">
+                    <h4 class="font-headline-md text-headline-md mb-8 border-b border-paper-white/20 pb-4">Executive
+                        Summary</h4>
+                    <div class="space-y-8 flex-1">
+                        <div>
+                            <p class="font-label-caps text-[10px] text-paper-white/60 mb-2">PEAK EXTRACTION</p>
+                            <p class="font-headline-md" id="summary-peak">Loading...</p>
+                            <p class="font-body-md text-paper-white/80 mt-1">Morning ritual traffic remains consistent
+                                with a +5% rise in weekday loyalty.</p>
+                        </div>
+                        <div>
+                            <p class="font-label-caps text-[10px] text-paper-white/60 mb-2">AVG. RITUAL VALUE</p>
+                            <p class="font-headline-md" id="summary-avg-value">Loading...</p>
+                            <p class="font-body-md text-paper-white/80 mt-1">Cross-selling of pastries has increased the
+                                average ticket size by 15%.</p>
+                        </div>
+                        <div>
+                            <p class="font-label-caps text-[10px] text-paper-white/60 mb-2">FULFILLMENT INDEX</p>
+                            <p class="font-headline-md" id="summary-fulfillment">Loading...</p>
+                            <p class="font-body-md text-paper-white/80 mt-1">Order completion rate is near perfect, with
+                                zero critical delays reported.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h4 class="font-label-caps text-label-caps mb-6">Logistics & Team Pulse</h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white border border-outline-muted p-6 flex items-center justify-between">
+                        <div>
+                            <p class="font-label-caps text-[10px] text-on-surface-variant">Kitchen</p>
+                            <h5 class="font-headline-md" id="pulse-kitchen">Loading...</h5>
+                        </div>
+                        <span class="material-symbols-outlined text-4xl text-primary opacity-20">skillet</span>
+                    </div>
+                    <div class="bg-white border border-outline-muted p-6 flex items-center justify-between">
+                        <div>
+                            <p class="font-label-caps text-[10px] text-on-surface-variant">Courier</p>
+                            <h5 class="font-headline-md" id="pulse-courier">Loading...</h5>
+                        </div>
+                        <span class="material-symbols-outlined text-4xl text-primary opacity-20">moped</span>
+                    </div>
+                    <div class="bg-white border border-outline-muted p-6 flex items-center justify-between">
+                        <div>
+                            <p class="font-label-caps text-[10px] text-on-surface-variant">Cashier</p>
+                            <h5 class="font-headline-md" id="pulse-cashier">Loading...</h5>
+                        </div>
+                        <span class="material-symbols-outlined text-4xl text-primary opacity-20">payments</span>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <h4 class="font-label-caps text-label-caps mb-6">Talent & Growth</h4>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white border border-outline-muted p-6 flex items-center justify-between">
+                        <div>
+                            <p class="font-label-caps text-[10px] text-on-surface-variant">Applicants</p>
+                            <h5 class="font-headline-md" id="talent-applicants">Loading...</h5>
+                            <p class="text-xs text-moss-green font-label-caps mt-1" id="talent-applicants-growth">...
+                            </p>
+                        </div>
+                        <span class="material-symbols-outlined text-4xl text-primary opacity-20">person_add</span>
+                    </div>
+                    <div class="bg-white border border-outline-muted p-6 flex items-center justify-between">
+                        <div>
+                            <p class="font-label-caps text-[10px] text-on-surface-variant">Recruitment Pipeline</p>
+                            <h5 class="font-headline-md" id="talent-pipeline">Loading...</h5>
+                        </div>
+                        <span class="material-symbols-outlined text-4xl text-primary opacity-20">assignment_ind</span>
+                    </div>
+                    <div class="bg-white border border-outline-muted p-6 flex items-center justify-between">
+                        <div>
+                            <p class="font-label-caps text-[10px] text-on-surface-variant">Onboarding</p>
+                            <h5 class="font-headline-md" id="talent-onboarding">Loading...</h5>
+                        </div>
+                        <span class="material-symbols-outlined text-4xl text-primary opacity-20">handshake</span>
+                    </div>
+                </div>
+            </section>
+            <section class="grid grid-cols-1 md:grid-cols-2 gap-12 pb-20">
+                <div class="space-y-6">
+                    <h4 class="font-headline-md text-headline-md">Automated Report Registry</h4>
+                    <div class="border border-outline-muted divide-y divide-outline-muted" id="reports-container">
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <h4 class="font-headline-md text-headline-md">The Ritual Timeline</h4>
+                    <div class="relative pl-8 space-y-8 before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[1px] before:bg-outline-muted"
+                        id="timeline-container">
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <script src="/frontend-html/assets/js/owner/dashboard.js"></script>
+</body>
+
+</html>

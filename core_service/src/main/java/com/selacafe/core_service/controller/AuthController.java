@@ -2,6 +2,7 @@ package com.selacafe.core_service.controller;
 
 import com.selacafe.core_service.payload.req.LoginReq;
 import com.selacafe.core_service.payload.req.RegisterReq;
+import com.selacafe.core_service.payload.req.GoogleLoginReq;
 import com.selacafe.core_service.payload.res.ApiRes;
 import com.selacafe.core_service.payload.res.LoginRes;
 import com.selacafe.core_service.service.AuthService;
@@ -55,6 +56,21 @@ public ResponseEntity<ApiRes<LoginRes>> login(
             ApiRes.<LoginRes>builder()
                     .success(true)
                     .message("Login success")
+                    .data(response)
+                    .build()
+    );
+}
+
+@PostMapping("/google")
+public ResponseEntity<ApiRes<LoginRes>> loginGoogle(
+        @Valid @RequestBody GoogleLoginReq request) {
+
+    LoginRes response = authService.loginGoogle(request);
+
+    return ResponseEntity.ok(
+            ApiRes.<LoginRes>builder()
+                    .success(true)
+                    .message("Google login success")
                     .data(response)
                     .build()
     );

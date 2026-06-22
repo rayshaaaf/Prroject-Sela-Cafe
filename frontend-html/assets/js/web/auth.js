@@ -21,10 +21,22 @@ function initLoginPage() {
     document.querySelectorAll('a[href="#"]').forEach(a => {
         if (a.textContent.toLowerCase().includes('create')) a.href = 'regis.html';
     });
-    // Back to home
-    document.querySelectorAll('a').forEach(a => {
-        if (a.textContent.toLowerCase().includes('back')) a.href = 'home.html';
-    });
+    // Initialize Google Sign-In
+    if (typeof google !== 'undefined') {
+        google.accounts.id.initialize({
+            client_id: "858433395934-1gostag7l4aeifda68ulc47lpo5cvkhe.apps.googleusercontent.com",
+            callback: handleGoogleLogin,
+            auto_select: false,
+            cancel_on_tap_outside: true
+        });
+
+        google.accounts.id.renderButton(
+            document.getElementById("google-signin-btn"),
+            { theme: "outline", size: "large", width: "350" }
+        );
+
+        google.accounts.id.prompt();
+    }
 
     const form = document.querySelector('form');
     if (!form) return;
@@ -87,6 +99,10 @@ function initLoginPage() {
                         redirect = '../kitchen/kitchen.html';
                     } else if (userRole === 'COURIER') {
                         redirect = '../courier/dashboard.html';
+                    } else if (userRole === 'ADMIN') {
+                        redirect = '../admin/dashboard.html';
+                    } else if (userRole === 'OWNER') {
+                        redirect = '../owner/dashboard.html';
                     } else {
                         redirect = '../customer/homepage.html';
                     }
@@ -205,4 +221,70 @@ function setLoading(loading) {
             btn.disabled = false;
         }
     });
+}
+
+// ─── Google Login Callback Handler ──────────────────────────────────────────
+async function handleGoogleLogin(response) {
+    const idToken = response.credential;
+    if (!idToken) return;
+
+    clearError();
+    setLoading(true);
+
+    try {
+        const res = await fetch(`${AUTH_API}/api/auth/google`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ token: idToken })
+        });
+
+        const apiRes = await res.json().catch(() => ({}));
+        const data = apiRes.data || {};
+
+        if (res.ok && (data.token || apiRes.token || data.accessToken)) {
+            const token = data.token || apiRes.token || data.accessToken;
+            const userName = data.name || apiRes.fullName || data.username;
+            let userRole = data.role || '';
+
+            localStorage.setItem('token', token);
+            localStorage.setItem('userName', userName);
+
+            // Fetch profile for userId
+            try {
+                const profileRes = await fetch(`${AUTH_API}/api/users/profile`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (profileRes.ok) {
+                    const profileData = await profileRes.json();
+                    if (profileData && profileData.data) {
+                        localStorage.setItem('userId', String(profileData.data.id));
+                        localStorage.setItem('userName', profileData.data.name);
+                        userRole = profileData.data.role || userRole;
+                    }
+                }
+            } catch (err) {
+                console.error('Error fetching profile on Google login:', err);
+            }
+
+            localStorage.setItem('role', userRole);
+
+            let redirect = new URLSearchParams(window.location.search).get('redirect');
+            if (!redirect) {
+                if (userRole === 'CASHIER') redirect = '../cashier/dashboard.html';
+                else if (userRole === 'KITCHEN') redirect = '../kitchen/kitchen.html';
+                else if (userRole === 'COURIER') redirect = '../courier/dashboard.html';
+                else if (userRole === 'ADMIN') redirect = '../admin/dashboard.html';
+                else if (userRole === 'OWNER') redirect = '../owner/dashboard.html';
+                else redirect = '../customer/homepage.html';
+            }
+            window.location.href = redirect;
+        } else {
+            showError(apiRes.message || data.message || 'Google authentication failed.');
+        }
+    } catch (err) {
+        console.error(err);
+        showError('Unable to connect to Sela Cafe server.');
+    } finally {
+        setLoading(false);
+    }
 }

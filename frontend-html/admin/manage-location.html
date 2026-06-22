@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Sela Cafe | Manage Locations</title>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Manrope:wght@200..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-surface": "#1b1c1a",
+                "surface-container-highest": "#e3e2df",
+                "surface-variant": "#e3e2df",
+                "inverse-on-surface": "#f2f1ed",
+                "deep-espresso": "#2A1B0E",
+                "surface-container-lowest": "#ffffff",
+                "heritage-cream": "#F2E8CF",
+                "surface-bright": "#faf9f5",
+                "tertiary": "#141003",
+                "on-secondary-container": "#4a6a53",
+                "secondary-container": "#c5e8cc",
+                "error-container": "#ffdad6",
+                "surface-container-high": "#e9e8e4",
+                "background": "#faf9f5",
+                "secondary-fixed": "#c8ebcf",
+                "moss-green": "#386641",
+                "error": "#ba1a1a",
+                "on-secondary": "#ffffff",
+                "on-primary-fixed-variant": "#58432c",
+                "paper-white": "#FDFCF8",
+                "on-error": "#ffffff",
+                "surface-dim": "#dbdad6",
+                "tertiary-fixed": "#ece2c9",
+                "on-error-container": "#93000a",
+                "surface-tint": "#725a42",
+                "tertiary-fixed-dim": "#cfc6ae",
+                "primary-fixed": "#feddbe",
+                "on-surface-variant": "#4e453d",
+                "inverse-primary": "#e1c1a3",
+                "surface-container": "#efeeea",
+                "on-secondary-fixed-variant": "#2f4d39",
+                "primary-container": "#33210d",
+                "surface-container-low": "#f4f4f0",
+                "outline-variant": "#d2c4b9",
+                "on-tertiary": "#ffffff",
+                "on-primary-fixed": "#291805",
+                "secondary": "#46654f",
+                "outline": "#80756c",
+                "outline-muted": "rgba(128, 117, 108, 0.2)",
+                "primary-fixed-dim": "#e1c1a3",
+                "on-primary-container": "#a3876c",
+                "on-tertiary-fixed-variant": "#4c4634",
+                "on-tertiary-fixed": "#201b0c",
+                "on-background": "#1b1c1a",
+                "primary": "#1b0c00",
+                "on-tertiary-container": "#938c76",
+                "tertiary-container": "#292515",
+                "inverse-surface": "#2f312e"
+            },
+            "fontFamily": {
+                "headline-lg-mobile": ["EB Garamond"],
+                "label-caps": ["JetBrains Mono"],
+                "body-lg": ["Manrope"],
+                "label-md": ["JetBrains Mono"],
+                "headline-md": ["EB Garamond"],
+                "headline-xl": ["EB Garamond"],
+                "body-md": ["Manrope"],
+                "headline-lg": ["EB Garamond"]
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+        .sela-line { height: 1px; background-color: rgba(128, 117, 108, 0.2); }
+        .grain { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; opacity: 0.04; background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png"); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: #d2c4b9; border-radius: 10px; }
+        .fade-in-smooth { animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+    <div class="grain"></div>
+    <div class="flex min-h-screen">
+        
+        <aside class="h-screen w-64 fixed left-0 top-0 bg-surface-container-low border-r border-outline-variant/50 flex flex-col py-6 px-4 gap-4 z-40 hidden md:flex">
+            <div class="flex items-center gap-3 px-2 mb-8">
+                <div class="w-10 h-10 bg-deep-espresso rounded-lg flex items-center justify-center text-heritage-cream">
+                    <span class="material-symbols-outlined">coffee</span>
+                </div>
+                <div>
+                    <h1 class="text-[20px] font-headline-sm text-headline-sm font-bold text-primary leading-tight">Sela Cafe</h1>
+                    <p class="font-label-caps text-[10px] text-on-surface-variant tracking-widest opacity-70">PREMIUM MANAGEMENT</p>
+                </div>
+            </div>
+            <nav class="flex-1 space-y-1">
+                <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 active:opacity-80 group" href="dashboard.html">
+                    <span class="material-symbols-outlined">dashboard</span><span class="font-label-caps text-label-caps">Overview</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 active:opacity-80 group" href="manage-menu.html">
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">restaurant</span><span class="font-label-caps text-label-caps">Menu</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 active:opacity-80 group" href="performance.html">
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">monitoring</span><span class="font-label-caps text-label-caps">Performance</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 active:opacity-80 group" href="manage-promo.html">
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">percent</span><span class="font-label-caps text-label-caps">Promo</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 active:opacity-80 group" href="manage-career.html">
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">work_outline</span><span class="font-label-caps text-label-caps">Careers</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2.5 bg-secondary-container text-on-secondary-container rounded-lg font-bold transition-transform duration-200 active:opacity-80 group" href="manage-location.html">
+                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">location_on</span><span class="font-label-caps text-label-caps">Locations</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 active:opacity-80 group" href="manage-user.html">
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">person</span><span class="font-label-caps text-label-caps">Users</span>
+                </a>
+            </nav>
+            <div class="mt-auto space-y-1">
+                <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 active:opacity-80 group" href="#">
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">settings</span>
+                    <span class="font-label-caps text-label-caps">Settings</span>
+                </a>
+                <button onclick="window.logout()" class="w-full mt-4 bg-deep-espresso text-paper-white py-3 px-4 rounded-lg font-label-caps text-[12px] flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all cursor-pointer">
+                    <span class="material-symbols-outlined text-[18px]">logout</span> Log Out
+                </button>
+            </div>
+        </aside>
+
+        <main class="flex-1 md:ml-64 relative bg-paper-white">
+            <header class="sticky top-0 w-full h-16 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 flex justify-between items-center px-6 md:px-8 z-30">
+                <h2 class="font-headline-md text-[24px] font-bold text-primary">Manage Locations</h2>
+                <button onclick="openAddLocationModal()" class="bg-primary text-white text-xs font-label-caps tracking-widest px-4 py-2 rounded-lg flex items-center gap-2 hover:opacity-90 transition-all">
+                    <span class="material-symbols-outlined text-sm">add</span> Add Branch
+                </button>
+            </header>
+
+            <div class="max-w-[1280px] mx-auto p-6 md:p-10">
+                <section class="mb-12 border-b border-outline-variant/30 pb-6">
+                    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                        <div id="location-tabs-container" class="flex items-center gap-6 overflow-x-auto no-scrollbar pb-1">
+                            <button onclick="filterAdminLocation('all', this)" class="font-label-caps text-[12px] text-primary border-b-2 border-primary pb-2 whitespace-nowrap cursor-pointer">All Branches</button>
+                            <button onclick="filterAdminLocation('open', this)" class="font-label-caps text-[12px] text-on-surface-variant hover:text-primary transition-colors pb-2 whitespace-nowrap cursor-pointer">Operating</button>
+                            <button onclick="filterAdminLocation('closed', this)" class="font-label-caps text-[12px] text-on-surface-variant hover:text-primary transition-colors pb-2 whitespace-nowrap cursor-pointer">Closed</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <div id="admin-location-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="col-span-full text-center py-12 text-outline font-label-caps">Loading locations data...</div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add/Edit Location Modal -->
+    <div id="location-modal" class="fixed inset-0 bg-deep-espresso/50 backdrop-blur-sm z-[250] flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300">
+        <div class="bg-paper-white border border-outline-variant/30 w-full max-w-2xl mx-4 p-8 shadow-2xl relative transition-all duration-300 transform scale-95 translate-y-4" id="location-modal-content">
+            <button onclick="closeLocationModal()" class="absolute top-6 right-6 text-on-surface-variant hover:text-deep-espresso transition-colors p-2 hover:bg-surface-container rounded-full cursor-pointer">
+                <span class="material-symbols-outlined text-[22px]">close</span>
+            </button>
+            <h3 id="location-modal-title" class="font-headline-md text-[24px] text-deep-espresso mb-6">Add New Branch</h3>
+            <div class="sela-line mb-6"></div>
+            <form id="location-form" onsubmit="saveLocation(event)" class="space-y-4 max-h-[70vh] overflow-y-auto pr-2 custom-scrollbar">
+                <input type="hidden" id="location-id">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block font-label-caps text-[10px] text-outline mb-1">BRANCH NAME</label>
+                        <input type="text" id="location-name" required class="w-full bg-surface border border-outline-variant focus:border-primary focus:ring-0 rounded-lg p-2 text-sm" placeholder="e.g. Sela Cafe - Dago">
+                    </div>
+                    <div>
+                        <label class="block font-label-caps text-[10px] text-outline mb-1">CITY</label>
+                        <input type="text" id="location-city" required class="w-full bg-surface border border-outline-variant focus:border-primary focus:ring-0 rounded-lg p-2 text-sm" placeholder="e.g. Bandung">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block font-label-caps text-[10px] text-outline mb-1">ADDRESS (ID)</label>
+                        <textarea id="location-address-id" rows="2" required class="w-full bg-surface border border-outline-variant focus:border-primary focus:ring-0 rounded-lg p-2 text-sm" placeholder="Alamat Bahasa Indonesia"></textarea>
+                    </div>
+                    <div>
+                        <label class="block font-label-caps text-[10px] text-outline mb-1">ADDRESS (EN)</label>
+                        <textarea id="location-address-en" rows="2" required class="w-full bg-surface border border-outline-variant focus:border-primary focus:ring-0 rounded-lg p-2 text-sm" placeholder="Address in English"></textarea>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block font-label-caps text-[10px] text-outline mb-1">PHONE NUMBER</label>
+                        <input type="text" id="location-phone" required class="w-full bg-surface border border-outline-variant focus:border-primary focus:ring-0 rounded-lg p-2 text-sm" placeholder="e.g. +62 812-3456-7890">
+                    </div>
+                    <div>
+                        <label class="block font-label-caps text-[10px] text-outline mb-1">OPEN HOURS</label>
+                        <input type="text" id="location-open-hours" required class="w-full bg-surface border border-outline-variant focus:border-primary focus:ring-0 rounded-lg p-2 text-sm" placeholder="e.g. 08:00 - 22:00">
+                    </div>
+                </div>
+                <div>
+                    <label class="block font-label-caps text-[10px] text-outline mb-1">GOOGLE MAPS URL</label>
+                    <input type="url" id="location-maps-url" required class="w-full bg-surface border border-outline-variant focus:border-primary focus:ring-0 rounded-lg p-2 text-sm" placeholder="https://maps.google.com/...">
+                </div>
+                <div>
+                    <label class="block font-label-caps text-[10px] text-outline mb-1">IMAGE URL</label>
+                    <input type="url" id="location-image-url" required class="w-full bg-surface border border-outline-variant focus:border-primary focus:ring-0 rounded-lg p-2 text-sm" placeholder="https://images.unsplash.com/...">
+                </div>
+                <div class="flex items-center gap-2 py-2">
+                    <input type="checkbox" id="location-is-open" class="rounded border-outline-variant text-moss-green focus:ring-moss-green">
+                    <label for="location-is-open" class="font-label-caps text-[12px] text-deep-espresso cursor-pointer select-none">Active / Operating</label>
+                </div>
+                <div class="sela-line my-6"></div>
+                <div class="flex justify-end gap-3">
+                    <button type="button" onclick="closeLocationModal()" class="border border-outline-variant text-on-surface-variant font-label-caps text-xs px-6 py-3 rounded-lg hover:bg-surface-container transition-all">Cancel</button>
+                    <button type="submit" class="bg-primary text-white font-label-caps text-xs px-6 py-3 rounded-lg hover:opacity-90 transition-all">Save Branch</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../assets/js/components.js"></script>
+    <script src="../assets/js/admin/manage-location.js"></script>
+</body>
+</html>

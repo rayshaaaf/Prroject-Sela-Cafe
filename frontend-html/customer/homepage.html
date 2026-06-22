@@ -1,250 +1,386 @@
 <!DOCTYPE html>
-
-<html class="scroll-smooth" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Sela Cafe | The Art of Coffee Management</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&amp;family=Manrope:wght@300;400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<!-- Tailwind Configuration -->
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "secondary-container": "#c5e8cc",
-                    "heritage-cream": "#F2E8CF",
-                    "inverse-primary": "#e1c1a3",
-                    "background": "#faf9f5",
-                    "secondary-fixed-dim": "#adcfb4",
-                    "deep-espresso": "#2A1B0E",
-                    "surface-container-low": "#f4f4f0",
-                    "primary": "#1b0c00",
-                    "on-tertiary-container": "#938c76",
-                    "surface-container": "#efeeea",
-                    "surface-bright": "#faf9f5",
-                    "primary-container": "#33210d",
-                    "surface-tint": "#725a42",
-                    "error-container": "#ffdad6",
-                    "tertiary": "#141003",
-                    "primary-fixed": "#feddbe",
-                    "surface": "#faf9f5",
-                    "primary-fixed-dim": "#e1c1a3",
-                    "tertiary-fixed": "#ece2c9",
-                    "on-primary": "#ffffff",
-                    "on-surface": "#1b1c1a",
-                    "surface-container-high": "#e9e8e4",
-                    "tertiary-container": "#292515",
-                    "on-background": "#1b1c1a",
-                    "tertiary-fixed-dim": "#cfc6ae",
-                    "on-secondary-container": "#4a6a53",
-                    "on-error-container": "#93000a",
-                    "on-error": "#ffffff",
-                    "on-tertiary-fixed": "#201b0c",
-                    "outline": "#80756c",
-                    "secondary": "#46654f",
-                    "on-tertiary": "#ffffff",
-                    "surface-dim": "#dbdad6",
-                    "on-primary-fixed-variant": "#58432c",
-                    "surface-variant": "#e3e2df",
-                    "on-tertiary-fixed-variant": "#4c4634",
-                    "outline-variant": "#d2c4b9",
-                    "surface-container-lowest": "#ffffff",
-                    "outline-muted": "rgba(128, 117, 108, 0.2)",
-                    "moss-green": "#386641",
-                    "secondary-fixed": "#c8ebcf",
-                    "on-primary-fixed": "#291805",
-                    "surface-container-highest": "#e3e2df",
-                    "on-secondary-fixed": "#022110",
-                    "error": "#ba1a1a",
-                    "inverse-on-surface": "#f2f1ed",
-                    "on-surface-variant": "#4e453d",
-                    "on-secondary-fixed-variant": "#2f4d39",
-                    "inverse-surface": "#2f312e",
-                    "paper-white": "#FDFCF8",
-                    "on-primary-container": "#a3876c",
-                    "on-secondary": "#ffffff"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
-            },
-            "spacing": {
-                    "container-max": "1280px",
-                    "unit": "4px",
-                    "margin-mobile": "24px",
-                    "section-padding": "8rem",
-                    "gutter": "24px",
-                    "margin-desktop": "80px"
-            },
-            "fontFamily": {
-                    "label-caps": ["JetBrains Mono"],
-                    "body-lg": ["Manrope"],
-                    "body-md": ["Manrope"],
-                    "label-md": ["JetBrains Mono"],
-                    "headline-xl": ["EB Garamond"],
-                    "headline-lg-mobile": ["EB Garamond"],
-                    "headline-md": ["EB Garamond"],
-                    "headline-lg": ["EB Garamond"]
-            },
-            "fontSize": {
-                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
-                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
-                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
-                    "headline-xl": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "500"}],
-                    "headline-lg-mobile": ["32px", {"lineHeight": "38px", "fontWeight": "500"}],
-                    "headline-md": ["28px", {"lineHeight": "34px", "fontWeight": "500"}],
-                    "headline-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "500"}]
+<html class="scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>SELA CAFE | Premium Coffee Crafting & Ordering</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#1c1c18",
+                        "inverse-surface": "#31312d",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#f3f0ea",
+                        "surface": "#fcf9f3",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#fcf9f3",
+                        "surface-container-low": "#f6f3ed",
+                        "on-secondary-fixed": "#03210f",
+                        "tertiary-container": "#54330c",
+                        "tertiary": "#391e00",
+                        "paper-white": "#FDFCF8",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#59422c",
+                        "on-tertiary-fixed": "#2c1600",
+                        "secondary-fixed": "#c8ebce",
+                        "on-error-container": "#93000a",
+                        "outline": "#80756c",
+                        "background": "#fcf9f3",
+                        "on-secondary-fixed-variant": "#2f4d38",
+                        "on-background": "#1c1c18",
+                        "tertiary-fixed": "#ffdcbd",
+                        "surface-tint": "#725a42",
+                        "on-tertiary-fixed-variant": "#623f18",
+                        "primary-fixed": "#fedcbe",
+                        "outline-variant": "#d2c4ba",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#bd9f83",
+                        "primary-container": "#4b3621",
+                        "surface-variant": "#e5e2dc",
+                        "surface-container-high": "#ebe8e2",
+                        "surface-container": "#f0eee8",
+                        "heritage-cream": "#F2E8CF",
+                        "surface-dim": "#dcdad4",
+                        "error-container": "#ffdad6",
+                        "surface-container-highest": "#e5e2dc",
+                        "primary": "#33210d",
+                        "deep-espresso": "#2A1B0E",
+                        "on-tertiary-container": "#cb9b6c",
+                        "primary-fixed-dim": "#e1c1a4",
+                        "secondary-container": "#c8ebce",
+                        "on-surface-variant": "#4e453d",
+                        "tertiary-fixed-dim": "#f0bd8b",
+                        "inverse-primary": "#e1c1a4",
+                        "on-primary-fixed": "#291806",
+                        "secondary": "#46654f",
+                        "secondary-fixed-dim": "#adcfb3",
+                        "moss-green": "#386641",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#4c6b54"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "unit": "4px",
+                        "gutter": "24px",
+                        "margin-desktop": "80px",
+                        "margin-mobile": "24px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Manrope", "sans-serif"],
+                        "headline-lg": ["EB Garamond", "serif"],
+                        "headline-lg-mobile": ["EB Garamond", "serif"],
+                        "label-md": ["JetBrains Mono", "monospace"],
+                        "headline-xl": ["EB Garamond", "serif"],
+                        "headline-md": ["EB Garamond", "serif"],
+                        "body-lg": ["Manrope", "sans-serif"],
+                        "label-caps": ["JetBrains Mono", "monospace"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "38px", "fontWeight": "500"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-xl": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "500"}],
+                        "headline-md": ["28px", {"lineHeight": "34px", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}]
+                    }
+                }
             }
-          },
-        },
-      }
+        }
     </script>
-<style>
-        .sela-grain {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 9999;
-            opacity: 0.04;
-            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
-        }
-        .sela-line {
-            height: 1px;
-            background: rgba(42, 27, 14, 0.1);
-            width: 100%;
-        }
+    <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
         }
-        .dropdown-animate {
-            transform-origin: top right;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        .sela-line-h { height: 1px; width: 100%; background-color: rgba(128, 117, 108, 0.2); }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
         }
-        .reveal-on-scroll {
+        .grain-overlay {
+            pointer-events: none;
+            position: fixed;
+            inset: 0;
+            z-index: 50;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        .modal-enter {
             opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.8s ease-out;
+            transform: scale(0.95) translateY(12px);
         }
-        .reveal-on-scroll.active {
-            opacity: 1;
-            transform: translateY(0);
+        .modal-show {
+            opacity: 1 !important;
+            transform: scale(1) translateY(0) !important;
+        }
+        #sela-modal-body::-webkit-scrollbar {
+            width: 4px;
+        }
+        #sela-modal-body::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.03);
+        }
+        #sela-modal-body::-webkit-scrollbar-thumb {
+            background: #33210d;
+            border-radius: 10px;
         }
     </style>
 </head>
-<body class="bg-paper-white text-deep-espresso selection:bg-heritage-cream font-body-md overflow-x-hidden">
-<div class="sela-grain"></div>
-<div id="navbar-placeholder"></div>
-<!-- Hero Section -->
-<section class="relative h-[921px] flex flex-col justify-center items-center overflow-hidden">
-<div class="absolute inset-0 z-0">
-<img class="w-full h-full object-cover scale-105" data-alt="A cinematic, low-angle shot of a master barista pouring steamed milk into a dark ceramic cup. The background is a softly blurred architectural space with warm wood textures and subtle dust motes dancing in sunbeams." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvl9UVWS7qhcdlefNp01RPoye-OuUG8VR-sNQUjMC-eEwZ_JM4MKYCAdiMqowES-Pbswj2YAhcSrixLA96wqIwe1eUNUk1n8KdZ5i7cTJrYF09Org1F5i4Lyage73P8LRfRRqS0n65VabIe2VZHBUCdagieIKPCfxeaBZ3ami4G260w1LPjiP56ipHBettNJaIHJlbtPXwAAfruWx6ZW40-Dg0mnCI0t_z_aINarp1w9pw-mVaQ1TKvEBqRSf6Mln8At-eXZYsvvCY"/>
-<div class="absolute inset-0 bg-black/30 mix-blend-multiply"></div>
-</div>
-<div class="relative z-10 text-center max-w-4xl px-margin-mobile">
-<div class="reveal-on-scroll active">
-<span class="font-label-caps text-label-caps text-heritage-cream mb-6 block tracking-widest">ESTABLISHED 1924</span>
-<h1 class="font-headline-xl text-headline-xl text-white mb-4">The Art of Coffee Management</h1>
-<p id="welcome-message" class="font-body-lg text-body-lg text-heritage-cream/90 mb-8 max-w-2xl mx-auto italic">"Welcome back, Guest."</p>
-<div class="flex flex-col md:flex-row gap-4 justify-center items-center">
-<button class="px-8 py-4 bg-deep-espresso text-white font-label-caps text-label-caps hover:bg-primary transition-all active:scale-95">RESERVE MY TABLE</button>
-<button class="px-8 py-4 border border-white text-white font-label-caps text-label-caps hover:bg-white hover:text-deep-espresso transition-all active:scale-95">EXPLORE THE CRAFT</button>
-</div>
-</div>
-</div>
-</section>
-<!-- Signature Stories -->
-<section class="bg-paper-white py-section-padding px-10 md:px-margin-desktop">
-<div class="max-w-[1280px] mx-auto text-center mb-20">
-<span class="font-label-caps text-label-caps text-outline mb-4 block">OUR PHILOSOPHY</span>
-<h2 class="font-headline-lg text-headline-lg text-deep-espresso">Crafted for the Conscious Mind</h2>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-[1280px] mx-auto">
-<div class="reveal-on-scroll">
-<div class="aspect-[4/5] bg-surface-container mb-8 overflow-hidden">
-<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 hover:scale-105" data-alt="Close up of a hand picking coffee beans" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6mKhrmu-0ldLebUFmAF7QeSh1gT2sxO51u5-EPImU8EuWN1mgMRp8Rjnup1a1rWbCnK8FHY_qS9k0oGmEZes38N0AxE69fJhaONovlNRYax9p9xMbaLV5PtfCbaTSKsqXP6meAHl4yk3b0Qhl_o63zXz125O8RF6TGbcRVZgPVIDFy87WqwJsW1QHImmhKzLkmrmQ9N1dcXM6owalFNGs1zxy11HVIP8iBvJC9R6HHiL3yxsx7l5XDc7SRHmzJxRd-_uCOUc8LGFW"/>
-</div>
-<h3 class="font-headline-md text-headline-md mb-4 text-deep-espresso">Signature Stories</h3>
-<p class="font-body-md text-on-surface-variant leading-relaxed">Each bean carries the whisper of the altitude it was grown in. We honor that narrative in every roast.</p>
-</div>
-<div class="reveal-on-scroll" style="transition-delay: 200ms;">
-<div class="aspect-[4/5] bg-surface-container mb-8 overflow-hidden">
-<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 hover:scale-105" data-alt="Artisanal coffee brewing equipment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqi8jRofiVhdiMw8RAlI8VhL6iD-B8ElxRObioeZa2MYyL3wYjfZYWP3__Xm5W1B94Ur9A8pWcR4hRTiz174fp7Fdc7WwlOPi6q-0_GoVa7fz--bh87A_01AvBPFLR-GQbNNeIgM7j59aVs7WFzXSwQ8YHwhpMYcz3SElsgYeNDf3ArEMZZcHQkzxmalR7s3nB9hWZbgzznumCeoCYrnmxS_fTevgVNnhtcBRDflv9CMI5ionZuhCyLwBqSVXU6MdKC6Lghy15WqsC"/>
-</div>
-<h3 class="font-headline-md text-headline-md mb-4 text-deep-espresso">Real-Time Precision</h3>
-<p class="font-body-md text-on-surface-variant leading-relaxed">Temperature controlled to the decimal. Timing honed by decades. Precision is our greatest respect for the craft.</p>
-</div>
-<div class="reveal-on-scroll" style="transition-delay: 400ms;">
-<div class="aspect-[4/5] bg-surface-container mb-8 overflow-hidden">
-<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 hover:scale-105" data-alt="Minimalist cafe interior" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDy9V6In7HOqFBNttpi7ru1nyPxSr4rD6Tt6OpyCQqU61YahELRkATo3G4ey5oVYk1zTIs8AQPUrRVj7Y66mt9ZjaUTbZx-ypuh9NVLv305C_ojjrr7S2qUe9LkfT0PEo2IvF7sQ0BRrNjq_jdZHmYfT294D80E2z9JGswM9NoN9Dn8YOOajizf7ctTRyQPCsymt37rw_2bnimwSGjphSpvx0j6h-hFAeWIOgwOxAui1dCQIi9qwK4hvlRHDokh9UoreyI8mYjxYBqM"/>
-</div>
-<h3 class="font-headline-md text-headline-md mb-4 text-deep-espresso">Sela Journal</h3>
-<p class="font-body-md text-on-surface-variant leading-relaxed">A repository of knowledge for the curious enthusiast. Explore the biology and poetry of coffee.</p>
-</div>
-</div>
-</section>
-<!-- My Orders Section -->
-<section class="bg-surface py-section-padding border-t border-outline-muted">
-<div class="max-w-[1280px] mx-auto px-10 md:px-margin-desktop">
-<div class="flex items-end justify-between mb-12 reveal-on-scroll">
-<div>
-<span class="font-label-caps text-label-caps text-outline mb-4 block">ACCOUNT OVERVIEW</span>
-<h2 class="font-headline-lg text-headline-lg text-deep-espresso">My Orders</h2>
-</div>
-<a class="font-label-caps text-label-caps text-deep-espresso border-b border-deep-espresso hover:opacity-70 transition-opacity pb-1 mb-2" href="#">VIEW FULL HISTORY</a>
-</div>
-<div class="bg-paper-white border border-outline-muted overflow-hidden reveal-on-scroll">
-<div class="overflow-x-auto">
-<table class="w-full text-left border-collapse">
-<thead>
-<tr class="bg-surface-container border-b border-outline-muted">
-<th class="py-5 px-8 font-label-caps text-label-caps text-on-surface-variant">ORDER #</th>
-<th class="py-5 px-8 font-label-caps text-label-caps text-on-surface-variant">DATE</th>
-<th class="py-5 px-8 font-label-caps text-label-caps text-on-surface-variant">STATUS</th>
-<th class="py-5 px-8 font-label-caps text-label-caps text-on-surface-variant">TOTAL</th>
-<th class="py-5 px-8 font-label-caps text-label-caps text-on-surface-variant text-right">ACTION</th>
-</tr>
-</thead>
-<tbody id="orders-tbody" class="font-body-md text-deep-espresso">
-<!-- Dynamic orders injected here by customer-home.js -->
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</section>
-<div id="footer-placeholder"></div>
-<script src="../assets/js/components.js"></script>
-<script src="../assets/js/customer/customer-home.js"></script>
-<script>
-        // Simple Intersection Observer for scroll reveal animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden mb-0">
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, observerOptions);
+    <div id="navbar-placeholder"></div>
 
-        document.querySelectorAll('.reveal-on-scroll').forEach((el) => observer.observe(el));
+    <main>
+        <section class="relative min-h-[921px] flex flex-col items-center justify-center pt-20 px-8 md:px-20 overflow-hidden bg-surface-container-low">
+            <div class="max-w-[1280px] w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center z-10">
+                <div class="lg:col-span-6 flex flex-col gap-8">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">account_circle</span>
+                        <span class="font-label-caps text-label-caps uppercase tracking-[0.2em] text-primary">Welcome back, <span id="user-name" class="font-bold border-b border-primary">Nama Pengguna</span></span>
+                    </div>
+                    
+                    <h1 class="font-headline-xl text-headline-xl text-deep-espresso leading-tight mt-2">
+                        The Art of <br/><span class="italic font-normal">Coffee Ordering</span>
+                    </h1>
+                    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                        Explore our selection of farm-certified single origins and signature espresso blends. Order directly through our secure platform for quick counter pickup or tableside delivery.
+                    </p>
+                    <div class="flex gap-4 items-center mt-2">
+                        <button id="btn-experience-blend" class="bg-primary text-paper-white px-8 py-4 font-label-caps text-label-caps uppercase tracking-widest hover:bg-deep-espresso transition-all cursor-pointer">
+                            Order Our Coffee
+                        </button>
+                        <button id="btn-methodology" class="border border-primary text-primary px-8 py-4 font-label-caps text-label-caps uppercase tracking-widest hover:bg-primary hover:text-paper-white transition-all cursor-pointer">
+                            My Orders
+                        </button>
+                    </div>
+                </div>
+                <div class="lg:col-span-6 relative">
+                    <div class="aspect-[4/5] w-full bg-heritage-cream border border-outline-variant/30 overflow-hidden">
+                        <img class="w-full h-full object-cover grayscale-[0.2] contrast-[1.1]" alt="Espresso machine" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACsYqDamp1L6ka9Fc4nmOJmCVShgS3Ly-dFHQkNWaHsPxvgp6y91eHMz58X90dT_8OA0dN4gkNZ_w7MuV84Z0chdgYM-C8S7AaUNGqa0g6AquSxU0CQNmc-1ZLG6fxs_VNlQObJK6mgf5ccHEqf5UkR1IPIRa5iOR2OvKjgtGW5iZaTHV3CmLVbCU2maGeT-zlxDO_sfGIgF0bru06kS9jyrbw3lQl6J2cjbO0bcRC8YH7mX10eOgtsVcXsjJt5f6TWUbrWjYtbwLv"/>
+                    </div>
+                    <div class="absolute -bottom-10 -left-10 bg-paper-white border border-outline-variant/20 p-8 hidden md:block max-w-[240px] shadow-sm rounded-xl">
+                        <span class="font-label-caps text-[10px] uppercase text-outline tracking-widest block mb-2">Technical Specification</span>
+                        <p class="font-label-md text-label-md text-primary leading-relaxed">Pressure: 9.2 Bar<br/>Temp: 93.5°C<br/>Extraction: 28s</p>
+                        <div class="sela-line-h my-4"></div>
+                        <p class="font-body-md text-body-md italic text-on-surface-variant">Precision in every drip.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute top-0 right-0 w-1/3 h-full bg-surface-container border-l border-outline-variant/10 -z-0"></div>
+        </section>
 
-        // Parallax effect for hero
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const heroImg = document.querySelector('section img');
-            if (heroImg) {
-                heroImg.style.transform = `scale(1.05) translateY(${scrolled * 0.1}px)`;
-            }
-        });
-    </script>
-</body></html>
+        <section class="py-32 px-8 md:px-20 max-w-[1280px] mx-auto">
+            <div class="mb-20 text-center flex flex-col items-center">
+                <span class="font-label-caps text-label-caps text-moss-green mb-4">THE SELA NARRATIVE</span>
+                <h2 class="font-headline-lg text-headline-lg text-deep-espresso">Signature Stories</h2>
+                <div class="sela-line-h w-24 mt-8 bg-primary/30"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="flex flex-col gap-6">
+                    <div class="aspect-square bg-surface-container border border-outline-variant/20 overflow-hidden group">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Heritage Pour" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaScAXuaEyC3NJNX_fU_UtX6jmGMwAPFlhJM2IwdHilOCl5NceVVOSJHmS42l2HRzjrqDrZg2GfGSgpfEHVPClLuSFsbgvtF1f0Bfwpw1mggWZVtH4z6bvi17KLOfW-USXC8IHATbXTfUtuWxf1VnvwuY7hauPocFVIXGKFWl_PP2Dg_BceVd_EwlHb-mlqrh6iGUCCU2FePsn9_jaNJ9QDeM3iNQatSMi5SpF_EKgIywvQgjHMntJ0qhiG7ED-FlV4uT1cez7aS2b"/>
+                    </div>
+                    <h3 class="font-headline-md text-headline-md text-primary">The Heritage Pour</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant">A revival of the 1924 manual pour technique, perfected with contemporary thermal insights. A bridge between coffee eras.</p>
+                    <button onclick="openFooterModal('story_heritage')" class="font-label-md text-label-md text-primary flex items-center gap-2 group cursor-pointer text-left bg-transparent border-none p-0">
+                        <span>Read Story</span> <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    </button>
+                </div>
+                
+                <div class="flex flex-col gap-6 md:translate-y-12">
+                    <div class="aspect-square bg-surface-container border border-outline-variant/20 overflow-hidden group">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Roasting Beans" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuE1CotJmLr80TMb5HH9nQMaDXrGrRe0YlE37MWVvqUWhc7IglPuUV9ctit35IRO9pcRJpCRNETLPRsDQ1OA55gk2TUqi4uamTeYRkAA6ppE9DUtiKvPVzFFil-SFLygUNsWChsOrXmwiooiQXFtM-xUQATEhrxORtkbXQROfLrdTzvX2x2R6ZQJjJowsw1HxouVLfzn3lysbG6y_V8k0VJYW1COd8zpzBYZ1qA8_tSX_AtktXsnU6JkGKZ8ltAwCOrWEjW21lN5cD"/>
+                    </div>
+                    <h3 class="font-headline-md text-headline-md text-primary">Umber & Archive</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant">Exploring the absolute chemistry of the roast through historical temperature logs. Science meets roasting intuition.</p>
+                    <button onclick="openFooterModal('story_umber')" class="font-label-md text-label-md text-primary flex items-center gap-2 group cursor-pointer text-left bg-transparent border-none p-0">
+                        <span>Read Story</span> <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    </button>
+                </div>
+                
+                <div class="flex flex-col gap-6">
+                    <div class="aspect-square bg-surface-container border border-outline-variant/20 overflow-hidden group">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Cafe Interior" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWGuoPOFMfTE5xedCRcJrhrGhNXZ1kN80JnXK3RVS-chrba1HuFUdSgwMeqpBsaYVu70jo0w_jEArUESnyOlOdchg7PX4FjMC8C35HNbEVVP0N5lppg2FxuEUq9M-jDxPwopOIVqv6P9jckfI74M1OWVP1xCHFQWxTFbwHXudZK22_XIRkNGrJEjpAaX1kCZeMYPthRBlU0eCtEv9G5nNrcenlytFE5tirLR6j7j9ileVp8nfzh4BE4ygSgv3Ikx5-6sb-hMiWZXu7"/>
+                    </div>
+                    <h3 class="font-headline-md text-headline-md text-primary">The Third Space</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant">Designing cozy, thoughtful environments that facilitate slow conversations. Architecture acting as a brewing variable.</p>
+                    <button onclick="openFooterModal('story_space')" class="font-label-md text-label-md text-primary flex items-center gap-2 group cursor-pointer text-left bg-transparent border-none p-0">
+                        <span>Read Story</span> <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-on-surface py-32 overflow-hidden">
+            <div class="max-w-[1280px] mx-auto px-8 md:px-20">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                    <div class="relative h-[500px]">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="bg-surface/10 backdrop-blur-md border border-paper-white/20 p-12 text-paper-white text-center rounded-full">
+                                <span class="font-label-caps text-label-caps uppercase tracking-widest text-primary-fixed">Order Status</span>
+                                <div class="text-[80px] font-headline-lg my-4">Live</div>
+                                <p class="font-label-md text-label-md">Real-Time Processing System</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-8 text-paper-white">
+                        <span class="font-label-caps text-label-caps text-tertiary-fixed tracking-widest uppercase">Live Dispatch</span>
+                        <h2 class="font-headline-lg text-headline-lg">Real-Time Order Processing</h2>
+                        <p class="font-body-lg text-body-lg text-surface-variant/80">
+                            Track the life cycle of your drink transparently. Our interconnected order tracking system notifies you the exact millisecond your cup moves from grinding parameters to final bar dispatch.
+                        </p>
+                        <ul class="flex flex-col gap-6 mt-4">
+                            <li class="flex items-center gap-4 border-b border-paper-white/10 pb-4">
+                                <span class="material-symbols-outlined text-tertiary-fixed">coffee</span>
+                                <span class="font-label-md text-label-md uppercase tracking-wide">Live Barista Status Monitoring</span>
+                            </li>
+                            <li class="flex items-center gap-4 border-b border-paper-white/10 pb-4">
+                                <span class="material-symbols-outlined text-tertiary-fixed">shopping_bag</span>
+                                <span class="font-label-md text-label-md uppercase tracking-wide">Seamless Counter Pickup</span>
+                            </li>
+                            <li class="flex items-center gap-4 border-b border-paper-white/10 pb-4">
+                                <span class="material-symbols-outlined text-tertiary-fixed">receipt_long</span>
+                                <span class="font-label-md text-label-md uppercase tracking-wide">Digital Ledger of Orders</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-32 px-8 md:px-20 max-w-[1280px] mx-auto">
+            <div class="mb-16">
+                <h2 class="font-headline-lg text-headline-lg text-deep-espresso mb-4">Operations & Benefits</h2>
+                <div class="sela-line-h mb-12"></div>
+            </div>
+            <div class="bento-grid">
+                <div class="col-span-12 lg:col-span-8 bg-heritage-cream/30 border border-outline-variant/30 p-10 flex flex-col justify-between min-h-[400px] rounded-xl">
+                    <div>
+                        <span class="font-label-caps text-label-caps text-moss-green block mb-4 uppercase tracking-widest">Sela Roastery</span>
+                        <h3 class="font-headline-md text-headline-md text-primary mb-6">Artisan Micro-Lot Showcases</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant max-w-lg">
+                            Step behind the counter. Explore our current season of exceptional single-origin beans, hand-selected from high-altitude equatorial micro-lots and roasted daily under strict thermodynamic parameters.
+                        </p>
+                    </div>
+                    <div class="flex items-end justify-between mt-12">
+                        <div class="flex -space-x-4">
+                            <div class="w-12 h-12 rounded-full border-2 border-surface overflow-hidden bg-surface-container">
+                                <img class="w-full h-full object-cover" alt="Barista" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfVLoh3IHgRy6Tl456O4f0Tcz1XIHDPRsLx1ob-6_vi0kwpC3eflW9PBYNBjZLd9J0RRxa4rxNG4In9socsNEWh5t4xFOagz3OTGmSQawZYcn555pPu435ZgP-gg1XaVf6OxB4WF2B8LEeRBGJJVWLIYMQPmZ1fGRTHlcrNE2nvKUAqcifqxfRVmYpHJDD0xFkh0k9JzK6XBaELZAxqRHMpoXsU2BaHLjawfGIxdd-6o_oJu_D0vUx9rKCm2ilSGPOJ5wfxgtbAE43"/>
+                            </div>
+                        </div>
+                        <button id="btn-explore-metrics" class="bg-primary text-paper-white px-6 py-3 font-label-caps text-label-caps uppercase tracking-widest cursor-pointer">Explore Our Roastery</button>
+                    </div>
+                </div>
+                
+                <div class="col-span-12 lg:col-span-4 bg-surface-container-high border border-outline-variant/30 p-10 flex flex-col justify-center rounded-xl">
+                    <span class="material-symbols-outlined text-[48px] text-primary mb-6">coffee_maker</span>
+                    <h3 class="font-headline-md text-headline-md text-primary mb-4">The Daily Grind</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant">Real-time commercial boiler health status across our main extraction bars to secure sensory consistency.</p>
+                    <div class="mt-8 flex flex-col gap-2">
+                        <div class="flex justify-between font-label-md text-[12px] uppercase">
+                            <span>Boiler Stability</span>
+                            <span>Optimal</span>
+                        </div>
+                        <div class="w-full h-1 bg-outline-variant/30">
+                            <div class="w-[92%] h-full bg-moss-green"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-span-12 md:col-span-4 border border-outline-variant/30 p-8 hover:bg-paper-white transition-colors">
+                    <h4 class="font-label-caps text-label-caps text-primary mb-4">Supply Chain</h4>
+                    <p class="font-body-md text-body-md text-on-surface-variant mb-6">100% Traceable single-origin beans sourced directly from fair-trade farmers and custom-roasted weekly.</p>
+                    <div class="h-32 bg-surface-container relative overflow-hidden">
+                        <img class="w-full h-full object-cover grayscale-[0.3]" alt="Coffee Farm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFcrzVLMjm3gzCAbKjSPGEf1X_pPnbEVQhPNDfNntcxVbW792ggmB_IgP8WE6_iSrSoNvPOOWvQDv2zLbeRbxY5ozA1Ov3yS5oHcv0omn3YaNFoxtpDt-68Yohs427KSh-nJI6buil9Lw9-2grbdGQ9hJEtPVUPDCvPBYlk55yz6sqwNsZXvb1D2dI6L0O99STTFXhV3leu_OxHE0FoeslLH-x1yA4SkziBl1bxxDWu5Fw3X54yX5VQN7PQn1DMp2Fa6lqfMf_O9JW"/>
+                    </div>
+                </div>
+                
+                <div class="col-span-12 md:col-span-4 border border-outline-variant/30 p-8 hover:bg-paper-white transition-colors">
+                    <h4 class="font-label-caps text-label-caps text-primary mb-4">Training Lab</h4>
+                    <p class="font-body-md text-body-md text-on-surface-variant mb-6">Every batch of espresso is strictly dialed-in daily by our certified baristas to guarantee optimal flavor maps.</p>
+                    <div class="h-32 bg-surface-container relative overflow-hidden">
+                        <img class="w-full h-full object-cover grayscale-[0.3]" alt="Latte Art" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJAUDbyd1w1YEsB_FNWkNskVCveb10Rq6XXPh0vIJ8Pxo92jD-AN5t2MFf4y4HWLD3lTSvSq7y0otC04XMhYzagR4lFpLCFE0G92W7uMMNux8jqdf1cujSmFuA6fwcIUFyxprxv_cHYudz-5nIU0kRV0RHEL3TOzW0xLsnso_Sf5RRnd2LHUzXv9GvdNJ5yexwPWKEWcEq1CF1KvPp7lNXb4kXkt-5qIXNILl0r4kFuNeHr6kXwg4KMEionecPAkPJM2t061TnZ4hV"/>
+                    </div>
+                </div>
+                
+                <div class="col-span-12 md:col-span-4 border border-outline-variant/30 p-8 bg-primary text-paper-white">
+                    <h4 class="font-label-caps text-label-caps text-primary-fixed mb-4">Sustainability</h4>
+                    <p class="font-body-md text-body-md mb-6">Eco initiatives: Reducing single-use waste footprints and executing grounds upcycling frameworks.</p>
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-[16px]">eco</span>
+                        <span class="font-label-md text-label-md">Report Published</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-surface-container-low py-32 px-8 md:px-20 overflow-hidden">
+            <div class="max-w-[1280px] mx-auto">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+                    <div class="max-w-2xl">
+                        <span class="font-label-caps text-label-caps text-primary uppercase tracking-[0.3em] block mb-4">The Anthology</span>
+                        <h2 class="font-headline-xl text-headline-xl text-deep-espresso">Sela Journal</h2>
+                    </div>
+                    <a class="font-label-caps text-label-caps uppercase tracking-widest text-primary border-b border-primary pb-1" href="#">View Archive</a>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-24">
+                    <article class="flex flex-col gap-8 group cursor-pointer">
+                        <div class="aspect-[16/9] overflow-hidden rounded-xl">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" alt="Journal 1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3ESLk3P-gbarwQm4Ids6mcxJG1PNwUTYU2-5lGaCdc45dsdjr8zgD7K2FTWNlVPXrfG-dUcM0oRjQYnTB-wVNE-A0H_xkePRshJT3d40QLSno4tZnWC4DWZ94Z4CmIWj3_C5iCzuvIw6fqiEoDh0biW20xYrnXzImDcTfmVfM7jFEUuJTexs2PrBfIhST5T2wXxlYj9awddXnYqCcdc8qZjjfPETlrosbReXChkHCerqtwJM6UzPeXWh_oBzIb-k3Uj1RwVWL7H6H"/>
+                        </div>
+                        <div class="flex flex-col gap-4">
+                            <span class="font-label-caps text-[12px] text-outline">Issue 04</span>
+                            <h3 class="font-headline-md text-headline-md group-hover:text-primary transition-colors">The Science of Manual Brew</h3>
+                            <p class="font-body-md text-body-md text-on-surface-variant">A technical guide on how grind size, water ratios, and pouring patterns completely reshape your morning cup.</p>
+                        </div>
+                    </article>
+                    <article class="flex flex-col gap-8 group cursor-pointer">
+                        <div class="aspect-[16/9] overflow-hidden rounded-xl">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" alt="Journal 2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxb41-OuM6YOZDCrr1Df5q-zBUS9zHwnMM2CdY-MQorXY2sil6Nj6qwEACcZqJHfdOpkE2j9WwIO5Ec1Kg6Ei8Y71k_ZF2Df9tfVi7NmfOCrcEtHhv-q4cJtOGWarmA-Nb2j5g0tlQ-A0ED3t_pEeeJSN-K69hPXGGa8mk6DvlqL4pTgcGS10O3zz-pSjXAeOH9IQ6FW9y5JadPeHn8w_GN_MC0VoDu5aRyJFXtgiIB73LgOSn2rhE-OV39RZV-mPJJh90xwQzbAHk"/>
+                        </div>
+                        <div class="flex flex-col gap-4">
+                            <span class="font-label-caps text-[12px] text-outline">Issue 03</span>
+                            <h3 class="font-headline-md text-headline-md group-hover:text-primary transition-colors">Perfecting the Microfoam</h3>
+                            <p class="font-body-md text-body-md text-on-surface-variant">Understanding how steaming temperatures control sweetness and silkiness in milk-based espresso drinks.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="relative py-32 px-8 md:px-20 overflow-hidden bg-surface-container-high">
+            <div class="max-w-[1280px] mx-auto flex flex-col items-center text-center relative z-10">
+                <span class="font-label-caps text-label-caps text-moss-green mb-4 tracking-[0.3em] uppercase">Join Our Team</span>
+                <h2 class="font-headline-xl text-headline-xl text-deep-espresso mb-8">We're Hiring</h2>
+                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-12">We are constantly seeking meticulous professionals who possess an intense alignment with specialty coffee standards and modern hospitality.</p>
+                <button id="btn-view-openings" class="bg-primary text-paper-white px-12 py-4 font-label-caps text-label-caps uppercase tracking-widest hover:bg-deep-espresso transition-all rounded-full cursor-pointer">
+                    View Openings
+                </button>
+            </div>
+            <div class="absolute inset-0 opacity-10 pointer-events-none">
+                <img class="w-full h-full object-cover grayscale" alt="Background hiring" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJAUDbyd1w1YEsB_FNWkNskVCveb10Rq6XXPh0vIJ8Pxo92jD-AN5t2MFf4y4HWLD3lTSvSq7y0otC04XMhYzagR4lFpLCFE0G92W7uMMNux8jqdf1cujSmFuA6fwcIUFyxprxv_cHYudz-5nIU0kRV0RHEL3TOzW0xLsnso_Sf5RRnd2LHUzXv9GvdNJ5yexwPWKEWcEq1CF1KvPp7lNXb4kXkt-5qIXNILl0r4kFuNeHr6kXwg4KMEionecPAkPJM2t061TnZ4hV"/>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="../assets/js/components.js"></script>
+    <script src="../assets/js/web/home.js"></script>
+</body>
+</html>

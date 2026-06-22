@@ -4,6 +4,7 @@ import com.selacafe.core_service.entity.Role;
 import com.selacafe.core_service.entity.User;
 import com.selacafe.core_service.payload.req.LoginReq;
 import com.selacafe.core_service.payload.req.RegisterReq;
+import com.selacafe.core_service.payload.req.GoogleLoginReq;
 import com.selacafe.core_service.payload.res.LoginRes;
 import com.selacafe.core_service.repository.RoleRepository;
 import com.selacafe.core_service.repository.UserRepository;
@@ -109,5 +110,82 @@ public class AuthServiceImpl implements AuthService {
 
                 return userRepository.findByEmail(email)
                                 .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        }
+
+        @Override
+        public LoginRes loginGoogle(GoogleLoginReq request) {
+                try {
+                        java.net.http.HttpClient client = java.net.http.HttpClient.newHttpClient();
+                        java.net.http.HttpRequest httpRequest = java.net.http.HttpRequest.newBuilder()
+                                        .uri(java.net.URI.create("https://oauth2.googleapis.com/tokeninfo?id_token=" + request.getToken()))
+                                        .GET()
+                                        .build();
+
+                        java.net.http.HttpResponse<String> response = client.send(httpRequest, java.net.http.HttpResponse.BodyHandlers.ofString());
+
+                        if (response.statusCode() != 200) {
+                                throw new UnauthorizedException("Invalid Google token or connection failure");
+                        }
+
+                        String body = response.body();
+                        com.fasterxml.jackson.databind.ObjectMapper mapper = new com.fasterxml.jackson.databind.ObjectMapper();
+                        com.fasterxml.jackson.databind.JsonNode jsonNode = mapper.readTree(body);
+
+                        String email = jsonNode.has("email") ? jsonNode.get("email").asText() : null;
+                        String name = jsonNode.has("name") ? jsonNode.get("name").asText() : "Google User";
+
+                        if (email == null || email.isEmpty()) {
+                                throw new UnauthorizedException("Google token did not provide a valid email");
+                        }
+
+                        if (jsonNode.has("email_verified") && !"true".equals(jsonNode.get("email_verified").asText())) {
+                                throw new UnauthorizedException("Google email is not verified");
+                        }
+
+                        User user = userRepository.findByEmail(email).orElse(null);
+
+                        if (user == null) {
+                                Role role = roleRepository.findByName("CUSTOMER")
+                                                .orElseThrow(() -> new ResourceNotFoundException("Role CUSTOMER not found"));
+
+                                user = User.builder()
+                                                .name(name)
+                                                .email(email)
+                                                .phone("")
+                                                .password(passwordEncoder.encode(java.util.UUID.randomUUID().toString()))
+                                                .role(role)
+                                                .isActive(true)
+                                                .createdAt(LocalDateTime.now())
+                                                .build();
+
+                                user = userRepository.save(user);
+                        }
+
+                        if (!Boolean.TRUE.equals(user.getIsActive())) {
+                                throw new UnauthorizedException("Account has been deactivated");
+                        }
+
+                        String roleName = user.getRole().getName();
+                        Long expiration = "CUSTOMER".equals(roleName) ? customerExpiration : staffExpiration;
+
+                        String selaToken = jwtUtil.generateToken(
+                                        user.getId(),
+                                        user.getEmail(),
+                                        roleName,
+                                        expiration);
+
+                        return LoginRes.builder()
+                                        .token(selaToken)
+                                        .name(user.getName())
+                                        .email(user.getEmail())
+                                        .role(roleName)
+                                        .build();
+
+                } catch (Exception e) {
+                        if (e instanceof UnauthorizedException) {
+                                throw (UnauthorizedException) e;
+                        }
+                        throw new BadRequestException("Google login failed: " + e.getMessage());
+                }
         }
 }

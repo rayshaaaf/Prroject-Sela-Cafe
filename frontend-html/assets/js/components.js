@@ -6,6 +6,14 @@
 const API_BASE_URL = `http://${window.location.hostname}:8090`;
 
 // ─── Global API Fetch Wrapper ─────────────────────────────────────────────────
+window.getLoginRedirectPath = function() {
+    const currentPath = window.location.pathname.toLowerCase();
+    if (currentPath.includes('/admin/') || currentPath.includes('/customer/') || currentPath.includes('/cashier/') || currentPath.includes('/kitchen/') || currentPath.includes('/courier/')) {
+        return '../web/login.html';
+    }
+    return 'login.html';
+};
+
 window.apiFetch = async function(path, options = {}) {
     const url = path.startsWith('http') ? path : `${API_BASE_URL}${path}`;
     const token = localStorage.getItem('token');
@@ -19,7 +27,7 @@ window.apiFetch = async function(path, options = {}) {
         const response = await fetch(url, options);
         if (response.status === 401) {
             localStorage.clear();
-            window.location.href = 'login.html';
+            window.location.href = window.getLoginRedirectPath();
         }
         return response;
     } catch (error) {
@@ -30,11 +38,17 @@ window.apiFetch = async function(path, options = {}) {
 
 // ─── Auth Helpers ─────────────────────────────────────────────────────────────
 window.isAuthenticated = function() { return !!localStorage.getItem('token'); };
+window.checkAdminAuth = function() {
+    const token = localStorage.getItem('token');
+    const role = localStorage.getItem('role');
+    if (!token || !role || role.toUpperCase() !== 'ADMIN') {
+        localStorage.clear();
+        window.location.href = window.getLoginRedirectPath();
+    }
+};
 window.logout = function() {
     localStorage.clear();
-    const currentPath = window.location.pathname.toLowerCase();
-    const isInCustomer = currentPath.includes('/customer/');
-    window.location.href = isInCustomer ? '../web/login.html' : 'login.html';
+    window.location.href = window.getLoginRedirectPath();
 };
 
 // ─── Cart Count ───────────────────────────────────────────────────────────────

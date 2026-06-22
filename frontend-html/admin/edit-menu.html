@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Sela Cafe | Add New Menu</title>
+    <title>Sela Cafe | Edit Menu Curation</title>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Manrope:wght@200..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -153,12 +153,12 @@
                     <a href="manage-menu.html" class="p-2 hover:bg-on-surface/5 rounded-full flex items-center justify-center">
                         <span class="material-symbols-outlined text-xl">arrow_back</span>
                     </a>
-                    <h2 class="font-headline-md text-headline-md font-bold text-primary">Add New Menu Curation</h2>
+                    <h2 class="font-headline-md text-headline-md font-bold text-primary">Edit Menu Curation</h2>
                 </div>
             </header>
 
             <div class="max-w-2xl mx-auto p-6 md:p-10">
-                <form id="add-menu-form" class="space-y-8 bg-white border border-outline-variant/40 p-8 rounded-xl shadow-xs">
+                <form id="edit-menu-form" class="space-y-8 bg-white border border-outline-variant/40 p-8 rounded-xl shadow-xs">
                     
                     <div class="space-y-2">
                         <label class="block text-xs font-label-caps tracking-wider text-primary uppercase font-bold" for="menu-name">Product Name</label>
@@ -169,12 +169,7 @@
                         <div class="space-y-2">
                             <label class="block text-xs font-label-caps tracking-wider text-primary uppercase font-bold" for="menu-category">Category</label>
                             <select id="menu-category" name="category" required class="w-full bg-surface border border-outline-variant rounded-lg focus:border-primary focus:ring-0 p-3 text-sm font-body-md cursor-pointer">
-                                <option value="" disabled selected>Select category</option>
-                                <option value="coffee">Coffee</option>
-                                <option value="non-coffee">Non-Coffee</option>
-                                <option value="tea">Tea</option>
-                                <option value="pastry">Pastry</option>
-                                <option value="dessert">Dessert</option>
+                                <option value="" disabled selected>Loading categories...</option>
                             </select>
                         </div>
 
@@ -186,11 +181,18 @@
                         </div>
                     </div>
 
-                    <div class="space-y-2">
-                        <label class="block text-xs font-label-caps tracking-wider text-primary uppercase font-bold" for="menu-price">Price (IDR)</label>
-                        <div class="relative">
-                            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-sm text-outline font-semibold">Rp</span>
-                            <input id="menu-price" name="price" required min="0" class="w-full bg-surface border border-outline-variant rounded-lg focus:border-primary focus:ring-0 py-3 pl-12 pr-4 text-sm font-body-md" placeholder="e.g. 35000" type="number"/>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="block text-xs font-label-caps tracking-wider text-primary uppercase font-bold" for="menu-price">Price (IDR)</label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-sm text-outline font-semibold">Rp</span>
+                                <input id="menu-price" name="price" required min="0" class="w-full bg-surface border border-outline-variant rounded-lg focus:border-primary focus:ring-0 py-3 pl-12 pr-4 text-sm font-body-md" placeholder="e.g. 35000" type="number"/>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <label class="block text-xs font-label-caps tracking-wider text-primary uppercase font-bold" for="menu-stock">Stock Quantity</label>
+                            <input id="menu-stock" name="stock" required min="0" class="w-full bg-surface border border-outline-variant rounded-lg focus:border-primary focus:ring-0 p-3 text-sm font-body-md" placeholder="e.g. 100" type="number"/>
                         </div>
                     </div>
 
@@ -208,7 +210,7 @@
 
                     <div class="flex justify-end gap-4">
                         <a href="manage-menu.html" class="px-6 py-3 border border-outline text-primary font-label-caps text-xs tracking-widest rounded-lg hover:bg-surface transition-all">Cancel</a>
-                        <button type="submit" class="px-8 py-3 bg-primary text-white font-label-caps text-xs tracking-widest rounded-lg hover:opacity-90 active:scale-95 transition-all cursor-pointer shadow-sm">Save Product</button>
+                        <button type="submit" class="px-8 py-3 bg-primary text-white font-label-caps text-xs tracking-widest rounded-lg hover:opacity-90 active:scale-95 transition-all cursor-pointer shadow-sm">Save Changes</button>
                     </div>
                 </form>
             </div>
@@ -216,6 +218,6 @@
     </div>
 
     <script src="../assets/js/components.js"></script>
-    <script src="../assets/js/admin/add-menu.js"></script>
+    <script src="../assets/js/admin/edit-menu.js"></script>
 </body>
 </html>

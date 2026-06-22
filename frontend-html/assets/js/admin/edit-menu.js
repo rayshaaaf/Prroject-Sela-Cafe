@@ -1,5 +1,5 @@
 /**
- * Sela Cafe - Add Menu Logistics & Inventory Mapping Script
+ * Sela Cafe - Edit Menu Logistics & Inventory Mapping Script
  */
 
 const ingredientMapping = {
@@ -31,6 +31,7 @@ const ingredientMapping = {
 };
 
 let loadedCategories = [];
+let productId = null;
 
 document.addEventListener('DOMContentLoaded', () => {
     try {
@@ -41,13 +42,24 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn("Auth check deferred:", authError);
     }
 
-    initAddMenuForm();
+    const urlParams = new URLSearchParams(window.location.search);
+    productId = urlParams.get('id');
+
+    if (!productId) {
+        if (typeof window.showToast === 'function') {
+            window.showToast("No product identifier provided.", "error");
+        }
+        setTimeout(() => window.location.href = 'manage-menu.html', 1500);
+        return;
+    }
+
+    initEditMenuForm();
 });
 
-async function initAddMenuForm() {
+async function initEditMenuForm() {
     const categorySelect = document.getElementById('menu-category');
     const ingredientSelect = document.getElementById('menu-ingredient');
-    const form = document.getElementById('add-menu-form');
+    const form = document.getElementById('edit-menu-form');
 
     if (!categorySelect || !ingredientSelect || !form) {
         console.error("Required form elements not found in DOM.");
@@ -61,7 +73,6 @@ async function initAddMenuForm() {
             const apiRes = await response.json();
             loadedCategories = apiRes.data || [];
             
-            // Populate select box
             categorySelect.innerHTML = `
                 <option value="" disabled selected>Select category</option>
                 ${loadedCategories.map(cat => `<option value="${cat.id}">${cat.nameEn || cat.nameId}</option>`).join('')}
@@ -71,13 +82,15 @@ async function initAddMenuForm() {
         console.error("Failed to fetch real categories from database:", e);
     }
 
-    // 2. Synchronize dropdown core ingredients dynamically based on category
+    // Category dropdown changes trigger ingredients update
     categorySelect.addEventListener('change', (e) => {
-        const selectedId = e.target.value;
-        const selectedCat = loadedCategories.find(c => String(c.id) === String(selectedId));
+        updateIngredientDropdown(e.target.value, null);
+    });
+
+    function updateIngredientDropdown(selectedCategoryId, selectedIngredientId) {
+        const selectedCat = loadedCategories.find(c => String(c.id) === String(selectedCategoryId));
         if (!selectedCat) return;
 
-        // Map category English name to lookup keys in ingredientMapping
         const key = (selectedCat.nameEn || '').toLowerCase().replace(' ', '-');
         const availableIngredients = ingredientMapping[key] || [];
 
@@ -85,39 +98,68 @@ async function initAddMenuForm() {
         ingredientSelect.removeAttribute('disabled');
         
         ingredientSelect.innerHTML = `
-            <option value="" disabled selected>Select Core Ingredient</option>
-            ${availableIngredients.map(ing => `<option value="${ing.id}">${ing.name}</option>`).join('')}
+            <option value="" disabled>Select Core Ingredient</option>
+            ${availableIngredients.map(ing => `
+                <option value="${ing.id}" ${String(ing.id) === String(selectedIngredientId) ? 'selected' : ''}>${ing.name}</option>
+            `).join('')}
         `;
-    });
+    }
 
-    // 3. Submit payload to REST API
+    // 2. Fetch existing menu details from backend
+    try {
+        const getResponse = await window.apiFetch(`/api/menus/getById/${productId}`);
+        if (getResponse.ok) {
+            const apiRes = await getResponse.json();
+            const menu = apiRes.data;
+            if (menu) {
+                // Populate input fields
+                document.getElementById('menu-name').value = menu.nameEn || menu.nameId || '';
+                document.getElementById('menu-price').value = menu.price || 0;
+                document.getElementById('menu-stock').value = menu.stock !== undefined ? menu.stock : 100;
+                document.getElementById('menu-description').value = menu.descriptionEn || menu.descriptionId || '';
+                document.getElementById('menu-image').value = menu.imageUrl || '';
+                
+                // Select category and trigger ingredient select mapping
+                categorySelect.value = menu.categoryId;
+                updateIngredientDropdown(menu.categoryId, menu.ingredientId || 101);
+            }
+        } else {
+            if (typeof window.showToast === 'function') {
+                window.showToast("Product not found.", "error");
+            }
+            setTimeout(() => window.location.href = 'manage-menu.html', 1500);
+        }
+    } catch (err) {
+        console.error("Error loading product detail:", err);
+    }
+
+    // 3. Submit updated payload to REST API
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
         const formData = new FormData(form);
         
-        // Prepare correct MenuReq payload matching backend spring boot validator
         const menuPayload = {
             nameId: formData.get('name').trim(),
-            nameEn: formData.get('name').trim(), // Replicate same string for both ID and EN versions
+            nameEn: formData.get('name').trim(),
             descriptionId: formData.get('description').trim(),
             descriptionEn: formData.get('description').trim(),
             price: parseFloat(formData.get('price')),
-            stock: 100, // Default stock quantity
+            stock: parseInt(formData.get('stock')),
             categoryId: parseInt(formData.get('category')),
             imageUrl: formData.get('imageUrl')?.trim() || 'https://images.unsplash.com/photo-1534778101976-62847782c213?q=80&w=600'
         };
 
         try {
-            const response = await window.apiFetch('/api/menus/create', {
-                method: 'POST',
+            const response = await window.apiFetch(`/api/menus/update/${productId}`, {
+                method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(menuPayload)
             });
 
             if (response.ok) {
                 if (typeof window.showToast === 'function') {
-                    window.showToast('Product logged and assigned to inventory loop successfully.', 'success');
+                    window.showToast('Product curation successfully updated.', 'success');
                 }
                 setTimeout(() => {
                     window.location.href = 'manage-menu.html';
@@ -125,11 +167,11 @@ async function initAddMenuForm() {
             } else {
                 const errData = await response.json().catch(() => ({}));
                 if (typeof window.showToast === 'function') {
-                    window.showToast(errData.message || 'Failed to create product curation.', 'error');
+                    window.showToast(errData.message || 'Failed to save product details.', 'error');
                 }
             }
         } catch (err) {
-            console.error('Operational drop while trying to create product.', err);
+            console.error('Operational drop while trying to update product.', err);
             if (typeof window.showToast === 'function') {
                 window.showToast('Unable to connect to server. Please try again.', 'error');
             }

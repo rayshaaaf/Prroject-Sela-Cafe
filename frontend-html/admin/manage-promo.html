@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Sela Cafe | Manage Menu</title>
+    <title>Sela Cafe | Manage Promos</title>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Manrope:wght@200..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -136,7 +136,7 @@
                     <span class="material-symbols-outlined">dashboard</span>
                     <span class="font-label-caps text-label-caps">Overview</span>
                 </a>
-                <a class="flex items-center gap-3 px-3 py-2.5 bg-secondary-container text-on-secondary-container rounded-lg font-bold transition-transform duration-200 active:opacity-80 group" href="manage-menu.html">
+                <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 active:opacity-80 group" href="manage-menu.html">
                     <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">restaurant</span>
                     <span class="font-label-caps text-label-caps">Menu</span>
                 </a>
@@ -144,8 +144,8 @@
                     <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">monitoring</span>
                     <span class="font-label-caps text-label-caps">Performance</span>
                 </a>
-                <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 active:opacity-80 group" href="manage-promo.html">
-                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">percent</span>
+                <a class="flex items-center gap-3 px-3 py-2.5 bg-secondary-container text-on-secondary-container rounded-lg font-bold transition-transform duration-200 active:opacity-80 group" href="manage-promo.html">
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" style="font-variation-settings: 'FILL' 1;">percent</span>
                     <span class="font-label-caps text-label-caps">Promo</span>
                 </a>
                 <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 active:opacity-80 group" href="manage-career.html">
@@ -175,12 +175,12 @@
         <main class="flex-1 md:ml-64 relative bg-paper-white">
             <header class="sticky top-0 w-full h-16 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 flex justify-between items-center px-6 md:px-8 z-30">
                 <div class="flex items-center gap-4">
-                    <h2 class="font-headline-md text-headline-md font-bold text-primary">Manage Menu</h2>
+                    <h2 class="font-headline-md text-headline-md font-bold text-primary">Manage Promos</h2>
                 </div>
                 <div class="flex items-center gap-6">
                     <div class="flex items-center gap-3">
-                        <a href="add-menu.html" class="bg-primary text-white text-xs font-label-caps tracking-widest px-4 py-2 rounded-lg flex items-center gap-2 hover:opacity-90 transition-all">
-                            <span class="material-symbols-outlined text-sm">add</span> Add Product
+                        <a href="add-promo.html" class="bg-primary text-white text-xs font-label-caps tracking-widest px-4 py-2 rounded-lg flex items-center gap-2 hover:opacity-90 transition-all">
+                            <span class="material-symbols-outlined text-sm">add</span> Add Promo
                         </a>
                     </div>
                 </div>
@@ -189,26 +189,24 @@
             <div class="max-w-[1280px] mx-auto p-6 md:p-10">
                 <section class="mb-12 border-b border-outline-variant/30 pb-6">
                     <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
-                        <div id="category-tabs-container" class="flex items-center gap-6 overflow-x-auto no-scrollbar pb-1">
-                            <button onclick="filterAdminCategory('all', this)" class="font-label-caps text-label-caps text-primary border-b-2 border-primary pb-2 whitespace-nowrap cursor-pointer">All Items</button>
-                            <button onclick="filterAdminCategory('coffee', this)" class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors pb-2 whitespace-nowrap cursor-pointer">Coffee</button>
-                            <button onclick="filterAdminCategory('non-coffee', this)" class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors pb-2 whitespace-nowrap cursor-pointer">Non-Coffee</button>
-                            <button onclick="filterAdminCategory('tea', this)" class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors pb-2 whitespace-nowrap cursor-pointer">Tea</button>
-                            <button onclick="filterAdminCategory('pastry', this)" class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors pb-2 whitespace-nowrap cursor-pointer">Pastry</button>
-                            <button onclick="filterAdminCategory('dessert', this)" class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors pb-2 whitespace-nowrap cursor-pointer">Dessert</button>
+                        <div id="promo-tabs-container" class="flex items-center gap-6 overflow-x-auto no-scrollbar pb-1">
+                            <button onclick="filterAdminPromo('all', this)" class="font-label-caps text-label-caps text-primary border-b-2 border-primary pb-2 whitespace-nowrap cursor-pointer">All Promos</button>
+                            <button onclick="filterAdminPromo('active', this)" class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors pb-2 whitespace-nowrap cursor-pointer">Active</button>
+                            <button onclick="filterAdminPromo('scheduled', this)" class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors pb-2 whitespace-nowrap cursor-pointer">Scheduled</button>
+                            <button onclick="filterAdminPromo('expired', this)" class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors pb-2 whitespace-nowrap cursor-pointer">Expired</button>
                         </div>
                         
                         <div class="flex flex-col sm:flex-row items-center gap-4 w-full lg:w-auto">
                             <div class="relative w-full sm:w-64 group">
                                 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
-                                <input id="admin-menu-search" class="w-full bg-surface border-0 border-b border-outline-variant focus:border-primary focus:ring-0 py-1.5 pl-9 pr-3 text-sm font-body-md transition-all" placeholder="Search product..." type="text"/>
+                                <input id="admin-promo-search" class="w-full bg-surface border-0 border-b border-outline-variant focus:border-primary focus:ring-0 py-1.5 pl-9 pr-3 text-sm font-body-md transition-all" placeholder="Search promo code or name..." type="text"/>
                             </div>
 
                             <div class="relative w-full sm:w-auto">
-                                <select id="admin-menu-sort" class="appearance-none bg-transparent border-0 border-b border-outline-variant font-label-md text-label-md pr-8 py-1 focus:ring-0 cursor-pointer w-full sm:w-auto">
-                                    <option value="popular">Sort: Popular</option>
-                                    <option value="low-high">Price: Low-High</option>
-                                    <option value="high-low">Price: High-Low</option>
+                                <select id="admin-promo-sort" class="appearance-none bg-transparent border-0 border-b border-outline-variant font-label-md text-label-md pr-8 py-1 focus:ring-0 cursor-pointer w-full sm:w-auto">
+                                    <option value="newest">Recently Added</option>
+                                    <option value="ending-soon">Ending Soon</option>
+                                    <option value="highest-discount">Highest Discount</option>
                                 </select>
                                 <span class="material-symbols-outlined absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-[16px]">expand_more</span>
                             </div>
@@ -217,16 +215,18 @@
                 </section>
 
                 <section>
-                    <div id="admin-menu-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-gutter gap-y-12">
-                        </div>
+                    <div id="admin-promo-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div class="col-span-full text-center py-12 text-outline font-label-caps">Loading promo data...</div>
+                    </div>
 
-                    <div id="admin-menu-pagination" class="mt-16 flex justify-center items-center gap-2">
+                    <div id="admin-promo-pagination" class="mt-16 flex justify-center items-center gap-2">
                         </div>
                 </section>
             </div>
         </main>
     </div>
-<script src="../assets/js/components.js"></script>
-<script src="../assets/js/admin/manage-menu.js"></script>
+
+    <script src="../assets/js/components.js"></script>
+    <script src="../assets/js/admin/manage-promo.js"></script>
 </body>
 </html>

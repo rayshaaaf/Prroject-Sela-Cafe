@@ -3,66 +3,235 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Sela Cafe | Performance</title>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Manrope:wght@200..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <title>Sela Cafe | Performance Suite</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    </head>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&family=Manrope:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-surface": "#1b1c1a", "surface-variant": "#e3e2df", "deep-espresso": "#2A1B0E", 
+                "heritage-cream": "#F2E8CF", "surface-bright": "#faf9f5", "on-secondary-container": "#4a6a53",
+                "secondary-container": "#c5e8cc", "error-container": "#ffdad6", "background": "#faf9f5",
+                "moss-green": "#386641", "error": "#ba1a1a", "paper-white": "#FDFCF8", "surface-container": "#efeeea",
+                "primary-container": "#33210d", "surface-container-low": "#f4f4f0", "outline": "#80756c",
+                "primary": "#1b0c00", "on-surface-variant": "#4e453d", "outline-variant": "#d2c4b9",
+                "primary-fixed": "#feddbe", "on-primary-fixed": "#291805", "surface-container-highest": "#e3e2df"
+            },
+            "fontFamily": {
+                "label-caps": ["JetBrains Mono"], "body-lg": ["Manrope"], "label-md": ["JetBrains Mono"],
+                "headline-md": ["EB Garamond"], "body-md": ["Manrope"], "headline-lg": ["EB Garamond"]
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+        .sela-line { height: 1px; background-color: rgba(128, 117, 108, 0.2); width: 100%; }
+        .grain { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; opacity: 0.04; background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png"); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: #d2c4b9; border-radius: 10px; }
+        .chart-path { stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: dash 3s ease-in-out forwards; }
+        @keyframes dash { to { stroke-dashoffset: 0; } }
+        .heatmap-cell { transition: transform 0.2s ease; }
+        .heatmap-cell:hover { transform: scale(1.15); z-index: 10; }
+        .fade-in-smooth { animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
 <body class="bg-background text-on-surface font-body-md overflow-x-hidden">
     <div class="grain"></div>
-    
     <div class="flex min-h-screen">
+        
         <aside class="h-screen w-64 fixed left-0 top-0 bg-surface-container-low border-r border-outline-variant/50 flex flex-col py-6 px-4 gap-4 z-40 hidden md:flex">
+            <div class="flex items-center gap-3 px-2 mb-8">
+                <div class="w-10 h-10 bg-deep-espresso rounded-lg flex items-center justify-center text-heritage-cream">
+                    <span class="material-symbols-outlined">coffee</span>
+                </div>
+                <div>
+                    <h1 class="text-[20px] font-headline-sm text-headline-sm font-bold text-primary leading-tight">Sela Cafe</h1>
+                    <p class="font-label-caps text-[10px] text-on-surface-variant tracking-widest opacity-70">PREMIUM MANAGEMENT</p>
+                </div>
+            </div>
             <nav class="flex-1 space-y-1">
-                <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg" href="dashboard.html">
-                    <span class="material-symbols-outlined">dashboard</span> <span class="font-label-caps text-label-caps">Overview</span>
+                <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 active:opacity-80 group" href="dashboard.html">
+                    <span class="material-symbols-outlined">dashboard</span><span class="font-label-caps text-label-caps">Overview</span>
                 </a>
-                <a class="flex items-center gap-3 px-3 py-2.5 bg-secondary-container text-on-secondary-container rounded-lg font-bold" href="performance.html">
-                    <span class="material-symbols-outlined">monitoring</span> <span class="font-label-caps text-label-caps">Performance</span>
+                <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 active:opacity-80 group" href="manage-menu.html">
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">restaurant</span><span class="font-label-caps text-label-caps">Menu</span>
                 </a>
-                </nav>
+                <a class="flex items-center gap-3 px-3 py-2.5 bg-secondary-container text-on-secondary-container rounded-lg font-bold transition-transform duration-200 active:opacity-80 group" href="performance.html">
+                    <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">monitoring</span><span class="font-label-caps text-label-caps">Performance</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 active:opacity-80 group" href="manage-promo.html">
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">percent</span><span class="font-label-caps text-label-caps">Promo</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 active:opacity-80 group" href="manage-career.html">
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">work_outline</span><span class="font-label-caps text-label-caps">Careers</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 active:opacity-80 group" href="manage-location.html">
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">location_on</span><span class="font-label-caps text-label-caps">Locations</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 active:opacity-80 group" href="manage-user.html">
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">person</span><span class="font-label-caps text-label-caps">Users</span>
+                </a>
+            </nav>
+            <div class="mt-auto space-y-1">
+                <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 active:opacity-80 group" href="#">
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">settings</span>
+                    <span class="font-label-caps text-label-caps">Settings</span>
+                </a>
+                <button onclick="window.logout()" class="w-full mt-4 bg-deep-espresso text-paper-white py-3 px-4 rounded-lg font-label-caps text-[12px] flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all cursor-pointer">
+                    <span class="material-symbols-outlined text-[18px]">logout</span> Log Out
+                </button>
+            </div>
         </aside>
 
         <main class="flex-1 md:ml-64 relative bg-paper-white">
             <header class="sticky top-0 w-full h-16 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 flex justify-between items-center px-6 md:px-8 z-30">
-                <h2 class="font-headline-md text-headline-md font-bold text-primary">Performance</h2>
+                <div class="flex items-center gap-8">
+                    <h2 class="font-headline-md text-[24px] font-bold text-primary">Performance</h2>
+                    <div class="h-6 w-px bg-outline-variant"></div>
+                    <nav class="hidden md:flex gap-6">
+                        <a class="font-body-md text-sm text-outline hover:text-primary transition-colors" href="#">Dashboard</a>
+                        <a class="font-body-md text-sm text-primary font-bold border-b-2 border-primary pb-1" href="#">Analytics</a>
+                        <a class="font-body-md text-sm text-outline hover:text-primary transition-colors" href="#">Strategy</a>
+                    </nav>
+                </div>
+                <div class="flex items-center gap-6">
+                    <div class="relative group">
+                        <span class="material-symbols-outlined text-outline group-hover:text-primary cursor-pointer transition-colors">notifications</span>
+                        <span class="absolute -top-1 -right-1 w-2 h-2 bg-error rounded-full"></span>
+                    </div>
+                </div>
             </header>
 
             <div class="max-w-[1280px] mx-auto p-6 md:p-10">
-                <section class="mb-12">
-                    <p class="font-label-caps text-label-caps text-moss-green mb-2 tracking-[0.2em]">FISCAL ANALYTICS</p>
-                    <h3 class="font-headline-xl text-[48px] text-deep-espresso">Revenue Mastery</h3>
-                </section>
-
+                
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                    <div class="bg-paper-white border border-outline-muted p-8 rounded-lg">
-                        <h4 class="font-label-caps text-label-caps text-on-surface-variant mb-1">TOTAL REVENUE</h4>
-                        <p class="font-headline-lg text-deep-espresso">$248,190.00</p>
+                    <div class="border border-outline-variant/50 rounded-xl p-8 bg-white flex flex-col justify-between hover:shadow-lg transition-shadow">
+                        <div>
+                            <p class="font-label-caps text-[10px] text-outline mb-2 tracking-widest">AVG PREP TIME</p>
+                            <h3 class="font-headline-lg text-[40px] text-deep-espresso leading-none"><span id="val-prep">...</span><span class="text-sm font-body-md ml-1 text-outline">min</span></h3>
+                        </div>
+                        <div class="mt-8">
+                            <div class="flex justify-between items-end mb-2">
+                                <span id="trend-prep-container" class="font-label-md text-sm flex items-center gap-1 text-outline">
+                                    <span id="icon-prep" class="material-symbols-outlined text-[16px]">horizontal_rule</span>
+                                    <span id="text-prep">Loading data...</span>
+                                </span>
+                            </div>
+                            <div class="w-full h-1 bg-surface-container-highest overflow-hidden rounded-full">
+                                <div id="bar-prep" class="w-0 h-full bg-deep-espresso transition-all duration-1000"></div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="bg-paper-white border border-outline-muted p-8 rounded-lg">
-                        <h4 class="font-label-caps text-label-caps text-on-surface-variant mb-1">AVG. DAILY SALES</h4>
-                        <p class="font-headline-lg text-deep-espresso">$8,273</p>
+                    
+                    <div class="border border-outline-variant/50 rounded-xl p-8 bg-white flex flex-col justify-between hover:shadow-lg transition-shadow">
+                        <div>
+                            <p class="font-label-caps text-[10px] text-outline mb-2 tracking-widest">DELIVERY SPEED</p>
+                            <h3 class="font-headline-lg text-[40px] text-deep-espresso leading-none"><span id="val-delivery">...</span><span class="text-sm font-body-md ml-1 text-outline">min</span></h3>
+                        </div>
+                        <div class="mt-8">
+                            <div class="flex justify-between items-end mb-2">
+                                <span id="trend-delivery-container" class="font-label-md text-sm flex items-center gap-1 text-outline">
+                                    <span id="icon-delivery" class="material-symbols-outlined text-[16px]">horizontal_rule</span>
+                                    <span id="text-delivery">Loading data...</span>
+                                </span>
+                            </div>
+                            <div class="w-full h-1 bg-surface-container-highest overflow-hidden rounded-full">
+                                <div id="bar-delivery" class="w-0 h-full bg-deep-espresso transition-all duration-1000"></div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="bg-paper-white border border-outline-muted p-8 rounded-lg">
-                        <h4 class="font-label-caps text-label-caps text-on-surface-variant mb-1">CUST. LIFETIME VALUE</h4>
-                        <p class="font-headline-lg text-deep-espresso">$1,420</p>
+
+                    <div class="border border-outline-variant/50 rounded-xl p-8 bg-white flex flex-col justify-between hover:shadow-lg transition-shadow">
+                        <div>
+                            <p class="font-label-caps text-[10px] text-outline mb-2 tracking-widest">TABLE TURNOVER</p>
+                            <h3 class="font-headline-lg text-[40px] text-deep-espresso leading-none"><span id="val-turnover">...</span><span class="text-sm font-body-md ml-1 text-outline">min</span></h3>
+                        </div>
+                        <div class="mt-8">
+                            <div class="flex justify-between items-end mb-2">
+                                <span id="trend-turnover-container" class="font-label-md text-sm flex items-center gap-1 text-outline">
+                                    <span id="icon-turnover" class="material-symbols-outlined text-[16px]">horizontal_rule</span>
+                                    <span id="text-turnover">Loading data...</span>
+                                </span>
+                            </div>
+                            <div class="w-full h-1 bg-surface-container-highest overflow-hidden rounded-full">
+                                <div id="bar-turnover" class="w-0 h-full bg-deep-espresso transition-all duration-1000"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="bg-paper-white border border-outline-muted p-8 rounded-lg">
-                    <h4 class="font-label-caps text-label-caps text-deep-espresso mb-8">SALES VELOCITY</h4>
-                    <div class="h-64 border-t border-outline-muted flex items-end justify-center pt-8">
-                        <p class="text-on-surface-variant italic">Chart Container Ready</p>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
+                    <div class="lg:col-span-2 border border-outline-variant/50 rounded-xl bg-white p-8">
+                        <div class="flex justify-between items-start mb-8">
+                            <div>
+                                <h4 class="font-headline-md text-[22px] text-deep-espresso">Sales Velocity</h4>
+                                <p class="font-body-md text-sm text-outline">Revenue growth across morning and afternoon shifts.</p>
+                            </div>
+                            <div class="flex gap-2">
+                                <button class="px-4 py-1.5 border border-primary font-label-caps text-[10px] text-white bg-primary rounded hover:opacity-90 transition-all">WEEK</button>
+                                <button class="px-4 py-1.5 border border-outline-variant font-label-caps text-[10px] text-outline rounded hover:text-primary transition-all">MONTH</button>
+                            </div>
+                        </div>
+                        <div class="relative w-full h-64 mt-12">
+                            <svg class="w-full h-full overflow-visible" viewbox="0 0 1000 200">
+                                <line class="text-outline" stroke="currentColor" stroke-opacity="0.1" x1="0" x2="1000" y1="0" y2="0"></line>
+                                <line class="text-outline" stroke="currentColor" stroke-opacity="0.1" x1="0" x2="1000" y1="100" y2="100"></line>
+                                <line class="text-outline" stroke="currentColor" stroke-opacity="0.1" x1="0" x2="1000" y1="200" y2="200"></line>
+                                <g id="chart-data-container">
+                                    <path id="sales-chart-path" class="chart-path" d="" fill="none" stroke="#2A1B0E" stroke-width="3"></path>
+                                </g>
+                            </svg>
+                            <div class="flex justify-between mt-4 font-label-caps text-[10px] text-outline tracking-widest">
+                                <span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span><span>SUN</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border border-outline-variant/50 rounded-xl bg-heritage-cream/20 p-8">
+                        <h4 class="font-headline-md text-[22px] text-deep-espresso mb-1">Peak Ritual Times</h4>
+                        <p class="font-body-md text-sm text-outline mb-8">Hourly kitchen & floor load.</p>
+                        
+                        <div id="heatmap-container" class="grid grid-cols-6 gap-2"></div>
+                        
+                        <div class="flex justify-between mt-4 font-label-caps text-[10px] text-outline">
+                            <span>07:00</span><span>22:00</span>
+                        </div>
+                        <div class="mt-8 flex items-center gap-3">
+                            <span class="w-3 h-3 bg-deep-espresso rounded-sm"></span>
+                            <span class="font-label-md text-xs text-deep-espresso">High Capacity Limit Reached</span>
+                        </div>
                     </div>
                 </div>
+
+                <div class="border border-outline-variant/50 rounded-xl bg-white overflow-hidden">
+                    <div class="p-8 border-b border-outline-variant/50 flex justify-between items-center">
+                        <div>
+                            <h4 class="font-headline-md text-[22px] text-deep-espresso">Staff Resonance</h4>
+                            <p class="font-body-md text-sm text-outline">Top performers based on guest feedback and efficiency.</p>
+                        </div>
+                        <button class="flex items-center gap-2 font-label-caps text-[10px] text-outline hover:text-primary transition-colors">
+                            VIEW ALL STAFF <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                        </button>
+                    </div>
+                    
+                    <div id="staff-list-container" class="divide-y divide-outline-variant/50">
+                        <div class="p-6 text-center text-outline font-label-caps">Fetching staff data...</div>
+                    </div>
+                </div>
+
             </div>
         </main>
     </div>
 
-    <nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface-container-low border-t p-2 flex justify-around z-50">
-        <a href="dashboard.html" class="flex flex-col items-center text-on-surface-variant/60"><span class="material-symbols-outlined">dashboard</span></a>
-        <a href="manage-menu.html" class="flex flex-col items-center text-on-surface-variant/60"><span class="material-symbols-outlined">restaurant</span></a>
-        <a href="performance.html" class="flex flex-col items-center text-on-secondary-container"><span class="material-symbols-outlined">monitoring</span></a>
-    </nav>
+    <script src="../assets/js/components.js"></script>
+    <script src="../assets/js/admin/performance.js"></script>
 </body>
 </html>
