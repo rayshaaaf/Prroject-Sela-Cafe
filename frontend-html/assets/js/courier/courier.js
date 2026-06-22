@@ -101,7 +101,7 @@ function renderCourierDashboard(orders) {
                           <span class="font-label-caps text-label-caps text-[10px] text-on-surface-variant block mb-2 uppercase">Address</span>
                           <div class="flex items-start gap-2 text-deep-espresso">
                             <span class="material-symbols-outlined text-lg mt-1" data-icon="location_on">location_on</span>
-                            <span class="font-body-md">${order.address || 'Cafe pickup'}</span>
+                            <span class="font-body-md">${order.deliveryAddress || 'Cafe pickup'}</span>
                           </div>
                         </div>
                       </div>
@@ -148,7 +148,7 @@ function renderCourierDashboard(orders) {
                             <div>
                               <span class="font-label-caps text-label-caps text-on-surface-variant mb-1">ORDER #${order.id}</span>
                               <h4 class="font-headline-md text-deep-espresso">${order.customerName || 'Guest'}</h4>
-                              <p class="font-body-md text-on-surface-variant">${order.address || 'Cafe Pickup'}</p>
+                              <p class="font-body-md text-on-surface-variant">${order.deliveryAddress || 'Cafe Pickup'}</p>
                             </div>
                             <div class="text-right flex flex-col items-end">
                               <span class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest mb-1">Total Amount</span>

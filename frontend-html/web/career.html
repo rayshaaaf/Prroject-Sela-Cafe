@@ -266,7 +266,7 @@
                 </div>
                 <div class="flex flex-col gap-2">
                     <label for="apply-phone" class="font-label-caps text-label-caps text-on-surface-variant">Phone Number</label>
-                    <input type="tel" id="apply-phone" required class="w-full bg-transparent border-b border-outline-variant/60 focus:border-primary py-3 font-body-md text-on-surface outline-none focus:ring-0" placeholder="+62..." />
+                    <input type="tel" id="apply-phone" required class="w-full bg-transparent border-b border-outline-variant/60 focus:border-primary py-3 font-body-md text-on-surface outline-none focus:ring-0" placeholder="+62..." maxlength="15" oninput="this.value = this.value.replace(/[^0-9+]/g, '')" />
                 </div>
             </div>
             <div class="flex flex-col gap-2">
@@ -293,8 +293,8 @@
         </form>
     </div>
 </div>
-<script src="../assets/js/web/components.js"></script>
-<script src="../assets/js/web/content.js" defer></script>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/web/careers.js" defer></script>
 <script>
         // Simple micro-interaction for card hover effects
         document.querySelectorAll('.group').forEach(card => {

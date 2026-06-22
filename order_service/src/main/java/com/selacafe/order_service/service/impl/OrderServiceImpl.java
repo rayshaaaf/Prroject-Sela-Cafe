@@ -175,6 +175,11 @@ public class OrderServiceImpl implements OrderService {
 
                 orderRepository.save(order);
 
+                // Reduce stock immediately when order is placed
+                for (OrderItemReq itemReq : request.getItems()) {
+                        coreServiceClient.reduceStock(itemReq.getMenuId(), itemReq.getQuantity());
+                }
+
                 return getOrderById(order.getId());
         }
 
@@ -210,18 +215,7 @@ public class OrderServiceImpl implements OrderService {
                 order.setUpdatedAt(LocalDateTime.now());
 
                 if ("PAID".equals(status)) {
-
                         order.setPaidAt(LocalDateTime.now());
-
-                        List<OrderItem> items = orderItemRepository.findByOrder_Id(
-                                        order.getId());
-
-                        for (OrderItem item : items) {
-
-                                coreServiceClient.reduceStock(
-                                                item.getMenuId(),
-                                                item.getQuantity());
-                        }
                 }
                 if ("COMPLETED".equals(status)) {
                         order.setCompletedAt(LocalDateTime.now());

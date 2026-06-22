@@ -1,6 +1,6 @@
 /**
  * Sela Cafe — Checkout Module
- * Renders cart summary, handles form validation, and posts order to API Gateway.
+ * Handles UI interactions, renders cart summary, form validation, and API Gateway.
  */
 
 const SERVICE_FEE_PCT = 0.10;
@@ -15,6 +15,52 @@ document.addEventListener('DOMContentLoaded', () => {
     wireVoucherForm();
     loadDiningTables();
 });
+
+// ─── UI Interactions ──────────────────────────────────────────────────────────
+window.switchType = function(type) {
+    const buttons = document.querySelectorAll('.order-type-btn');
+    buttons.forEach(btn => {
+        btn.classList.remove('bg-deep-espresso', 'text-paper-white', 'border-deep-espresso');
+        btn.classList.add('bg-paper-white', 'text-on-surface-variant', 'border-outline/20');
+    });
+
+    const activeBtn = document.getElementById(`btn-${type}`);
+    if (activeBtn) {
+        activeBtn.classList.add('bg-deep-espresso', 'text-paper-white', 'border-deep-espresso');
+        activeBtn.classList.remove('bg-paper-white', 'text-on-surface-variant', 'border-outline/20');
+    }
+
+    const dineInField = document.getElementById('field-dine-in');
+    const deliveryField = document.getElementById('field-delivery');
+    const cashContainer = document.getElementById('payment-cash-container');
+
+    if (type === 'dine-in') {
+        dineInField.classList.remove('hidden');
+        dineInField.classList.add('flex');
+        deliveryField.classList.add('hidden');
+        deliveryField.classList.remove('flex');
+        if (cashContainer) cashContainer.classList.remove('hidden');
+    } else if (type === 'delivery') {
+        dineInField.classList.add('hidden');
+        dineInField.classList.remove('flex');
+        deliveryField.classList.remove('hidden');
+        deliveryField.classList.add('flex');
+        if (cashContainer) cashContainer.classList.add('hidden');
+        window.selectPayment('qris');
+    } else {
+        // Take Away
+        dineInField.classList.add('hidden');
+        dineInField.classList.remove('flex');
+        deliveryField.classList.add('hidden');
+        deliveryField.classList.remove('flex');
+        if (cashContainer) cashContainer.classList.remove('hidden');
+    }
+};
+
+window.selectPayment = function(method) {
+    const radio = document.getElementById(`pay-${method}`);
+    if (radio) radio.checked = true;
+};
 
 // ─── Cart Helpers ─────────────────────────────────────────────────────────────
 function getCart() {
@@ -39,27 +85,28 @@ function renderCheckoutSummary() {
         if (cart.length === 0) {
             container.innerHTML = `
             <div class="text-center py-8">
-                <p class="font-body-md text-on-surface-variant opacity-60">No items in cart.</p>
-                <a href="menu.html" class="font-label-caps text-label-caps text-primary underline mt-2 inline-block">Browse Menu</a>
+                <span class="material-symbols-outlined text-[48px] mb-4 text-outline/30">shopping_bag</span>
+                <p class="font-body-md text-on-surface-variant mb-4">No items in your ritual.</p>
+                <button onclick="window.location.href='menu.html'" class="font-label-caps text-[11px] tracking-widest text-deep-espresso border-b border-deep-espresso pb-1 uppercase hover:opacity-70 transition-opacity bg-transparent">Browse Menu</button>
             </div>`;
         } else {
             container.innerHTML = cart.map(item => `
-            <div class="flex gap-4 items-start">
-                <div class="w-20 h-20 bg-surface-container overflow-hidden shrink-0">
+            <div class="flex gap-4 items-center">
+                <div class="w-16 h-16 bg-surface-container overflow-hidden shrink-0 border border-outline/5">
                     <img class="w-full h-full object-cover"
                          src="${item.imageUrl || ''}"
                          alt="${item.name}"
                          onerror="this.src='https://images.unsplash.com/photo-1534778101976-62847782c213?q=80&w=200'"/>
                 </div>
                 <div class="flex-1">
-                    <p class="font-body-md text-on-surface font-semibold">${item.name}</p>
-                    <p class="font-label-md text-label-md text-on-surface-variant">Qty: ${item.quantity || 1}</p>
+                    <h4 class="font-headline-md text-[18px] text-deep-espresso leading-tight mb-1">${item.name}</h4>
+                    <span class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest">QTY: ${item.quantity || 1}</span>
                 </div>
-                <div class="font-label-caps text-label-md text-primary whitespace-nowrap">
+                <div class="font-label-md text-[14px] text-deep-espresso font-semibold">
                     ${formatIDR(item.price * (item.quantity || 1))}
                 </div>
             </div>
-            `).join('<div class="border-t border-outline-muted my-2"></div>');
+            `).join('<div class="border-t border-outline/5 my-1"></div>');
         }
     }
 
@@ -86,8 +133,6 @@ function renderCheckoutSummary() {
 function prefillCustomerInfo() {
     const userName = localStorage.getItem('userName');
     const nameField  = document.getElementById('checkout-name');
-    const phoneField = document.getElementById('checkout-phone');
-
     if (nameField && userName && !nameField.value) nameField.value = userName;
 }
 
@@ -101,13 +146,12 @@ function wireCheckoutForm() {
 
         const name  = document.getElementById('checkout-name')?.value?.trim();
         const phone = document.getElementById('checkout-phone')?.value?.trim();
-        const note  = document.getElementById('checkout-note')?.value?.trim() || '';
 
         // Detect order type from button styles
         let orderType = 'DINE_IN';
-        if (document.getElementById('btn-take-away')?.classList.contains('bg-primary')) {
+        if (document.getElementById('btn-take-away')?.classList.contains('bg-deep-espresso')) {
             orderType = 'TAKE_AWAY';
-        } else if (document.getElementById('btn-delivery')?.classList.contains('bg-primary')) {
+        } else if (document.getElementById('btn-delivery')?.classList.contains('bg-deep-espresso')) {
             orderType = 'DELIVERY';
         }
 
@@ -119,8 +163,8 @@ function wireCheckoutForm() {
         let deliveryAddress = '';
         let courierNotes = '';
         if (orderType === 'DELIVERY') {
-            deliveryAddress = document.querySelector('#field-delivery textarea')?.value?.trim() || '';
-            courierNotes = document.querySelector('#field-delivery input')?.value?.trim() || '';
+            deliveryAddress = document.getElementById('checkout-address')?.value?.trim() || '';
+            courierNotes = document.getElementById('checkout-courier-note')?.value?.trim() || '';
         }
 
         const cart = getCart();
@@ -131,7 +175,7 @@ function wireCheckoutForm() {
 
         if (!phone) { showCheckoutError('Please enter your phone number.'); return; }
         const cleanPhone = phone.replace(/[\s\-()]/g, '');
-        if (!/^\+?[0-9]{10,15}$/.test(cleanPhone)) { showCheckoutError('Phone number must be digits only and between 10 and 15 digits long.'); return; }
+        if (!/^\+?[0-9]{10,15}$/.test(cleanPhone)) { showCheckoutError('Phone number must be digits only (10-15 digits).'); return; }
 
         if (orderType === 'DELIVERY' && !deliveryAddress) {
             showCheckoutError('Please enter a delivery address.');
@@ -154,7 +198,7 @@ function wireCheckoutForm() {
 
         // Loading state
         btn.disabled = true;
-        btn.innerHTML = `<span class="flex items-center gap-3">PLACING ORDER <span class="animate-spin material-symbols-outlined text-sm">autorenew</span></span>`;
+        btn.innerHTML = `PLACING ORDER <span class="animate-spin material-symbols-outlined text-[18px]">autorenew</span>`;
 
         const payload = {
             tableId,
@@ -165,7 +209,7 @@ function wireCheckoutForm() {
             customerPhone: cleanPhone,
             deliveryAddress: deliveryAddress,
             voucherCode: appliedPromo ? appliedPromo.promoCode : null,
-            notes: note + (courierNotes ? ` | Courier notes: ${courierNotes}` : ''),
+            notes: (courierNotes ? `Courier notes: ${courierNotes}` : ''),
             items: cart.map(i => ({
                 menuId:   Number(i.id),
                 quantity: i.quantity || 1,
@@ -187,11 +231,9 @@ function wireCheckoutForm() {
             const data = await res.json().catch(() => ({}));
 
             if (res.ok) {
-                // If API returns ApiRes structure: data is inside data.data
                 const orderData = data.data || data;
                 const orderId = orderData.id || orderData.orderId || 'PENDING';
                 localStorage.setItem('lastOrderId', String(orderId));
-                // Clear cart after successful order
                 localStorage.removeItem('cart');
                 window.location.href = `order-tracking.html?id=${orderId}`;
             } else {
@@ -223,7 +265,7 @@ function clearCheckoutError() {
 
 function resetPlaceOrderBtn(btn) {
     btn.disabled = false;
-    btn.innerHTML = `PLACE ORDER <span class="material-symbols-outlined text-sm">arrow_forward</span>`;
+    btn.innerHTML = `PLACE ORDER <span class="material-symbols-outlined text-[18px]">arrow_forward</span>`;
 }
 
 async function loadDiningTables() {
@@ -255,7 +297,6 @@ async function loadDiningTables() {
                 })
                 .join('');
 
-            // Pre-select scanned table from URL query parameter or localStorage
             const urlParams = new URLSearchParams(window.location.search);
             const scannedTableQr = urlParams.get('table') || localStorage.getItem('scannedTable');
             if (scannedTableQr) {
@@ -285,7 +326,7 @@ function wireVoucherForm() {
 
             applyBtn.disabled = true;
             const originalText = applyBtn.textContent;
-            applyBtn.textContent = 'Applying...';
+            applyBtn.textContent = 'APPLYING';
 
             try {
                 const response = await fetch(`${ORDER_API}/api/promos/getByCode/${code}`);

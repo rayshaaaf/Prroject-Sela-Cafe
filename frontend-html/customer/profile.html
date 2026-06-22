@@ -146,16 +146,19 @@
 <main class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop py-section-padding">
 <!-- Profile Header Section -->
 <section class="flex flex-col items-center text-center mb-16">
-<div class="relative group cursor-pointer active-scale mb-8">
-<div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border border-outline-muted p-1 bg-surface-bright shadow-sm">
-<img class="w-full h-full object-cover rounded-full" data-alt="A close-up studio portrait of a person with a serene and refined look, captured in a bright and airy environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcR3zD30VZc9zVA0D5Y3JXXieylCrt77K-In5J8v4xMWpLoy6sujYdsVXnn0omr9FgFfwr_BRKbceaN_kGxJ1e9HVVxVw5cfEQBCdtXsAcab7a_vlXIqOGVbu7iANiB6hY-Lno23zrVcvXHcrFEWQw7h40R8zUwS_JRBLV1GrYEGLlFdj0RAO39fiNwjQ0F8dsfd-JDUxiLM89CJyGTmBUO0QfUJA3upKzlwX7yyEeAvjNCN0t7jP2BUeiZw_KN_pilPAH2IVRZcuk">
+<div class="relative group cursor-pointer active-scale mb-8" onclick="document.getElementById('profile-avatar-input').click()">
+<div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border border-outline-muted p-1 bg-surface-bright shadow-sm flex items-center justify-center" id="profile-avatar-wrapper">
+    <div id="profile-avatar-content" class="w-full h-full flex items-center justify-center rounded-full bg-surface-container-high text-outline">
+        <span class="material-symbols-outlined text-[64px] md:text-[80px]">person</span>
+    </div>
 </div>
 <div class="absolute bottom-1 right-1 bg-primary text-white p-2 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg">
 <span class="material-symbols-outlined text-sm">photo_camera</span>
 </div>
+<input type="file" id="profile-avatar-input" class="hidden" accept="image/*" onchange="window.uploadAvatar(this)" />
 </div>
-<h1 id="profile-display-name-title" class="font-headline-xl text-headline-xl text-deep-espresso mb-2">Julianne Sterling</h1>
-<p id="profile-member-since" class="font-label-caps text-label-caps text-on-surface-variant tracking-widest uppercase">Artisan Member • Since Oct 2022</p>
+<h1 id="profile-display-name-title" class="font-headline-xl text-headline-xl text-deep-espresso mb-2">Loading...</h1>
+<p id="profile-member-since" class="font-label-caps text-label-caps text-on-surface-variant tracking-widest uppercase">Customer Account</p>
 </section>
 <!-- Account Settings Grid (Apple Inspired) -->
 <div class="max-w-3xl mx-auto space-y-12">
@@ -169,17 +172,17 @@
 <!-- Full Name -->
 <div class="px-8 py-5 flex flex-col md:flex-row md:items-center">
 <span class="w-40 font-label-caps text-label-caps text-on-surface-variant mb-1 md:mb-0">Full Name</span>
-<span id="profile-display-name" class="font-body-md text-body-md text-primary font-medium">Julianne Sterling</span>
+<span id="profile-display-name" class="font-body-md text-body-md text-primary font-medium">—</span>
 </div>
 <!-- Email -->
 <div class="px-8 py-5 flex flex-col md:flex-row md:items-center">
 <span class="w-40 font-label-caps text-label-caps text-on-surface-variant mb-1 md:mb-0">Email Address</span>
-<span id="profile-display-email" class="font-body-md text-body-md text-primary font-medium">j.sterling@heritage.com</span>
+<span id="profile-display-email" class="font-body-md text-body-md text-primary font-medium">—</span>
 </div>
 <!-- Phone -->
 <div class="px-8 py-5 flex flex-col md:flex-row md:items-center">
 <span class="w-40 font-label-caps text-label-caps text-on-surface-variant mb-1 md:mb-0">Phone Number</span>
-<span id="profile-display-phone" class="font-body-md text-body-md text-primary font-medium">+1 (555) 234-8890</span>
+<span id="profile-display-phone" class="font-body-md text-body-md text-primary font-medium">—</span>
 </div>
 </div>
 </div>
@@ -244,7 +247,7 @@
             </div>
             <div class="space-y-2">
                 <label class="font-label-caps text-[11px] text-outline">PHONE NUMBER</label>
-                <input type="text" id="edit-profile-phone" class="w-full bg-transparent border-0 border-b border-outline-variant focus:ring-0 focus:border-primary px-0 font-body-md py-3" required />
+                <input type="text" id="edit-profile-phone" class="w-full bg-transparent border-0 border-b border-outline-variant focus:ring-0 focus:border-primary px-0 font-body-md py-3" required maxlength="15" oninput="this.value = this.value.replace(/[^0-9+]/g, '')" />
             </div>
             <div class="pt-6 flex justify-end gap-6 items-center">
                 <button class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" onclick="toggleProfileModal(false)" type="button">Cancel</button>

@@ -1,525 +1,285 @@
 <!DOCTYPE html>
-<html lang="id">
+<html class="scroll-smooth" lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Qrisly Pay Gateway - Secure Checkout</title>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Material Symbols -->
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Manrope:wght@200..800&display=swap" rel="stylesheet"/>
     
     <style>
-        :root {
-            --bg-slate: #F8FAFC;
-            --primary-blue: #2563EB;
-            --primary-dark: #1E293B;
-            --success-green: #10B981;
-            --text-main: #334155;
-            --text-light: #64748B;
-            --border-color: #E2E8F0;
-            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
         }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-slate);
-            color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 24px 16px;
-        }
-
-        /* ─── Gateway Header ──────────────────────── */
-        .gateway-header {
+        .sela-line {
+            height: 1px;
+            background: currentColor;
+            opacity: 0.1;
             width: 100%;
-            max-width: 450px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 24px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid var(--border-color);
         }
-
-        .gateway-brand {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 800;
-            font-size: 1.15rem;
-            color: var(--primary-dark);
-            letter-spacing: -0.5px;
+        .pressed-state:active {
+            transform: scale(0.98);
         }
-
-        .gateway-brand .brand-icon {
-            color: var(--primary-blue);
-            font-size: 1.5rem;
-        }
-
-        .secure-badge {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: var(--success-green);
-            background-color: #ECFDF5;
-            padding: 4px 8px;
-            border-radius: 6px;
-            text-transform: uppercase;
-        }
-
-        /* ─── Main Payment Card ───────────────────── */
-        main {
+        .grain-overlay::before {
+            content: "";
+            position: fixed;
+            inset: 0;
             width: 100%;
-            max-width: 450px;
+            height: 100%;
+            opacity: 0.05;
+            z-index: 50;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
-
-        .card {
-            background-color: #FFFFFF;
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-            box-shadow: var(--card-shadow);
-            padding: 24px;
-            margin-bottom: 16px;
-        }
-
-        /* ─── Skeleton Loading ────────────────────── */
+        
+        /* Loading Skeleton Sela Style */
         .skeleton {
-            background: linear-gradient(90deg, #F1F5F9 25%, #E2E8F0 50%, #F1F5F9 75%);
+            background: linear-gradient(90deg, #f0eee8 25%, #e5e2dc 50%, #f0eee8 75%);
             background-size: 200% 100%;
             animation: loading 1.5s infinite;
-            border-radius: 8px;
+            border-radius: 2px;
         }
-
         @keyframes loading {
             0% { background-position: 200% 0; }
             100% { background-position: -200% 0; }
         }
-
-        .skeleton-title { height: 24px; width: 40%; margin-bottom: 12px; }
-        .skeleton-amount { height: 40px; width: 60%; margin-bottom: 24px; }
-        .skeleton-block { height: 80px; width: 100%; }
-
-        /* ─── Billing Box ─────────────────────────── */
-        .billing-box {
-            background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
-            color: #FFFFFF;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 24px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .merchant-label {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #94A3B8;
-            font-weight: 700;
-        }
-
-        .merchant-name {
-            font-size: 1.3rem;
-            font-weight: 800;
-            color: #FFFFFF;
-            margin-top: 2px;
-        }
-
-        .billing-divider {
-            height: 1px;
-            background-color: #334155;
-            margin: 4px 0;
-        }
-
-        .amount-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-        }
-
-        .amount-val {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: #F8FAFC;
-        }
-
-        /* ─── Info List ───────────────────────────── */
-        .info-list {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            margin-bottom: 24px;
-        }
-
-        .info-item {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.85rem;
-        }
-
-        .info-label {
-            color: var(--text-light);
-            font-weight: 500;
-        }
-
-        .info-value {
-            color: var(--primary-dark);
-            font-weight: 700;
-            text-align: right;
-        }
-
-        /* ─── E-wallet Methods ────────────────────── */
-        .methods-title {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--primary-dark);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 12px;
-        }
-
-        .method-selector {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin-bottom: 24px;
-        }
-
-        .method-option {
-            border: 2px solid var(--border-color);
-            border-radius: 10px;
-            padding: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-size: 0.85rem;
-            font-weight: 700;
-        }
-
-        .method-option:hover {
-            border-color: #CBD5E1;
-            background-color: #F1F5F9;
-        }
-
+        
+        /* Custom Method Selected Style */
         .method-option.selected {
-            border-color: var(--primary-blue);
-            background-color: #EFF6FF;
-            color: var(--primary-blue);
+            border-color: #2A1B0E;
+            background-color: #f6f3ed;
         }
-
-        .method-radio {
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            border: 2px solid #94A3B8;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
         .method-option.selected .method-radio {
-            border-color: var(--primary-blue);
+            border-color: #2A1B0E;
         }
-
-        .method-radio::after {
-            content: '';
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background-color: var(--primary-blue);
-            display: none;
-        }
-
         .method-option.selected .method-radio::after {
             display: block;
+            background-color: #2A1B0E;
         }
-
-        /* ─── Button ──────────────────────────────── */
-        .btn {
-            width: 100%;
-            padding: 16px 24px;
-            border-radius: 12px;
-            border: none;
-            font-size: 0.95rem;
-            font-weight: 800;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            outline: none;
-        }
-
-        .btn-pay {
-            background-color: var(--primary-blue);
-            color: #FFFFFF;
-            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
-        }
-
-        .btn-pay:hover:not(:disabled) {
-            background-color: #1D4ED8;
-            transform: translateY(-1px);
-        }
-
-        .btn:disabled {
-            background-color: #E2E8F0;
-            color: #94A3B8;
-            cursor: not-allowed;
-            box-shadow: none;
-        }
-
-        .spinner {
-            width: 18px;
-            height: 18px;
-            border: 2px solid rgba(255,255,255,0.3);
-            border-radius: 50%;
-            border-top-color: white;
-            animation: spin 0.8s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* ─── Success Screen ──────────────────────── */
-        .success-view {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            animation: slideUp 0.3s ease-out forwards;
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .success-ring {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background-color: #D1FAE5;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .checkmark-svg {
-            width: 44px;
-            height: 44px;
-        }
-
+        
+        /* Checkmark Animation */
         .checkmark-path {
-            stroke: #059669;
-            stroke-width: 5;
-            stroke-linecap: round;
-            stroke-linejoin: round;
+            stroke: #386641;
+            stroke-width: 4;
+            stroke-linecap: square;
             fill: none;
             stroke-dasharray: 60;
             stroke-dashoffset: 60;
-            animation: drawCheck 0.5s 0.1s ease-out forwards;
+            animation: drawCheck 0.6s ease-out forwards;
         }
-
         @keyframes drawCheck {
             to { stroke-dashoffset: 0; }
         }
-
-        .success-title {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: #065F46;
-            margin-bottom: 8px;
-        }
-
-        .success-desc {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            line-height: 1.5;
-            margin-bottom: 24px;
-        }
-
-        /* ─── Error Notification ─────────────────── */
-        .error-banner {
-            display: none;
-            background-color: #FEE2E2;
-            border: 1px solid #FCA5A5;
-            color: #991B1B;
-            padding: 16px;
-            border-radius: 12px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-align: center;
-            margin-bottom: 16px;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .error-banner span {
-            font-size: 1.25rem;
-        }
-
-        /* ─── Footer ──────────────────────────────── */
-        footer {
-            margin-top: auto;
-            padding-top: 32px;
-            font-size: 0.75rem;
-            color: var(--text-light);
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        footer span {
-            font-size: 0.9rem;
-        }
     </style>
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#f0eee8",
+                        "outline": "#80756c",
+                        "deep-espresso": "#2A1B0E",
+                        "error": "#ba1a1a",
+                        "primary-container": "#4b3621",
+                        "surface-bright": "#fcf9f3",
+                        "inverse-on-surface": "#f3f0ea",
+                        "tertiary-fixed": "#ffdcbd",
+                        "secondary-container": "#c8ebce",
+                        "surface": "#fcf9f3",
+                        "on-primary-fixed": "#291806",
+                        "surface-container-high": "#ebe8e2",
+                        "on-background": "#1c1c18",
+                        "on-surface-variant": "#4e453d",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#e1c1a4",
+                        "on-surface": "#1c1c18",
+                        "tertiary": "#391e00",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#cb9b6c",
+                        "paper-white": "#FDFCF8",
+                        "surface-container-low": "#f6f3ed",
+                        "secondary-fixed-dim": "#adcfb3",
+                        "background": "#fcf9f3",
+                        "on-tertiary-fixed-variant": "#623f18",
+                        "tertiary-container": "#54330c",
+                        "surface-variant": "#e5e2dc",
+                        "primary-fixed": "#fedcbe",
+                        "inverse-surface": "#31312d",
+                        "primary": "#33210d",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#03210f",
+                        "on-secondary-container": "#4c6b54",
+                        "heritage-cream": "#F2E8CF",
+                        "on-secondary-fixed-variant": "#2f4d38",
+                        "secondary": "#46654f",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#dcdad4",
+                        "on-primary-fixed-variant": "#59422c",
+                        "surface-tint": "#725a42",
+                        "primary-fixed-dim": "#e1c1a4",
+                        "on-tertiary": "#ffffff",
+                        "outline-variant": "#d2c4ba",
+                        "tertiary-fixed-dim": "#f0bd8b",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#c8ebce",
+                        "on-tertiary-fixed": "#2c1600",
+                        "on-primary-container": "#bd9f83",
+                        "surface-container-highest": "#e5e2dc",
+                        "moss-green": "#386641"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["EB Garamond"],
+                        "label-caps": ["JetBrains Mono"],
+                        "body-lg": ["Manrope"],
+                        "headline-lg": ["EB Garamond"],
+                        "label-md": ["JetBrains Mono"],
+                        "headline-md": ["EB Garamond"],
+                        "body-md": ["Manrope"]
+                    }
+                }
+            }
+        }
+    </script>
 </head>
-<body>
+<body class="bg-background text-on-surface font-body-md selection:bg-tertiary-fixed-dim flex flex-col items-center min-h-screen py-10 px-4 relative">
+    <div class="grain-overlay"></div>
 
-    <!-- Gateway Header -->
-    <div class="gateway-header">
-        <div class="gateway-brand">
-            <span class="material-symbols-outlined brand-icon">payments</span>
-            <span>QrislyPay</span>
-        </div>
-        <div class="secure-badge">
-            <span class="material-symbols-outlined" style="font-size: 12px;">lock</span>
-            <span>SECURE PROCESSED</span>
-        </div>
-    </div>
-
-    <main>
-        <!-- Error Banner -->
-        <div id="error-banner" class="error-banner">
-            <span class="material-symbols-outlined">error</span>
-            <span id="error-text">Detail transaksi gagal dimuat.</span>
+    <main class="w-full max-w-[450px] relative z-10 flex flex-col">
+        
+        <div class="flex justify-between items-center border-b border-outline/10 pb-4 mb-6">
+            <div class="flex items-center gap-2 font-headline-md text-deep-espresso">
+                <span class="material-symbols-outlined text-[24px]">payments</span>
+                <span>QrislyPay</span>
+            </div>
+            <div class="flex items-center gap-1 bg-moss-green/10 text-moss-green px-2 py-1 rounded-sm border border-moss-green/20">
+                <span class="material-symbols-outlined text-[12px]">lock</span>
+                <span class="font-label-caps text-[9px] tracking-widest uppercase">Secure</span>
+            </div>
         </div>
 
-        <!-- Loading Skeleton -->
-        <div id="loading-card" class="card">
-            <div class="skeleton skeleton-title"></div>
-            <div class="skeleton skeleton-amount"></div>
-            <div class="skeleton skeleton-block"></div>
+        <div id="error-banner" class="hidden bg-error-container border border-error/20 text-on-error-container p-4 rounded-sm flex items-center justify-center gap-2 mb-6">
+            <span class="material-symbols-outlined text-[20px]">error</span>
+            <span id="error-text" class="font-label-caps text-[11px] tracking-widest uppercase">Detail transaksi gagal dimuat.</span>
         </div>
 
-        <!-- Checkout Simulator Interface -->
-        <div id="payment-card" class="card" style="display: none;">
+        <div id="loading-card" class="bg-paper-white border border-outline/10 p-8 shadow-sm">
+            <div class="skeleton h-6 w-2/5 mb-4"></div>
+            <div class="skeleton h-10 w-3/5 mb-8"></div>
+            <div class="skeleton h-20 w-full mb-4"></div>
+            <div class="skeleton h-12 w-full mt-6"></div>
+        </div>
+
+        <div id="payment-card" class="bg-paper-white border border-outline/10 p-8 shadow-sm hidden">
             
-            <!-- Billing Details Card -->
-            <div class="billing-box">
+            <div class="bg-surface-container-low border border-outline/20 p-6 flex flex-col gap-2 mb-8">
                 <div>
-                    <span class="merchant-label">Penerima (Merchant)</span>
-                    <h2 class="merchant-name" id="merchant-name">Sela Cafe</h2>
+                    <span class="font-label-caps text-[10px] tracking-widest uppercase text-on-surface-variant">Penerima (Merchant)</span>
+                    <h2 class="font-headline-md text-[24px] text-deep-espresso leading-none mt-1" id="merchant-name">Sela Cafe</h2>
                 </div>
-                <div class="billing-divider"></div>
-                <div class="amount-row">
-                    <span class="merchant-label">Total Tagihan</span>
-                    <span class="amount-val" id="payment-amount">Rp 0</span>
-                </div>
-            </div>
-
-            <!-- Transaction Metadata -->
-            <div class="info-list">
-                <div class="info-item">
-                    <span class="info-label">ID Transaksi</span>
-                    <span class="info-value" id="trx-id-display">...</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Kode Ref Order</span>
-                    <span class="info-value" id="order-ref-display">...</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Metode Pembayaran</span>
-                    <span class="info-value" id="payment-method-display">QRIS DYNAMIC</span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">Tipe Layanan</span>
-                    <span class="info-value" id="order-type-display">...</span>
+                <div class="sela-line my-3"></div>
+                <div class="flex justify-between items-end">
+                    <span class="font-label-caps text-[10px] tracking-widest uppercase text-on-surface-variant">Total Tagihan</span>
+                    <span class="font-headline-lg text-[32px] font-semibold text-deep-espresso leading-none" id="payment-amount">Rp 0</span>
                 </div>
             </div>
 
-            <h3 class="methods-title">Pilih E-Wallet Simulasi</h3>
-            <div class="method-selector">
-                <div class="method-option selected" onclick="selectMethod(this, 'GoPay')">
-                    <div class="method-radio"></div>
-                    <span>GoPay</span>
+            <div class="flex flex-col gap-4 mb-8">
+                <div class="flex justify-between items-center">
+                    <span class="font-body-md text-on-surface-variant text-[14px]">ID Transaksi</span>
+                    <span class="font-label-md text-deep-espresso font-semibold text-[13px]" id="trx-id-display">...</span>
                 </div>
-                <div class="method-option" onclick="selectMethod(this, 'OVO')">
-                    <div class="method-radio"></div>
-                    <span>OVO</span>
+                <div class="sela-line opacity-5"></div>
+                <div class="flex justify-between items-center">
+                    <span class="font-body-md text-on-surface-variant text-[14px]">Kode Ref Order</span>
+                    <span class="font-label-md text-deep-espresso font-semibold text-[13px]" id="order-ref-display">...</span>
                 </div>
-                <div class="method-option" onclick="selectMethod(this, 'DANA')">
-                    <div class="method-radio"></div>
-                    <span>DANA</span>
+                <div class="sela-line opacity-5"></div>
+                <div class="flex justify-between items-center">
+                    <span class="font-body-md text-on-surface-variant text-[14px]">Metode</span>
+                    <span class="font-label-caps text-[11px] tracking-widest uppercase text-deep-espresso" id="payment-method-display">QRIS DYNAMIC</span>
                 </div>
-                <div class="method-option" onclick="selectMethod(this, 'ShopeePay')">
-                    <div class="method-radio"></div>
-                    <span>ShopeePay</span>
+                <div class="sela-line opacity-5"></div>
+                <div class="flex justify-between items-center">
+                    <span class="font-body-md text-on-surface-variant text-[14px]">Tipe Layanan</span>
+                    <span class="font-label-caps text-[11px] tracking-widest uppercase text-deep-espresso" id="order-type-display">...</span>
                 </div>
             </div>
 
-            <button class="btn btn-pay" id="btn-pay" onclick="executePaymentSim()">
+            <h3 class="font-label-caps text-[11px] tracking-widest uppercase text-on-surface-variant mb-4">Pilih E-Wallet Simulasi</h3>
+            
+            <div class="grid grid-cols-2 gap-3 mb-8">
+                <div class="method-option selected border border-outline/20 p-4 flex items-center gap-3 cursor-pointer transition-all hover:border-deep-espresso" onclick="selectMethod(this, 'GoPay')">
+                    <div class="method-radio w-4 h-4 rounded-full border border-outline/40 flex items-center justify-center shrink-0">
+                        <div class="w-2 h-2 rounded-full hidden"></div>
+                    </div>
+                    <span class="font-label-caps text-[12px] tracking-widest uppercase text-deep-espresso">GoPay</span>
+                </div>
+                <div class="method-option border border-outline/20 p-4 flex items-center gap-3 cursor-pointer transition-all hover:border-deep-espresso" onclick="selectMethod(this, 'OVO')">
+                    <div class="method-radio w-4 h-4 rounded-full border border-outline/40 flex items-center justify-center shrink-0">
+                        <div class="w-2 h-2 rounded-full hidden"></div>
+                    </div>
+                    <span class="font-label-caps text-[12px] tracking-widest uppercase text-deep-espresso">OVO</span>
+                </div>
+                <div class="method-option border border-outline/20 p-4 flex items-center gap-3 cursor-pointer transition-all hover:border-deep-espresso" onclick="selectMethod(this, 'DANA')">
+                    <div class="method-radio w-4 h-4 rounded-full border border-outline/40 flex items-center justify-center shrink-0">
+                        <div class="w-2 h-2 rounded-full hidden"></div>
+                    </div>
+                    <span class="font-label-caps text-[12px] tracking-widest uppercase text-deep-espresso">DANA</span>
+                </div>
+                <div class="method-option border border-outline/20 p-4 flex items-center gap-3 cursor-pointer transition-all hover:border-deep-espresso" onclick="selectMethod(this, 'ShopeePay')">
+                    <div class="method-radio w-4 h-4 rounded-full border border-outline/40 flex items-center justify-center shrink-0">
+                        <div class="w-2 h-2 rounded-full hidden"></div>
+                    </div>
+                    <span class="font-label-caps text-[12px] tracking-widest uppercase text-deep-espresso">ShopeePay</span>
+                </div>
+            </div>
+
+            <button class="w-full bg-deep-espresso text-paper-white font-label-caps text-[12px] tracking-[0.2em] py-5 flex justify-center items-center gap-2 hover:bg-primary transition-all pressed-state disabled:opacity-50 disabled:cursor-not-allowed" id="btn-pay" onclick="executePaymentSim()">
                 <span>BAYAR SEKARANG</span>
             </button>
         </div>
 
-        <!-- Checkout Success screen -->
-        <div id="success-card" class="card success-view">
-            <div class="success-ring">
-                <svg class="checkmark-svg" viewBox="0 0 52 52">
+        <div id="success-card" class="bg-paper-white border border-outline/10 p-10 shadow-sm hidden flex-col items-center text-center animate-[slideUp_0.4s_ease-out_forwards]">
+            <div class="w-20 h-20 bg-secondary-container/30 border border-moss-green/20 rounded-full flex items-center justify-center mb-6">
+                <svg class="w-10 h-10" viewBox="0 0 52 52">
                     <path class="checkmark-path" d="M14 27 l8 8 l16 -16" />
                 </svg>
             </div>
-            <h2 class="success-title">Transaksi Berhasil!</h2>
-            <p class="success-desc">
-                Pembayaran Anda sebesar <strong id="success-amount-display" style="color: var(--primary-dark);">Rp 0</strong> telah sukses diverifikasi oleh QrislyPay.
+            
+            <h2 class="font-headline-md text-[28px] text-moss-green mb-2">Transaksi Berhasil!</h2>
+            <p class="font-body-md text-on-surface-variant mb-8 leading-relaxed">
+                Pembayaran Anda sebesar <strong id="success-amount-display" class="text-deep-espresso font-semibold">Rp 0</strong> telah sukses diverifikasi oleh QrislyPay.
             </p>
-            <div style="background-color: var(--bg-slate); border-radius: 12px; padding: 16px; margin-bottom: 24px; text-align: left; width: 100%;">
-                <div class="info-item" style="margin-bottom: 8px;">
-                    <span class="info-label">ID Transaksi</span>
-                    <span class="info-value" id="success-trx-display">...</span>
+            
+            <div class="w-full bg-surface-container-low border border-outline/10 p-5 mb-8 text-left space-y-3">
+                <div class="flex justify-between items-center">
+                    <span class="font-label-caps text-[10px] tracking-widest text-on-surface-variant uppercase">ID Transaksi</span>
+                    <span class="font-label-md text-[12px] text-deep-espresso font-semibold" id="success-trx-display">...</span>
                 </div>
-                <div class="info-item">
-                    <span class="info-label">Waktu Transaksi</span>
-                    <span class="info-value" id="success-time-display">...</span>
+                <div class="sela-line opacity-5"></div>
+                <div class="flex justify-between items-center">
+                    <span class="font-label-caps text-[10px] tracking-widest text-on-surface-variant uppercase">Waktu</span>
+                    <span class="font-label-md text-[12px] text-deep-espresso font-semibold" id="success-time-display">...</span>
                 </div>
             </div>
             
-            <p style="font-size: 0.8rem; color: var(--text-light); line-height: 1.4;">
-                Halaman pemesanan di kasir / tracking desktop Anda akan otomatis terupdate dalam beberapa detik. Anda dapat menutup tab browser ini.
+            <p class="font-label-caps text-[10px] tracking-widest text-on-surface-variant/60 uppercase leading-relaxed">
+                Halaman pesanan Anda akan otomatis terupdate. Anda dapat menutup tab ini.
             </p>
         </div>
     </main>
 
-    <footer>
-        <span class="material-symbols-outlined" style="font-size: 14px;">shield</span>
-        <span>Secure payment engine powered by QrislyPay.</span>
+    <footer class="mt-auto pt-10 flex items-center justify-center gap-2 text-outline font-label-caps text-[10px] tracking-widest uppercase">
+        <span class="material-symbols-outlined text-[14px]">shield</span>
+        <span>Secure payment engine by QrislyPay</span>
     </footer>
 
-    <!-- Shared API fetch wrapper -->
-    <script src="../assets/js/components.js"></script>
+    <script src="../assets/js/web/components.js"></script>
 
     <script>
         const urlParams = new URLSearchParams(window.location.search);
@@ -551,23 +311,20 @@
             }
 
             try {
-                // Fetch Payment Details from backend
+                // Fetch Payment Details
                 const payRes = await window.apiFetch(`/api/payments/trx/${trxId}`);
-                if (!payRes.ok) {
-                    throw new Error('Pembayaran tidak terdaftar atau telah kadaluarsa.');
-                }
+                if (!payRes.ok) throw new Error('Pembayaran tidak terdaftar atau telah kadaluarsa.');
+                
                 const payPayload = await payRes.json();
                 paymentData = payPayload.data;
 
                 // Fetch Order details for metadata
                 const orderRes = await window.apiFetch(`/api/orders/getById/${paymentData.orderId}`);
-                if (!orderRes.ok) {
-                    throw new Error('Gagal mencocokkan data transaksi order.');
-                }
+                if (!orderRes.ok) throw new Error('Gagal mencocokkan data transaksi order.');
+                
                 const orderPayload = await orderRes.json();
                 orderData = orderPayload.data;
 
-                // If already paid, direct to success view
                 if (paymentData.status === 'SUCCESS') {
                     showSuccessState(paymentData);
                     return;
@@ -589,27 +346,25 @@
             const banner = document.getElementById('error-banner');
             const textEl = document.getElementById('error-text');
             textEl.textContent = msg;
-            banner.style.display = 'flex';
+            banner.classList.remove('hidden');
+            banner.classList.add('flex');
         }
 
         function renderForm() {
             hideLoading();
-            
             document.getElementById('payment-amount').textContent = formatIDR(paymentData.amount);
             document.getElementById('trx-id-display').textContent = paymentData.transactionId;
             document.getElementById('order-ref-display').textContent = orderData.orderCode;
-            document.getElementById('order-type-display').textContent = orderData.orderType;
-
-            document.getElementById('payment-card').style.display = 'block';
+            document.getElementById('order-type-display').textContent = orderData.orderType.replace('_', ' ');
+            document.getElementById('payment-card').classList.remove('hidden');
         }
 
         async function executePaymentSim() {
             const btn = document.getElementById('btn-pay');
             btn.disabled = true;
-            btn.innerHTML = `<span class="spinner"></span> <span>MEMPROSES TRANSAKSI...</span>`;
+            btn.innerHTML = `<span class="material-symbols-outlined animate-spin text-[18px]">autorenew</span> <span>MEMPROSES...</span>`;
 
             try {
-                // Call simulate-success in backend
                 const response = await window.apiFetch(`/api/payments/${trxId}/simulate-success`, {
                     method: 'POST'
                 });
@@ -633,22 +388,20 @@
         function showSuccessState(payment) {
             hideLoading();
             document.getElementById('payment-card').style.display = 'none';
+            document.getElementById('success-card').classList.remove('hidden');
+            document.getElementById('success-card').classList.add('flex');
             
             document.getElementById('success-amount-display').textContent = formatIDR(payment.amount);
             document.getElementById('success-trx-display').textContent = payment.transactionId;
             
             const date = payment.paidAt ? new Date(payment.paidAt) : new Date();
             const formattedTime = date.toLocaleDateString('id-ID', {
-                day: '2-digit',
-                month: 'long',
-                year: 'numeric'
+                day: '2-digit', month: 'long', year: 'numeric'
             }) + ' - ' + date.toLocaleTimeString('id-ID', {
-                hour: '2-digit',
-                minute: '2-digit'
+                hour: '2-digit', minute: '2-digit'
             }) + ' WIB';
             
             document.getElementById('success-time-display').textContent = formattedTime;
-            document.getElementById('success-card').style.display = 'flex';
         }
     </script>
 </body>

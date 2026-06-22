@@ -149,9 +149,12 @@
         <section class="relative min-h-[921px] flex flex-col items-center justify-center pt-20 px-8 md:px-20 overflow-hidden bg-surface-container-low">
             <div class="max-w-[1280px] w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center z-10">
                 <div class="lg:col-span-6 flex flex-col gap-8">
+                    
                     <div class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-primary">account_circle</span>
-                        <span class="font-label-caps text-label-caps uppercase tracking-[0.2em] text-primary">Welcome back, <span id="user-name" class="font-bold border-b border-primary">Nama Pengguna</span></span>
+                        <span id="welcome-message" class="font-label-caps text-label-caps uppercase tracking-[0.2em] text-primary font-bold border-b border-primary">
+                            "Welcome back, Guest."
+                        </span>
                     </div>
                     
                     <h1 class="font-headline-xl text-headline-xl text-deep-espresso leading-tight mt-2">
@@ -363,6 +366,40 @@
             </div>
         </section>
 
+<section class="py-32 px-8 md:px-20 max-w-[1280px] mx-auto">
+            <div class="flex items-end justify-between mb-12">
+                <div>
+                    <span class="font-label-caps text-label-caps text-moss-green mb-4 block tracking-widest uppercase">ACCOUNT OVERVIEW</span>
+                    <h2 class="font-headline-lg text-headline-lg text-deep-espresso">Recent Orders</h2>
+                </div>
+            </div>
+            
+            <div class="bg-paper-white border border-outline-variant/30 overflow-hidden rounded-xl shadow-sm">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-surface-container-low border-b border-outline-variant/30">
+                                <th class="py-5 px-8 font-label-caps text-label-caps text-on-surface-variant tracking-widest">ORDER #</th>
+                                <th class="py-5 px-8 font-label-caps text-label-caps text-on-surface-variant tracking-widest">DATE</th>
+                                <th class="py-5 px-8 font-label-caps text-label-caps text-on-surface-variant tracking-widest">STATUS</th>
+                                <th class="py-5 px-8 font-label-caps text-label-caps text-on-surface-variant tracking-widest">TOTAL</th>
+                                <th class="py-5 px-8 font-label-caps text-label-caps text-on-surface-variant tracking-widest text-right">ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orders-tbody" class="font-body-md text-deep-espresso">
+                            <tr>
+                                <td colspan="5" class="py-12 text-center text-on-surface-variant opacity-60 italic">
+                                    Loading your recent orders...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="pagination-container" class="flex justify-between items-center px-8 py-4 bg-surface-container-lowest border-t border-outline-variant/30">
+                    </div>
+            </div>
+        </section>
+
         <section class="relative py-32 px-8 md:px-20 overflow-hidden bg-surface-container-high">
             <div class="max-w-[1280px] mx-auto flex flex-col items-center text-center relative z-10">
                 <span class="font-label-caps text-label-caps text-moss-green mb-4 tracking-[0.3em] uppercase">Join Our Team</span>
@@ -381,6 +418,7 @@
     <div id="footer-placeholder"></div>
 
     <script src="../assets/js/components.js"></script>
+    <script src="../assets/js/customer/customer-home.js"></script>
     <script src="../assets/js/web/home.js"></script>
 </body>
 </html>

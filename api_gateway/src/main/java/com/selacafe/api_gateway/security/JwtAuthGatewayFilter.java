@@ -108,7 +108,8 @@ public class JwtAuthGatewayFilter
             if (path.equals("/api/categories/getAll") || path.startsWith("/api/categories/getById/")) {
                 return true;
             }
-            if (path.equals("/api/promos/getAll") || path.startsWith("/api/promos/getById/") || path.equals("/api/promos/active")) {
+            if (path.equals("/api/promos/getAll") || path.startsWith("/api/promos/getById/") 
+                    || path.startsWith("/api/promos/getByCode/") || path.equals("/api/promos/active")) {
                 return true;
             }
             if (path.startsWith("/api/locations") || path.startsWith("/api/banners") || path.startsWith("/api/careers")) {

@@ -1,231 +1,216 @@
 <!DOCTYPE html>
-
-<html class="scroll-smooth" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Sela Cafe | Your Curated Ritual</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=Manrope:wght@200..800&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@300,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="../assets/css/components.css" rel="stylesheet"/>
-<script src="../assets/js/web/components.js" defer></script>
-<script src="../assets/js/web/cart.js" defer></script>
-<!-- Tailwind Configuration -->
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "tertiary-fixed": "#ece2c9",
-                    "on-primary": "#ffffff",
-                    "secondary-fixed": "#c8ebcf",
-                    "tertiary-container": "#292515",
-                    "deep-espresso": "#2A1B0E",
-                    "primary-container": "#33210d",
-                    "surface-container": "#efeeea",
-                    "inverse-on-surface": "#f2f1ed",
-                    "paper-white": "#FDFCF8",
-                    "on-secondary-fixed": "#022110",
-                    "surface-container-low": "#f4f4f0",
-                    "surface-container-highest": "#e3e2df",
-                    "tertiary-fixed-dim": "#cfc6ae",
-                    "on-primary-container": "#a3876c",
-                    "on-primary-fixed": "#291805",
-                    "inverse-primary": "#e1c1a3",
-                    "on-background": "#1b1c1a",
-                    "primary-fixed-dim": "#e1c1a3",
-                    "error": "#ba1a1a",
-                    "secondary": "#46654f",
-                    "on-error-container": "#93000a",
-                    "on-primary-fixed-variant": "#58432c",
-                    "on-error": "#ffffff",
-                    "moss-green": "#386641",
-                    "surface-container-lowest": "#ffffff",
-                    "outline": "#80756c",
-                    "on-secondary": "#ffffff",
-                    "surface-container-high": "#e9e8e4",
-                    "surface-variant": "#e3e2df",
-                    "background": "#faf9f5",
-                    "on-surface": "#1b1c1a",
-                    "secondary-fixed-dim": "#adcfb4",
-                    "inverse-surface": "#2f312e",
-                    "surface-tint": "#725a42",
-                    "heritage-cream": "#F2E8CF",
-                    "on-surface-variant": "#4e453d",
-                    "on-tertiary-fixed-variant": "#4c4634",
-                    "outline-variant": "#d2c4b9",
-                    "surface-dim": "#dbdad6",
-                    "primary-fixed": "#feddbe",
-                    "on-secondary-fixed-variant": "#2f4d39",
-                    "on-tertiary-container": "#938c76",
-                    "surface": "#faf9f5",
-                    "surface-bright": "#faf9f5",
-                    "on-secondary-container": "#4a6a53",
-                    "secondary-container": "#c5e8cc",
-                    "error-container": "#ffdad6",
-                    "outline-muted": "rgba(128, 117, 108, 0.2)",
-                    "on-tertiary": "#ffffff",
-                    "primary": "#1b0c00",
-                    "on-tertiary-fixed": "#201b0c",
-                    "tertiary": "#141003"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
-            },
-            "spacing": {
-                    "margin-mobile": "24px",
-                    "margin-desktop": "80px",
-                    "container-max": "1280px",
-                    "gutter": "24px",
-                    "section-padding": "8rem",
-                    "unit": "4px"
-            },
-            "fontFamily": {
-                    "label-md": ["JetBrains Mono"],
-                    "headline-lg": ["EB Garamond"],
-                    "body-lg": ["Manrope"],
-                    "headline-lg-mobile": ["EB Garamond"],
-                    "body-md": ["Manrope"],
-                    "label-caps": ["JetBrains Mono"],
-                    "headline-xl": ["EB Garamond"],
-                    "headline-md": ["EB Garamond"]
-            },
-            "fontSize": {
-                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
-                    "headline-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "500"}],
-                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
-                    "headline-lg-mobile": ["32px", {"lineHeight": "38px", "fontWeight": "500"}],
-                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
-                    "headline-xl": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "500"}],
-                    "headline-md": ["28px", {"lineHeight": "34px", "fontWeight": "500"}]
-            }
-          },
-        },
-      }
-    </script>
-<style>
-        .sela-line { height: 1px; background-color: rgba(128, 117, 108, 0.2); }
-        .grain-overlay {
-            position: fixed;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 50;
-            background-image: url("https://www.transparenttextures.com/patterns/felt.png");
-            opacity: 0.05;
-        }
+<html class="scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Your Curated Ritual | Sela Cafe</title>
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Manrope:wght@200..800&display=swap" rel="stylesheet"/>
+    <link href="../assets/css/components.css" rel="stylesheet"/>
+    
+    <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
         }
-        .active-scale:active { transform: scale(0.95); transition: transform 0.1s; }
+        .sela-line {
+            height: 1px;
+            background: currentColor;
+            opacity: 0.2;
+        }
+        .pressed-state:active {
+            transform: scale(0.98);
+        }
+        .grain-overlay::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            z-index: 10;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
     </style>
-</head>
-<body class="bg-heritage-cream text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
-<div class="grain-overlay"></div>
-<!-- Navigation Header -->
-<div id="navbar-placeholder"></div>
-<main class="pt-32 pb-section-padding px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
-<!-- Cart Header -->
-<header class="mb-12">
-<div class="flex items-center space-x-2 text-on-surface-variant mb-4 group cursor-pointer w-fit active-scale" onclick="window.location.href='menu.html'">
-<span class="material-symbols-outlined text-body-md">arrow_back</span>
-<span class="font-label-md text-label-md uppercase tracking-widest transition-all">Continue Curating</span>
-</div>
-<div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2">
-<h1 class="font-headline-xl text-headline-xl text-deep-espresso">Your Curated Ritual</h1>
-<span id="cart-item-count" class="font-label-caps text-label-caps text-on-surface-variant bg-surface-container px-3 py-1 rounded-full">0 ITEMS IN BASKET</span>
-</div>
-</header>
-<div class="flex flex-col lg:flex-row gap-12 items-start">
-<!-- Cart Items: dynamically rendered by cart.js -->
-<section id="cart-items-container" class="w-full lg:w-[65%] space-y-8">
-    <!-- Items will be injected here by cart.js -->
-    <div class="flex flex-col items-center justify-center py-24 text-center opacity-50">
-        <span class="material-symbols-outlined text-5xl mb-4">shopping_bag</span>
-        <p class="font-body-md text-on-surface-variant">Loading your ritual...</p>
-    </div>
-</section>
 
-</section>
-<!-- Right Side: Order Summary (35%) -->
-<aside class="w-full lg:w-[35%] lg:sticky lg:top-32">
-<div class="bg-paper-white rounded-xl p-8 border border-outline-muted space-y-6">
-<h2 class="font-headline-md text-headline-md text-deep-espresso pb-4 border-b border-outline-muted" id="cart-summary-title">Summary</h2>
-<div class="space-y-4">
-<div class="flex justify-between items-center">
-<span class="font-body-md text-body-md text-on-surface-variant">Subtotal</span>
-<span class="font-body-md text-body-md text-deep-espresso" id="cart-subtotal">Rp 0</span>
-</div>
-<div class="flex justify-between items-center">
-<div class="flex items-center gap-1 group">
-<span class="font-body-md text-body-md text-on-surface-variant">Artisan Hospitality</span>
-<span class="material-symbols-outlined text-sm text-on-surface-variant cursor-help">info</span>
-</div>
-<span class="font-body-md text-body-md text-deep-espresso" id="cart-service-fee">Rp 0</span>
-</div>
-<div class="flex justify-between items-center">
-<span class="font-body-md text-body-md text-on-surface-variant">Packaging (Compostable)</span>
-<span class="font-body-md text-body-md text-deep-espresso">Rp 0</span>
-</div>
-</div>
-<div class="sela-line"></div>
-<div class="flex justify-between items-center py-2">
-<span class="font-body-lg text-body-lg font-bold text-deep-espresso">Grand Total</span>
-<span class="font-headline-md text-headline-md font-bold text-deep-espresso" id="cart-grand-total">Rp 0</span>
-</div>
-<button id="btn-checkout" onclick="window.location.href='checkout.html'" class="w-full bg-deep-espresso text-paper-white font-label-md text-label-md uppercase tracking-widest py-5 rounded-lg active-scale transition-all hover:bg-primary border border-deep-espresso">
-                        Continue to Checkout
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#f0eee8",
+                        "outline": "#80756c",
+                        "deep-espresso": "#2A1B0E",
+                        "error": "#ba1a1a",
+                        "primary-container": "#4b3621",
+                        "surface-bright": "#fcf9f3",
+                        "inverse-on-surface": "#f3f0ea",
+                        "tertiary-fixed": "#ffdcbd",
+                        "secondary-container": "#c8ebce",
+                        "surface": "#fcf9f3",
+                        "on-primary-fixed": "#291806",
+                        "surface-container-high": "#ebe8e2",
+                        "on-background": "#1c1c18",
+                        "on-surface-variant": "#4e453d",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#e1c1a4",
+                        "on-surface": "#1c1c18",
+                        "tertiary": "#391e00",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#cb9b6c",
+                        "paper-white": "#FDFCF8",
+                        "surface-container-low": "#f6f3ed",
+                        "secondary-fixed-dim": "#adcfb3",
+                        "background": "#fcf9f3",
+                        "on-tertiary-fixed-variant": "#623f18",
+                        "tertiary-container": "#54330c",
+                        "surface-variant": "#e5e2dc",
+                        "primary-fixed": "#fedcbe",
+                        "inverse-surface": "#31312d",
+                        "primary": "#33210d",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#03210f",
+                        "on-secondary-container": "#4c6b54",
+                        "heritage-cream": "#F2E8CF",
+                        "on-secondary-fixed-variant": "#2f4d38",
+                        "secondary": "#46654f",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#dcdad4",
+                        "on-primary-fixed-variant": "#59422c",
+                        "surface-tint": "#725a42",
+                        "primary-fixed-dim": "#e1c1a4",
+                        "on-tertiary": "#ffffff",
+                        "outline-variant": "#d2c4ba",
+                        "tertiary-fixed-dim": "#f0bd8b",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#c8ebce",
+                        "on-tertiary-fixed": "#2c1600",
+                        "on-primary-container": "#bd9f83",
+                        "surface-container-highest": "#e5e2dc",
+                        "moss-green": "#386641"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "margin-mobile": "24px",
+                        "margin-desktop": "80px"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["EB Garamond"],
+                        "label-caps": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["EB Garamond"],
+                        "body-lg": ["Manrope"],
+                        "headline-lg": ["EB Garamond"],
+                        "label-md": ["JetBrains Mono"],
+                        "headline-md": ["EB Garamond"],
+                        "body-md": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "500"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "38px", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["28px", {"lineHeight": "34px", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+
+<body class="bg-background text-on-surface font-body-md selection:bg-tertiary-fixed-dim">
+    
+    <div id="navbar-placeholder"></div>
+
+    <main class="pt-32 pb-32 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto min-h-[80vh]">
+        <header class="mb-12">
+            <button onclick="window.location.href='menu.html'" class="flex items-center space-x-2 text-on-surface-variant hover:text-deep-espresso mb-6 group cursor-pointer transition-colors pressed-state bg-transparent border-none p-0">
+                <span class="material-symbols-outlined text-body-md group-hover:-translate-x-1 transition-transform">arrow_back</span>
+                <span class="font-label-caps text-label-caps uppercase tracking-widest">Continue Curating</span>
+            </button>
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 border-b border-outline/10 pb-8">
+                <h1 class="font-headline-xl text-headline-xl text-deep-espresso leading-tight">Your Curated Ritual</h1>
+                <span id="cart-item-count" class="font-label-caps text-label-caps text-on-surface-variant bg-surface-container px-4 py-2 rounded-full tracking-widest mb-2">0 ITEMS</span>
+            </div>
+        </header>
+
+        <div class="flex flex-col lg:flex-row gap-16 items-start">
+            
+            <section id="cart-items-container" class="w-full lg:w-[60%] space-y-6">
+                <div class="flex flex-col items-center justify-center py-24 text-center opacity-50">
+                    <span class="material-symbols-outlined text-[48px] mb-4">shopping_bag</span>
+                    <p class="font-body-md text-on-surface-variant">Loading your ritual...</p>
+                </div>
+            </section>
+
+            <aside class="w-full lg:w-[40%] lg:sticky lg:top-32">
+                <div class="bg-paper-white border border-outline/10 p-10 shadow-sm relative overflow-hidden">
+                    <h2 class="font-headline-md text-headline-md text-deep-espresso pb-6 border-b border-outline/10 mb-8" id="cart-summary-title">Summary</h2>
+                    
+                    <div class="space-y-6 mb-8">
+                        <div class="flex justify-between items-center">
+                            <span class="font-body-md text-on-surface-variant">Subtotal</span>
+                            <span class="font-label-md text-deep-espresso font-semibold" id="cart-subtotal">Rp 0</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center gap-2 group">
+                                <span class="font-body-md text-on-surface-variant">Artisan Hospitality</span>
+                                <span class="material-symbols-outlined text-[16px] text-on-surface-variant/50 cursor-help" title="10% service charge to support our artisans">info</span>
+                            </div>
+                            <span class="font-label-md text-deep-espresso font-semibold" id="cart-service-fee">Rp 0</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="font-body-md text-on-surface-variant">Packaging (Compostable)</span>
+                            <span class="font-label-md text-moss-green font-semibold">Complimentary</span>
+                        </div>
+                    </div>
+                    
+                    <div class="sela-line mb-6"></div>
+                    
+                    <div class="flex justify-between items-end mb-10">
+                        <span class="font-body-lg text-on-surface-variant">Grand Total</span>
+                        <span class="font-headline-md text-[32px] font-bold text-deep-espresso leading-none" id="cart-grand-total">Rp 0</span>
+                    </div>
+                    
+                    <button id="btn-checkout" onclick="window.location.href='checkout.html'" class="w-full bg-deep-espresso text-paper-white font-label-caps text-xs tracking-[0.2em] py-5 transition-all hover:bg-primary pressed-state">
+                        PROCEED TO CHECKOUT
                     </button>
-<div class="pt-4 flex flex-col items-center gap-4">
-<div class="flex items-center space-x-2 text-on-surface-variant">
-<span class="material-symbols-outlined text-sm">verified_user</span>
-<span class="font-label-caps text-[10px]">SECURE HERITAGE TRANSACTIONS</span>
-</div>
-</div>
-</div>
-<div class="mt-8 p-6 bg-heritage-cream/50 rounded-xl border border-outline-muted italic">
-<p class="font-body-md text-body-md text-on-surface-variant text-center">
+                    
+                    <div class="pt-6 flex justify-center">
+                        <div class="flex items-center space-x-2 text-on-surface-variant opacity-60">
+                            <span class="material-symbols-outlined text-[14px]">verified_user</span>
+                            <span class="font-label-caps text-[10px] tracking-widest">SECURE HERITAGE TRANSACTIONS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 p-8 bg-surface-container-low border border-outline/5 text-center">
+                    <p class="font-headline-md text-[20px] text-on-surface-variant italic leading-snug">
                         "Coffee is a heritage, a ritual shared through time. Every cup at Sela is prepared with artisanal patience."
                     </p>
-</div>
-</aside>
-</div>
-</main>
-<!-- Footer -->
-<div id="footer-placeholder"></div>
-<script>
-        // Simple micro-interaction for sticky summary header shadow
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 20) {
-                nav.classList.add('shadow-sm');
-                nav.classList.add('bg-opacity-95');
-            } else {
-                nav.classList.remove('shadow-sm');
-                nav.classList.remove('bg-opacity-95');
-            }
-        });
+                </div>
+            </aside>
 
-        // Add to Cart / Quantity Selector logic mock
-        document.querySelectorAll('.material-symbols-outlined').forEach(icon => {
-            if(icon.innerText === 'add' || icon.innerText === 'remove') {
-                icon.parentElement.addEventListener('click', function() {
-                    const counter = this.parentElement.querySelector('span:not(.material-symbols-outlined)');
-                    if(counter) {
-                        let val = parseInt(counter.innerText);
-                        if(icon.innerText === 'add') val++;
-                        else if(val > 1) val--;
-                        counter.innerText = val;
-                    }
-                });
-            }
-        });
-    </script>
-</body></html>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="../assets/js/components.js"></script>
+    <script src="../assets/js/web/cart.js" defer></script>
+</body>
+</html>

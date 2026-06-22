@@ -179,7 +179,7 @@
 </div>
 <div class="group">
 <label class="block text-label-caps font-label-caps text-on-surface-variant/60 mb-0.5 tracking-wider text-[10px]">PHONE NUMBER</label>
-<input id="phone" class="sela-input w-full bg-transparent border-b border-outline-muted py-1.5 text-body-md font-body-md transition-all duration-300 placeholder:text-outline-muted" placeholder="+1 (555) 000-0000" type="tel"/>
+<input id="phone" class="sela-input w-full bg-transparent border-b border-outline-muted py-1.5 text-body-md font-body-md transition-all duration-300 placeholder:text-outline-muted" placeholder="+1 (555) 000-0000" type="tel" maxlength="15" oninput="this.value = this.value.replace(/[^0-9+]/g, '')"/>
 </div>
 </div>
 <!-- Password and Confirm Password -->
@@ -262,6 +262,6 @@ I agree to the <a class="underline decoration-outline-muted hover:decoration-pri
             }
         });
     </script>
-<script src="../assets/js/web/components.js"></script>
+<script src="../assets/js/components.js"></script>
 <script src="../assets/js/web/auth.js"></script>
 </body></html>

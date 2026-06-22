@@ -97,11 +97,26 @@ async function fetchProfile() {
             const fieldName = document.getElementById('profile-display-name');
             const fieldEmail = document.getElementById('profile-display-email');
             const fieldPhone = document.getElementById('profile-display-phone');
+            const roleEl = document.getElementById('profile-member-since');
 
             if (titleName) titleName.textContent = currentProfile.name || '';
             if (fieldName) fieldName.textContent = currentProfile.name || '';
             if (fieldEmail) fieldEmail.textContent = currentProfile.email || '';
             if (fieldPhone) fieldPhone.textContent = currentProfile.phone || 'No phone number';
+            if (roleEl && currentProfile.role) {
+                roleEl.textContent = `${currentProfile.role.replace('_', ' ')} Account`;
+            }
+
+            // Render avatar
+            const avatarContent = document.getElementById('profile-avatar-content');
+            if (avatarContent && currentProfile.id) {
+                const savedAvatar = localStorage.getItem('userAvatar_' + currentProfile.id);
+                if (savedAvatar) {
+                    avatarContent.innerHTML = `<img src="${savedAvatar}" class="w-full h-full object-cover rounded-full" alt="Profile Picture" />`;
+                } else {
+                    avatarContent.innerHTML = `<span class="material-symbols-outlined text-[64px] md:text-[80px]">person</span>`;
+                }
+            }
         } else {
             window.showToast('Failed to load profile data.', 'error');
         }
@@ -110,6 +125,36 @@ async function fetchProfile() {
         window.showToast('Error connecting to user service.', 'error');
     }
 }
+
+window.uploadAvatar = function(input) {
+    const userId = currentProfile.id || localStorage.getItem('userId');
+    if (input.files && input.files[0] && userId) {
+        const file = input.files[0];
+        if (file.size > 2 * 1024 * 1024) {
+            window.showToast('Image size must be less than 2MB.', 'error');
+            return;
+        }
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const base64Image = e.target.result;
+            localStorage.setItem('userAvatar_' + userId, base64Image);
+            
+            const avatarContent = document.getElementById('profile-avatar-content');
+            if (avatarContent) {
+                avatarContent.innerHTML = `<img src="${base64Image}" class="w-full h-full object-cover rounded-full" alt="Profile Picture" />`;
+            }
+            
+            // Refresh Navbar
+            const navbarPlaceholder = document.getElementById('navbar-placeholder');
+            if (navbarPlaceholder && typeof window.injectNavbar === 'function') {
+                window.injectNavbar(navbarPlaceholder);
+            }
+            
+            window.showToast('Profile photo updated successfully!', 'success');
+        };
+        reader.readAsDataURL(file);
+    }
+};
 
 window.toggleProfileModal = function(show) {
     const modal = document.getElementById('profileModal');

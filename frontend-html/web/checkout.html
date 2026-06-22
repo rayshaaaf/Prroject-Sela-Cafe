@@ -1,350 +1,321 @@
 <!DOCTYPE html>
-
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Sela Cafe | Checkout</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&amp;family=Manrope:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="../assets/css/components.css" rel="stylesheet"/>
-<script src="../assets/js/web/components.js" defer></script>
-<script src="../assets/js/web/checkout.js" defer></script>
-<style>
+<html class="scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Sela Cafe | Checkout</title>
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Manrope:wght@200..800&display=swap" rel="stylesheet"/>
+    <link href="../assets/css/components.css" rel="stylesheet"/>
+    
+    <style>
         .material-symbols-outlined {
-            font-variation-settings: 'wght' 300, 'opsz' 24;
-        }
-        .grain-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 9999;
-            opacity: 0.05;
-            background-image: url("https://www.transparenttextures.com/patterns/felt.png");
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
         }
         .sela-line {
             height: 1px;
-            background: rgba(128, 117, 108, 0.2);
+            background: currentColor;
+            opacity: 0.1;
             width: 100%;
         }
-        input:focus, select:focus {
+        .pressed-state:active {
+            transform: scale(0.98);
+        }
+        .grain-overlay::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.05;
+            z-index: 10;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        input:focus, select:focus, textarea:focus {
             outline: none;
             border-color: #2A1B0E !important;
-            ring: 0 !important;
+            box-shadow: none !important;
         }
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #2A1B0E;
-            border-radius: 10px;
-        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #2A1B0E; border-radius: 10px; }
     </style>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "primary-container": "#33210d",
-                    "primary-fixed-dim": "#e1c1a3",
-                    "surface-dim": "#dbdad6",
-                    "on-secondary": "#ffffff",
-                    "on-tertiary-container": "#938c76",
-                    "moss-green": "#386641",
-                    "error-container": "#ffdad6",
-                    "surface-container-highest": "#e3e2df",
-                    "tertiary-fixed-dim": "#cfc6ae",
-                    "secondary": "#46654f",
-                    "tertiary-fixed": "#ece2c9",
-                    "background": "#faf9f5",
-                    "surface-bright": "#faf9f5",
-                    "primary-fixed": "#feddbe",
-                    "surface-container": "#efeeea",
-                    "on-surface-variant": "#4e453d",
-                    "on-secondary-fixed-variant": "#2f4d39",
-                    "heritage-cream": "#F2E8CF",
-                    "secondary-container": "#c5e8cc",
-                    "on-tertiary-fixed": "#201b0c",
-                    "on-secondary-fixed": "#022110",
-                    "surface-container-low": "#f4f4f0",
-                    "paper-white": "#FDFCF8",
-                    "on-primary-fixed": "#291805",
-                    "on-background": "#1b1c1a",
-                    "deep-espresso": "#2A1B0E",
-                    "tertiary-container": "#292515",
-                    "outline-variant": "#d2c4b9",
-                    "on-surface": "#1b1c1a",
-                    "on-secondary-container": "#4a6a53",
-                    "on-error": "#ffffff",
-                    "inverse-surface": "#2f312e",
-                    "inverse-primary": "#e1c1a3",
-                    "secondary-fixed-dim": "#adcfb4",
-                    "outline": "#80756c",
-                    "tertiary": "#141003",
-                    "surface-tint": "#725a42",
-                    "surface": "#faf9f5",
-                    "secondary-fixed": "#c8ebcf",
-                    "on-primary-fixed-variant": "#58432c",
-                    "primary": "#1b0c00",
-                    "on-primary": "#ffffff",
-                    "on-tertiary": "#ffffff",
-                    "on-tertiary-fixed-variant": "#4c4634",
-                    "surface-variant": "#e3e2df",
-                    "on-error-container": "#93000a",
-                    "outline-muted": "rgba(128, 117, 108, 0.2)",
-                    "on-primary-container": "#a3876c",
-                    "inverse-on-surface": "#f2f1ed",
-                    "surface-container-lowest": "#ffffff",
-                    "surface-container-high": "#e9e8e4",
-                    "error": "#ba1a1a"
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#f0eee8",
+                        "outline": "#80756c",
+                        "deep-espresso": "#2A1B0E",
+                        "error": "#ba1a1a",
+                        "primary-container": "#4b3621",
+                        "surface-bright": "#fcf9f3",
+                        "inverse-on-surface": "#f3f0ea",
+                        "tertiary-fixed": "#ffdcbd",
+                        "secondary-container": "#c8ebce",
+                        "surface": "#fcf9f3",
+                        "on-primary-fixed": "#291806",
+                        "surface-container-high": "#ebe8e2",
+                        "on-background": "#1c1c18",
+                        "on-surface-variant": "#4e453d",
+                        "error-container": "#ffdad6",
+                        "inverse-primary": "#e1c1a4",
+                        "on-surface": "#1c1c18",
+                        "tertiary": "#391e00",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#cb9b6c",
+                        "paper-white": "#FDFCF8",
+                        "surface-container-low": "#f6f3ed",
+                        "secondary-fixed-dim": "#adcfb3",
+                        "background": "#fcf9f3",
+                        "on-tertiary-fixed-variant": "#623f18",
+                        "tertiary-container": "#54330c",
+                        "surface-variant": "#e5e2dc",
+                        "primary-fixed": "#fedcbe",
+                        "inverse-surface": "#31312d",
+                        "primary": "#33210d",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#03210f",
+                        "on-secondary-container": "#4c6b54",
+                        "heritage-cream": "#F2E8CF",
+                        "on-secondary-fixed-variant": "#2f4d38",
+                        "secondary": "#46654f",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#dcdad4",
+                        "on-primary-fixed-variant": "#59422c",
+                        "surface-tint": "#725a42",
+                        "primary-fixed-dim": "#e1c1a4",
+                        "on-tertiary": "#ffffff",
+                        "outline-variant": "#d2c4ba",
+                        "tertiary-fixed-dim": "#f0bd8b",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#c8ebce",
+                        "on-tertiary-fixed": "#2c1600",
+                        "on-primary-container": "#bd9f83",
+                        "surface-container-highest": "#e5e2dc",
+                        "moss-green": "#386641"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "margin-mobile": "24px",
+                        "margin-desktop": "80px"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["EB Garamond"],
+                        "label-caps": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["EB Garamond"],
+                        "body-lg": ["Manrope"],
+                        "headline-lg": ["EB Garamond"],
+                        "label-md": ["JetBrains Mono"],
+                        "headline-md": ["EB Garamond"],
+                        "body-md": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "500"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["32px", {"lineHeight": "38px", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["28px", {"lineHeight": "34px", "fontWeight": "500"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
             },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
-            },
-            "spacing": {
-                    "section-padding": "8rem",
-                    "container-max": "1280px",
-                    "margin-mobile": "24px",
-                    "gutter": "24px",
-                    "margin-desktop": "80px",
-                    "unit": "4px"
-            },
-            "fontFamily": {
-                    "headline-lg": ["EB Garamond"],
-                    "headline-xl": ["EB Garamond"],
-                    "body-md": ["Manrope"],
-                    "label-md": ["JetBrains Mono"],
-                    "label-caps": ["JetBrains Mono"],
-                    "headline-md": ["EB Garamond"],
-                    "headline-lg-mobile": ["EB Garamond"],
-                    "body-lg": ["Manrope"]
-            },
-            "fontSize": {
-                    "headline-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "500"}],
-                    "headline-xl": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "500"}],
-                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
-                    "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
-                    "headline-md": ["28px", {"lineHeight": "34px", "fontWeight": "500"}],
-                    "headline-lg-mobile": ["32px", {"lineHeight": "38px", "fontWeight": "500"}],
-                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
-            }
-          },
-        },
-      }
+        }
     </script>
 </head>
-<body class="bg-surface font-body-md text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
-<div class="grain-overlay"></div>
-<!-- Header / TopNavBar -->
-<div id="navbar-placeholder"></div>
-<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-12 md:py-20">
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
-<!-- Left Column: Information -->
-<div class="lg:col-span-7 flex flex-col gap-12">
-<section>
-<h1 class="font-headline-lg text-headline-lg mb-8 text-primary">The Ritual Details</h1>
-<!-- Order Type Selection -->
-<div class="flex flex-col gap-4">
-<label class="font-label-caps text-label-caps text-on-surface-variant">Order Type</label>
-<div class="grid grid-cols-3 gap-4">
-<button class="order-type-btn flex flex-col items-center justify-center p-6 border border-primary bg-primary text-on-primary transition-all duration-300" id="btn-dine-in" onclick="switchType('dine-in')">
-<span class="material-symbols-outlined mb-2 text-2xl">local_cafe</span>
-<span class="font-label-caps text-label-caps">Dine In</span>
-</button>
-<button class="order-type-btn flex flex-col items-center justify-center p-6 border border-outline-muted bg-paper-white text-on-surface-variant hover:border-outline transition-all duration-300" id="btn-take-away" onclick="switchType('take-away')">
-<span class="material-symbols-outlined mb-2 text-2xl">shopping_bag</span>
-<span class="font-label-caps text-label-caps">Take Away</span>
-</button>
-<button class="order-type-btn flex flex-col items-center justify-center p-6 border border-outline-muted bg-paper-white text-on-surface-variant hover:border-outline transition-all duration-300" id="btn-delivery" onclick="switchType('delivery')">
-<span class="material-symbols-outlined mb-2 text-2xl">delivery_dining</span>
-<span class="font-label-caps text-label-caps">Delivery</span>
-</button>
-</div>
-</div>
-</section>
-<!-- Dynamic Section: Table / Address -->
-<section class="animate-in fade-in slide-in-from-bottom-4 duration-500" id="dynamic-fields">
-<div class="flex flex-col gap-6" id="field-dine-in">
-<div class="flex flex-col gap-2">
-<label class="font-label-caps text-label-caps text-on-surface-variant">Table Selection</label>
-<select id="checkout-table" class="w-full bg-paper-white border border-outline-muted p-4 font-body-md text-on-surface">
-<option value="">Loading available tables...</option>
-</select>
-</div>
-<p class="font-body-md text-on-surface-variant italic opacity-70">A server will prepare your table with a warm towel and spring water shortly after your order is placed.</p>
-</div>
-<div class="hidden flex flex-col gap-6" id="field-delivery">
-<div class="flex flex-col gap-2">
-<label class="font-label-caps text-label-caps text-on-surface-variant">Delivery Address</label>
-<textarea class="w-full bg-paper-white border border-outline-muted p-4 font-body-md text-on-surface min-h-[120px]" placeholder="Enter your full address..."></textarea>
-</div>
-<div class="flex flex-col gap-2">
-<label class="font-label-caps text-label-caps text-on-surface-variant">Notes for Courier</label>
-<input class="w-full bg-paper-white border border-outline-muted p-4 font-body-md text-on-surface" placeholder="Gate code, landmark, etc." type="text"/>
-</div>
-</div>
-</section>
-<div class="sela-line"></div>
-<!-- Customer Identity -->
-<section class="flex flex-col gap-6">
-<h2 class="font-headline-md text-headline-md text-primary">Guest Information</h2>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<div class="flex flex-col gap-2">
-<label class="font-label-caps text-label-caps text-on-surface-variant">Full Name</label>
-<input id="checkout-name" class="w-full bg-paper-white border border-outline-muted p-4 font-body-md text-on-surface" type="text" placeholder="Your full name"/>
-</div>
-<div class="flex flex-col gap-2">
-<label class="font-label-caps text-label-caps text-on-surface-variant">Phone Number</label>
-<input id="checkout-phone" class="w-full bg-paper-white border border-outline-muted p-4 font-body-md text-on-surface" type="tel" placeholder="+62 812 xxxx xxxx"/>
-</div>
-</div>
-</section>
-<div class="sela-line"></div>
-<!-- Voucher -->
-<section class="flex flex-col gap-4">
-<label class="font-label-caps text-label-caps text-on-surface-variant">Ritual Gift / Voucher</label>
-<div class="flex gap-4">
-<input id="voucher-input" class="flex-grow bg-paper-white border border-outline-muted p-4 font-label-md text-label-md uppercase tracking-widest" placeholder="SELASANCTUARY24" type="text"/>
-<button id="btn-apply-voucher" class="bg-deep-espresso text-on-primary px-8 font-label-caps text-label-caps hover:bg-black transition-colors active:scale-95">Apply</button>
-</div>
-<p id="voucher-status-msg" class="font-label-caps text-xs hidden mt-1"></p>
-</section>
-<div class="sela-line"></div>
-<!-- Payment Method -->
-<section class="flex flex-col gap-6">
-<h2 class="font-headline-md text-headline-md text-primary">Payment Method</h2>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<div class="relative group cursor-pointer" onclick="selectPayment('qris')">
-<input checked="" class="hidden peer" id="pay-qris" name="payment" type="radio"/>
-<div class="p-6 border border-outline-muted bg-paper-white peer-checked:border-primary peer-checked:bg-surface-container transition-all flex items-start justify-between">
-<div class="flex flex-col gap-1">
-<span class="font-label-caps text-label-caps text-on-surface">QRIS</span>
-<span class="font-body-md text-on-surface-variant text-sm">Instant Scan &amp; Pay</span>
-</div>
-<span class="material-symbols-outlined text-primary opacity-0 peer-checked:opacity-100">check_circle</span>
-</div>
-</div>
-<div class="relative group cursor-pointer" id="payment-cash-container" onclick="selectPayment('cash')">
-<input class="hidden peer" id="pay-cash" name="payment" type="radio"/>
-<div class="p-6 border border-outline-muted bg-paper-white peer-checked:border-primary peer-checked:bg-surface-container transition-all flex items-start justify-between">
-<div class="flex flex-col gap-1">
-<span class="font-label-caps text-label-caps text-on-surface">Pay at Counter</span>
-<span class="font-body-md text-on-surface-variant text-sm">Cash or Terminal</span>
-</div>
-<span class="material-symbols-outlined text-primary opacity-0 peer-checked:opacity-100">check_circle</span>
-</div>
-</div>
-</div>
-</section>
-</div>
-<!-- Right Column: Order Summary -->
-<div class="lg:col-span-5">
-<div class="sticky top-32 flex flex-col gap-8 bg-paper-white border border-outline-muted p-8 md:p-10">
-<h2 class="font-headline-md text-headline-md text-primary border-b border-outline-muted pb-6">Curated Ritual</h2>
-<!-- Items dynamically rendered by checkout.js -->
-<div id="checkout-items-container" class="flex flex-col gap-8">
-    <div class="text-center py-8 opacity-50">
-        <p class="font-body-md text-on-surface-variant">Loading your order...</p>
-    </div>
-</div>
-<div class="sela-line mt-4"></div>
-<!-- Pricing Breakdown -->
-<div class="flex flex-col gap-3">
-<div class="flex justify-between">
-<span class="font-body-md text-on-surface-variant">Subtotal</span>
-<span class="font-label-md text-label-md" id="checkout-subtotal">Rp 0</span>
-</div>
-<div class="flex justify-between">
-<span class="font-body-md text-on-surface-variant">Service (10%)</span>
-<span class="font-label-md text-label-md" id="checkout-service">Rp 0</span>
-</div>
-<div class="flex justify-between" id="voucher-row" style="display: none;">
-<span class="font-body-md text-on-surface-variant">Voucher</span>
-<span class="font-label-md text-label-md text-moss-green" id="checkout-voucher">- Rp 0</span>
-</div>
-<div class="flex justify-between mt-4 pt-4 border-t border-primary">
-<span class="font-headline-md text-headline-md text-primary">Grand Total</span>
-<span class="font-headline-md text-headline-md text-primary" id="checkout-total">Rp 0</span>
-</div>
-</div>
-<div id="checkout-status" class="hidden text-center py-2">
-    <p class="font-label-caps text-xs text-error" id="checkout-error-msg"></p>
-</div>
-<button id="btn-place-order" class="w-full bg-deep-espresso text-on-primary py-6 font-label-caps text-label-caps tracking-widest hover:bg-black transition-all duration-300 transform active:scale-95 flex items-center justify-center gap-3">
-    PLACE ORDER
-    <span class="material-symbols-outlined text-sm">arrow_forward</span>
-</button>
-<p class="text-center font-label-caps text-[10px] text-outline tracking-wider uppercase">Your sanctuary experience begins upon completion.</p>
-</div>
-</div>
-</div>
-</main>
-<!-- Footer -->
-<div id="footer-placeholder"></div>
-<script>
-        function switchType(type) {
-            // Reset buttons
-            const buttons = document.querySelectorAll('.order-type-btn');
-            buttons.forEach(btn => {
-                btn.classList.remove('bg-primary', 'text-on-primary', 'border-primary');
-                btn.classList.add('bg-paper-white', 'text-on-surface-variant', 'border-outline-muted');
-            });
 
-            // Set active button
-            const activeBtn = document.getElementById(`btn-${type}`);
-            activeBtn.classList.add('bg-primary', 'text-on-primary', 'border-primary');
-            activeBtn.classList.remove('bg-paper-white', 'text-on-surface-variant', 'border-outline-muted');
+<body class="bg-background text-on-surface font-body-md selection:bg-tertiary-fixed-dim relative">
+    
+    <div id="navbar-placeholder"></div>
 
-            // Toggle fields
-            const dineInField = document.getElementById('field-dine-in');
-            const deliveryField = document.getElementById('field-delivery');
+    <main class="pt-32 pb-32 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto min-h-[80vh]">
+        
+        <header class="mb-12">
+            <button onclick="window.location.href='cart.html'" class="flex items-center space-x-2 text-on-surface-variant hover:text-deep-espresso mb-6 group cursor-pointer transition-colors pressed-state bg-transparent border-none p-0">
+                <span class="material-symbols-outlined text-[20px] group-hover:-translate-x-1 transition-transform">arrow_back</span>
+                <span class="font-label-caps text-[12px] uppercase tracking-widest">Return to Basket</span>
+            </button>
+            <div class="border-b border-outline/10 pb-8">
+                <h1 class="font-headline-xl text-headline-xl text-deep-espresso leading-tight">Complete Ritual</h1>
+            </div>
+        </header>
 
-            // Table selection is ONLY for Dine In
-            const cashContainer = document.getElementById('payment-cash-container');
-            if (type === 'dine-in') {
-                dineInField.classList.remove('hidden');
-                deliveryField.classList.add('hidden');
-                if (cashContainer) cashContainer.classList.remove('hidden');
-            } else if (type === 'delivery') {
-                dineInField.classList.add('hidden');
-                deliveryField.classList.remove('hidden');
-                if (cashContainer) cashContainer.classList.add('hidden');
-                selectPayment('qris');
-            } else {
-                // Take Away: hide both dine-in (table) and delivery fields
-                dineInField.classList.add('hidden');
-                deliveryField.classList.add('hidden');
-                if (cashContainer) cashContainer.classList.remove('hidden');
-            }
-        }
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+            
+            <div class="lg:col-span-7 flex flex-col gap-12">
+                
+                <section class="flex flex-col gap-6">
+                    <h2 class="font-headline-md text-headline-md text-deep-espresso">Dining Preference</h2>
+                    <div class="grid grid-cols-3 gap-4">
+                        <button class="order-type-btn flex flex-col items-center justify-center p-6 border border-deep-espresso bg-deep-espresso text-paper-white transition-all duration-300 pressed-state" id="btn-dine-in" onclick="window.switchType('dine-in')">
+                            <span class="material-symbols-outlined mb-2 text-[24px]">local_cafe</span>
+                            <span class="font-label-caps text-[11px] tracking-widest uppercase">Dine In</span>
+                        </button>
+                        <button class="order-type-btn flex flex-col items-center justify-center p-6 border border-outline/20 bg-paper-white text-on-surface-variant hover:border-outline/40 transition-all duration-300 pressed-state" id="btn-take-away" onclick="window.switchType('take-away')">
+                            <span class="material-symbols-outlined mb-2 text-[24px]">shopping_bag</span>
+                            <span class="font-label-caps text-[11px] tracking-widest uppercase">Take Away</span>
+                        </button>
+                        <button class="order-type-btn flex flex-col items-center justify-center p-6 border border-outline/20 bg-paper-white text-on-surface-variant hover:border-outline/40 transition-all duration-300 pressed-state" id="btn-delivery" onclick="window.switchType('delivery')">
+                            <span class="material-symbols-outlined mb-2 text-[24px]">delivery_dining</span>
+                            <span class="font-label-caps text-[11px] tracking-widest uppercase">Delivery</span>
+                        </button>
+                    </div>
+                </section>
 
-        function selectPayment(method) {
-            document.getElementById(`pay-${method}`).checked = true;
-        }
+                <section class="transition-opacity duration-500" id="dynamic-fields">
+                    
+                    <div class="flex flex-col gap-6" id="field-dine-in">
+                        <div class="flex flex-col gap-3">
+                            <label class="font-label-caps text-[11px] tracking-widest text-on-surface-variant uppercase">Table Selection</label>
+                            <select id="checkout-table" class="w-full bg-paper-white border border-outline/20 p-4 font-body-md text-deep-espresso">
+                                <option value="">Loading available tables...</option>
+                            </select>
+                        </div>
+                        <p class="font-body-md text-on-surface-variant italic opacity-80 text-sm">A server will prepare your table with a warm towel and spring water shortly after your order is placed.</p>
+                    </div>
 
-        // Initialize micro-interactions
-        document.querySelectorAll('button, .cursor-pointer').forEach(el => {
-            el.addEventListener('mousedown', () => {
-                el.style.transform = 'scale(0.98)';
-            });
-            el.addEventListener('mouseup', () => {
-                el.style.transform = 'scale(1)';
-            });
-            el.addEventListener('mouseleave', () => {
-                el.style.transform = 'scale(1)';
-            });
-        });
-    </script>
-</body></html>
+                    <div class="hidden flex-col gap-6" id="field-delivery">
+                        <div class="flex flex-col gap-3">
+                            <label class="font-label-caps text-[11px] tracking-widest text-on-surface-variant uppercase">Delivery Address</label>
+                            <textarea id="checkout-address" class="w-full bg-paper-white border border-outline/20 p-4 font-body-md text-deep-espresso min-h-[120px] resize-y" placeholder="Enter your full address..."></textarea>
+                        </div>
+                        <div class="flex flex-col gap-3">
+                            <label class="font-label-caps text-[11px] tracking-widest text-on-surface-variant uppercase">Notes for Courier</label>
+                            <input id="checkout-courier-note" class="w-full bg-paper-white border border-outline/20 p-4 font-body-md text-deep-espresso" placeholder="Gate code, landmark, etc." type="text"/>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="sela-line text-deep-espresso"></div>
+
+                <section class="flex flex-col gap-6">
+                    <h2 class="font-headline-md text-headline-md text-deep-espresso">Guest Information</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="flex flex-col gap-3">
+                            <label class="font-label-caps text-[11px] tracking-widest text-on-surface-variant uppercase">Full Name</label>
+                            <input id="checkout-name" class="w-full bg-paper-white border border-outline/20 p-4 font-body-md text-deep-espresso" type="text" placeholder="Your full name"/>
+                        </div>
+                        <div class="flex flex-col gap-3">
+                            <label class="font-label-caps text-[11px] tracking-widest text-on-surface-variant uppercase">Phone Number</label>
+                            <input id="checkout-phone" class="w-full bg-paper-white border border-outline/20 p-4 font-body-md text-deep-espresso" type="tel" placeholder="+62 812 xxxx xxxx" maxlength="15" oninput="this.value = this.value.replace(/[^0-9+]/g, '')"/>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="sela-line text-deep-espresso"></div>
+
+                <section class="flex flex-col gap-4">
+                    <label class="font-label-caps text-[11px] tracking-widest text-on-surface-variant uppercase">Ritual Gift / Voucher</label>
+                    <div class="flex gap-4">
+                        <input id="voucher-input" class="flex-grow bg-paper-white border border-outline/20 p-4 font-label-caps text-[12px] uppercase tracking-[0.2em] text-deep-espresso" placeholder="ENTER CODE" type="text"/>
+                        <button id="btn-apply-voucher" class="bg-surface-container-high text-deep-espresso border border-outline/20 px-8 font-label-caps text-[11px] tracking-widest uppercase hover:bg-surface-dim transition-colors pressed-state">APPLY</button>
+                    </div>
+                    <p id="voucher-status-msg" class="font-label-caps text-[10px] tracking-wider hidden mt-2"></p>
+                </section>
+
+                <div class="sela-line text-deep-espresso"></div>
+
+                <section class="flex flex-col gap-6">
+                    <h2 class="font-headline-md text-headline-md text-deep-espresso">Payment Method</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        
+                        <label class="relative group cursor-pointer" onclick="window.selectPayment('qris')">
+                            <input checked="" class="hidden peer" id="pay-qris" name="payment" type="radio"/>
+                            <div class="p-6 border border-outline/20 bg-paper-white peer-checked:border-deep-espresso peer-checked:bg-surface-container-low transition-all flex items-start justify-between">
+                                <div class="flex flex-col gap-2">
+                                    <span class="font-label-caps text-[12px] tracking-widest uppercase text-deep-espresso">QRIS</span>
+                                    <span class="font-body-md text-on-surface-variant text-[14px]">Instant Scan &amp; Pay</span>
+                                </div>
+                                <span class="material-symbols-outlined text-deep-espresso opacity-0 peer-checked:opacity-100 transition-opacity">check_circle</span>
+                            </div>
+                        </label>
+                        
+                        <label class="relative group cursor-pointer" id="payment-cash-container" onclick="window.selectPayment('cash')">
+                            <input class="hidden peer" id="pay-cash" name="payment" type="radio"/>
+                            <div class="p-6 border border-outline/20 bg-paper-white peer-checked:border-deep-espresso peer-checked:bg-surface-container-low transition-all flex items-start justify-between">
+                                <div class="flex flex-col gap-2">
+                                    <span class="font-label-caps text-[12px] tracking-widest uppercase text-deep-espresso">Pay at Counter</span>
+                                    <span class="font-body-md text-on-surface-variant text-[14px]">Cash or Terminal</span>
+                                </div>
+                                <span class="material-symbols-outlined text-deep-espresso opacity-0 peer-checked:opacity-100 transition-opacity">check_circle</span>
+                            </div>
+                        </label>
+
+                    </div>
+                </section>
+            </div>
+
+            <div class="lg:col-span-5">
+                <div class="sticky top-32 flex flex-col gap-8 bg-paper-white border border-outline/10 p-10 shadow-sm">
+                    <h2 class="font-headline-md text-headline-md text-deep-espresso border-b border-outline/10 pb-6">Curated Ritual</h2>
+                    
+                    <div id="checkout-items-container" class="flex flex-col gap-6 custom-scrollbar max-h-[40vh] overflow-y-auto pr-2">
+                        <div class="text-center py-8 opacity-50">
+                            <p class="font-body-md text-on-surface-variant">Loading your order...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="sela-line text-deep-espresso mt-2"></div>
+                    
+                    <div class="flex flex-col gap-4">
+                        <div class="flex justify-between items-center">
+                            <span class="font-body-md text-on-surface-variant">Subtotal</span>
+                            <span class="font-label-md text-deep-espresso font-semibold" id="checkout-subtotal">Rp 0</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center gap-2 group">
+                                <span class="font-body-md text-on-surface-variant">Artisan Hospitality (10%)</span>
+                                <span class="material-symbols-outlined text-[16px] text-on-surface-variant/50 cursor-help" title="10% service charge to support our artisans">info</span>
+                            </div>
+                            <span class="font-label-md text-deep-espresso font-semibold" id="checkout-service">Rp 0</span>
+                        </div>
+                        <div class="flex justify-between items-center" id="voucher-row" style="display: none;">
+                            <span class="font-body-md text-on-surface-variant">Voucher</span>
+                            <span class="font-label-md text-moss-green font-semibold" id="checkout-voucher">- Rp 0</span>
+                        </div>
+                        
+                        <div class="flex justify-between items-end mt-4 pt-6 border-t border-outline/10">
+                            <span class="font-body-lg text-on-surface-variant">Grand Total</span>
+                            <span class="font-headline-md text-[32px] font-bold text-deep-espresso leading-none" id="checkout-total">Rp 0</span>
+                        </div>
+                    </div>
+
+                    <div id="checkout-status" class="hidden text-center py-2 bg-error/10 border border-error/20 rounded-sm mt-2">
+                        <p class="font-label-caps text-[10px] tracking-widest text-error uppercase" id="checkout-error-msg"></p>
+                    </div>
+                    
+                    <button id="btn-place-order" class="w-full bg-deep-espresso text-paper-white py-5 font-label-caps text-xs tracking-[0.2em] hover:bg-primary transition-all duration-300 pressed-state flex items-center justify-center gap-3 mt-4">
+                        PLACE ORDER
+                        <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                    </button>
+                    
+                    <p class="text-center font-label-caps text-[10px] text-on-surface-variant/60 tracking-widest uppercase">Your sanctuary experience begins upon completion.</p>
+                </div>
+            </div>
+            
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="../assets/js/components.js"></script>
+    <script src="../assets/js/web/checkout.js" defer></script>
+</body>
+</html>

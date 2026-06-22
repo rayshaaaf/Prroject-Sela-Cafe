@@ -18,10 +18,8 @@ window.apiFetch = async function(path, options = {}) {
     }
     if (token) headers['Authorization'] = `Bearer ${token}`;
     options.headers = headers;
-    try {
-        const response = await fetch(url, options);
         if (response.status === 401) {
-            localStorage.clear();
+            window.clearAuthSession();
             window.location.href = 'login.html';
         }
         return response;
@@ -31,10 +29,18 @@ window.apiFetch = async function(path, options = {}) {
     }
 };
 
+// Helper to clear auth session keys while preserving user avatars and cart items
+window.clearAuthSession = function() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userName');
+    localStorage.removeItem('role');
+    localStorage.removeItem('userId');
+};
+
 // ─── Auth Helpers ─────────────────────────────────────────────────────────────
 window.isAuthenticated = function() { return !!localStorage.getItem('token'); };
 window.logout = function() {
-    localStorage.clear();
+    window.clearAuthSession();
     const currentPath = window.location.pathname.toLowerCase();
     const isInCustomer = currentPath.includes('/customer/');
     window.location.href = isInCustomer ? '../web/login.html' : 'login.html';
@@ -126,10 +132,16 @@ window.injectNavbar = function(container) {
         ? `<span class="absolute -top-1.5 -right-1.5 bg-moss-green text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold leading-none">${cartCount}</span>`
         : '';
 
+    const userId = localStorage.getItem('userId');
+    const savedAvatar = userId ? localStorage.getItem('userAvatar_' + userId) : null;
+    const avatarHtml = savedAvatar
+        ? `<img src="${savedAvatar}" class="w-6 h-6 rounded-full object-cover border border-outline-variant/30" alt="Avatar" />`
+        : `<span class="material-symbols-outlined">person</span>`;
+
     const personIcon = auth
         ? `<div class="relative group">
                 <button class="hover:opacity-80 transition-all duration-300 active:scale-95 flex items-center gap-1" aria-label="Account menu">
-                    <span class="material-symbols-outlined">person</span>
+                    ${avatarHtml}
                     <span class="hidden lg:inline text-xs font-label-caps tracking-wide">${userName.split(' ')[0]}</span>
                 </button>
                 <div class="absolute right-0 top-full mt-2 w-48 bg-paper-white border border-outline-variant/30 shadow-md py-2 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all z-50">
