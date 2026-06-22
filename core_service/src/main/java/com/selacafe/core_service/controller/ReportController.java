@@ -1,5 +1,7 @@
 package com.selacafe.core_service.controller;
 
+import com.selacafe.core_service.payload.res.ApiRes;
+import com.selacafe.core_service.service.EmailService;
 import com.selacafe.core_service.service.ExcelReportService;
 import com.selacafe.core_service.service.PdfReportService;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +17,7 @@ public class ReportController {
 
     private final PdfReportService pdfReportService;
     private final ExcelReportService excelReportService;
+    private final EmailService emailService;
 
     @GetMapping("/daily/pdf")
     public ResponseEntity<byte[]> downloadDailyPdf() {
@@ -48,5 +51,28 @@ public class ReportController {
                 .contentType(
                         MediaType.APPLICATION_OCTET_STREAM)
                 .body(excel);
+    }
+
+    @PostMapping("/send-daily-email")
+    public ResponseEntity<ApiRes<String>> sendDailyEmail() {
+        try {
+            java.io.ByteArrayOutputStream pdf = pdfReportService.generateDailyReport();
+            emailService.sendDailyReportEmail(pdf);
+            return ResponseEntity.ok(
+                    ApiRes.<String>builder()
+                            .success(true)
+                            .message("Daily report email triggered and sent successfully to Owner")
+                            .data(null)
+                            .build()
+            );
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(
+                    ApiRes.<String>builder()
+                            .success(false)
+                            .message("Failed to send daily report email: " + e.getMessage())
+                            .data(null)
+                            .build()
+            );
+        }
     }
 }

@@ -8,7 +8,7 @@ const API_BASE_URL = `http://${window.location.hostname}:8090`;
 // ─── Global API Fetch Wrapper ─────────────────────────────────────────────────
 window.getLoginRedirectPath = function() {
     const currentPath = window.location.pathname.toLowerCase();
-    if (currentPath.includes('/admin/') || currentPath.includes('/customer/') || currentPath.includes('/cashier/') || currentPath.includes('/kitchen/') || currentPath.includes('/courier/')) {
+    if (currentPath.includes('/admin/') || currentPath.includes('/customer/') || currentPath.includes('/cashier/') || currentPath.includes('/kitchen/') || currentPath.includes('/courier/') || currentPath.includes('/owner/')) {
         return '../web/login.html';
     }
     return 'login.html';
@@ -50,6 +50,14 @@ window.checkAdminAuth = function() {
     const token = localStorage.getItem('token');
     const role = localStorage.getItem('role');
     if (!token || !role || role.toUpperCase() !== 'ADMIN') {
+        window.clearAuthSession();
+        window.location.href = window.getLoginRedirectPath();
+    }
+};
+window.checkOwnerAuth = function() {
+    const token = localStorage.getItem('token');
+    const role = localStorage.getItem('role');
+    if (!token || !role || role.toUpperCase() !== 'OWNER') {
         window.clearAuthSession();
         window.location.href = window.getLoginRedirectPath();
     }

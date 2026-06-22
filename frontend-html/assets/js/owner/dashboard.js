@@ -1,5 +1,10 @@
 // dashboard.js
 
+// Check Owner Authentication
+if (typeof window.checkOwnerAuth === 'function') {
+    window.checkOwnerAuth();
+}
+
 // Micro-interactions for hovering cards
 function initCardEffects() {
     document.querySelectorAll('.bg-white.border-outline-muted').forEach(card => {

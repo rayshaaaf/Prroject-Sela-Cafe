@@ -1,5 +1,10 @@
 // performance.js
 
+// Check Owner Authentication
+if (typeof window.checkOwnerAuth === 'function') {
+    window.checkOwnerAuth();
+}
+
 // --- 1. MOCK DATABASE FETCH ---
 // Fungsi ini mensimulasikan pemanggilan data dari API Backend.
 async function fetchPerformanceData() {

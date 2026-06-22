@@ -96,10 +96,6 @@
                 </a>
             </nav>
             <div class="mt-auto space-y-1">
-                <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 active:opacity-80 group" href="#">
-                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">settings</span>
-                    <span class="font-label-caps text-label-caps">Settings</span>
-                </a>
                 <button onclick="window.logout()" class="w-full mt-4 bg-deep-espresso text-paper-white py-3 px-4 rounded-lg font-label-caps text-[12px] flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all cursor-pointer">
                     <span class="material-symbols-outlined text-[18px]">logout</span> Log Out
                 </button>
@@ -111,36 +107,16 @@
                 <div class="flex items-center gap-4">
                     <h2 class="font-headline-md text-[24px] font-bold text-primary">Dashboard</h2>
                 </div>
-                <div class="flex items-center gap-6">
-                    <div class="hidden sm:flex items-center bg-surface-container-low px-4 py-1.5 rounded-full border border-outline-muted">
-                        <span class="material-symbols-outlined text-[20px] text-on-surface-variant">search</span>
-                        <input id="admin-global-search" class="bg-transparent border-none focus:ring-0 font-body-md text-sm w-48" placeholder="Search system..." type="text"/>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <button class="p-2 text-on-surface-variant hover:bg-on-surface/5 rounded-full relative transition-all active:scale-95">
-                            <span class="material-symbols-outlined">notifications</span>
-                            <span class="absolute top-2 right-2 w-2 h-2 bg-moss-green rounded-full"></span>
-                        </button>
-                        <div class="h-8 w-8 rounded-full bg-surface-container-high border border-outline-variant overflow-hidden">
-                            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200" alt="Admin headshot"/>
-                        </div>
-                    </div>
-                </div>
             </header>
 
             <div class="max-w-[1280px] mx-auto p-6 md:p-10">
                 <section class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
                     <div>
                         <p class="font-label-caps text-[10px] text-moss-green mb-2 tracking-[0.2em]">SYSTEM OVERVIEW</p>
-                        <h3 class="font-headline-xl text-[48px] leading-tight text-deep-espresso">Welcome back, Curator.</h3>
+                        <h3 class="font-headline-xl text-[48px] leading-tight text-deep-espresso">Welcome back, Admin.</h3>
                         <div class="sela-line mt-6 w-24"></div>
                     </div>
-                    <div>
-                        <button onclick="requestGenerateReport()" class="bg-[#2A1B0E] text-white font-label-caps tracking-widest text-[12px] px-6 py-3 rounded-lg flex items-center gap-2 hover:bg-[#141003] active:scale-95 transition-all shadow-md">
-                            <span class="material-symbols-outlined text-[16px]">print</span>
-                            GENERATE REPORT
-                        </button>
-                    </div>
+
                 </section>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
