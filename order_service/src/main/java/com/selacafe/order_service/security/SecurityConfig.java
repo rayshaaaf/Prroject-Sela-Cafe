@@ -29,6 +29,12 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
                                 "/api/tables/scan",
+                                "/api/tables/get",
+                                "/api/tables/getAll",
+                                "/api/orders/create",
+                                "/api/orders/getById/**",
+                                "/api/payments/charge",
+                                "/api/payments/order/**",
                                 "/api/payments/callback",
                                 "/api/payments/*/simulate-success"
                         ).permitAll()

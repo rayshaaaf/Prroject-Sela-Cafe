@@ -163,7 +163,7 @@
 <header class="flex flex-col gap-2">
 <div class="flex justify-between items-baseline">
 <h1 class="font-headline-xl text-headline-xl text-primary">The Velvet Oat Latte</h1>
-<span class="font-headline-md text-headline-md text-on-surface-variant">Rp 95.000</span>
+<span id="product-price" class="font-headline-md text-headline-md text-on-surface-variant">Rp 95.000</span>
 </div>
 <div class="flex items-center gap-2">
 <div class="flex text-on-primary-container">
@@ -179,61 +179,104 @@
 <div class="sela-line"></div>
 <!-- Customization Engine -->
 <form class="flex flex-col gap-10" id="order-form">
-<!-- Size -->
-<div class="flex flex-col gap-4">
-<span class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Select Size</span>
-<div class="flex flex-wrap gap-3">
-<input class="hidden custom-radio" id="small" name="size" type="radio" value="small"/>
-<label class="px-6 py-2 border border-outline-muted font-label-caps text-label-caps cursor-pointer hover:bg-surface-container transition-colors" for="small">Small</label>
-<input checked="" class="hidden custom-radio" id="regular" name="size" type="radio" value="regular"/>
-<label class="px-6 py-2 border border-outline-muted font-label-caps text-label-caps cursor-pointer hover:bg-surface-container transition-colors" for="regular">Regular</label>
-<input class="hidden custom-radio" id="large" name="size" type="radio" value="large"/>
-<label class="px-6 py-2 border border-outline-muted font-label-caps text-label-caps cursor-pointer hover:bg-surface-container transition-colors" for="large">Large</label>
+<!-- Beverage Customization Block -->
+<div id="beverage-customization" class="flex flex-col gap-10">
+    <!-- Size -->
+    <div id="size-selection-container" class="flex flex-col gap-4">
+        <span class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Select Size</span>
+        <div class="flex flex-wrap gap-3">
+            <input class="hidden custom-radio" id="small" name="size" type="radio" value="small"/>
+            <label class="px-6 py-2 border border-outline-muted font-label-caps text-label-caps cursor-pointer hover:bg-surface-container transition-colors" for="small">Small</label>
+            <input checked="" class="hidden custom-radio" id="regular" name="size" type="radio" value="regular"/>
+            <label class="px-6 py-2 border border-outline-muted font-label-caps text-label-caps cursor-pointer hover:bg-surface-container transition-colors" for="regular">Regular</label>
+            <input class="hidden custom-radio" id="large" name="size" type="radio" value="large"/>
+            <label class="px-6 py-2 border border-outline-muted font-label-caps text-label-caps cursor-pointer hover:bg-surface-container transition-colors" for="large">Large</label>
+        </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Sugar -->
+        <div id="sugar-selection-container" class="flex flex-col gap-4">
+            <span class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Sugar Levels</span>
+            <select class="bg-transparent border border-outline-muted px-4 py-3 font-body-md focus:ring-0 focus:border-primary outline-none appearance-none cursor-pointer">
+                <option>None</option>
+                <option>25% - Subtle</option>
+                <option selected="">50% - Balanced</option>
+                <option>100% - Classic</option>
+            </select>
+        </div>
+        <!-- Ice -->
+        <div id="ice-selection-container" class="flex flex-col gap-4">
+            <span class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Ice Preference</span>
+            <select class="bg-transparent border border-outline-muted px-4 py-3 font-body-md focus:ring-0 focus:border-primary outline-none appearance-none cursor-pointer">
+                <option>None</option>
+                <option>Less</option>
+                <option selected="">Normal</option>
+            </select>
+        </div>
+        <!-- Milk -->
+        <div id="milk-selection-container" class="flex flex-col gap-4">
+            <span class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Milk Foundation</span>
+            <div class="flex flex-wrap gap-2">
+                <button class="px-4 py-2 bg-heritage-cream text-primary font-label-caps text-[10px] uppercase border border-primary" type="button">Oat</button>
+                <button class="px-4 py-2 bg-surface-bright text-on-surface-variant font-label-caps text-[10px] uppercase border border-outline-muted hover:border-primary transition-colors" type="button">Almond</button>
+                <button class="px-4 py-2 bg-surface-bright text-on-surface-variant font-label-caps text-[10px] uppercase border border-outline-muted hover:border-primary transition-colors" type="button">Whole</button>
+            </div>
+        </div>
+        <!-- Toppings -->
+        <div id="toppings-selection-container" class="flex flex-col gap-4">
+            <span class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Finishing Touches</span>
+            <div class="flex gap-4">
+                <label class="flex items-center gap-2 cursor-pointer">
+                    <input class="w-4 h-4 border-outline-muted text-primary focus:ring-0" type="checkbox"/>
+                    <span class="font-body-md text-sm">Sea Salt</span>
+                </label>
+                <label class="flex items-center gap-2 cursor-pointer">
+                    <input class="w-4 h-4 border-outline-muted text-primary focus:ring-0" type="checkbox"/>
+                    <span class="font-body-md text-sm">Cinnamon</span>
+                </label>
+            </div>
+        </div>
+    </div>
 </div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-<!-- Sugar -->
-<div class="flex flex-col gap-4">
-<span class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Sugar Levels</span>
-<select class="bg-transparent border border-outline-muted px-4 py-3 font-body-md focus:ring-0 focus:border-primary outline-none appearance-none cursor-pointer">
-<option>None</option>
-<option>25% - Subtle</option>
-<option selected="">50% - Balanced</option>
-<option>100% - Classic</option>
-</select>
-</div>
-<!-- Ice -->
-<div class="flex flex-col gap-4">
-<span class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Ice Preference</span>
-<select class="bg-transparent border border-outline-muted px-4 py-3 font-body-md focus:ring-0 focus:border-primary outline-none appearance-none cursor-pointer">
-<option>None</option>
-<option>Less</option>
-<option selected="">Normal</option>
-</select>
-</div>
-<!-- Milk -->
-<div class="flex flex-col gap-4">
-<span class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Milk Foundation</span>
-<div class="flex flex-wrap gap-2">
-<button class="px-4 py-2 bg-heritage-cream text-primary font-label-caps text-[10px] uppercase border border-primary" type="button">Oat</button>
-<button class="px-4 py-2 bg-surface-bright text-on-surface-variant font-label-caps text-[10px] uppercase border border-outline-muted hover:border-primary transition-colors" type="button">Almond</button>
-<button class="px-4 py-2 bg-surface-bright text-on-surface-variant font-label-caps text-[10px] uppercase border border-outline-muted hover:border-primary transition-colors" type="button">Whole</button>
-</div>
-</div>
-<!-- Toppings -->
-<div class="flex flex-col gap-4">
-<span class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Finishing Touches</span>
-<div class="flex gap-4">
-<label class="flex items-center gap-2 cursor-pointer">
-<input class="w-4 h-4 border-outline-muted text-primary focus:ring-0" type="checkbox"/>
-<span class="font-body-md text-sm">Sea Salt</span>
-</label>
-<label class="flex items-center gap-2 cursor-pointer">
-<input class="w-4 h-4 border-outline-muted text-primary focus:ring-0" type="checkbox"/>
-<span class="font-body-md text-sm">Cinnamon</span>
-</label>
-</div>
-</div>
+
+<!-- Food Customization Block -->
+<div id="food-customization" class="flex flex-col gap-10 hidden">
+    <!-- Portion Selection -->
+    <div id="food-portion-container" class="flex flex-col gap-4">
+        <span class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Portion Option</span>
+        <div class="flex flex-wrap gap-3">
+            <input class="hidden custom-radio" id="food-single" name="food-portion" type="radio" value="single" checked/>
+            <label class="px-6 py-2 border border-outline-muted font-label-caps text-label-caps cursor-pointer hover:bg-surface-container transition-colors animate-none" for="food-single">Single Serving</label>
+            <input class="hidden custom-radio" id="food-share" name="food-portion" type="radio" value="share"/>
+            <label class="px-6 py-2 border border-outline-muted font-label-caps text-label-caps cursor-pointer hover:bg-surface-container transition-colors animate-none" for="food-share">Share Pack (+15k)</label>
+            <input class="hidden custom-radio" id="food-box" name="food-portion" type="radio" value="box"/>
+            <label class="px-6 py-2 border border-outline-muted font-label-caps text-label-caps cursor-pointer hover:bg-surface-container transition-colors animate-none" for="food-box">Party Box (+45k)</label>
+        </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Heating Preference -->
+        <div class="flex flex-col gap-4">
+            <span class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Serving Style</span>
+            <select id="food-heating" class="bg-transparent border border-outline-muted px-4 py-3 font-body-md focus:ring-0 focus:border-primary outline-none appearance-none cursor-pointer">
+                <option selected>Room Temperature</option>
+                <option>Warm & Toasted</option>
+            </select>
+        </div>
+        <!-- Add-ons -->
+        <div class="flex flex-col gap-4">
+            <span class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Add-ons</span>
+            <div class="flex flex-col gap-3">
+                <label class="flex items-center gap-2 cursor-pointer">
+                    <input id="addon-butter" class="w-4 h-4 border-outline-muted text-primary focus:ring-0" type="checkbox"/>
+                    <span class="font-body-md text-sm">Extra Butter (+5k)</span>
+                </label>
+                <label class="flex items-center gap-2 cursor-pointer">
+                    <input id="addon-jam" class="w-4 h-4 border-outline-muted text-primary focus:ring-0" type="checkbox"/>
+                    <span class="font-body-md text-sm">Strawberry Jam (+5k)</span>
+                </label>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- Primary Action -->
 <div class="flex gap-4 mt-4">
@@ -253,162 +296,352 @@
 </form>
 </div>
 </section>
-<!-- Story & Science Section -->
-<section class="mt-section-padding grid grid-cols-1 md:grid-cols-12 gap-12 border-t border-outline-muted pt-24">
-<div class="md:col-span-5 flex flex-col gap-8">
-<h2 class="font-headline-lg text-headline-lg text-primary">The Heritage of the Bean</h2>
-<div class="flex flex-col gap-6">
-<p class="font-body-lg text-body-lg leading-relaxed text-on-surface-variant">
-                        Our Velvet Oat Latte begins in the high-altitude forests of Sidamo, Ethiopia. These heirloom beans are hand-harvested by local cooperatives and undergo a meticulous honey-processing method, preserving the fruit's natural sweetness.
-                    </p>
-<p class="font-body-md text-body-md text-on-surface-variant italic">
-                        Roasted to a precise "Medium-Light" profile, we extract notes of wild jasmine, stone fruit, and a lingering cocoa finish that pairs seamlessly with our creamy house-made oat milk.
-                    </p>
-</div>
-<!-- Nutrition Table -->
-<div class="border border-outline-muted p-6">
-<button class="w-full flex justify-between items-center group" onclick="toggleNutrition()">
-<span class="font-label-caps text-label-caps text-primary">Nutritional Information</span>
-<span class="material-symbols-outlined transition-transform duration-300" id="nutrition-icon">expand_more</span>
-</button>
-<div class="hidden overflow-hidden transition-all duration-300 mt-6" id="nutrition-content">
-<div class="flex flex-col gap-3 font-body-md text-sm text-on-surface-variant">
-<div class="flex justify-between border-b border-outline-muted pb-2">
-<span>Calories</span>
-<span>180 kcal</span>
-</div>
-<div class="flex justify-between border-b border-outline-muted pb-2">
-<span>Total Fat</span>
-<span>6g</span>
-</div>
-<div class="flex justify-between border-b border-outline-muted pb-2">
-<span>Total Sugars</span>
-<span>12g</span>
-</div>
-<div class="flex justify-between">
-<span>Caffeine</span>
-<span>150mg</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="md:col-start-8 md:col-span-5">
-<div class="aspect-square bg-surface-container relative">
-<img class="w-full h-full object-cover filter grayscale-[40%]" data-alt="An architectural detail of a modern coffee roastery interior. Large copper pipes, warm wood paneling, and soft gallery lighting create a sophisticated industrial atmosphere. A focused barista is seen in the distance, partially blurred, emphasizing the precision and artisan craft behind the brewing process in this heritage sanctuary." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCx67a2leA3HP22sA1xKEiml0LJZKHROSf1QCxSBJKgJ6TFhdIBzpRPcv7Et2Qu7PGpzCw8FL74pmkbCHCfcqIKORvQODI3md7eXeg6xYqBx42FLikz-KYIQ5mPyjuxWkdaumsTMbLWSslDrpJzTNFJB9dDYCdvUDmYJZe2dyPtEzmnJVAbj3CFsTYjnWfF9YJFiZqOpDaxDKUlDpugOVgQR4ujR8Ck5TMdaQg_N8XNikLJqEBO7C8bfRxXZO27x5xY41djBJCDWQwR"/>
-</div>
-</div>
-</section>
 <!-- Curation: Pairs Well With -->
 <section class="mt-section-padding">
 <div class="flex justify-between items-end mb-12">
 <h2 class="font-headline-lg text-headline-lg text-primary">Pairs Well With</h2>
-<a class="font-label-caps text-[10px] text-on-surface-variant border-b border-on-surface-variant pb-1 hover:text-primary transition-colors" href="#">View All Provisions</a>
+<a class="font-label-caps text-[10px] text-on-surface-variant border-b border-on-surface-variant pb-1 hover:text-primary transition-colors" href="menu.html">View All Provisions</a>
 </div>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-gutter">
-<!-- Card 1 -->
-<div class="flex flex-col gap-6 group cursor-pointer">
-<div class="aspect-[4/3] overflow-hidden bg-surface-container">
-<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A macro photograph of an artisan almond croissant on a white ceramic plate. The pastry is flaky with a golden-brown crust, dusted lightly with powdered sugar and topped with toasted almond slices. The setting is minimal and clean, focusing on the texture and craftsmanship of the bakery item." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcRv21Qeyx51B45NwR0OBahRuhK0-03NxWM7Hmg8ihnlLXobQ7KTD9BX-Q0U5C_KERPIZZE3-7pxtyTxcm_5Oa5wpyDknp2edKxZID4w27eU4aSqvzpUA3fAOOnGB9UHH_-cl803DuvLbHjjXuV4eXsYRir-EavkWWcdtSLCO45GxrBTyCU6HwIxH4BUkDtlXhda3jLimae6NAdXgyJLoLdxn0RoxoR5TyWTFrtD6WBLpJORVJXQNw3Aaj4PsCm1O9WNjZZVYBIT-5"/>
-</div>
-<div class="flex flex-col gap-2">
-<h3 class="font-headline-md text-headline-md text-primary">Saffron Croissant</h3>
-<div class="flex justify-between items-center">
-<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">$5.50</span>
-<span class="font-label-caps text-[10px] px-2 py-1 bg-heritage-cream text-primary">Baker's Choice</span>
-</div>
-</div>
-</div>
-<!-- Card 2 -->
-<div class="flex flex-col gap-6 group cursor-pointer">
-<div class="aspect-[4/3] overflow-hidden bg-surface-container">
-<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A piece of dark chocolate sea salt tart served on a small heritage-style plate. The tart has a rich, matte chocolate filling and a crumbly cocoa crust, garnished with a few large flakes of Maldon sea salt. The image is shot from a top-down perspective with moody, low-key lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPwWUPYamooZfIkU4kk2oaxiQ0iD8P5X5W60m2p2MY0sZ79CFU7l_mvUoVSh0on5XePeh0tCjkqeQH1lG2KZWc9AKLNI0icktoUr7ZTEIVF5d_SBo3d8PUW9BKcYsyCqoYwzop0IUTgdDPL6f9s677Gkd6-ZajtSiZ91ObCwWq88XkIX_-xPbSoMXnPguJrWNoQy7XAjmQKq1odCUJy_gUfhc2Hf-LhsTo9uIc4J0zqLLyM-d5LyzpNvoU5ZnBZZsErYOg_obME0_a"/>
-</div>
-<div class="flex flex-col gap-2">
-<h3 class="font-headline-md text-headline-md text-primary">Sea Salt Tart</h3>
-<div class="flex justify-between items-center">
-<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">$6.00</span>
-<span class="font-label-caps text-[10px] px-2 py-1 bg-surface-container text-on-surface-variant">Dark Roast</span>
-</div>
-</div>
-</div>
-<!-- Card 3 -->
-<div class="hidden lg:flex flex-col gap-6 group cursor-pointer">
-<div class="aspect-[4/3] overflow-hidden bg-surface-container">
-<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A minimalist presentation of a lavender-infused shortbread cookie resting on a linen napkin. The cookie is rectangular and elegant, with tiny dried lavender buds visible on its surface. The background is a soft beige tone, emphasizing a calm and gentle aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBG0lgwyXTRqUhGUQ6ruzo2qzprqRxzy_fFZUwZItqdi-NWb2bjRuldqyz4UWp8ddMCa9ofAX7OyPk9e1OLlxFy08FAK7GlwEhLB0qBaQ_zLjqootSb_G0DBfmIvpveXg8r82hrtnYwX7wZ_LF7W2agw6U9OXBCqRjU6ds0ACNnHal9xG8a2TQoDfn3WrTJfvBKfbFBhN_6ZM_nVT4mgzA8X9pOgnx00Wkx584nWIG5A-bJn7wYgkRZbS9-Ep9e-6SHXnYDAb7wY8q5"/>
-</div>
-<div class="flex flex-col gap-2">
-<h3 class="font-headline-md text-headline-md text-primary">Lavender Shortbread</h3>
-<div class="flex justify-between items-center">
-<span class="font-label-caps text-label-caps text-on-surface-variant uppercase">$4.25</span>
-<span class="font-label-caps text-[10px] px-2 py-1 bg-surface-container text-on-surface-variant">Botanic</span>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Recent Rituals -->
-<section class="mt-section-padding border-t border-outline-muted pt-16">
-<h2 class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-8 opacity-60">Recent Rituals</h2>
-<div class="flex gap-8 overflow-x-auto pb-6 no-scrollbar">
-<div class="flex items-center gap-4 flex-shrink-0 opacity-40 hover:opacity-100 transition-opacity cursor-pointer">
-<div class="w-16 h-16 bg-surface-container rounded-full overflow-hidden">
-<img class="w-full h-full object-cover" data-alt="Small thumbnail of a dark, rich double espresso with thick crema in a glass cup." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSVOv9RzUskZ8rG5hd78HSRnAUKDZfcHtnK6YYFEEZ7qQCX6sB8GaA-xx6r9OKlFePGkye_jtJCDdvaKkpy7il0pdGzqpuym35gaqQgPVQ_G4GxsZAJIeP6rBf8oNvtJ9_lojFK_9oRcfDpVgQoQL7FckpIl50Te8k9UhBu_0K9Dkh61ifYOW7Pxm0NfunVGiBD6shkiB8SdTJxfkGXO1yDVOyHaBvHcJIAQFndPcG1dFTsFx2FQhjfKRdIjIeuRMyIuPvO3zAshgw"/>
-</div>
-<span class="font-body-md text-sm">Double Espresso</span>
-</div>
-<div class="flex items-center gap-4 flex-shrink-0 opacity-40 hover:opacity-100 transition-opacity cursor-pointer">
-<div class="w-16 h-16 bg-surface-container rounded-full overflow-hidden">
-<img class="w-full h-full object-cover" data-alt="Small thumbnail of a bright, clear iced tea with a sprig of mint and a lemon slice." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjoVGjWJOfP019LlM3b4A-P5ojdem7iZduSFKXtHWHwAZsBtHqsIHEOB6PWnobYko5hTm8yfFpOQmePGL-oLBYHQkk0Vh6ZhKc5C0K76ao3zHA74q8BEe93qVd9EbKgZdgs6bzvnKWACAXx156Twlu3tZubamJ9BEPFRGB3Vvv7WHbSUrliJF9mj4Fl1MuDFJq1VsltUdpAJ27Kncq1jHHrTnw31oQaNV1QByFT-9c4tJCXrlBOqNmoQaqNQ18bQbQpG4BZ6iysiWK"/>
-</div>
-<span class="font-body-md text-sm">Wild Mint Tea</span>
-</div>
+<div id="pairs-well-with-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-gutter">
+    <!-- Items dynamically injected -->
 </div>
 </section>
 </main>
 <!-- Footer -->
 <div id="footer-placeholder"></div>
 <script>
-        // Dynamic Menu Detail Loader
-        document.addEventListener('DOMContentLoaded', async () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const id = urlParams.get('id');
-            if (id) {
-                try {
-                    const res = await window.apiFetch('/api/menus/getById/' + id);
-                    if (res.ok) {
-                        const apiRes = await res.json();
-                        if (apiRes.success && apiRes.data) {
-                            const p = apiRes.data;
-                            document.title = `Sela Cafe | ${p.nameId || p.nameEn}`;
-                            const img = document.querySelector('section img');
-                            if (img) {
-                                img.src = p.imageUrl || 'https://images.unsplash.com/photo-1534778101976-62847782c213?q=80&w=600&auto=format&fit=crop';
-                                img.alt = p.nameId || p.nameEn;
-                            }
-                            const titleEl = document.querySelector('h1.font-headline-xl');
-                            if (titleEl) titleEl.innerText = p.nameId || p.nameEn;
-                            
-                            const priceEl = document.querySelector('header .font-headline-md');
-                            if (priceEl) priceEl.innerText = `Rp ${Number(p.price).toLocaleString('id-ID')}`;
-                            
-                            const descEl = document.querySelector('section p.font-body-lg');
-                            if (descEl) descEl.innerText = p.descriptionId || p.descriptionEn || 'Handcrafted specialty coffee blend.';
+        const DUMMY_PRODUCTS = [
+            {
+                id: 1,
+                name: "Hazelnut Velvet Latte",
+                price: 95000,
+                categoryName: "coffee",
+                descriptionId: "A smooth blend of our signature espresso with toasted hazelnut essence and micro-foamed milk.",
+                imageUrl: "https://images.unsplash.com/photo-1534778101976-62847782c213?q=80&w=600&auto=format&fit=crop",
+                isAvailable: true,
+                stock: 10
+            },
+            {
+                id: 2,
+                name: "Almond Croissant",
+                price: 78000,
+                categoryName: "pastry",
+                descriptionId: "Double-baked pastry filled with rich almond frangipane and topped with toasted slivers.",
+                imageUrl: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=600&auto=format&fit=crop",
+                isAvailable: true,
+                stock: 10
+            },
+            {
+                id: 3,
+                name: "Ceremonial Matcha",
+                price: 105000,
+                categoryName: "tea",
+                descriptionId: "Uji-grade matcha whisked with oat milk for a creamy, earthy, and perfectly balanced finish.",
+                imageUrl: "https://images.unsplash.com/photo-1536256263959-770b48d82b0a?q=80&w=600&auto=format&fit=crop",
+                isAvailable: true,
+                stock: 10
+            },
+            {
+                id: 4,
+                name: "Signature Flat White",
+                price: 82000,
+                categoryName: "coffee",
+                descriptionId: "A crisp rosetta latte art with perfectly balanced sweetness and a velvety finish.",
+                imageUrl: "https://images.unsplash.com/photo-1577968897966-3d4325b36b61?q=80&w=600&auto=format&fit=crop",
+                isAvailable: true,
+                stock: 10
+            },
+            {
+                id: 5,
+                name: "24h Cold Brew",
+                price: 98000,
+                categoryName: "coffee",
+                descriptionId: "Cold brew coffee served with a large clear ice sphere, garnished with dried orange.",
+                imageUrl: "https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?q=80&w=600&auto=format&fit=crop",
+                isAvailable: true,
+                stock: 10
+            },
+            {
+                id: 6,
+                name: "Dark Choc Sea Salt",
+                price: 65000,
+                categoryName: "dessert",
+                descriptionId: "The subtle salt flakes perfectly elevate the dark cocoa notes.",
+                imageUrl: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=600&auto=format&fit=crop",
+                isAvailable: false,
+                stock: 0
+            }
+        ];
 
-                            const isOutOfStock = !p.isAvailable || p.stock <= 0;
-                            const submitBtn = document.querySelector('button[type="submit"]');
-                            if (isOutOfStock && submitBtn) {
-                                submitBtn.innerText = 'Habis';
-                                submitBtn.disabled = true;
-                                submitBtn.classList.replace('bg-deep-espresso', 'opacity-50');
-                            }
-                        }
-                    }
-                } catch (err) {
-                    console.error('Failed to load menu details:', err);
+        let basePrice = 95000;
+        let currentProduct = null;
+
+        function updatePrice() {
+            const catName = (currentProduct?.categoryName || '').toLowerCase();
+            const isFood = ['pastry', 'dessert'].includes(catName);
+            let calculatedPrice = basePrice;
+
+            if (isFood) {
+                const portion = document.querySelector('input[name="food-portion"]:checked')?.value || 'single';
+                if (portion === 'share') {
+                    calculatedPrice += 15000;
+                } else if (portion === 'box') {
+                    calculatedPrice += 45000;
+                }
+                if (document.getElementById('addon-butter')?.checked) {
+                    calculatedPrice += 5000;
+                }
+                if (document.getElementById('addon-jam')?.checked) {
+                    calculatedPrice += 5000;
+                }
+            } else {
+                const size = document.querySelector('input[name="size"]:checked')?.value || 'regular';
+                if (size === 'small') {
+                    calculatedPrice = Math.max(5000, basePrice - 5000);
+                } else if (size === 'large') {
+                    calculatedPrice = basePrice + 5000;
                 }
             }
+
+            const priceEl = document.getElementById('product-price');
+            if (priceEl) {
+                priceEl.innerText = `Rp ${Number(calculatedPrice).toLocaleString('id-ID')}`;
+            }
+        }
+
+        // SPA-Style Detail Switching for Zero-Lag Transitions
+        function loadMenuDetail(id, pushState = true) {
+            if (pushState) {
+                const newUrl = `detailmenu.html?id=${id}`;
+                window.history.pushState({ id: id }, '', newUrl);
+            }
+
+            // Reset quantity selector
+            currentQty = 1;
+            if (qtyElement) qtyElement.innerText = 1;
+
+            // 1. Tampilkan data dari cache secara instan (agar tidak lag saat ganti menu)
+            let product = null;
+            const cached = sessionStorage.getItem('all_menus');
+            if (cached) {
+                try {
+                    const all = JSON.parse(cached);
+                    const found = all.find(x => x.id == id);
+                    if (found) {
+                        product = {
+                            id: found.id,
+                            nameId: found.nameId || found.name,
+                            price: found.price,
+                            categoryName: found.categoryName || found.category,
+                            descriptionId: found.descriptionId || found.description,
+                            imageUrl: found.imageUrl,
+                            isAvailable: found.isAvailable !== false,
+                            stock: found.stock || 10
+                        };
+                        renderProductPage(product);
+                    }
+                } catch(e) {}
+            }
+
+            // Jika cache kosong ATAU data tidak ditemukan di cache, cari di DUMMY_PRODUCTS secara instan
+            if (!product) {
+                const dummyProduct = DUMMY_PRODUCTS.find(x => x.id == id);
+                if (dummyProduct) {
+                    product = {
+                        id: dummyProduct.id,
+                        nameId: dummyProduct.name,
+                        price: dummyProduct.price,
+                        categoryName: dummyProduct.categoryName,
+                        descriptionId: dummyProduct.descriptionId,
+                        imageUrl: dummyProduct.imageUrl,
+                        isAvailable: dummyProduct.isAvailable,
+                        stock: dummyProduct.stock
+                    };
+                    renderProductPage(product);
+                }
+            }
+
+            // Scroll to top smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // 2. Fetch background (Stale While Revalidate) untuk update data terbaru
+            window.apiFetch('/api/menus/getById/' + id)
+                .then(res => {
+                    if (res.ok) return res.json();
+                })
+                .then(apiRes => {
+                    if (apiRes && apiRes.success && apiRes.data) {
+                        const freshProduct = apiRes.data;
+                        if (!product || 
+                            product.price !== freshProduct.price || 
+                            product.nameId !== freshProduct.nameId ||
+                            product.imageUrl !== freshProduct.imageUrl ||
+                            product.isAvailable !== freshProduct.isAvailable) {
+                            product = freshProduct;
+                            renderProductPage(product);
+                        }
+                    }
+                })
+                .catch(err => {
+                    console.warn('Background update of details failed, using offline fallback.', err);
+                });
+        }
+
+        // Dynamic Menu Detail Loader
+        document.addEventListener('DOMContentLoaded', () => {
+            // Bind size change listeners
+            document.querySelectorAll('input[name="size"]').forEach(radio => {
+                radio.addEventListener('change', updatePrice);
+            });
+            document.querySelectorAll('input[name="food-portion"]').forEach(radio => {
+                radio.addEventListener('change', updatePrice);
+            });
+            document.getElementById('addon-butter')?.addEventListener('change', updatePrice);
+            document.getElementById('addon-jam')?.addEventListener('change', updatePrice);
+
+            const urlParams = new URLSearchParams(window.location.search);
+            let id = urlParams.get('id');
+            if (!id) id = '1';
+
+            // Load initial detail
+            loadMenuDetail(id, false);
         });
+
+        // Handle browser back/forward buttons (popstate)
+        window.addEventListener('popstate', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            let id = urlParams.get('id');
+            if (!id) id = '1';
+            loadMenuDetail(id, false);
+        });
+
+        function renderProductPage(product) {
+            currentProduct = product;
+            document.title = `Sela Cafe | ${product.nameId || product.nameEn || 'Specialty Blend'}`;
+            const img = document.querySelector('section img');
+            if (img) {
+                img.src = product.imageUrl || 'https://images.unsplash.com/photo-1534778101976-62847782c213?q=80&w=600&auto=format&fit=crop';
+                img.alt = product.nameId || product.nameEn || 'Specialty Blend';
+            }
+            const titleEl = document.querySelector('h1.font-headline-xl');
+            if (titleEl) titleEl.innerText = product.nameId || product.nameEn || 'Specialty Blend';
+            
+            basePrice = product.price || 95000;
+            updatePrice();
+            
+            const descEl = document.querySelector('section p.font-body-lg');
+            if (descEl) descEl.innerText = product.descriptionId || product.descriptionEn || 'Handcrafted specialty coffee blend.';
+
+            const isOutOfStock = !product.isAvailable || product.stock <= 0;
+            const submitBtn = document.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                if (isOutOfStock) {
+                    submitBtn.innerText = 'Sold Out';
+                    submitBtn.disabled = true;
+                    submitBtn.classList.replace('bg-deep-espresso', 'opacity-50');
+                } else {
+                    submitBtn.innerText = 'Add to Ritual';
+                    submitBtn.disabled = false;
+                    submitBtn.className = "flex-1 bg-deep-espresso text-on-primary font-label-caps text-label-caps tracking-widest py-4 hover:opacity-90 active:scale-95 transition-all";
+                }
+            }
+
+            // Tampilkan opsi kustomisasi yang sesuai kategori
+            const catName = (product.categoryName || product.category || '').toLowerCase();
+            const isFood = ['pastry', 'dessert'].includes(catName);
+
+            if (isFood) {
+                document.getElementById('beverage-customization')?.classList.add('hidden');
+                document.getElementById('food-customization')?.classList.remove('hidden');
+            } else {
+                document.getElementById('beverage-customization')?.classList.remove('hidden');
+                document.getElementById('food-customization')?.classList.add('hidden');
+            }
+
+            // Load dynamic Pairs Well With
+            loadPairsWellWith(product);
+        }
+
+        // Dynamic Pairs Well With Curation (dengan Caching)
+        async function loadPairsWellWith(currentProduct) {
+            let products = [];
+            
+            // Coba ambil dari sessionStorage cache
+            const cached = sessionStorage.getItem('all_menus');
+            if (cached) {
+                try { products = JSON.parse(cached); } catch(e) {}
+            }
+
+            // Jika cache kosong, fetch dari API
+            if (products.length === 0) {
+                try {
+                    const res = await window.apiFetch('/api/menus/getAll');
+                    if (res.ok) {
+                        const apiRes = await res.json();
+                        products = apiRes.data || [];
+                        sessionStorage.setItem('all_menus', JSON.stringify(products));
+                    }
+                } catch (e) {
+                    console.error(e);
+                }
+            }
+
+            if (products.length === 0) {
+                products = DUMMY_PRODUCTS.map(p => ({
+                    id: p.id,
+                    nameId: p.name,
+                    price: p.price,
+                    categoryName: p.categoryName,
+                    imageUrl: p.imageUrl
+                }));
+            }
+
+            const filtered = products.filter(p => Number(p.id) !== Number(currentProduct.id));
+            const currentCat = (currentProduct.categoryName || currentProduct.category || '').toLowerCase();
+            const isBeverage = ['coffee', 'tea', 'non-coffee'].includes(currentCat);
+
+            let primaryMatches = [];
+            let secondaryMatches = [];
+
+            filtered.forEach(p => {
+                const pCat = (p.categoryName || p.category || '').toLowerCase();
+                const pIsBeverage = ['coffee', 'tea', 'non-coffee'].includes(pCat);
+                if (isBeverage !== pIsBeverage) {
+                    primaryMatches.push(p);
+                } else {
+                    secondaryMatches.push(p);
+                }
+            });
+
+            // Acak rekomendasi
+            primaryMatches.sort(() => 0.5 - Math.random());
+            secondaryMatches.sort(() => 0.5 - Math.random());
+
+            const recommendations = [...primaryMatches, ...secondaryMatches].slice(0, 3);
+
+            const grid = document.getElementById('pairs-well-with-grid');
+            if (grid && recommendations.length > 0) {
+                grid.innerHTML = recommendations.map(p => {
+                    const priceFormatted = 'Rp ' + Number(p.price || 0).toLocaleString('id-ID');
+                    const isFood = ['pastry', 'dessert'].includes((p.categoryName || p.category || '').toLowerCase());
+                    const badge = isFood ? "Baker's Choice" : "Brewed Fresh";
+                    return `
+                    <a href="detailmenu.html?id=${p.id}" onclick="event.preventDefault(); loadMenuDetail(${p.id});" class="flex flex-col gap-6 group cursor-pointer block decoration-none text-on-surface">
+                        <div class="aspect-[4/3] overflow-hidden bg-surface-container rounded-lg">
+                            <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="${p.imageUrl || 'https://images.unsplash.com/photo-1534778101976-62847782c213?q=80&w=600&auto=format&fit=crop'}" alt="${p.nameId || p.name}"/>
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <h3 class="font-headline-md text-headline-md text-primary group-hover:underline line-clamp-1">${p.nameId || p.name || 'Artisan Provisions'}</h3>
+                            <div class="flex justify-between items-center">
+                                <span class="font-label-caps text-label-caps text-on-surface-variant uppercase">${priceFormatted}</span>
+                                <span class="font-label-caps text-[10px] px-2 py-1 bg-heritage-cream text-primary rounded-sm">${badge}</span>
+                            </div>
+                        </div>
+                    </a>
+                    `;
+                }).join('');
+            }
+        }
 
         // Quantity Selector Logic
         let currentQty = 1;
@@ -423,19 +656,6 @@
             if (currentQty > 1) {
                 currentQty--;
                 qtyElement.innerText = currentQty;
-            }
-        }
-
-        // Nutrition Toggle Logic
-        function toggleNutrition() {
-            const content = document.getElementById('nutrition-content');
-            const icon = document.getElementById('nutrition-icon');
-            if (content.classList.contains('hidden')) {
-                content.classList.remove('hidden');
-                icon.style.transform = 'rotate(180deg)';
-            } else {
-                content.classList.add('hidden');
-                icon.style.transform = 'rotate(0deg)';
             }
         }
 
@@ -459,20 +679,42 @@
             const btn = this.querySelector('button[type="submit"]');
             const originalText = btn.innerText;
             const qty = parseInt(document.getElementById('qty').innerText) || 1;
-            const name = document.querySelector('h1.font-headline-xl')?.innerText || 'Menu Item';
-            const priceText = document.querySelector('header .font-headline-md')?.innerText || '0';
+            const baseName = document.querySelector('h1.font-headline-xl')?.innerText || 'Menu Item';
+            
+            const size = document.querySelector('input[name="size"]:checked')?.value || 'regular';
+            const sizeLabel = size.charAt(0).toUpperCase() + size.slice(1);
+            
+            const catName = (currentProduct?.categoryName || '').toLowerCase();
+            const isFood = ['pastry', 'dessert'].includes(catName);
+            
+            let name;
+            if (isFood) {
+                const portionVal = document.querySelector('input[name="food-portion"]:checked')?.value || 'single';
+                const portionText = portionVal === 'share' ? 'Share Pack' : (portionVal === 'box' ? 'Party Box' : 'Single');
+                
+                let addons = [];
+                if (document.getElementById('addon-butter')?.checked) addons.push('Butter');
+                if (document.getElementById('addon-jam')?.checked) addons.push('Jam');
+                
+                const addonText = addons.length > 0 ? ` + ${addons.join('&')}` : '';
+                name = `${baseName} (${portionText}${addonText})`;
+            } else {
+                name = `${baseName} (${sizeLabel})`;
+            }
+
+            const priceText = document.getElementById('product-price')?.innerText || '0';
             const price = parseFloat(priceText.replace(/[^0-9]/g, '')) || 0;
             const imageUrl = document.querySelector('section img')?.src || '';
 
             const urlParams = new URLSearchParams(window.location.search);
-            const productId = Number(urlParams.get('id')) || 2; // default to 2 if missing
+            let productId = Number(urlParams.get('id')) || 1;
 
             if (typeof window.handleMenuAddToCart === 'function') {
                 for (let i = 0; i < qty; i++) {
                     window.handleMenuAddToCart(productId, name, price, imageUrl);
                 }
             } else {
-                // Fallback: write directly to localStorage
+                // Fallback: write langsung ke localStorage
                 let cart = [];
                 try { cart = JSON.parse(localStorage.getItem('cart') || '[]'); } catch(e) { cart = []; }
                 const idx = cart.findIndex(item => item.name === name);

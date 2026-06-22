@@ -207,6 +207,29 @@ Status: LOADING...
                 </div>
             </div>
         </div>
+        <!-- QRIS Payment Box -->
+        <div id="qris-payment-box" class="hidden p-6 border border-outline-muted bg-paper-white rounded-sm text-center flex flex-col items-center gap-4">
+            <h4 id="qris-box-title" class="font-label-caps text-xs tracking-widest text-deep-espresso font-bold">DYNAMIC QRIS PAYMENT</h4>
+            <div id="qris-qr-container" class="w-40 h-40 bg-gray-50 flex items-center justify-center border border-outline-muted relative">
+                <img id="qris-image" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=SELA-CAFE-ORDER" alt="QRIS Code" class="w-36 h-36 object-contain">
+                <div id="qris-loading-overlay" class="absolute inset-0 bg-paper-white/80 flex items-center justify-center hidden">
+                    <span class="animate-spin material-symbols-outlined text-deep-espresso text-2xl">autorenew</span>
+                </div>
+            </div>
+            <div class="space-y-1">
+                <p id="qris-status-badge" class="inline-flex items-center gap-1.5 px-2 py-0.5 bg-heritage-cream text-deep-espresso font-label-caps text-[9px] uppercase tracking-tighter">
+                    <span class="w-1.5 h-1.5 rounded-full bg-deep-espresso active-pulse"></span>
+                    <span id="qris-status-label">Awaiting Payment</span>
+                </p>
+                <p id="qris-instruction-text" class="font-body-sm text-[12px] text-on-surface-variant max-w-xs leading-relaxed mt-2">
+                    Scan the QR code above with any QRIS-compatible app to pay. Your order status will update automatically once verified.
+                </p>
+            </div>
+            <!-- Test Simulation Button (only visible in fallback/test mode) -->
+            <button id="btn-simulate-success" class="hidden w-full px-6 py-2.5 bg-moss-green text-surface font-label-caps text-[10px] tracking-widest hover:bg-opacity-95 transition-all active:scale-95">
+                SIMULATE PAYMENT SUCCESS (TEST MODE)
+            </button>
+        </div>
     </div>
     <!-- Receipt Column -->
     <div class="space-y-8">

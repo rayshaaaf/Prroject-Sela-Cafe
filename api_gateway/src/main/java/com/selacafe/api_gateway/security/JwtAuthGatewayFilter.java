@@ -120,6 +120,12 @@ public class JwtAuthGatewayFilter
             if (path.startsWith("/api/orders/getById/")) {
                 return true;
             }
+            if (path.startsWith("/api/payments/order/")) {
+                return true;
+            }
+            if (path.equals("/api/tables/get") || path.equals("/api/tables/getAll")) {
+                return true;
+            }
         }
         if (path.equals("/api/applicants/apply")) {
             return true;
@@ -128,6 +134,9 @@ public class JwtAuthGatewayFilter
             return true;
         }
         if (path.equals("/api/orders/create")) {
+            return true;
+        }
+        if (path.equals("/api/payments/charge")) {
             return true;
         }
         if (path.equals("/api/payments/callback") || (path.startsWith("/api/payments/") && path.endsWith("/simulate-success"))) {

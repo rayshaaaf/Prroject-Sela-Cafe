@@ -27,6 +27,9 @@ public class Payment {
     @Column(nullable = false)
     private BigDecimal amount;
 
+    @Column(name = "method", nullable = false)
+    private String method;
+
     @Column(name = "payment_method")
     private String paymentMethod;
 

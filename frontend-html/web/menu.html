@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Menu | Sela Cafe Artisan Roasters</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&amp;family=Manrope:wght@200..800&amp;family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
+<html class="light scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Menu | Sela Cafe Artisan Roasters</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Manrope:wght@200..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
@@ -103,411 +102,277 @@
             }
         }
     </script>
-<style>
+    <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
         }
         .sela-line {
             height: 1px;
             background-color: theme('colors.outline-variant');
             opacity: 0.3;
         }
-        .active-nav-border {
-            border-bottom: 2px solid theme('colors.primary');
-            padding-bottom: 4px;
-        }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .fade-in-smooth { animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body class="bg-background text-on-background font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
-<div id="navbar-placeholder"></div>
-<main class="max-w-container-max mx-auto">
-<!-- Hero Header -->
-<section class="px-margin-mobile md:px-margin-desktop py-12 md:py-24 grid md:grid-cols-12 gap-gutter items-center">
-<div class="md:col-span-6 space-y-8">
-<div class="space-y-4">
-<span class="font-label-caps text-label-caps text-moss-green uppercase tracking-widest">Est. 1984 Roasters</span>
-<h1 class="font-headline-xl text-headline-xl text-primary leading-tight">Find Your Perfect Cup</h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">Explore handcrafted coffee, signature drinks, fresh pastries, and seasonal favorites inspired by heritage techniques.</p>
-</div>
-<div class="relative group max-w-md">
-<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline">search</span>
-<input id="menu-search-input" class="w-full bg-surface border-0 border-b border-outline-variant focus:border-primary focus:ring-0 py-4 pl-12 pr-4 font-label-md transition-all" placeholder="Search our menu..." type="text"/>
-</div>
-<div class="flex flex-wrap gap-4">
-<button onclick="filterByQuickCategory('coffee')" class="flex flex-col items-center gap-2 group">
-<div class="w-14 h-14 rounded-full bg-heritage-cream flex items-center justify-center group-hover:bg-primary-fixed transition-colors">
-<span class="material-symbols-outlined text-primary">local_cafe</span>
-</div>
-<span class="font-label-caps text-[10px]">Coffee</span>
-</button>
-<button onclick="filterByQuickCategory('non-coffee')" class="flex flex-col items-center gap-2 group">
-<div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-primary-fixed transition-colors">
-<span class="material-symbols-outlined text-primary">water_drop</span>
-</div>
-<span class="font-label-caps text-[10px]">Non-Coffee</span>
-</button>
-<button onclick="filterByQuickCategory('tea')" class="flex flex-col items-center gap-2 group">
-<div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-primary-fixed transition-colors">
-<span class="material-symbols-outlined text-primary">emoji_food_beverage</span>
-</div>
-<span class="font-label-caps text-[10px]">Tea</span>
-</button>
-<button onclick="filterByQuickCategory('pastry')" class="flex flex-col items-center gap-2 group">
-<div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-primary-fixed transition-colors">
-<span class="material-symbols-outlined text-primary">bakery_dining</span>
-</div>
-<span class="font-label-caps text-[10px]">Pastry</span>
-</button>
-<button onclick="filterByQuickCategory('dessert')" class="flex flex-col items-center gap-2 group">
-<div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-primary-fixed transition-colors">
-<span class="material-symbols-outlined text-primary">icecream</span>
-</div>
-<span class="font-label-caps text-[10px]">Dessert</span>
-</button>
-</div>
-</div>
-<div class="md:col-span-6 relative h-[500px]">
-<div class="absolute inset-0 bg-surface-variant/20 -z-10 translate-x-6 translate-y-6"></div>
-<div class="w-full h-full overflow-hidden bg-surface-container relative">
-<img class="w-full h-full object-cover" data-alt="An atmospheric, close-up shot of a steaming cup of artisan latte with intricate tulip latte art. The lighting is warm and golden, reminiscent of a cozy boutique hotel lobby in the early morning. The background is softly blurred, showing hints of dark mahogany wood and polished brass coffee equipment. High-end, editorial photographic style with a subtle warm grain filter." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFlzX5WDM05at_6meUFwk9dJoaVNGM9GMYui4IWYp8g9jVBj493L0kV2e-lwiconZ0Hq3pAd37Afaz21b4WXKarsk4DSJO-fyPWAwQ_VoMxnCfiVv3Ej3IB_vSQZNOzUgWCeHzd77BkZ1YnhC0pJwZlGhJg-0wfFSjwxt_Hd1-9ilwCqMUm-XvLfAsIYpSQHzl82JxOVclgBPt2yw5zh-3qZGFeRZMuTfx25gpMqI9zwYM2ErG6U3CaJv9pX_hrqjAcuBcT6zov5xw"/>
-<div class="absolute bottom-8 left-8 bg-paper-white p-6 border border-outline-variant/30 shadow-sm max-w-xs">
-<p class="font-label-caps text-label-caps text-primary mb-2">Heritage Origin</p>
-<p class="font-body-md text-on-surface-variant">Single-origin beans from the Sidamo highlands, slow-roasted in small batches.</p>
-</div>
-</div>
-</div>
-</section>
-<!-- Today's Picks -->
-<section class="py-20 px-margin-mobile md:px-margin-desktop bg-surface-container-low">
-<div class="flex justify-between items-end mb-12">
-<div>
-<h2 class="font-headline-lg text-headline-lg text-primary">Today's Picks</h2>
-<p class="font-body-md text-on-surface-variant">Curated by our Master Roasters for this morning.</p>
-</div>
-<button class="font-label-caps text-label-caps text-primary border-b border-primary hover:opacity-70 transition-opacity pb-1">View Archive</button>
-</div>
-<div id="todays-picks-grid" class="grid md:grid-cols-3 gap-12">
-<!-- Pick 1 -->
-<div class="flex flex-col">
-<div class="relative aspect-[3/4] mb-6 overflow-hidden bg-surface-container group">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A beautiful glass of iced hazelnut latte with visible layers of cream, coffee, and syrup. The drink is placed on a textured stone coaster with a few raw hazelnuts scattered around. Lighting is soft and natural, emphasizing the texture of the condensation on the glass. Editorial lifestyle photography for a luxury coffee brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDASvYLtvZlOWyrIlg73zKNICYKy590N1v1Jy-JpDO0U1ry1dM8mi5UYksfwevUwpu5uREOC_dCJR9nFupNmQ_03ohqjyAUJAZdBvWt5ktmMwN5bWWvNri6UH5jSNTDANbLHMNGHEYRWq-1uGA9iiqiKI_kPCNqZCXqVwkhwiVCDXCLQtzdmamZRw3Qrt6626rZXU1RJdk_kcWejYwXtY8w_uHooobJAB46s1QiBZ5xyox4F3QvFpA2MoyB8RzqzLV1mVugC5lQKX02"/>
-<div class="absolute top-4 left-4 bg-secondary text-on-secondary px-3 py-1 font-label-caps text-[10px] tracking-widest">Barista Recommendation</div>
-</div>
-<div class="flex justify-between items-start mb-2">
-<h3 class="font-headline-md text-headline-md">Hazelnut Velvet Latte</h3>
-<span class="font-label-md text-label-md text-primary">$6.50</span>
-</div>
-<p class="font-body-md text-on-surface-variant mb-6">A smooth blend of our signature espresso with toasted hazelnut essence and micro-foamed milk.</p>
-<button class="w-full py-4 bg-primary text-on-primary font-label-caps text-label-caps tracking-widest hover:bg-primary-container transition-colors active:scale-[0.98]">Add to Cart</button>
-</div>
-<!-- Pick 2 -->
-<div class="flex flex-col mt-12 md:mt-0">
-<div class="relative aspect-[3/4] mb-6 overflow-hidden bg-surface-container group">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A freshly baked, golden-brown almond croissant on a white ceramic plate. The pastry is dusted with powdered sugar and topped with toasted almond slices. Beside it sits a small porcelain cup of espresso. The setting is a clean, minimalist cafe table with morning light casting long shadows. Refined artisan aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvdc-fYK_n4HwqqGfds2oKLidf85jUdresni-py911J8w51n6UgWblyBUY4VVeLhnE2IeyiGBcRJLbGIDMQ484wuJfVkWbGuKFyxXr7wcFb_0UKEL-a9QVvExlCh9THB6e9TsVxcUvd9f7JPaFApcbCNhVaO-cLUeGy7qlSPadITzyZniuVuaeVFRkbaE97hFexefbbc9pMTqz8njk3j8b57yNOU3uVsyY8mmMy88-KgHJOV8Cb2ZLOzVPDrGIziGF-mbanjXOxznJ"/>
-<div class="absolute top-4 left-4 bg-secondary text-on-secondary px-3 py-1 font-label-caps text-[10px] tracking-widest">Barista Recommendation</div>
-</div>
-<div class="flex justify-between items-start mb-2">
-<h3 class="font-headline-md text-headline-md">Almond Croissant</h3>
-<span class="font-label-md text-label-md text-primary">$5.25</span>
-</div>
-<p class="font-body-md text-on-surface-variant mb-6">Double-baked pastry filled with rich almond frangipane and topped with toasted slivers.</p>
-<button class="w-full py-4 bg-primary text-on-primary font-label-caps text-label-caps tracking-widest hover:bg-primary-container transition-colors active:scale-[0.98]">Add to Cart</button>
-</div>
-<!-- Pick 3 -->
-<div class="flex flex-col">
-<div class="relative aspect-[3/4] mb-6 overflow-hidden bg-surface-container group">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A vibrant Matcha Ceremonial Latte in a wide ceramic bowl, showing a deep green color with a fine layer of froth. A bamboo whisk sits elegantly next to the bowl on a dark slate surface. The mood is serene and zen-like, with high-contrast, moody lighting that highlights the vibrant green of the matcha. Premium, boutique style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCE5f2LGx1KeAhjY5nPz15TSHD0soArnHH7OyxjiLT_N9vdHVFaZ34vUAY9QNtqADyLx9NrL4NsDIh8QmZC9faDG-iYTVDCx2b2Y9lMjS_QkeP8aW_US4OBmUUQokhZFqTo9QGMpmB2SW6-SpUbwEj4VkS0OqftSa0s98U5KANH8e-WFr5z9NW3f3cTYOXdnDhBMXu-gWR-iZcM7CjXeQMOov7enXtCJ-nrf8EszfnUJSmvii05LDwX6I9kHnMhFC7P0gcKMvG0yWbK"/>
-<div class="absolute top-4 left-4 bg-secondary text-on-secondary px-3 py-1 font-label-caps text-[10px] tracking-widest">Barista Recommendation</div>
-</div>
-<div class="flex justify-between items-start mb-2">
-<h3 class="font-headline-md text-headline-md">Ceremonial Matcha</h3>
-<span class="font-label-md text-label-md text-primary">$7.00</span>
-</div>
-<p class="font-body-md text-on-surface-variant mb-6">Uji-grade matcha whisked with oat milk for a creamy, earthy, and perfectly balanced finish.</p>
-<button class="w-full py-4 bg-primary text-on-primary font-label-caps text-label-caps tracking-widest hover:bg-primary-container transition-colors active:scale-[0.98]">Add to Cart</button>
-</div>
-</div>
-</section>
-<!-- Active Promotions -->
-<section class="py-24 px-margin-mobile md:px-margin-desktop">
-<div class="grid md:grid-cols-3 gap-gutter">
-<div class="bg-heritage-cream p-10 flex flex-col justify-between min-h-[320px] relative overflow-hidden group">
-<div class="z-10">
-<span class="font-label-caps text-[10px] text-primary-container block mb-2">LIMITED TIME</span>
-<h4 class="font-headline-md text-headline-md text-primary mb-4">Buy 2 Get 1 <br/>on Brewed Coffee</h4>
-<p class="font-body-md text-on-surface-variant max-w-[200px]">Perfect for sharing with friends this afternoon.</p>
-</div>
-<div class="z-10 mt-8 flex items-center gap-4">
-<button class="bg-primary text-on-primary px-6 py-2 font-label-caps text-[12px] hover:opacity-90 transition-opacity">Claim Now</button>
-<div class="font-label-md text-label-md text-primary flex items-center gap-2">
-<span class="material-symbols-outlined text-[16px]">schedule</span>
-<span class="" id="countdown-1">04:18:54</span>
-</div>
-</div>
-<div class="absolute -right-10 -bottom-10 opacity-10 group-hover:scale-110 transition-transform duration-1000">
-<span class="material-symbols-outlined text-[200px] text-primary">local_cafe</span>
-</div>
-</div>
-<div class="bg-surface-container-highest p-10 flex flex-col justify-between min-h-[320px] border border-outline-variant/20">
-<div>
-<span class="font-label-caps text-[10px] text-moss-green block mb-2">MEMBER EXCLUSIVE</span>
-<h4 class="font-headline-md text-headline-md text-primary mb-4">Free Croissant <br/>with any Large Latte</h4>
-<p class="font-body-md text-on-surface-variant max-w-[200px]">The quintessential French breakfast experience.</p>
-</div>
-<div class="mt-8">
-<button class="border border-primary text-primary px-6 py-2 font-label-caps text-[12px] hover:bg-primary hover:text-on-primary transition-all">Redeem Coupon</button>
-</div>
-</div>
-<div class="bg-primary-container text-on-primary-container p-10 flex flex-col justify-between min-h-[320px] relative overflow-hidden">
-<div class="z-10">
-<span class="font-label-caps text-[10px] text-tertiary-fixed block mb-2">WEEKEND SPECIAL</span>
-<h4 class="font-headline-md text-headline-md text-paper-white mb-4">Artisan Baguette <br/>&amp; Salted Butter</h4>
-<p class="font-body-md text-outline-variant max-w-[200px]">Freshly baked every Saturday and Sunday morning.</p>
-</div>
-<div class="z-10 mt-8">
-<button class="bg-paper-white text-primary px-6 py-2 font-label-caps text-[12px] hover:bg-heritage-cream transition-colors">Notify Me</button>
-</div>
-<div class="absolute right-0 top-0 w-32 h-32 bg-secondary/20 rounded-full blur-3xl -mr-16 -mt-16"></div>
-</div>
-</div>
-</section>
-<!-- Explore Menu -->
-<section class="py-20 bg-paper-white">
-<div class="px-margin-mobile md:px-margin-desktop mb-12">
-<div class="sela-line mb-12"></div>
-<div class="mb-8">
-<h2 class="font-headline-lg text-headline-lg text-primary">Full Menu</h2>
-<p class="font-body-md text-on-surface-variant">Browse our complete collection of artisan roasts and handcrafted treats.</p>
-</div><div class="flex flex-col md:flex-row md:items-center justify-between gap-8">
-<div id="category-tabs-container" class="flex items-center gap-8 overflow-x-auto no-scrollbar pb-2">
-<button onclick="filterCategory('all', this)" class="font-label-caps text-label-caps text-primary border-b-2 border-primary pb-1 whitespace-nowrap">All Items</button>
-<button onclick="filterCategory('coffee', this)" class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors pb-1 whitespace-nowrap">Coffee</button>
-<button onclick="filterCategory('pastry', this)" class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors pb-1 whitespace-nowrap">Pastry</button>
-<button onclick="filterCategory('tea', this)" class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors pb-1 whitespace-nowrap">Tea</button>
-<button onclick="filterCategory('dessert', this)" class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors pb-1 whitespace-nowrap">Dessert</button>
-</div>
-<div class="flex items-center gap-4">
-<div class="relative">
-<select id="menu-sort-select" class="appearance-none bg-transparent border-0 border-b border-outline-variant font-label-md text-label-md pr-8 py-1 focus:ring-0 cursor-pointer">
-<option value="popular">Sort: Popular</option>
-<option value="newest">Sort: Newest</option>
-<option value="low-high">Sort: Price Low-High</option>
-<option value="high-low">Sort: Price High-Low</option>
-</select>
-<span class="material-symbols-outlined absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-[16px]">expand_more</span>
-</div>
-</div>
-</div>
-</div>
-<div id="full-menu-grid" class="px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-x-gutter gap-y-16">
-<!-- Menu Item 1 -->
-<div class="md:col-span-1 group">
-<div class="relative aspect-square mb-6 overflow-hidden bg-surface-container">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A clean top-down shot of a classic Flat White in a white porcelain cup on a light wooden table. The latte art is a crisp rosetta. Lighting is bright, airy, and high-key. Professional culinary photography for a high-end menu." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYR90LeoW9TAx78d1hxOQ1kT_xTFAUiOph0LSoKUsjPd1mUq4MLkoYhIDOO8PviU5IywB1DtayOlt1ScFbDZakhYUgSJweV9UsT_B1X_gmUPcsUFPDAeXrWPn62JlV94B7EacrlaK3xoVgDStKPYAi2tHlZ3E4A6q45WRreqTLDmuH7gE8owCNj2rJp6S2xrwP4dm7pju4XOvgNvLbwIH3rv5oud5z0jvNDDnLnHNB3YNdKx3qbfdVaP4gQxIer0jl7p9qi7yj0Cxq"/>
-<button class="absolute top-4 right-4 w-10 h-10 bg-paper-white/80 rounded-full flex items-center justify-center backdrop-blur-sm hover:bg-paper-white transition-colors">
-<span class="material-symbols-outlined text-[20px] text-primary">favorite</span>
-</button>
-<div class="absolute bottom-4 left-4 bg-primary text-on-primary px-2 py-1 font-label-caps text-[8px] tracking-widest">BESTSELLER</div>
-</div>
-<div class="flex justify-between items-start mb-2">
-<h5 class="font-headline-md text-[20px] text-primary">Signature Flat White</h5>
-<span class="font-label-md text-primary">$5.50</span>
-</div>
-<div class="flex items-center gap-1 mb-3">
-<span class="material-symbols-outlined text-[14px] text-tertiary-fixed-dim" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="font-label-md text-[12px] text-on-surface-variant">4.9 (120)</span>
-</div>
-<button class="w-full py-3 border border-outline text-primary font-label-caps text-[11px] hover:bg-primary hover:text-on-primary transition-all">Add to Cart</button>
-</div>
-<!-- Menu Item 2 (Asymmetric Span) -->
-<div class="md:col-span-2 group">
-<div class="relative aspect-[2/1] mb-6 overflow-hidden bg-surface-container">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A wide, cinematic shot of a selection of artisanal pastries including pains au chocolat, almond croissants, and fruit tarts arranged on a linen cloth. A single cup of black coffee is visible in the corner. The lighting is low-key and dramatic, highlighting the textures of the flaky crusts. Gourmet food photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUC3M4ePBDGT_nhJUz3933Ez42TERdEveSUMo4JlkY1sMg7VSGvGslibzdP4h5mcoVX8lA1H94h40lY4mQT1ehacPZwK0HXESlxC-DQj-H1EILru9Q9z-lrjQZpWlOE5kgeajWsMCO7ElnWe_GjG7By-owYBHLxafAjHKz7qE9PXPrVW58KdJMuKm50ty9TDNC8N0KzFXh1toUVuxxyQCCEfDkv5ELDxO3lEcKScW1S4-HuMhOIPWPglHoLtLTv7AkrSKyWFL9tH1H"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-<div class="absolute bottom-8 left-8 text-paper-white">
-<span class="font-label-caps text-[10px] tracking-widest block mb-2">SHARED PLATES</span>
-<h5 class="font-headline-md text-headline-md">Heritage Pastry Board</h5>
-<p class="font-body-md opacity-80 max-w-xs">A selection of our four most popular morning pastries.</p>
-</div>
-</div>
-<div class="flex justify-between items-center">
-<span class="font-label-md text-primary">$18.00</span>
-<button class="py-3 px-8 bg-primary text-on-primary font-label-caps text-[11px] hover:bg-primary-container transition-all">Add to Cart</button>
-</div>
-</div>
-<!-- Menu Item 3 -->
-<div class="md:col-span-1 group">
-<div class="relative aspect-square mb-6 overflow-hidden bg-surface-container">
-<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A cold brew coffee served in a tall, elegant crystal glass with a large clear ice sphere. A sprig of fresh rosemary and a slice of dried orange garnish the drink. Dark, moody background with subtle reflections on the glass. High-end cocktail-style photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5ofuk7ba274iyfN2-mZq6S_sDi1NfPR1kmLSgCE7OgxkNPx8_6vr12-5UlmvNnaEUeod_L1sMMeEcYBwDGz2-28UD86jdK7R-r-FVEq21AolMXmTb9oZSAVX1cvqAIsCfInXA8sQt-mKgOSW_RAt64E7BJKobougjJseCCd1IGwr67oknrQoiYlnlSYrWF9RvSFKgt627P2ETbuEfGonW9NTaviJfPx7zfBAM3xpqV59scdQZoEODBFbs32wWZ8iLrqJ1qrbed4vs"/>
-</div>
-<div class="flex justify-between items-start mb-2">
-<h5 class="font-headline-md text-[20px] text-primary">24h Cold Brew</h5>
-<span class="font-label-md text-primary">$6.75</span>
-</div>
-<div class="flex items-center gap-1 mb-3">
-<span class="material-symbols-outlined text-[14px] text-tertiary-fixed-dim" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="font-label-md text-[12px] text-on-surface-variant">4.8 (85)</span>
-</div>
-<button class="w-full py-3 border border-outline text-primary font-label-caps text-[11px] hover:bg-primary hover:text-on-primary transition-all">Add to Cart</button>
-</div>
-</div><div class="mt-16 flex justify-center">
-<button class="px-12 py-4 border border-primary text-primary font-label-caps text-label-caps tracking-widest hover:bg-primary hover:text-on-primary transition-all active:scale-95">
-        Load More Items
-    </button>
-</div>
-</section>
-<!-- Coffee Stories -->
-<section class="py-24 px-margin-mobile md:px-margin-desktop bg-surface">
-<div class="text-center mb-16">
-<h2 class="font-headline-lg text-headline-lg text-primary mb-4">Coffee Stories</h2>
-<p class="font-body-md text-on-surface-variant max-w-xl mx-auto">Deepen your appreciation for the craft behind every cup we serve.</p>
-</div>
-<div class="grid md:grid-cols-3 gap-12">
-<div class="space-y-6">
-<div class="aspect-video bg-heritage-cream/30 p-8 flex items-center justify-center">
-<span class="material-symbols-outlined text-[80px] text-primary/40">auto_stories</span>
-</div>
-<h4 class="font-headline-md text-[24px]">Latte vs Cappuccino</h4>
-<p class="font-body-md text-on-surface-variant leading-relaxed">The difference lies in the ratio of milk to foam. A Cappuccino is equal parts espresso, milk, and foam, while a Latte is predominantly steamed milk with a thin layer of micro-foam.</p>
-<a class="inline-block font-label-caps text-[12px] text-primary border-b border-primary pb-1" href="#">Read the Journal</a>
-</div>
-<div class="space-y-6">
-<div class="aspect-video bg-secondary-container/30 p-8 flex items-center justify-center">
-<span class="material-symbols-outlined text-[80px] text-secondary/40">public</span>
-</div>
-<h4 class="font-headline-md text-[24px]">The Origin: Sidamo</h4>
-<p class="font-body-md text-on-surface-variant leading-relaxed">Located in the Ethiopian highlands, this region produces beans known for their floral, citrusy notes and crisp acidity—the heart of our Sela Signature roast.</p>
-<a class="inline-block font-label-caps text-[12px] text-primary border-b border-primary pb-1" href="#">Explore Terroir</a>
-</div>
-<div class="space-y-6">
-<div class="aspect-video bg-primary-fixed/20 p-8 flex items-center justify-center">
-<span class="material-symbols-outlined text-[80px] text-primary/40">science</span>
-</div>
-<h4 class="font-headline-md text-[24px]">The V60 Method</h4>
-<p class="font-body-md text-on-surface-variant leading-relaxed">Our preferred manual brewing technique. The spiral ridges of the V60 allow air to escape, resulting in a cleaner, more nuanced cup that highlights the bean's true character.</p>
-<a class="inline-block font-label-caps text-[12px] text-primary border-b border-primary pb-1" href="#">Watch Technique</a>
-</div>
-</div>
-</section>
-<!-- Seasonal Collection -->
-<section class="py-24 px-margin-mobile md:px-margin-desktop">
-<div class="relative w-full h-[600px] overflow-hidden bg-deep-espresso flex items-center">
-<div class="absolute inset-0 z-0">
-<img class="w-full h-full object-cover opacity-60" data-alt="A lush, vibrant green Matcha landscape with a close-up of a perfectly prepared Matcha Latte with intricate leaf latte art. The background features blurred bamboo and soft natural light. The overall mood is fresh, organic, and premium. High-end editorial aesthetic with deep greens and warm whites." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBm1Ze8GSww5FS0vNwLu-pn-g0m_r6qyCn3dTnZRkPHpwIXKEKiZD1j00U-w9qIf11sufgZzMr4YkSvU5Aiq1Bytl_8pdiU-XQLcw4Mm4Q2hb7NWyJwPouXxzHUtyFhVCFC4qnYMcEDtx1mlqUD6R0WWa2mCEIGAx4KRykVxOwcjP5q-Egk6kXYtJVsT7M4ta9M2SNMFwZN4JsgRh9xeqNA5G4BVQ4bNJCz9vUe6KLAo6M4pjwZjnmsB5I7Z_n1PTQy2K5VtWh69sMx"/>
-</div>
-<div class="relative z-10 md:ml-20 max-w-lg p-margin-mobile">
-<span class="font-label-caps text-label-caps text-secondary-fixed block mb-4 tracking-widest">LIMITED SUMMER RELEASE</span>
-<h2 class="font-headline-xl text-headline-xl text-paper-white mb-6">The Matcha Collection</h2>
-<p class="font-body-lg text-body-lg text-paper-white/80 mb-10 leading-relaxed">Experience the refined taste of ceremonial grade Uji Matcha, paired with seasonal florals and artisan milks. Available until September 1st.</p>
-<div class="flex gap-4">
-<button class="bg-paper-white text-primary px-10 py-4 font-label-caps text-label-caps hover:bg-heritage-cream transition-colors">Explore Collection</button>
-</div>
-</div>
-</div>
-</section>
-<!-- Customer Favorites Carousel -->
-<section class="py-24 px-margin-mobile md:px-margin-desktop bg-surface-container-low">
-<div class="flex justify-between items-end mb-16">
-<div>
-<h2 class="font-headline-lg text-headline-lg text-primary">Community Favorites</h2>
-<p class="font-body-md text-on-surface-variant">The most loved items this month, based on total orders.</p>
-</div>
-<div class="flex gap-4">
-<button class="w-12 h-12 rounded-full border border-outline flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all">
-<span class="material-symbols-outlined">chevron_left</span>
-</button>
-<button class="w-12 h-12 rounded-full border border-outline flex items-center justify-center hover:bg-primary hover:text-on-primary transition-all">
-<span class="material-symbols-outlined">chevron_right</span>
-</button>
-</div>
-</div>
-<div class="flex gap-8 overflow-x-auto no-scrollbar pb-8">
-<!-- Favorite Card 1 -->
-<div class="min-w-[320px] bg-paper-white p-8 border border-outline-variant/30">
-<div class="flex justify-between items-start mb-8">
-<span class="font-headline-xl text-[48px] text-primary/10">01</span>
-<div class="bg-moss-green/10 text-moss-green px-3 py-1 rounded-full font-label-caps text-[10px]">#1 IN SALES</div>
-</div>
-<h4 class="font-headline-md text-headline-md mb-2">Signature Latte</h4>
-<p class="font-body-md text-on-surface-variant mb-6">"Perfectly balanced sweetness with a velvety finish."</p>
-<div class="flex justify-between items-center">
-<span class="font-label-md text-primary">1.2k+ Orders</span>
-<div class="flex">
-<span class="material-symbols-outlined text-[14px] text-tertiary-fixed-dim" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="font-label-md text-[12px] ml-1">4.9</span>
-</div>
-</div>
-</div>
-<!-- Favorite Card 2 -->
-<div class="min-w-[320px] bg-paper-white p-8 border border-outline-variant/30">
-<div class="flex justify-between items-start mb-8">
-<span class="font-headline-xl text-[48px] text-primary/10">02</span>
-<div class="bg-primary/10 text-primary px-3 py-1 rounded-full font-label-caps text-[10px]">HIGHEST RATED</div>
-</div>
-<h4 class="font-headline-md text-headline-md mb-2">Dark Choc Sea Salt</h4>
-<p class="font-body-md text-on-surface-variant mb-6">"The subtle salt flakes perfectly elevate the cocoa notes."</p>
-<div class="flex justify-between items-center">
-<span class="font-label-md text-primary">850 Orders</span>
-<div class="flex">
-<span class="material-symbols-outlined text-[14px] text-tertiary-fixed-dim" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="font-label-md text-[12px] ml-1">5.0</span>
-</div>
-</div>
-</div>
-<!-- Favorite Card 3 -->
-<div class="min-w-[320px] bg-paper-white p-8 border border-outline-variant/30">
-<div class="flex justify-between items-start mb-8">
-<span class="font-headline-xl text-[48px] text-primary/10">03</span>
-<div class="bg-moss-green/10 text-moss-green px-3 py-1 rounded-full font-label-caps text-[10px]">MORNING ESSENTIAL</div>
-</div>
-<h4 class="font-headline-md text-headline-md mb-2">Pain au Chocolat</h4>
-<p class="font-body-md text-on-surface-variant mb-6">"Flaky, buttery perfection. Best paired with an espresso."</p>
-<div class="flex justify-between items-center">
-<span class="font-label-md text-primary">720 Orders</span>
-<div class="flex">
-<span class="material-symbols-outlined text-[14px] text-tertiary-fixed-dim" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="font-label-md text-[12px] ml-1">4.8</span>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Quick Order Banner -->
-</main>
-<div id="footer-placeholder"></div>
-<script src="../assets/js/web/components.js"></script>
-<script src="../assets/js/web/menu.js"></script>
-<script>
-        // Micro-interactions & Logic
-        document.addEventListener('DOMContentLoaded', () => {
-            // Countdown timer for promotions
-            let hours = 4, minutes = 22, seconds = 10;
-            const timerDisplay = document.getElementById('countdown-1');
-            
-            setInterval(() => {
-                seconds--;
-                if (seconds < 0) {
-                    seconds = 59;
-                    minutes--;
-                }
-                if (minutes < 0) {
-                    minutes = 59;
-                    hours--;
-                }
-                timerDisplay.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-            }, 1000);
 
-            // Simple parallax effect for images on scroll
-            window.addEventListener('scroll', () => {
-                const scrolled = window.pageYOffset;
-                const parallaxImages = document.querySelectorAll('.hero-parallax');
-                parallaxImages.forEach(img => {
-                    const speed = 0.4;
-                    img.style.transform = `translateY(${scrolled * speed}px)`;
-                });
-            });
-        });
-    </script>
-</body></html>
+    <div id="navbar-placeholder"></div>
+
+    <main class="max-w-container-max mx-auto">
+        <section class="px-margin-mobile md:px-margin-desktop py-12 md:py-24 grid md:grid-cols-12 gap-gutter items-center">
+            <div class="md:col-span-6 space-y-8">
+                <div class="space-y-4">
+                    <span class="font-label-caps text-label-caps text-moss-green uppercase tracking-widest">Est. 1924 Roasters</span>
+                    <h1 class="font-headline-xl text-headline-xl text-primary leading-tight">Find Your Perfect Cup</h1>
+                    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">Explore handcrafted coffee, signature drinks, fresh pastries, and seasonal favorites inspired by heritage techniques.</p>
+                </div>
+                
+                <div class="flex flex-wrap gap-4 pointer-events-none select-none">
+                    <div class="flex flex-col items-center gap-2">
+                        <div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center shadow-sm">
+                            <span class="material-symbols-outlined text-primary">local_cafe</span>
+                        </div>
+                        <span class="font-label-caps text-[10px] text-on-surface-variant">Coffee</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2">
+                        <div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center shadow-sm">
+                            <span class="material-symbols-outlined text-primary">water_drop</span>
+                        </div>
+                        <span class="font-label-caps text-[10px] text-on-surface-variant">Non-Coffee</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2">
+                        <div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center shadow-sm">
+                            <span class="material-symbols-outlined text-primary">emoji_food_beverage</span>
+                        </div>
+                        <span class="font-label-caps text-[10px] text-on-surface-variant">Tea</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2">
+                        <div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center shadow-sm">
+                            <span class="material-symbols-outlined text-primary">bakery_dining</span>
+                        </div>
+                        <span class="font-label-caps text-[10px] text-on-surface-variant">Pastry</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-2">
+                        <div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center shadow-sm">
+                            <span class="material-symbols-outlined text-primary">icecream</span>
+                        </div>
+                        <span class="font-label-caps text-[10px] text-on-surface-variant">Dessert</span>
+                    </div>
+                </div>
+            </div>
+            <div class="md:col-span-6 relative h-[500px]">
+                <div class="absolute inset-0 bg-surface-variant/20 -z-10 translate-x-6 translate-y-6"></div>
+                <div class="w-full h-full overflow-hidden bg-surface-container relative">
+                    <img class="w-full h-full object-cover grayscale-[0.1] contrast-[1.05]" alt="Sela Specialty Espresso Crafting" src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=800&auto=format&fit=crop"/>
+                    <div class="absolute bottom-8 left-8 bg-paper-white p-6 border border-outline-variant/30 shadow-sm max-w-xs">
+                        <p class="font-label-caps text-label-caps text-primary mb-2">Heritage Origin</p>
+                        <p class="font-body-md text-on-surface-variant">Single-origin beans from the Sidamo highlands, slow-roasted in small batches.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-12 bg-paper-white min-h-[650px]">
+            <div class="px-margin-mobile md:px-margin-desktop mb-12">
+                <div class="sela-line mb-12"></div>
+                <div class="mb-8">
+                    <h2 class="font-headline-lg text-headline-lg text-primary">Full Menu</h2>
+                    <p class="font-body-md text-on-surface-variant">Browse our complete collection of artisan roasts and handcrafted treats.</p>
+                </div>
+                
+                <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-b border-outline-variant/20 pb-4">
+                    <div id="category-tabs-container" class="flex items-center gap-6 overflow-x-auto no-scrollbar pb-1">
+                        <button onclick="filterCategory('all', this)" class="font-label-caps text-label-caps text-primary border-b-2 border-primary pb-2 whitespace-nowrap cursor-pointer">All Items</button>
+                        <button onclick="filterCategory('coffee', this)" class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors pb-2 whitespace-nowrap cursor-pointer">Coffee</button>
+                        <button onclick="filterCategory('non-coffee', this)" class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors pb-2 whitespace-nowrap cursor-pointer">Non-Coffee</button>
+                        <button onclick="filterCategory('tea', this)" class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors pb-2 whitespace-nowrap cursor-pointer">Tea</button>
+                        <button onclick="filterCategory('pastry', this)" class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors pb-2 whitespace-nowrap cursor-pointer">Pastry</button>
+                        <button onclick="filterCategory('dessert', this)" class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors pb-2 whitespace-nowrap cursor-pointer">Dessert</button>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row items-center gap-4 w-full lg:w-auto">
+                        <div class="relative w-full sm:w-64 group">
+                            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
+                            <input id="menu-search-input" class="w-full bg-surface border-0 border-b border-outline-variant focus:border-primary focus:ring-0 py-1.5 pl-9 pr-3 text-sm font-body-md transition-all" placeholder="Search menu..." type="text"/>
+                        </div>
+
+                        <div class="relative w-full sm:w-auto">
+                            <select id="menu-sort-select" class="appearance-none bg-transparent border-0 border-b border-outline-variant font-label-md text-label-md pr-8 py-1 focus:ring-0 cursor-pointer w-full sm:w-auto">
+                                <option value="popular">Sort: Popular</option>
+                                <option value="low-high">Price: Low-High</option>
+                                <option value="high-low">Price: High-Low</option>
+                            </select>
+                            <span class="material-symbols-outlined absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-[16px]">expand_more</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="full-menu-grid" class="px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-4 gap-x-gutter gap-y-16">
+                </div>
+
+            <div id="menu-pagination-container" class="mt-16 flex justify-center items-center gap-2">
+                </div>
+        </section>
+
+        <section class="py-20 px-margin-mobile md:px-margin-desktop bg-surface-container-low border-t border-outline-variant/10">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="font-headline-lg text-headline-lg text-primary">Today's Picks</h2>
+                    <p class="font-body-md text-on-surface-variant">Daily seasonal curation algorithmically refreshed by our Master Roasters.</p>
+                </div>
+            </div>
+            <div id="todays-picks-grid" class="grid md:grid-cols-3 gap-12">
+                </div>
+        </section>
+
+        <section class="py-20 px-margin-mobile md:px-margin-desktop bg-paper-white">
+            <div class="mb-12">
+                <span class="font-label-caps text-label-caps text-moss-green block mb-2">LIMITED MERCHANDISE</span>
+                <h2 class="font-headline-lg text-headline-lg text-primary">Sela Goods & Apparel</h2>
+                <p class="font-body-md text-on-surface-variant">Premium collectibles available exclusively for physical checkout at our cafe bars.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="group flex flex-col justify-between border border-outline-variant/30 p-6 rounded-xl bg-surface-container-low/50">
+                    <div>
+                        <div class="aspect-square bg-surface-container rounded-lg overflow-hidden mb-6 relative">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Sela Minimalist Tumbler" src="https://images.unsplash.com/photo-1602143407151-7111542de6e8?q=80&w=600&auto=format&fit=crop"/>
+                            <span class="absolute top-4 left-4 bg-primary text-white text-[9px] font-label-caps px-2.5 py-1 tracking-wider">COUNTER EXCLUSIVE</span>
+                        </div>
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="font-headline-md text-xl text-primary font-bold">Minimalist Thermal Tumbler</h4>
+                            <span class="font-label-md text-sm text-outline">Rp 245.000</span>
+                        </div>
+                        <p class="text-xs text-on-surface-variant leading-relaxed mb-4">Matte finish 500ml double-wall stainless steel container designed to preserve extraction temperature intervals.</p>
+                    </div>
+                    <div class="w-full text-center bg-surface-container border border-outline-variant/40 text-on-surface-variant text-[10px] font-label-caps tracking-widest py-3 uppercase rounded-sm select-none">In-Store Collection Only</div>
+                </div>
+                <div class="group flex flex-col justify-between border border-outline-variant/30 p-6 rounded-xl bg-surface-container-low/50">
+                    <div>
+                        <div class="aspect-square bg-surface-container rounded-lg overflow-hidden mb-6 relative">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Sela Canvas Tote Bag" src="https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=600&auto=format&fit=crop"/>
+                            <span class="absolute top-4 left-4 bg-primary text-white text-[9px] font-label-caps px-2.5 py-1 tracking-wider">COUNTER EXCLUSIVE</span>
+                        </div>
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="font-headline-md text-xl text-primary font-bold">Heritage Canvas Tote</h4>
+                            <span class="font-label-md text-sm text-outline">Rp 120.000</span>
+                        </div>
+                        <p class="text-xs text-on-surface-variant leading-relaxed mb-4">Heavyweight 12oz raw organic canvas with reinforced dual strapping and internal catalog dividers.</p>
+                    </div>
+                    <div class="w-full text-center bg-surface-container border border-outline-variant/40 text-on-surface-variant text-[10px] font-label-caps tracking-widest py-3 uppercase rounded-sm select-none">In-Store Collection Only</div>
+                </div>
+                <div class="group flex flex-col justify-between border border-outline-variant/30 p-6 rounded-xl bg-surface-container-low/50">
+                    <div>
+                        <div class="aspect-square bg-surface-container rounded-lg overflow-hidden mb-6 relative">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Sela Reserve Beans" src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?q=80&w=600&auto=format&fit=crop"/>
+                            <span class="absolute top-4 left-4 bg-moss-green text-white text-[9px] font-label-caps px-2.5 py-1 tracking-wider">FRESH ROAST</span>
+                        </div>
+                        <div class="flex justify-between items-center mb-2">
+                            <h4 class="font-headline-md text-xl text-primary font-bold">Sidamo Highlands Wholebean</h4>
+                            <span class="font-label-md text-sm text-outline">Rp 165.000</span>
+                        </div>
+                        <p class="text-xs text-on-surface-variant leading-relaxed mb-4">250g whole bean valve matrix pouch. Multi-tiered floral and bright lemon notes sealed immediately post-roast.</p>
+                    </div>
+                    <div class="w-full text-center bg-surface-container border border-outline-variant/40 text-on-surface-variant text-[10px] font-label-caps tracking-widest py-3 uppercase rounded-sm select-none">In-Store Collection Only</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-16 bg-[#2a3625] overflow-hidden">
+            <div class="px-margin-mobile md:px-margin-desktop grid grid-cols-1 lg:grid-cols-12 gap-8 items-center max-w-container-max mx-auto">
+                <div class="lg:col-span-5 space-y-6 p-4">
+                    <span class="font-label-caps text-[10px] text-paper-white/60 block tracking-[0.2em] uppercase font-bold">Limited Summer Release</span>
+                    <h2 class="font-headline-xl text-[44px] md:text-[54px] text-paper-white leading-tight font-medium">The Matcha <br/>Collection</h2>
+                    <p class="font-body-md text-sm md:text-base text-paper-white/80 max-w-md leading-relaxed">Experience the refined taste of ceremonial grade Uji Matcha, paired with seasonal florals and artisan milks. Available until September 1st.</p>
+                    <button onclick="document.getElementById('menu-search-input').value='matcha'; document.getElementById('menu-search-input').dispatchEvent(new Event('input')); window.scrollTo({top: document.getElementById('full-menu-grid').offsetTop - 140, behavior: 'smooth'});" class="bg-paper-white text-primary px-8 py-3.5 font-label-caps text-[11px] tracking-widest hover:bg-heritage-cream transition-colors rounded-sm cursor-pointer font-medium shadow-sm">
+                        Explore Collection
+                    </button>
+                </div>
+                <div class="lg:col-span-7 h-[420px] md:h-[500px] w-full rounded-2xl overflow-hidden shadow-2xl relative">
+                    <img class="w-full h-full object-cover contrast-[1.02] brightness-[0.98]" alt="Sela Matcha Laptop Frame" src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?q=80&w=1200&auto=format&fit=crop"/>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 px-margin-mobile md:px-margin-desktop bg-surface-container-low">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6">
+                    <span class="font-label-caps text-xs text-moss-green tracking-widest block uppercase font-bold">Educational Series</span>
+                    <h2 class="font-headline-lg text-headline-lg text-primary">Barista Sensory Craft Class</h2>
+                    <p class="font-body-md text-on-surface-variant leading-relaxed">
+                        Go beyond simple consumer tasting. Enroll in our interactive, intensive tableside brewing modules governed directly by Sela head roasters. Master extraction mathematics, water chemistry matrix maps, and optimal calibration loops.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 text-xs font-label-md text-primary pt-2">
+                        <div class="flex items-center gap-2"><span class="material-symbols-outlined text-moss-green text-sm">workspace_premium</span> <span>Sensory Certificate Issued</span></div>
+                        <div class="flex items-center gap-2"><span class="material-symbols-outlined text-moss-green text-sm">science</span> <span>All Single-Origins Provided</span></div>
+                    </div>
+                    <button onclick="if(typeof window.openFooterModal === 'function') window.openFooterModal('chat')" class="bg-primary text-white font-label-caps text-xs px-8 py-4 tracking-widest hover:bg-primary-container transition-colors rounded-sm cursor-pointer shadow-sm">Inquire Schedules</button>
+                </div>
+                <div class="lg:col-span-5 h-[340px] rounded-xl overflow-hidden shadow-sm">
+                    <img class="w-full h-full object-cover grayscale-[0.2]" alt="Barista training class" src="https://images.unsplash.com/photo-1577968897966-3d4325b36b61?q=80&w=600&auto=format&fit=crop"/>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-20 px-margin-mobile md:px-margin-desktop bg-paper-white border-t border-outline-variant/20">
+            <div class="mb-12">
+                <h2 class="font-headline-lg text-headline-lg text-primary">Community Favorites</h2>
+                <p class="font-body-md text-on-surface-variant">The most loved items this month, based on total digital counter orders.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-paper-white p-8 border border-outline-variant/30 rounded-xl flex flex-col justify-between shadow-sm">
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="font-headline-xl text-[48px] text-primary/10 select-none font-bold">01</span>
+                            <div class="bg-moss-green/10 text-moss-green px-3 py-1 rounded-full font-label-caps text-[10px] tracking-wider font-bold">#1 IN SALES</div>
+                        </div>
+                        <h4 class="font-headline-md text-headline-md mb-2 text-primary">Signature Latte</h4>
+                        <p class="font-body-md text-on-surface-variant mb-6">"Perfectly balanced sweetness with a velvety microfoam finish."</p>
+                    </div>
+                    <div class="flex justify-between items-center border-t border-outline-variant/20 pt-4">
+                        <span class="font-label-md text-xs text-outline">1.2k+ Active Orders</span>
+                        <div class="flex items-center text-tertiary-fixed-dim"><span class="material-symbols-outlined text-[14px]">star</span><span class="font-label-md text-[12px] ml-1 text-primary">4.9</span></div>
+                    </div>
+                </div>
+                <div class="bg-paper-white p-8 border border-outline-variant/30 rounded-xl flex flex-col justify-between shadow-sm">
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="font-headline-xl text-[48px] text-primary/10 select-none font-bold">02</span>
+                            <div class="bg-primary/10 text-primary px-3 py-1 rounded-full font-label-caps text-[10px] tracking-wider font-bold">HIGHEST RATED</div>
+                        </div>
+                        <h4 class="font-headline-md text-headline-md mb-2 text-primary">Dark Choc Sea Salt</h4>
+                        <p class="font-body-md text-on-surface-variant mb-6">"The subtle crunch of sea salt flakes perfectly elevates the rich cocoa profiles."</p>
+                    </div>
+                    <div class="flex justify-between items-center border-t border-outline-variant/20 pt-4">
+                        <span class="font-label-md text-xs text-outline">850 Active Orders</span>
+                        <div class="flex items-center text-tertiary-fixed-dim"><span class="material-symbols-outlined text-[14px]">star</span><span class="font-label-md text-[12px] ml-1 text-primary">5.0</span></div>
+                    </div>
+                </div>
+                <div class="bg-paper-white p-8 border border-outline-variant/30 rounded-xl flex flex-col justify-between shadow-sm">
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="font-headline-xl text-[48px] text-primary/10 select-none font-bold">03</span>
+                            <div class="bg-surface-container-highest text-primary px-3 py-1 rounded-full font-label-caps text-[10px] tracking-wider font-bold">DAILY ESSENTIAL</div>
+                        </div>
+                        <h4 class="font-headline-md text-headline-md mb-2 text-primary">Pain au Chocolat</h4>
+                        <p class="font-body-md text-on-surface-variant mb-6">"Flaky, buttery perfection crafted with imported French chocolate bars."</p>
+                    </div>
+                    <div class="flex justify-between items-center border-t border-outline-variant/20 pt-4">
+                        <span class="font-label-md text-xs text-outline">720 Active Orders</span>
+                        <div class="flex items-center text-tertiary-fixed-dim"><span class="material-symbols-outlined text-[14px]">star</span><span class="font-label-md text-[12px] ml-1 text-primary">4.8</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="../assets/js/components.js"></script>
+    <script src="../assets/js/web/menu.js"></script>
+</body>
+</html>

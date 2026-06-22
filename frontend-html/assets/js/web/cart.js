@@ -141,7 +141,7 @@ function formatIDR(amount) {
 // Also expose so menu.js can reuse
 window.handleMenuAddToCart = function(id, name, price, imageUrl) {
     const cart = getCart();
-    const existingIndex = cart.findIndex(item => item.id === id || item.name === name);
+    const existingIndex = cart.findIndex(item => item.name === name);
     if (existingIndex > -1) {
         cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + 1;
     } else {

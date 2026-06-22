@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Sela Cafe | Performance</title>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Manrope:wght@200..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    </head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+    <div class="grain"></div>
+    
+    <div class="flex min-h-screen">
+        <aside class="h-screen w-64 fixed left-0 top-0 bg-surface-container-low border-r border-outline-variant/50 flex flex-col py-6 px-4 gap-4 z-40 hidden md:flex">
+            <nav class="flex-1 space-y-1">
+                <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg" href="dashboard.html">
+                    <span class="material-symbols-outlined">dashboard</span> <span class="font-label-caps text-label-caps">Overview</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2.5 bg-secondary-container text-on-secondary-container rounded-lg font-bold" href="performance.html">
+                    <span class="material-symbols-outlined">monitoring</span> <span class="font-label-caps text-label-caps">Performance</span>
+                </a>
+                </nav>
+        </aside>
+
+        <main class="flex-1 md:ml-64 relative bg-paper-white">
+            <header class="sticky top-0 w-full h-16 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 flex justify-between items-center px-6 md:px-8 z-30">
+                <h2 class="font-headline-md text-headline-md font-bold text-primary">Performance</h2>
+            </header>
+
+            <div class="max-w-[1280px] mx-auto p-6 md:p-10">
+                <section class="mb-12">
+                    <p class="font-label-caps text-label-caps text-moss-green mb-2 tracking-[0.2em]">FISCAL ANALYTICS</p>
+                    <h3 class="font-headline-xl text-[48px] text-deep-espresso">Revenue Mastery</h3>
+                </section>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                    <div class="bg-paper-white border border-outline-muted p-8 rounded-lg">
+                        <h4 class="font-label-caps text-label-caps text-on-surface-variant mb-1">TOTAL REVENUE</h4>
+                        <p class="font-headline-lg text-deep-espresso">$248,190.00</p>
+                    </div>
+                    <div class="bg-paper-white border border-outline-muted p-8 rounded-lg">
+                        <h4 class="font-label-caps text-label-caps text-on-surface-variant mb-1">AVG. DAILY SALES</h4>
+                        <p class="font-headline-lg text-deep-espresso">$8,273</p>
+                    </div>
+                    <div class="bg-paper-white border border-outline-muted p-8 rounded-lg">
+                        <h4 class="font-label-caps text-label-caps text-on-surface-variant mb-1">CUST. LIFETIME VALUE</h4>
+                        <p class="font-headline-lg text-deep-espresso">$1,420</p>
+                    </div>
+                </div>
+
+                <div class="bg-paper-white border border-outline-muted p-8 rounded-lg">
+                    <h4 class="font-label-caps text-label-caps text-deep-espresso mb-8">SALES VELOCITY</h4>
+                    <div class="h-64 border-t border-outline-muted flex items-end justify-center pt-8">
+                        <p class="text-on-surface-variant italic">Chart Container Ready</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface-container-low border-t p-2 flex justify-around z-50">
+        <a href="dashboard.html" class="flex flex-col items-center text-on-surface-variant/60"><span class="material-symbols-outlined">dashboard</span></a>
+        <a href="manage-menu.html" class="flex flex-col items-center text-on-surface-variant/60"><span class="material-symbols-outlined">restaurant</span></a>
+        <a href="performance.html" class="flex flex-col items-center text-on-secondary-container"><span class="material-symbols-outlined">monitoring</span></a>
+    </nav>
+</body>
+</html>

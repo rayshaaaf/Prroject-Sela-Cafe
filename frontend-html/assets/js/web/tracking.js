@@ -16,6 +16,8 @@ const STATUS_LABELS = {
 };
 
 let refreshInterval = null;
+let qrisInitialized = false;
+let qrisPollInterval = null;
 
 document.addEventListener('DOMContentLoaded', () => {
     initTracking();
@@ -55,6 +57,13 @@ async function initTracking() {
             window.showToast('Refreshing status...', 'default');
             fetchAndRenderOrder(orderId, true);
         });
+    }
+
+    // Reset global QRIS states
+    qrisInitialized = false;
+    if (qrisPollInterval) {
+        clearInterval(qrisPollInterval);
+        qrisPollInterval = null;
     }
 
     // Initial fetch
@@ -184,6 +193,8 @@ function renderOrderDetails(order) {
     if (payEl) {
         payEl.textContent = order.paymentMethod || 'QRIS';
     }
+
+    handleQrisPayment(order);
 
     const infoEl = document.getElementById('order-info-text');
     if (infoEl) {
@@ -365,4 +376,132 @@ function renderTimeline(status, orderType) {
             </div>
         `;
     }).join('');
+}
+
+// ─── Komerce QRISLY Payment Handler ───────────────────────────────────────────
+async function handleQrisPayment(order) {
+    const qrisBox = document.getElementById('qris-payment-box');
+    if (!qrisBox) return;
+
+    // If order has already transitioned from WAITING_PAYMENT, hide and clean up
+    if (order.status !== 'WAITING_PAYMENT') {
+        qrisBox.classList.add('hidden');
+        if (qrisPollInterval) {
+            clearInterval(qrisPollInterval);
+            qrisPollInterval = null;
+        }
+        return;
+    }
+
+    qrisBox.classList.remove('hidden');
+
+    // Prevent duplicate initialization
+    if (qrisInitialized) return;
+    qrisInitialized = true;
+
+    const qrImage = document.getElementById('qris-image');
+    const loadingOverlay = document.getElementById('qris-loading-overlay');
+    const statusLabel = document.getElementById('qris-status-label');
+    const statusBadge = document.getElementById('qris-status-badge');
+    const simulateBtn = document.getElementById('btn-simulate-success');
+    const boxTitle = document.getElementById('qris-box-title');
+    const instructionText = document.getElementById('qris-instruction-text');
+
+    if (loadingOverlay) loadingOverlay.classList.remove('hidden');
+    if (statusLabel) statusLabel.textContent = 'Generating QR Code...';
+
+    try {
+        // Post to backend to charge/generate QRIS
+        const res = await window.apiFetch('/api/payments/charge', {
+            method: 'POST',
+            body: JSON.stringify({
+                orderId: Number(order.id),
+                paymentMethod: 'QRIS'
+            })
+        });
+
+        if (loadingOverlay) loadingOverlay.classList.add('hidden');
+
+        if (res.ok) {
+            const apiRes = await res.json();
+            const payment = apiRes.data;
+
+            if (qrImage && payment.qrisImageUrl) {
+                qrImage.src = payment.qrisImageUrl;
+            }
+
+            if (statusLabel) statusLabel.textContent = 'Awaiting Payment';
+
+            const isLocal = payment.transactionId && payment.transactionId.startsWith('TX-');
+
+            if (isLocal) {
+                if (boxTitle) boxTitle.textContent = 'QRIS SIMULATOR (TEST FALLBACK)';
+                if (statusBadge) {
+                    statusBadge.className = statusBadge.className.replace('bg-heritage-cream', 'bg-error-container').replace('text-deep-espresso', 'text-on-error-container');
+                }
+                if (statusLabel) statusLabel.textContent = 'Simulation Mode';
+                if (instructionText) {
+                    instructionText.innerHTML = 'Komerce QRIS API returned fallback because no static QRIS is configured. <br>Use the button below to simulate successful payment.';
+                }
+                if (simulateBtn) {
+                    simulateBtn.classList.remove('hidden');
+                    simulateBtn.onclick = async () => {
+                        simulateBtn.disabled = true;
+                        simulateBtn.textContent = 'SIMULATING...';
+                        try {
+                            const simRes = await window.apiFetch(`/api/payments/${payment.transactionId}/simulate-success`, {
+                                method: 'POST'
+                            });
+                            if (simRes.ok) {
+                                window.showToast('Payment simulated successfully!', 'success');
+                                fetchAndRenderOrder(order.id, false);
+                            } else {
+                                window.showToast('Simulation failed.', 'error');
+                                simulateBtn.disabled = false;
+                                simulateBtn.textContent = 'SIMULATE PAYMENT SUCCESS (TEST MODE)';
+                            }
+                        } catch (err) {
+                            window.showToast('Connection failed.', 'error');
+                            simulateBtn.disabled = false;
+                            simulateBtn.textContent = 'SIMULATE PAYMENT SUCCESS (TEST MODE)';
+                        }
+                    };
+                }
+            } else {
+                if (boxTitle) boxTitle.textContent = 'DYNAMIC QRIS PAYMENT';
+                if (simulateBtn) simulateBtn.classList.add('hidden');
+                if (instructionText) {
+                    instructionText.innerHTML = 'Scan the QR code above to pay exactly <strong class="text-moss-green font-bold">' + formatIDR(payment.amount) + '</strong>. Your order status will update automatically once verified.';
+                }
+
+                // Start polling payment status from backend
+                if (qrisPollInterval) clearInterval(qrisPollInterval);
+                qrisPollInterval = setInterval(async () => {
+                    try {
+                        const statusRes = await window.apiFetch(`/api/payments/order/${order.id}`);
+                        if (statusRes.ok) {
+                            const statusData = await statusRes.json();
+                            const currentPayment = statusData.data;
+
+                            if (currentPayment.status === 'SUCCESS') {
+                                clearInterval(qrisPollInterval);
+                                qrisPollInterval = null;
+                                window.showToast('Payment received! Thank you.', 'success');
+                                fetchAndRenderOrder(order.id, false);
+                            }
+                        }
+                    } catch (e) {
+                        console.warn('Error polling payment status:', e);
+                    }
+                }, 5000);
+            }
+        } else {
+            if (statusLabel) statusLabel.textContent = 'Failed to load payment';
+            window.showToast('Could not initialize payment.', 'error');
+        }
+    } catch (err) {
+        if (loadingOverlay) loadingOverlay.classList.add('hidden');
+        if (statusLabel) statusLabel.textContent = 'Connection Error';
+        window.showToast('Connection error to payment gateway.', 'error');
+    }
 }

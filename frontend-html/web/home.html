@@ -121,6 +121,24 @@
             opacity: 0.03;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
+        .modal-enter {
+            opacity: 0;
+            transform: scale(0.95) translateY(12px);
+        }
+        .modal-show {
+            opacity: 1 !important;
+            transform: scale(1) translateY(0) !important;
+        }
+        #sela-modal-body::-webkit-scrollbar {
+            width: 4px;
+        }
+        #sela-modal-body::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.03);
+        }
+        #sela-modal-body::-webkit-scrollbar-thumb {
+            background: #33210d;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body class="bg-background text-on-surface font-body-md overflow-x-hidden mb-0">
@@ -136,13 +154,13 @@
                         The Art of <br/><span class="italic font-normal">Coffee Ordering</span>
                     </h1>
                     <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
-                        Experience the ease of exploring our artisan menu and ordering your favorite specialty coffee directly. From heritage roasts to contemporary brews, crafted precisely for you.
+                        Explore our selection of farm-certified single origins and signature espresso blends. Order directly through our secure platform for quick counter pickup or tableside delivery.
                     </p>
                     <div class="flex gap-4 items-center">
-                        <button id="btn-experience-blend" class="bg-primary text-paper-white px-8 py-4 font-label-caps text-label-caps uppercase tracking-widest hover:bg-deep-espresso transition-all">
+                        <button id="btn-experience-blend" class="bg-primary text-paper-white px-8 py-4 font-label-caps text-label-caps uppercase tracking-widest hover:bg-deep-espresso transition-all cursor-pointer">
                             Order Our Coffee
                         </button>
-                        <button id="btn-methodology" class="border border-primary text-primary px-8 py-4 font-label-caps text-label-caps uppercase tracking-widest hover:bg-primary hover:text-paper-white transition-all">
+                        <button id="btn-methodology" class="border border-primary text-primary px-8 py-4 font-label-caps text-label-caps uppercase tracking-widest hover:bg-primary hover:text-paper-white transition-all cursor-pointer">
                             Our Methodology
                         </button>
                     </div>
@@ -175,29 +193,31 @@
                     </div>
                     <h3 class="font-headline-md text-headline-md text-primary">The Heritage Pour</h3>
                     <p class="font-body-md text-body-md text-on-surface-variant">A revival of the 1924 manual pour technique, perfected with contemporary thermal insights. A bridge between coffee eras.</p>
-                    <a class="font-label-md text-label-md text-primary flex items-center gap-2 group" href="#">
+                    <button onclick="openFooterModal('story_heritage')" class="font-label-md text-label-md text-primary flex items-center gap-2 group cursor-pointer text-left bg-transparent border-none p-0">
                         <span>Read Story</span> <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
-                    </a>
+                    </button>
                 </div>
+                
                 <div class="flex flex-col gap-6 md:translate-y-12">
                     <div class="aspect-square bg-surface-container border border-outline-variant/20 overflow-hidden group">
                         <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Roasting Beans" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuE1CotJmLr80TMb5HH9nQMaDXrGrRe0YlE37MWVvqUWhc7IglPuUV9ctit35IRO9pcRJpCRNETLPRsDQ1OA55gk2TUqi4uamTeYRkAA6ppE9DUtiKvPVzFFil-SFLygUNsWChsOrXmwiooiQXFtM-xUQATEhrxORtkbXQROfLrdTzvX2x2R6ZQJjJowsw1HxouVLfzn3lysbG6y_V8k0VJYW1COd8zpzBYZ1qA8_tSX_AtktXsnU6JkGKZ8ltAwCOrWEjW21lN5cD"/>
                     </div>
                     <h3 class="font-headline-md text-headline-md text-primary">Umber & Archive</h3>
                     <p class="font-body-md text-body-md text-on-surface-variant">Exploring the absolute chemistry of the roast through historical temperature logs. Science meets roasting intuition.</p>
-                    <a class="font-label-md text-label-md text-primary flex items-center gap-2 group" href="#">
+                    <button onclick="openFooterModal('story_umber')" class="font-label-md text-label-md text-primary flex items-center gap-2 group cursor-pointer text-left bg-transparent border-none p-0">
                         <span>Read Story</span> <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
-                    </a>
+                    </button>
                 </div>
+                
                 <div class="flex flex-col gap-6">
                     <div class="aspect-square bg-surface-container border border-outline-variant/20 overflow-hidden group">
                         <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Cafe Interior" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWGuoPOFMfTE5xedCRcJrhrGhNXZ1kN80JnXK3RVS-chrba1HuFUdSgwMeqpBsaYVu70jo0w_jEArUESnyOlOdchg7PX4FjMC8C35HNbEVVP0N5lppg2FxuEUq9M-jDxPwopOIVqv6P9jckfI74M1OWVP1xCHFQWxTFbwHXudZK22_XIRkNGrJEjpAaX1kCZeMYPthRBlU0eCtEv9G5nNrcenlytFE5tirLR6j7j9ileVp8nfzh4BE4ygSgv3Ikx5-6sb-hMiWZXu7"/>
                     </div>
                     <h3 class="font-headline-md text-headline-md text-primary">The Third Space</h3>
                     <p class="font-body-md text-body-md text-on-surface-variant">Designing cozy, thoughtful environments that facilitate slow conversations. Architecture acting as a brewing variable.</p>
-                    <a class="font-label-md text-label-md text-primary flex items-center gap-2 group" href="#">
+                    <button onclick="openFooterModal('story_space')" class="font-label-md text-label-md text-primary flex items-center gap-2 group cursor-pointer text-left bg-transparent border-none p-0">
                         <span>Read Story</span> <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
-                    </a>
+                    </button>
                 </div>
             </div>
         </section>
@@ -218,7 +238,7 @@
                         <span class="font-label-caps text-label-caps text-tertiary-fixed tracking-widest uppercase">Live Dispatch</span>
                         <h2 class="font-headline-lg text-headline-lg">Real-Time Order Processing</h2>
                         <p class="font-body-lg text-body-lg text-surface-variant/80">
-                            Every single order is tracked with extreme precision. Monitor your brewing status live through our seamless counter integration framework—from grind to final cup extraction.
+                            Track the life cycle of your drink transparently. Our interconnected order tracking system notifies you the exact millisecond your cup moves from grinding parameters to final bar dispatch.
                         </p>
                         <ul class="flex flex-col gap-6 mt-4">
                             <li class="flex items-center gap-4 border-b border-paper-white/10 pb-4">
@@ -247,10 +267,10 @@
             <div class="bento-grid">
                 <div class="col-span-12 lg:col-span-8 bg-heritage-cream/30 border border-outline-variant/30 p-10 flex flex-col justify-between min-h-[400px] rounded-xl">
                     <div>
-                        <span class="font-label-caps text-label-caps text-moss-green block mb-4 uppercase tracking-widest">Ritualist Club</span>
-                        <h3 class="font-headline-md text-headline-md text-primary mb-6">Earn Points, Claim Free Coffee</h3>
+                        <span class="font-label-caps text-label-caps text-moss-green block mb-4 uppercase tracking-widest">Sela Roastery</span>
+                        <h3 class="font-headline-md text-headline-md text-primary mb-6">Artisan Micro-Lot Showcases</h3>
                         <p class="font-body-md text-body-md text-on-surface-variant max-w-lg">
-                            Join the Sela Cafe inner circle today. Every beverage purchase made through this web dashboard automatically aggregates reward tokens redeemable for exclusive curated items.
+                            Step behind the counter. Explore our current season of exceptional single-origin beans, hand-selected from high-altitude equatorial micro-lots and roasted daily under strict thermodynamic parameters.
                         </p>
                     </div>
                     <div class="flex items-end justify-between mt-12">
@@ -259,9 +279,10 @@
                                 <img class="w-full h-full object-cover" alt="Barista" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfVLoh3IHgRy6Tl456O4f0Tcz1XIHDPRsLx1ob-6_vi0kwpC3eflW9PBYNBjZLd9J0RRxa4rxNG4In9socsNEWh5t4xFOagz3OTGmSQawZYcn555pPu435ZgP-gg1XaVf6OxB4WF2B8LEeRBGJJVWLIYMQPmZ1fGRTHlcrNE2nvKUAqcifqxfRVmYpHJDD0xFkh0k9JzK6XBaELZAxqRHMpoXsU2BaHLjawfGIxdd-6o_oJu_D0vUx9rKCm2ilSGPOJ5wfxgtbAE43"/>
                             </div>
                         </div>
-                        <button id="btn-explore-metrics" class="bg-primary text-paper-white px-6 py-3 font-label-caps text-label-caps uppercase tracking-widest">Check Member Points</button>
+                        <button id="btn-explore-metrics" class="bg-primary text-paper-white px-6 py-3 font-label-caps text-label-caps uppercase tracking-widest cursor-pointer">Explore Our Roastery</button>
                     </div>
                 </div>
+                
                 <div class="col-span-12 lg:col-span-4 bg-surface-container-high border border-outline-variant/30 p-10 flex flex-col justify-center rounded-xl">
                     <span class="material-symbols-outlined text-[48px] text-primary mb-6">coffee_maker</span>
                     <h3 class="font-headline-md text-headline-md text-primary mb-4">The Daily Grind</h3>
@@ -276,20 +297,23 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="col-span-12 md:col-span-4 border border-outline-variant/30 p-8 hover:bg-paper-white transition-colors">
                     <h4 class="font-label-caps text-label-caps text-primary mb-4">Supply Chain</h4>
-                    <p class="font-body-md text-body-md text-on-surface-variant mb-6">Tracking raw single-origin micro-lots directly from high-altitude estates straight to our local roastery.</p>
+                    <p class="font-body-md text-body-md text-on-surface-variant mb-6">100% Traceable single-origin beans sourced directly from fair-trade farmers and custom-roasted weekly.</p>
                     <div class="h-32 bg-surface-container relative overflow-hidden">
                         <img class="w-full h-full object-cover grayscale-[0.3]" alt="Coffee Farm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFcrzVLMjm3gzCAbKjSPGEf1X_pPnbEVQhPNDfNntcxVbW792ggmB_IgP8WE6_iSrSoNvPOOWvQDv2zLbeRbxY5ozA1Ov3yS5oHcv0omn3YaNFoxtpDt-68Yohs427KSh-nJI6buil9Lw9-2grbdGQ9hJEtPVUPDCvPBYlk55yz6sqwNsZXvb1D2dI6L0O99STTFXhV3leu_OxHE0FoeslLH-x1yA4SkziBl1bxxDWu5Fw3X54yX5VQN7PQn1DMp2Fa6lqfMf_O9JW"/>
                     </div>
                 </div>
+                
                 <div class="col-span-12 md:col-span-4 border border-outline-variant/30 p-8 hover:bg-paper-white transition-colors">
                     <h4 class="font-label-caps text-label-caps text-primary mb-4">Training Lab</h4>
-                    <p class="font-body-md text-body-md text-on-surface-variant mb-6">Our extensive laboratory preparation and sensory certification module for all counter craft baristas.</p>
+                    <p class="font-body-md text-body-md text-on-surface-variant mb-6">Every batch of espresso is strictly dialed-in daily by our certified baristas to guarantee optimal flavor maps.</p>
                     <div class="h-32 bg-surface-container relative overflow-hidden">
                         <img class="w-full h-full object-cover grayscale-[0.3]" alt="Latte Art" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJAUDbyd1w1YEsB_FNWkNskVCveb10Rq6XXPh0vIJ8Pxo92jD-AN5t2MFf4y4HWLD3lTSvSq7y0otC04XMhYzagR4lFpLCFE0G92W7uMMNux8jqdf1cujSmFuA6fwcIUFyxprxv_cHYudz-5nIU0kRV0RHEL3TOzW0xLsnso_Sf5RRnd2LHUzXv9GvdNJ5yexwPWKEWcEq1CF1KvPp7lNXb4kXkt-5qIXNILl0r4kFuNeHr6kXwg4KMEionecPAkPJM2t061TnZ4hV"/>
                     </div>
                 </div>
+                
                 <div class="col-span-12 md:col-span-4 border border-outline-variant/30 p-8 bg-primary text-paper-white">
                     <h4 class="font-label-caps text-label-caps text-primary-fixed mb-4">Sustainability</h4>
                     <p class="font-body-md text-body-md mb-6">Eco initiatives: Reducing single-use waste footprints and executing grounds upcycling frameworks.</p>
@@ -317,8 +341,8 @@
                         </div>
                         <div class="flex flex-col gap-4">
                             <span class="font-label-caps text-[12px] text-outline">Issue 04</span>
-                            <h3 class="font-headline-md text-headline-md group-hover:text-primary transition-colors">The Silence of the Pour-Over</h3>
-                            <p class="font-body-md text-body-md text-on-surface-variant">An elegant immersion into slow drip rituals inside a chaotic world of instant consumer fulfillment.</p>
+                            <h3 class="font-headline-md text-headline-md group-hover:text-primary transition-colors">The Science of Manual Brew</h3>
+                            <p class="font-body-md text-body-md text-on-surface-variant">A technical guide on how grind size, water ratios, and pouring patterns completely reshape your morning cup.</p>
                         </div>
                     </article>
                     <article class="flex flex-col gap-8 group cursor-pointer">
@@ -327,8 +351,8 @@
                         </div>
                         <div class="flex flex-col gap-4">
                             <span class="font-label-caps text-[12px] text-outline">Issue 03</span>
-                            <h3 class="font-headline-md text-headline-md group-hover:text-primary transition-colors">Viscosity and Vibe</h3>
-                            <p class="font-body-md text-body-md text-on-surface-variant">A technical, sensory exploration of milk microfoam texture and its neural comfort patterns.</p>
+                            <h3 class="font-headline-md text-headline-md group-hover:text-primary transition-colors">Perfecting the Microfoam</h3>
+                            <p class="font-body-md text-body-md text-on-surface-variant">Understanding how steaming temperatures control sweetness and silkiness in milk-based espresso drinks.</p>
                         </div>
                     </article>
                 </div>
@@ -340,7 +364,7 @@
                 <span class="font-label-caps text-label-caps text-moss-green mb-4 tracking-[0.3em] uppercase">Join Our Team</span>
                 <h2 class="font-headline-xl text-headline-xl text-deep-espresso mb-8">We're Hiring</h2>
                 <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-12">We are constantly seeking meticulous professionals who possess an intense alignment with specialty coffee standards and modern hospitality.</p>
-                <button id="btn-view-openings" class="bg-primary text-paper-white px-12 py-4 font-label-caps text-label-caps uppercase tracking-widest hover:bg-deep-espresso transition-all rounded-full">
+                <button id="btn-view-openings" class="bg-primary text-paper-white px-12 py-4 font-label-caps text-label-caps uppercase tracking-widest hover:bg-deep-espresso transition-all rounded-full cursor-pointer">
                     View Openings
                 </button>
             </div>
@@ -352,7 +376,7 @@
 
     <div id="footer-placeholder"></div>
 
-    <script src="../assets/js/web/components.js"></script>
+    <script src="../assets/js/components.js"></script>
     <script src="../assets/js/web/home.js"></script>
 </body>
 </html>

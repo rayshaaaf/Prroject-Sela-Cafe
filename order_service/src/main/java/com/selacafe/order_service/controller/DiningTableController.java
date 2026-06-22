@@ -73,7 +73,7 @@ public class DiningTableController {
         );
     }
 
-    @GetMapping("/get")
+    @GetMapping({"/get", "/getAll"})
     public ResponseEntity<ApiRes<List<DiningTableRes>>> getAll() {
 
         return ResponseEntity.ok(

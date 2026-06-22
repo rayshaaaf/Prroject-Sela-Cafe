@@ -11,6 +11,7 @@ import com.selacafe.order_service.repository.PaymentRepository;
 import com.selacafe.order_service.service.OrderService;
 import com.selacafe.order_service.service.PaymentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -18,6 +19,14 @@ import java.math.RoundingMode;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.UUID;
+import java.util.Map;
+import java.util.HashMap;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.JsonNode;
 
 @Service
 @RequiredArgsConstructor
@@ -26,6 +35,12 @@ public class PaymentServiceImpl implements PaymentService {
     private final PaymentRepository paymentRepository;
     private final OrderRepository orderRepository;
     private final OrderService orderService;
+
+    @Value("${qrisly.api.key}")
+    private String apiKey;
+
+    @Value("${qrisly.qris.id}")
+    private int qrisId;
 
     @Override
     public PaymentRes charge(ChargePaymentReq request) {
@@ -40,13 +55,74 @@ public class PaymentServiceImpl implements PaymentService {
         Payment payment = paymentRepository.findByOrderId(order.getId()).orElse(null);
 
         if (payment == null) {
-            String transactionId = "TX-" + System.currentTimeMillis() + "-" + UUID.randomUUID().toString().substring(0, 4).toUpperCase();
-            String qrisCode = generateQrisCode("Sela Cafe", order.getOrderCode(), order.getTotalPrice());
+            String transactionId = null;
+            String qrisCode = null;
+            BigDecimal paymentAmount = null;
+
+            try {
+                // Call Komerce QRISLY API
+                HttpClient client = HttpClient.newHttpClient();
+                
+                // Formulate JSON body
+                Map<String, Object> payload = new HashMap<>();
+                payload.put("qris_id", qrisId);
+                payload.put("amount", order.getTotalPrice().setScale(0, RoundingMode.HALF_UP).intValue());
+                payload.put("output_type", "string");
+                
+                ObjectMapper mapper = new ObjectMapper();
+                String jsonBody = mapper.writeValueAsString(payload);
+
+                HttpRequest requestBody = HttpRequest.newBuilder()
+                        .uri(URI.create("https://api-sandbox.collaborator.komerce.id/user/api/v1/qrisly/generate-qris"))
+                        .header("Content-Type", "application/json")
+                        .header("Authorization", "Bearer " + apiKey)
+                        .header("X-API-Key", apiKey)
+                        .POST(HttpRequest.BodyPublishers.ofString(jsonBody))
+                        .build();
+
+                HttpResponse<String> response = client.send(requestBody, HttpResponse.BodyHandlers.ofString());
+
+                if (response.statusCode() == 200 || response.statusCode() == 201) {
+                    JsonNode root = mapper.readTree(response.body());
+                    JsonNode dataNode = root.has("data") && !root.get("data").isNull() ? root.get("data") : root;
+                    
+                    if (dataNode.has("qris_string")) {
+                        qrisCode = dataNode.get("qris_string").asText();
+                    } else if (dataNode.has("qris_content")) {
+                        qrisCode = dataNode.get("qris_content").asText();
+                    } else if (dataNode.has("qris_code")) {
+                        qrisCode = dataNode.get("qris_code").asText();
+                    }
+
+                    if (dataNode.has("history_id")) {
+                        transactionId = dataNode.get("history_id").asText();
+                    } else if (dataNode.has("transaction_id")) {
+                        transactionId = dataNode.get("transaction_id").asText();
+                    }
+
+                    if (dataNode.has("final_amount")) {
+                        paymentAmount = new BigDecimal(dataNode.get("final_amount").asText());
+                    }
+
+                    if (qrisCode == null || transactionId == null) {
+                        throw new RuntimeException("Unexpected Komerce response structure: " + response.body());
+                    }
+                    System.out.println("Successfully generated QRIS via Komerce QRISLY. history_id: " + transactionId);
+                } else {
+                    throw new RuntimeException("Komerce API returned error status: " + response.statusCode() + ", body: " + response.body());
+                }
+            } catch (Exception e) {
+                // Log the exception and fall back to local mock QRIS generation
+                System.err.println("Komerce QRISLY generate failed: " + e.getMessage() + ". Falling back to local simulated QRIS.");
+                transactionId = "TX-" + System.currentTimeMillis() + "-" + UUID.randomUUID().toString().substring(0, 4).toUpperCase();
+                qrisCode = generateQrisCode("Sela Cafe", order.getOrderCode(), order.getTotalPrice());
+            }
 
             payment = Payment.builder()
                     .orderId(order.getId())
                     .transactionId(transactionId)
-                    .amount(order.getTotalPrice())
+                    .amount(paymentAmount != null ? paymentAmount : order.getTotalPrice())
+                    .method(request.getPaymentMethod() != null ? request.getPaymentMethod() : "QRIS")
                     .paymentMethod(request.getPaymentMethod() != null ? request.getPaymentMethod() : "QRIS")
                     .status("PENDING")
                     .qrisCode(qrisCode)
@@ -82,6 +158,48 @@ public class PaymentServiceImpl implements PaymentService {
     public PaymentRes getPaymentByOrderId(Long orderId) {
         Payment payment = paymentRepository.findByOrderId(orderId)
                 .orElseThrow(() -> new ResourceNotFoundException("Payment not found for order ID: " + orderId));
+
+        // If status is PENDING and it is NOT a local fallback payment (starts with TX-), check status on Komerce
+        if ("PENDING".equals(payment.getStatus()) && !payment.getTransactionId().startsWith("TX-")) {
+            try {
+                HttpClient client = HttpClient.newHttpClient();
+                HttpRequest request = HttpRequest.newBuilder()
+                        .uri(URI.create("https://api-sandbox.collaborator.komerce.id/user/api/v1/qrisly/payment-status/" + payment.getTransactionId()))
+                        .header("Authorization", "Bearer " + apiKey)
+                        .header("X-API-Key", apiKey)
+                        .GET()
+                        .build();
+
+                HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+                if (response.statusCode() == 200) {
+                    ObjectMapper mapper = new ObjectMapper();
+                    JsonNode root = mapper.readTree(response.body());
+                    System.out.println("Komerce status response: " + response.body());
+                    
+                    JsonNode dataNode = root.has("data") && !root.get("data").isNull() ? root.get("data") : root;
+                    
+                    String payStatus = "";
+                    if (dataNode.has("status")) {
+                        payStatus = dataNode.get("status").asText();
+                    } else if (dataNode.has("payment_status")) {
+                        payStatus = dataNode.get("payment_status").asText();
+                    }
+                    
+                    if (payStatus.equalsIgnoreCase("paid") || payStatus.equalsIgnoreCase("success") || payStatus.equalsIgnoreCase("settlement")) {
+                        payment.setStatus("SUCCESS");
+                        payment.setPaidAt(LocalDateTime.now());
+                        paymentRepository.save(payment);
+
+                        // Update corresponding Order status to PAID
+                        orderService.updateStatus(payment.getOrderId(), "PAID", "ADMIN");
+                    }
+                }
+            } catch (Exception e) {
+                System.err.println("Error checking Komerce QRISLY status: " + e.getMessage());
+            }
+        }
+
         return mapToResponse(payment);
     }
 

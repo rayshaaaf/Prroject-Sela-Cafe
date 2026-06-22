@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Sela Cafe | Manage Menu</title>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Manrope:wght@200..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-surface": "#1b1c1a",
+                "surface-container-highest": "#e3e2df",
+                "surface-variant": "#e3e2df",
+                "inverse-on-surface": "#f2f1ed",
+                "deep-espresso": "#2A1B0E",
+                "surface-container-lowest": "#ffffff",
+                "heritage-cream": "#F2E8CF",
+                "surface-bright": "#faf9f5",
+                "tertiary": "#141003",
+                "on-secondary-container": "#4a6a53",
+                "secondary-container": "#c5e8cc",
+                "error-container": "#ffdad6",
+                "surface-container-high": "#e9e8e4",
+                "background": "#faf9f5",
+                "secondary-fixed": "#c8ebcf",
+                "moss-green": "#386641",
+                "error": "#ba1a1a",
+                "on-secondary": "#ffffff",
+                "on-primary-fixed-variant": "#58432c",
+                "paper-white": "#FDFCF8",
+                "on-error": "#ffffff",
+                "surface-dim": "#dbdad6",
+                "tertiary-fixed": "#ece2c9",
+                "on-error-container": "#93000a",
+                "surface-tint": "#725a42",
+                "tertiary-fixed-dim": "#cfc6ae",
+                "primary-fixed": "#feddbe",
+                "on-surface-variant": "#4e453d",
+                "inverse-primary": "#e1c1a3",
+                "surface-container": "#efeeea",
+                "on-secondary-fixed-variant": "#2f4d39",
+                "primary-container": "#33210d",
+                "surface-container-low": "#f4f4f0",
+                "outline-variant": "#d2c4b9",
+                "on-tertiary": "#ffffff",
+                "on-primary-fixed": "#291805",
+                "secondary": "#46654f",
+                "outline": "#80756c",
+                "outline-muted": "rgba(128, 117, 108, 0.2)",
+                "primary-fixed-dim": "#e1c1a3",
+                "on-primary-container": "#a3876c",
+                "on-tertiary-fixed-variant": "#4c4634",
+                "on-tertiary-fixed": "#201b0c",
+                "on-background": "#1b1c1a",
+                "primary": "#1b0c00",
+                "on-tertiary-container": "#938c76",
+                "tertiary-container": "#292515",
+                "inverse-surface": "#2f312e"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "unit": "4px",
+                "section-padding": "8rem",
+                "margin-mobile": "24px",
+                "gutter": "24px",
+                "margin-desktop": "80px",
+                "container-max": "1280px"
+            },
+            "fontFamily": {
+                "headline-lg-mobile": ["EB Garamond"],
+                "label-caps": ["JetBrains Mono"],
+                "body-lg": ["Manrope"],
+                "label-md": ["JetBrains Mono"],
+                "headline-md": ["EB Garamond"],
+                "headline-xl": ["EB Garamond"],
+                "body-md": ["Manrope"],
+                "headline-lg": ["EB Garamond"]
+            },
+            "fontSize": {
+                "headline-lg-mobile": ["32px", {"lineHeight": "38px", "fontWeight": "500"}],
+                "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                "headline-md": ["28px", {"lineHeight": "34px", "fontWeight": "500"}],
+                "headline-xl": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "500"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "headline-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+        .sela-line { height: 1px; background-color: rgba(128, 117, 108, 0.2); }
+        .grain {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 9999; opacity: 0.04;
+            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #d2c4b9; border-radius: 10px; }
+        .fade-in-smooth { animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+    <div class="grain"></div>
+    
+    <div class="flex min-h-screen">
+        <aside class="h-screen w-64 fixed left-0 top-0 bg-surface-container-low border-r border-outline-variant/50 flex flex-col py-6 px-4 gap-4 z-40 hidden md:flex">
+            <div class="flex items-center gap-3 px-2 mb-8">
+                <div class="w-10 h-10 bg-deep-espresso rounded-lg flex items-center justify-center text-heritage-cream">
+                    <span class="material-symbols-outlined">coffee</span>
+                </div>
+                <div>
+                    <h1 class="font-headline-sm text-headline-sm font-bold text-primary">Sela Cafe</h1>
+                    <p class="font-label-caps text-[10px] text-on-surface-variant tracking-widest opacity-70">PREMIUM MANAGEMENT</p>
+                </div>
+            </div>
+            <nav class="flex-1 space-y-1">
+                <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 active:opacity-80 group" href="dashboard.html">
+                    <span class="material-symbols-outlined">dashboard</span>
+                    <span class="font-label-caps text-label-caps">Overview</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2.5 bg-secondary-container text-on-secondary-container rounded-lg font-bold transition-transform duration-200 active:opacity-80 group" href="manage-menu.html">
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">restaurant</span>
+                    <span class="font-label-caps text-label-caps">Menu</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 active:opacity-80 group" href="performance.html">
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">monitoring</span>
+                    <span class="font-label-caps text-label-caps">Performance</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 active:opacity-80 group" href="#">
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">percent</span>
+                    <span class="font-label-caps text-label-caps">Promo</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 active:opacity-80 group" href="#">
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">work_outline</span>
+                    <span class="font-label-caps text-label-caps">Careers</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 active:opacity-80 group" href="#">
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">location_on</span>
+                    <span class="font-label-caps text-label-caps">Locations</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 active:opacity-80 group" href="#">
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">person</span>
+                    <span class="font-label-caps text-label-caps">Users</span>
+                </a>
+            </nav>
+            <div class="mt-auto space-y-1">
+                <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 active:opacity-80 group" href="#">
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">settings</span>
+                    <span class="font-label-caps text-label-caps">Settings</span>
+                </a>
+                <button onclick="handleAdminLogOut()" class="w-full mt-4 bg-deep-espresso text-paper-white py-3 px-4 rounded-lg font-label-caps text-[12px] flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all cursor-pointer">
+                    <span class="material-symbols-outlined text-[18px]">logout</span> Log Out
+                </button>
+            </div>
+        </aside>
+
+        <main class="flex-1 md:ml-64 relative bg-paper-white">
+            <header class="sticky top-0 w-full h-16 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 flex justify-between items-center px-6 md:px-8 z-30">
+                <div class="flex items-center gap-4">
+                    <h2 class="font-headline-md text-headline-md font-bold text-primary">Manage Menu</h2>
+                </div>
+                <div class="flex items-center gap-6">
+                    <div class="flex items-center gap-3">
+                        <a href="add-menu.html" class="bg-primary text-white text-xs font-label-caps tracking-widest px-4 py-2 rounded-lg flex items-center gap-2 hover:opacity-90 transition-all">
+                            <span class="material-symbols-outlined text-sm">add</span> Add Product
+                        </a>
+                    </div>
+                </div>
+            </header>
+
+            <div class="max-w-[1280px] mx-auto p-6 md:p-10">
+                <section class="mb-12 border-b border-outline-variant/30 pb-6">
+                    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                        <div id="category-tabs-container" class="flex items-center gap-6 overflow-x-auto no-scrollbar pb-1">
+                            <button onclick="filterAdminCategory('all', this)" class="font-label-caps text-label-caps text-primary border-b-2 border-primary pb-2 whitespace-nowrap cursor-pointer">All Items</button>
+                            <button onclick="filterAdminCategory('coffee', this)" class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors pb-2 whitespace-nowrap cursor-pointer">Coffee</button>
+                            <button onclick="filterAdminCategory('non-coffee', this)" class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors pb-2 whitespace-nowrap cursor-pointer">Non-Coffee</button>
+                            <button onclick="filterAdminCategory('tea', this)" class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors pb-2 whitespace-nowrap cursor-pointer">Tea</button>
+                            <button onclick="filterAdminCategory('pastry', this)" class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors pb-2 whitespace-nowrap cursor-pointer">Pastry</button>
+                            <button onclick="filterAdminCategory('dessert', this)" class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors pb-2 whitespace-nowrap cursor-pointer">Dessert</button>
+                        </div>
+                        
+                        <div class="flex flex-col sm:flex-row items-center gap-4 w-full lg:w-auto">
+                            <div class="relative w-full sm:w-64 group">
+                                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
+                                <input id="admin-menu-search" class="w-full bg-surface border-0 border-b border-outline-variant focus:border-primary focus:ring-0 py-1.5 pl-9 pr-3 text-sm font-body-md transition-all" placeholder="Search product..." type="text"/>
+                            </div>
+
+                            <div class="relative w-full sm:w-auto">
+                                <select id="admin-menu-sort" class="appearance-none bg-transparent border-0 border-b border-outline-variant font-label-md text-label-md pr-8 py-1 focus:ring-0 cursor-pointer w-full sm:w-auto">
+                                    <option value="popular">Sort: Popular</option>
+                                    <option value="low-high">Price: Low-High</option>
+                                    <option value="high-low">Price: High-Low</option>
+                                </select>
+                                <span class="material-symbols-outlined absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-[16px]">expand_more</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <div id="admin-menu-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-gutter gap-y-12">
+                        </div>
+
+                    <div id="admin-menu-pagination" class="mt-16 flex justify-center items-center gap-2">
+                        </div>
+                </section>
+            </div>
+        </main>
+    </div>
+</body>
+<script src="/frontend-html/assets/js/admin/manage-menu.js"></script>
+</html>

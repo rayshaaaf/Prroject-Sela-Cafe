@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Sela Cafe | Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Manrope:wght@200..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-surface": "#1b1c1a",
+                "surface-container-highest": "#e3e2df",
+                "surface-variant": "#e3e2df",
+                "inverse-on-surface": "#f2f1ed",
+                "deep-espresso": "#2A1B0E",
+                "surface-container-lowest": "#ffffff",
+                "heritage-cream": "#F2E8CF",
+                "surface-bright": "#faf9f5",
+                "tertiary": "#141003",
+                "on-secondary-container": "#4a6a53",
+                "secondary-container": "#c5e8cc",
+                "error-container": "#ffdad6",
+                "surface-container-high": "#e9e8e4",
+                "background": "#faf9f5",
+                "secondary-fixed": "#c8ebcf",
+                "moss-green": "#386641",
+                "error": "#ba1a1a",
+                "on-secondary": "#ffffff",
+                "on-primary-fixed-variant": "#58432c",
+                "paper-white": "#FDFCF8",
+                "on-error": "#ffffff",
+                "surface-dim": "#dbdad6",
+                "tertiary-fixed": "#ece2c9",
+                "on-error-container": "#93000a",
+                "surface-tint": "#725a42",
+                "tertiary-fixed-dim": "#cfc6ae",
+                "primary-fixed": "#feddbe",
+                "on-surface-variant": "#4e453d",
+                "inverse-primary": "#e1c1a3",
+                "surface-container": "#efeeea",
+                "on-secondary-fixed-variant": "#2f4d39",
+                "primary-container": "#33210d",
+                "surface-container-low": "#f4f4f0",
+                "outline-variant": "#d2c4b9",
+                "on-tertiary": "#ffffff",
+                "on-primary-fixed": "#291805",
+                "secondary": "#46654f",
+                "outline": "#80756c",
+                "outline-muted": "rgba(128, 117, 108, 0.2)",
+                "primary-fixed-dim": "#e1c1a3",
+                "on-primary-container": "#a3876c",
+                "on-tertiary-fixed-variant": "#4c4634",
+                "on-tertiary-fixed": "#201b0c",
+                "on-background": "#1b1c1a",
+                "primary": "#1b0c00",
+                "on-tertiary-container": "#938c76",
+                "tertiary-container": "#292515",
+                "inverse-surface": "#2f312e"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "spacing": {
+                "unit": "4px",
+                "section-padding": "8rem",
+                "margin-mobile": "24px",
+                "gutter": "24px",
+                "margin-desktop": "80px",
+                "container-max": "1280px"
+            },
+            "fontFamily": {
+                "headline-lg-mobile": ["EB Garamond"],
+                "label-caps": ["JetBrains Mono"],
+                "body-lg": ["Manrope"],
+                "label-md": ["JetBrains Mono"],
+                "headline-md": ["EB Garamond"],
+                "headline-xl": ["EB Garamond"],
+                "body-md": ["Manrope"],
+                "headline-lg": ["EB Garamond"]
+            },
+            "fontSize": {
+                "headline-lg-mobile": ["32px", {"lineHeight": "38px", "fontWeight": "500"}],
+                "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "500"}],
+                "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                "headline-md": ["28px", {"lineHeight": "34px", "fontWeight": "500"}],
+                "headline-xl": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "500"}],
+                "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                "headline-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.01em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+        .sela-line { height: 1px; background-color: rgba(128, 117, 108, 0.2); }
+        .grain {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 9999; opacity: 0.04;
+            background-image: url("https://www.transparenttextures.com/patterns/natural-paper.png");
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #d2c4b9; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+    <div class="grain"></div>
+    
+    <div class="flex min-h-screen">
+        <aside class="h-screen w-64 fixed left-0 top-0 bg-surface-container-low border-r border-outline-variant/50 flex flex-col py-6 px-4 gap-4 z-40 hidden md:flex">
+            <div class="flex items-center gap-3 px-2 mb-8">
+                <div class="w-10 h-10 bg-deep-espresso rounded-lg flex items-center justify-center text-heritage-cream">
+                    <span class="material-symbols-outlined">coffee</span>
+                </div>
+                <div>
+                    <h1 class="font-headline-sm text-headline-sm font-bold text-primary">Sela Cafe</h1>
+                    <p class="font-label-caps text-[10px] text-on-surface-variant tracking-widest opacity-70">PREMIUM MANAGEMENT</p>
+                </div>
+            </div>
+            <nav class="flex-1 space-y-1">
+                <a class="flex items-center gap-3 px-3 py-2.5 bg-secondary-container text-on-secondary-container rounded-lg font-bold transition-transform duration-200 active:opacity-80" href="#">
+                    <span class="material-symbols-outlined">dashboard</span>
+                    <span class="font-label-caps text-label-caps">Overview</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 active:opacity-80 group" href="manage-menu.html">
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">restaurant</span>
+                    <span class="font-label-caps text-label-caps">Menu</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 active:opacity-80 group" href="performance.html">
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">monitoring</span>
+                    <span class="font-label-caps text-label-caps">Performance</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 active:opacity-80 group" href="#">
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">percent</span>
+                    <span class="font-label-caps text-label-caps">Promo</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 active:opacity-80 group" href="#">
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">work_outline</span>
+                    <span class="font-label-caps text-label-caps">Careers</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 active:opacity-80 group" href="#">
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">location_on</span>
+                    <span class="font-label-caps text-label-caps">Locations</span>
+                </a>
+                <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 active:opacity-80 group" href="#">
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">person</span>
+                    <span class="font-label-caps text-label-caps">Users</span>
+                </a>
+            </nav>
+            <div class="mt-auto space-y-1">
+                <a class="flex items-center gap-3 px-3 py-2.5 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-transform duration-200 active:opacity-80 group" href="#">
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">settings</span>
+                    <span class="font-label-caps text-label-caps">Settings</span>
+                </a>
+                <button onclick="handleAdminLogOut()" class="w-full mt-4 bg-deep-espresso text-paper-white py-3 px-4 rounded-lg font-label-caps text-[12px] flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all cursor-pointer">
+                    <span class="material-symbols-outlined text-[18px]">logout</span> Log Out
+                </button>
+            </div>
+        </aside>
+
+        <main class="flex-1 md:ml-64 relative bg-paper-white">
+            <header class="sticky top-0 w-full h-16 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 flex justify-between items-center px-6 md:px-8 z-30">
+                <div class="flex items-center gap-4">
+                    <h2 class="font-headline-md text-headline-md font-bold text-primary">Dashboard</h2>
+                </div>
+                <div class="flex items-center gap-6">
+                    <div class="hidden sm:flex items-center bg-surface-container-low px-4 py-1.5 rounded-full border border-outline-muted">
+                        <span class="material-symbols-outlined text-[20px] text-on-surface-variant">search</span>
+                        <input id="admin-global-search" class="bg-transparent border-none focus:ring-0 font-body-md text-sm w-48" placeholder="Search system..." type="text"/>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <button class="p-2 text-on-surface-variant hover:bg-on-surface/5 rounded-full relative transition-all active:scale-95">
+                            <span class="material-symbols-outlined">notifications</span>
+                            <span class="absolute top-2 right-2 w-2 h-2 bg-moss-green rounded-full"></span>
+                        </button>
+                        <div class="h-8 w-8 rounded-full bg-surface-container-high border border-outline-variant overflow-hidden">
+                            <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200" alt="Admin headshot"/>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="max-w-[1280px] mx-auto p-6 md:p-10">
+                <section class="mb-12">
+                    <p class="font-label-caps text-label-caps text-moss-green mb-2 tracking-[0.2em]">SYSTEM OVERVIEW</p>
+                    <h3 class="font-headline-xl text-[48px] leading-tight text-deep-espresso">Welcome back, Curator.</h3>
+                    <div class="sela-line mt-6 w-24"></div>
+                </section>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+                    <div class="md:col-span-1 bg-heritage-cream/20 border border-outline-muted p-8 rounded-lg group hover:border-moss-green transition-colors">
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="material-symbols-outlined text-moss-green">person</span>
+                        </div>
+                        <h4 class="font-label-caps text-label-caps text-on-surface-variant mb-1">TOTAL USERS</h4>
+                        <p id="bento-total-users" class="font-headline-lg text-headline-lg text-deep-espresso">0</p>
+                    </div>
+                    <div class="md:col-span-1 bg-paper-white border border-outline-muted p-8 rounded-lg group hover:border-moss-green transition-colors">
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="material-symbols-outlined text-on-surface-variant">receipt_long</span>
+                        </div>
+                        <h4 class="font-label-caps text-label-caps text-on-surface-variant mb-1">TOTAL ORDERS</h4>
+                        <p id="bento-total-orders" class="font-headline-lg text-headline-lg text-deep-espresso">0</p>
+                    </div>
+                    <div class="md:col-span-1 bg-paper-white border border-outline-muted p-8 rounded-lg group hover:border-moss-green transition-colors">
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="material-symbols-outlined text-on-surface-variant">campaign</span>
+                        </div>
+                        <h4 class="font-label-caps text-label-caps text-on-surface-variant mb-1">ACTIVE PROMOS</h4>
+                        <p id="bento-active-promos" class="font-headline-lg text-headline-lg text-deep-espresso">0</p>
+                    </div>
+                    <div class="md:col-span-1 bg-paper-white border border-outline-muted p-8 rounded-lg group hover:border-moss-green transition-colors">
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="material-symbols-outlined text-on-surface-variant">badge</span>
+                        </div>
+                        <h4 class="font-label-caps text-label-caps text-on-surface-variant mb-1">OPEN ROLES</h4>
+                        <p id="bento-open-roles" class="font-headline-lg text-headline-lg text-deep-espresso">0</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-1 space-y-6">
+                        <div class="bg-surface-container-low border border-outline-muted p-8 rounded-lg">
+                            <h4 class="font-label-caps text-label-caps text-deep-espresso mb-6 border-b border-outline-muted pb-4">SYSTEM INTEGRITY</h4>
+                            <ul id="integrity-status-list" class="space-y-6">
+                                </ul>
+                            <button onclick="runSystemDiagnosticsLoop()" class="w-full mt-8 border border-deep-espresso text-deep-espresso py-3 px-4 rounded-lg font-label-caps text-[11px] hover:bg-deep-espresso hover:text-paper-white transition-all cursor-pointer">
+                                RUN SYSTEM DIAGNOSTICS
+                            </button>
+                        </div>
+                        <div class="relative h-64 overflow-hidden rounded-lg group">
+                            <img class="w-full h-full object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110" src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?q=80&w=400" alt="Coffee beans"/>
+                            <div class="absolute inset-0 bg-deep-espresso/30 flex flex-col justify-end p-6">
+                                <span class="font-label-caps text-[10px] text-heritage-cream opacity-80 mb-1">CRAFT QUALITY</span>
+                                <h5 class="text-paper-white font-headline-md leading-tight">Preserving the Art of the Pour.</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-2 space-y-8">
+                        <div class="bg-paper-white border border-outline-muted p-8 rounded-lg">
+                            <div class="flex justify-between items-center mb-10">
+                                <h4 class="font-label-caps text-label-caps text-deep-espresso">REVENUE PROJECTIONS</h4>
+                            </div>
+                            <div id="projection-bars-root" class="h-64 flex items-end justify-between gap-2 px-2">
+                                </div>
+                            <div class="flex justify-between mt-4 font-label-caps text-[10px] text-on-surface-variant px-2">
+                                <span>WK 01</span>
+                                <span>WK 02</span>
+                                <span>WK 03</span>
+                                <span>WK 04</span>
+                            </div>
+                        </div>
+                        <div class="bg-paper-white border border-outline-muted p-8 rounded-lg">
+                            <h4 class="font-label-caps text-label-caps text-deep-espresso mb-8">GLOBAL LOGS</h4>
+                            <div id="global-logs-root" class="space-y-6">
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface-container-low border-t border-outline-variant/20 px-4 py-2 flex justify-between items-center z-50">
+        <a class="flex flex-col items-center gap-1 text-on-secondary-container" href="dashboard.html">
+            <span class="material-symbols-outlined text-[24px]">dashboard</span>
+            <span class="font-label-caps text-[9px]">OVERVIEW</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-on-surface-variant/60" href="manage-menu.html">
+            <span class="material-symbols-outlined text-[24px]">restaurant</span>
+            <span class="font-label-caps text-[9px]">MENU</span>
+        </a>
+        <a class="flex flex-col items-center gap-1 text-on-surface-variant/60" href="performance.html">
+            <span class="material-symbols-outlined text-[24px]">monitoring</span>
+            <span class="font-label-caps text-[9px]">STATS</span>
+        </a>
+    </nav>
+
+    <script src="../assets/js/components.js"></script>
+    <script src="../assets/js/web/dashboard.js"></script>
+</body>
+</html>
