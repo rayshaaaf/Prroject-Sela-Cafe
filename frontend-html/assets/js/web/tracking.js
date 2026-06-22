@@ -393,6 +393,17 @@ async function handleQrisPayment(order) {
         return;
     }
 
+    // Hide QRIS box if payment method is CASH (Pay at Counter)
+    const paymentMethod = (order.paymentMethod || 'QRIS').toUpperCase();
+    if (paymentMethod === 'CASH') {
+        qrisBox.classList.add('hidden');
+        if (qrisPollInterval) {
+            clearInterval(qrisPollInterval);
+            qrisPollInterval = null;
+        }
+        return;
+    }
+
     qrisBox.classList.remove('hidden');
 
     // Prevent duplicate initialization

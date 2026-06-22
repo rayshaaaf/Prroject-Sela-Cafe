@@ -26,6 +26,7 @@ public class OrderServiceImpl implements OrderService {
         private final OrderItemRepository orderItemRepository;
         private final TableSessionRepository tableSessionRepository;
         private final CoreServiceClient coreServiceClient;
+        private final DiningTableRepository diningTableRepository;
 
         @Override
         @Transactional
@@ -35,17 +36,36 @@ public class OrderServiceImpl implements OrderService {
 
                 if ("DINE_IN".equals(request.getOrderType())) {
 
-                        if (request.getSessionId() == null) {
-                                throw new BadRequestException(
-                                                "Session is required for dine in order");
-                        }
+                        if (request.getTableId() != null) {
+                                DiningTable table = diningTableRepository.findById(request.getTableId())
+                                                .orElseThrow(() -> new ResourceNotFoundException("Table not found"));
 
-                        session = tableSessionRepository
-                                        .findByIdAndStatus(
-                                                        request.getSessionId(),
-                                                        "ACTIVE")
-                                        .orElseThrow(() -> new BadRequestException(
-                                                        "Session not active"));
+                                if (!"AVAILABLE".equals(table.getStatus())) {
+                                        throw new BadRequestException("Table " + table.getTableNumber() + " is already occupied or unavailable");
+                                }
+
+                                // Create a new active TableSession
+                                session = TableSession.builder()
+                                                .diningTable(table)
+                                                .startedAt(LocalDateTime.now())
+                                                .status("ACTIVE")
+                                                .build();
+                                session = tableSessionRepository.save(session);
+
+                                // Update DiningTable status to OCCUPIED
+                                table.setStatus("OCCUPIED");
+                                diningTableRepository.save(table);
+                        } else if (request.getSessionId() != null) {
+                                session = tableSessionRepository
+                                                .findByIdAndStatus(
+                                                                request.getSessionId(),
+                                                                "ACTIVE")
+                                                .orElseThrow(() -> new BadRequestException(
+                                                                "Session not active"));
+                        } else {
+                                throw new BadRequestException(
+                                                "Table ID or Session ID is required for dine in order");
+                        }
                 }
 
                 if ("DELIVERY".equals(request.getOrderType())) {

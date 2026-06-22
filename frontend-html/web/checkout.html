@@ -180,10 +180,7 @@
 <div class="flex flex-col gap-2">
 <label class="font-label-caps text-label-caps text-on-surface-variant">Table Selection</label>
 <select id="checkout-table" class="w-full bg-paper-white border border-outline-muted p-4 font-body-md text-on-surface">
-<option value="T04">Garden View - Table 04</option>
-<option value="T12">Library Alcove - Table 12</option>
-<option value="T01">Main Hall - Table 01</option>
-<option value="T22">Patio - Table 22</option>
+<option value="">Loading available tables...</option>
 </select>
 </div>
 <p class="font-body-md text-on-surface-variant italic opacity-70">A server will prepare your table with a warm towel and spring water shortly after your order is placed.</p>
@@ -313,11 +310,16 @@
             const dineInField = document.getElementById('field-dine-in');
             const deliveryField = document.getElementById('field-delivery');
 
-            if (type === 'delivery') {
+            // Table selection is ONLY for Dine In
+            if (type === 'dine-in') {
+                dineInField.classList.remove('hidden');
+                deliveryField.classList.add('hidden');
+            } else if (type === 'delivery') {
                 dineInField.classList.add('hidden');
                 deliveryField.classList.remove('hidden');
             } else {
-                dineInField.classList.remove('hidden');
+                // Take Away: hide both dine-in (table) and delivery fields
+                dineInField.classList.add('hidden');
                 deliveryField.classList.add('hidden');
             }
         }

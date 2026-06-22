@@ -182,6 +182,40 @@
         </div>
       </section>
 
+      <!-- Table Session Management -->
+      <section id="table-session-section">
+        <div class="flex items-center justify-between mb-6">
+          <h3 class="font-headline-md text-headline-md text-deep-espresso">Table Status</h3>
+          <button onclick="fetchCashierOrders()" class="flex items-center gap-2 px-4 py-2 border border-outline-muted font-label-caps text-label-caps text-on-surface-variant hover:border-deep-espresso hover:text-deep-espresso transition-all text-[10px] tracking-widest">
+            <span class="material-symbols-outlined text-sm">refresh</span>
+            REFRESH
+          </button>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4" id="table-status-grid">
+          <!-- Dynamically populated by cashier.js -->
+        </div>
+        <!-- Active Sessions Detail -->
+        <div class="mt-8" id="active-sessions-detail">
+          <h4 class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-4 tracking-widest">Active Sessions</h4>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="border-b border-outline-muted">
+                  <th class="py-3 font-label-caps text-label-caps text-on-surface-variant">Session ID</th>
+                  <th class="py-3 font-label-caps text-label-caps text-on-surface-variant">Table</th>
+                  <th class="py-3 font-label-caps text-label-caps text-on-surface-variant">Started At</th>
+                  <th class="py-3 font-label-caps text-label-caps text-on-surface-variant">Duration</th>
+                  <th class="py-3 text-right font-label-caps text-label-caps text-on-surface-variant">Action</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-outline-muted/30" id="active-sessions-tbody">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
       <section id="waiting-payment">
         <div class="flex items-center justify-between mb-6">
           <h3 class="font-headline-md text-headline-md text-deep-espresso">Waiting Payment</h3>

@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/tables")
 @RequiredArgsConstructor
@@ -58,6 +60,26 @@ public class TableSessionController {
                                                                                 .closeSession(
                                                                                                 id,
                                                                                                 role))
+                                                .build());
+        }
+
+        @GetMapping("/sessions")
+        public ResponseEntity<ApiRes<List<TableSessionRes>>> getAllSessions() {
+                return ResponseEntity.ok(
+                                ApiRes.<List<TableSessionRes>>builder()
+                                                .success(true)
+                                                .message("Success")
+                                                .data(tableSessionService.getAll())
+                                                .build());
+        }
+
+        @GetMapping("/sessions/active")
+        public ResponseEntity<ApiRes<List<TableSessionRes>>> getActiveSessions() {
+                return ResponseEntity.ok(
+                                ApiRes.<List<TableSessionRes>>builder()
+                                                .success(true)
+                                                .message("Success")
+                                                .data(tableSessionService.getAllActive())
                                                 .build());
         }
 }

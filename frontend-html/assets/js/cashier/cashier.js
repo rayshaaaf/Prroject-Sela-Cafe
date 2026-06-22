@@ -2,7 +2,11 @@ const CURRENT_ROLE = 'CASHIER';
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchCashierOrders();
-    setInterval(fetchCashierOrders, 10000);
+    fetchTableSessions();
+    setInterval(() => {
+        fetchCashierOrders();
+        fetchTableSessions();
+    }, 10000);
 });
 
 async function fetchCashierOrders() {
@@ -256,4 +260,127 @@ function getRelativeTime(timestamp) {
     if (diffMin < 1) return 'Just now';
     if (diffMin < 60) return `${diffMin}m ago`;
     return `${Math.floor(diffMin / 60)}h ago`;
+}
+
+// ─── Table Session Management ──────────────────────────────────────────────────
+async function fetchTableSessions() {
+    try {
+        const [tablesRes, sessionsRes] = await Promise.all([
+            window.apiFetch('/api/tables/getAll'),
+            window.apiFetch('/api/tables/sessions/active')
+        ]);
+
+        if (tablesRes.ok) {
+            const tablesData = await tablesRes.json();
+            renderTableStatusGrid(tablesData.data || []);
+        }
+
+        if (sessionsRes.ok) {
+            const sessionsData = await sessionsRes.json();
+            renderActiveSessions(sessionsData.data || []);
+        }
+    } catch (err) {
+        console.error('Error fetching table sessions:', err);
+    }
+}
+
+function renderTableStatusGrid(tables) {
+    const grid = document.getElementById('table-status-grid');
+    if (!grid) return;
+
+    if (tables.length === 0) {
+        grid.innerHTML = `
+            <div class="col-span-5 text-center py-8 text-on-surface-variant/40 font-label-caps text-[10px] tracking-widest uppercase">
+                No tables configured
+            </div>`;
+        return;
+    }
+
+    grid.innerHTML = tables.map(table => {
+        const isOccupied = table.status === 'OCCUPIED';
+        const bgClass = isOccupied
+            ? 'bg-deep-espresso text-paper-white border-deep-espresso'
+            : 'bg-paper-white text-on-surface border-outline-muted hover:border-moss-green';
+        const statusLabel = isOccupied ? 'OCCUPIED' : 'AVAILABLE';
+        const statusColor = isOccupied ? 'text-heritage-cream/70' : 'text-moss-green';
+        const dot = isOccupied
+            ? '<span class="w-2 h-2 rounded-full bg-heritage-cream/60 animate-pulse"></span>'
+            : '<span class="w-2 h-2 rounded-full bg-moss-green"></span>';
+
+        return `
+            <div class="p-4 border ${bgClass} transition-all duration-300 flex flex-col gap-3">
+                <div class="flex justify-between items-start">
+                    <span class="font-headline-md text-headline-md">${table.tableNumber}</span>
+                    <span class="font-label-caps text-[9px] px-2 py-0.5 ${isOccupied ? 'bg-heritage-cream/10' : 'bg-moss-green/10'} rounded-sm">Cap. ${table.capacity}</span>
+                </div>
+                <div class="flex items-center gap-1.5 ${statusColor} font-label-caps text-[9px] uppercase tracking-widest">
+                    ${dot}
+                    ${statusLabel}
+                </div>
+            </div>`;
+    }).join('');
+}
+
+function renderActiveSessions(sessions) {
+    const tbody = document.getElementById('active-sessions-tbody');
+    const detailSection = document.getElementById('active-sessions-detail');
+    if (!tbody) return;
+
+    if (sessions.length === 0) {
+        if (detailSection) detailSection.style.display = 'none';
+        return;
+    }
+
+    if (detailSection) detailSection.style.display = 'block';
+
+    tbody.innerHTML = sessions.map(session => {
+        const startedAt = new Date(session.startedAt);
+        const formattedTime = startedAt.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }) +
+            ' — ' + startedAt.toLocaleDateString('id-ID', { day: '2-digit', month: 'short' });
+        const durationMs = Date.now() - startedAt.getTime();
+        const durationMin = Math.floor(durationMs / 60000);
+        const duration = durationMin < 60
+            ? `${durationMin}m`
+            : `${Math.floor(durationMin / 60)}h ${durationMin % 60}m`;
+
+        return `
+            <tr class="group hover:bg-heritage-cream/10 transition-colors">
+                <td class="py-4 font-label-md text-on-surface-variant">#${session.id}</td>
+                <td class="py-4 font-body-md font-semibold text-deep-espresso">${session.tableNumber}</td>
+                <td class="py-4 font-label-md text-on-surface-variant">${formattedTime}</td>
+                <td class="py-4">
+                    <span class="inline-flex items-center gap-1.5 font-label-caps text-[10px] text-moss-green">
+                        <span class="w-1.5 h-1.5 rounded-full bg-moss-green animate-pulse"></span>
+                        ${duration}
+                    </span>
+                </td>
+                <td class="py-4 text-right">
+                    <button onclick="closeTableSession(${session.id})"
+                        class="px-3 py-1.5 border border-deep-espresso text-deep-espresso font-label-caps text-[10px] tracking-widest hover:bg-deep-espresso hover:text-paper-white transition-all active:scale-95">
+                        CLOSE SESSION
+                    </button>
+                </td>
+            </tr>`;
+    }).join('');
+}
+
+async function closeTableSession(sessionId) {
+    if (!confirm('Close this table session? The table will become AVAILABLE again.')) return;
+
+    try {
+        const res = await window.apiFetch(`/api/tables/${sessionId}/close`, {
+            method: 'PUT',
+            headers: { 'X-Role': CURRENT_ROLE }
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+            window.showToast('Table session closed successfully!', 'success');
+            fetchTableSessions();
+        } else {
+            window.showToast(data.message || 'Failed to close session.', 'error');
+        }
+    } catch (err) {
+        console.error('Error closing session:', err);
+        window.showToast('Network error.', 'error');
+    }
 }

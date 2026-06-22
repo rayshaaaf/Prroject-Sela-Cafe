@@ -31,6 +31,8 @@ public class SecurityConfig {
                                 "/api/tables/scan",
                                 "/api/tables/get",
                                 "/api/tables/getAll",
+                                "/api/tables/sessions",
+                                "/api/tables/sessions/active",
                                 "/api/orders/create",
                                 "/api/orders/getById/**",
                                 "/api/payments/charge",

@@ -118,35 +118,21 @@ function wireCheckoutForm() {
         btn.disabled = true;
         btn.innerHTML = `<span class="flex items-center gap-3">PLACING ORDER <span class="animate-spin material-symbols-outlined text-sm">autorenew</span></span>`;
 
-        let sessionId = null;
+        let tableId = null;
         if (orderType === 'DINE_IN') {
             const tableSelect = document.getElementById('checkout-table');
-            const selectedTable = tableSelect ? tableSelect.value : 'T04';
-            
-            try {
-                const scanRes = await fetch(`${ORDER_API}/api/tables/scan`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ qrCode: selectedTable })
-                });
-                const scanData = await scanRes.json();
-                if (scanRes.ok && scanData.success && scanData.data) {
-                    sessionId = scanData.data.id;
-                } else {
-                    showCheckoutError(scanData.message || 'Failed to scan table session.');
-                    resetPlaceOrderBtn(btn);
-                    return;
-                }
-            } catch (scanErr) {
-                console.error('Table session scan failed:', scanErr);
-                showCheckoutError('Table session initialization failed.');
-                resetPlaceOrderBtn(btn);
+            if (tableSelect) {
+                tableId = tableSelect.value ? Number(tableSelect.value) : null;
+            }
+            if (!tableId) {
+                showCheckoutError('Please select a dining table.');
                 return;
             }
         }
 
         const payload = {
-            sessionId,
+            tableId,
+            sessionId: null,
             orderType,
             paymentMethod,
             customerName: name,
@@ -225,25 +211,31 @@ async function loadDiningTables() {
         const res = await fetch(`${ORDER_API}/api/tables/getAll`, { headers });
         const apiRes = await res.json();
         
-        if (res.ok && apiRes.success && apiRes.data && apiRes.data.length > 0) {
-            tableSelect.innerHTML = apiRes.data
+        if (res.ok && apiRes.success && apiRes.data) {
+            const availableTables = apiRes.data.filter(table => table.status === 'AVAILABLE');
+            
+            if (availableTables.length === 0) {
+                tableSelect.innerHTML = `<option value="">No tables available</option>`;
+                tableSelect.disabled = true;
+                return;
+            }
+
+            tableSelect.disabled = false;
+            tableSelect.innerHTML = availableTables
                 .map(table => {
-                    let desc = '';
-                    if (table.tableNumber === 'T01') desc = 'Main Hall - Table 01';
-                    else if (table.tableNumber === 'T04') desc = 'Garden View - Table 04';
-                    else if (table.tableNumber === 'T12') desc = 'Library Alcove - Table 12';
-                    else if (table.tableNumber === 'T22') desc = 'Patio - Table 22';
-                    else desc = `Table ${table.tableNumber} (Capacity: ${table.capacity})`;
-                    
-                    return `<option value="${table.qrCode}">${desc}</option>`;
+                    const desc = `Table ${table.tableNumber} (Capacity: ${table.capacity})`;
+                    return `<option value="${table.id}" data-qrcode="${table.qrCode}">${desc}</option>`;
                 })
                 .join('');
 
             // Pre-select scanned table from URL query parameter or localStorage
             const urlParams = new URLSearchParams(window.location.search);
-            const scannedTable = urlParams.get('table') || localStorage.getItem('scannedTable');
-            if (scannedTable) {
-                tableSelect.value = scannedTable;
+            const scannedTableQr = urlParams.get('table') || localStorage.getItem('scannedTable');
+            if (scannedTableQr) {
+                const matchedTable = availableTables.find(t => t.qrCode === scannedTableQr);
+                if (matchedTable) {
+                    tableSelect.value = matchedTable.id;
+                }
             }
         }
     } catch (err) {

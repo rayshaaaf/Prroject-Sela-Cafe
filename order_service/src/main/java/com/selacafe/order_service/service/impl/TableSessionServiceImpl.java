@@ -13,6 +13,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -123,5 +125,21 @@ public class TableSessionServiceImpl implements TableSessionService {
                 diningTableRepository.save(table);
 
                 return mapToResponse(session);
+        }
+
+        @Override
+        public List<TableSessionRes> getAll() {
+                return tableSessionRepository.findAllByOrderByStartedAtDesc()
+                                .stream()
+                                .map(this::mapToResponse)
+                                .collect(Collectors.toList());
+        }
+
+        @Override
+        public List<TableSessionRes> getAllActive() {
+                return tableSessionRepository.findAllByStatusOrderByStartedAtDesc("ACTIVE")
+                                .stream()
+                                .map(this::mapToResponse)
+                                .collect(Collectors.toList());
         }
 }
