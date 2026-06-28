@@ -193,6 +193,16 @@
                     <label class="block font-label-caps text-[10px] text-outline mb-1">INITIAL PASSWORD</label>
                     <input type="password" id="reg-password" required class="w-full bg-surface border border-outline-variant focus:border-primary focus:ring-0 rounded-lg p-2 text-sm" placeholder="••••••••">
                 </div>
+                <div>
+                    <label class="block font-label-caps text-[10px] text-outline mb-1">SELECT ROLE</label>
+                    <select id="reg-role" required class="w-full bg-surface border border-outline-variant focus:border-primary focus:ring-0 rounded-lg p-2.5 text-sm">
+                        <option value="CUSTOMER">CUSTOMER</option>
+                        <option value="CASHIER">CASHIER</option>
+                        <option value="COURIER">COURIER</option>
+                        <option value="BARISTA">BARISTA</option>
+                        <option value="ADMIN">ADMIN</option>
+                    </select>
+                </div>
                 <div class="sela-line my-6"></div>
                 <div class="flex justify-end gap-3">
                     <button type="button" onclick="closeAddUserModal()" class="border border-outline-variant text-on-surface-variant font-label-caps text-xs px-6 py-3 rounded-lg hover:bg-surface-container transition-all">Cancel</button>

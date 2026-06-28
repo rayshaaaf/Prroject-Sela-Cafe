@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
-import java.util.UUID;
 import java.util.Map;
 import java.util.HashMap;
 import java.net.URI;
@@ -112,10 +111,8 @@ public class PaymentServiceImpl implements PaymentService {
                     throw new RuntimeException("Komerce API returned error status: " + response.statusCode() + ", body: " + response.body());
                 }
             } catch (Exception e) {
-                // Log the exception and fall back to local mock QRIS generation
-                System.err.println("Komerce QRISLY generate failed: " + e.getMessage() + ". Falling back to local simulated QRIS.");
-                transactionId = "TX-" + System.currentTimeMillis() + "-" + UUID.randomUUID().toString().substring(0, 4).toUpperCase();
-                qrisCode = generateQrisCode("Sela Cafe", order.getOrderCode(), order.getTotalPrice());
+                System.err.println("Komerce QRISLY generate failed: " + e.getMessage());
+                throw new RuntimeException("Gagal menghubungkan ke layanan QRIS Sandbox: " + e.getMessage(), e);
             }
 
             payment = Payment.builder()
@@ -266,67 +263,4 @@ public class PaymentServiceImpl implements PaymentService {
                 .build();
     }
 
-
-    private String generateQrisCode(String merchantName, String orderCode, BigDecimal amount) {
-        // Format amount as integer string (e.g. 15000)
-        String amountStr = String.valueOf(amount.setScale(0, RoundingMode.HALF_UP).intValue());
-
-        StringBuilder qris = new StringBuilder();
-        qris.append("000201"); // Payload Indicator
-        qris.append("010212"); // Point of Initiation Method: 12 (Dynamic QR)
-
-        // Merchant Account Info (Tag 26) - National ID (QRIS)
-        String merchantInfoVal = "0017ID.CO.QRIS.WWW0215ID1020211234560303UME";
-        qris.append("26").append(String.format("%02d", merchantInfoVal.length())).append(merchantInfoVal);
-
-        qris.append("52045812"); // Merchant Category Code: 5812 (Restaurants)
-        qris.append("5303360");  // Currency Code: 360 (IDR)
-
-        // Amount (Tag 54)
-        qris.append("54").append(String.format("%02d", amountStr.length())).append(amountStr);
-
-        qris.append("5802ID"); // Country Code: ID
-
-        // Merchant Name (Tag 59)
-        qris.append("59").append(String.format("%02d", merchantName.length())).append(merchantName);
-
-        // Merchant City (Tag 60)
-        String city = "Depok";
-        qris.append("60").append(String.format("%02d", city.length())).append(city);
-
-        // Postal Code (Tag 61)
-        String postal = "16424";
-        qris.append("61").append(String.format("%02d", postal.length())).append(postal);
-
-        // Additional Data Field (Tag 62) - contains the order code for tracking
-        String orderTag = "07" + String.format("%02d", orderCode.length()) + orderCode;
-        qris.append("62").append(String.format("%02d", orderTag.length())).append(orderTag);
-
-        // CRC16 Placeholder (Tag 6304)
-        qris.append("6304");
-
-        // Calculate CRC16 checksum
-        String checksum = calculateCRC16(qris.toString());
-        qris.append(checksum);
-
-        return qris.toString();
-    }
-
-    private String calculateCRC16(String data) {
-        int crc = 0xFFFF;          // initial value
-        int polynomial = 0x1021;   // 0001 0000 0010 0001  (0, 5, 12)
-        byte[] bytes = data.getBytes(StandardCharsets.US_ASCII);
-        for (byte b : bytes) {
-            for (int i = 0; i < 8; i++) {
-                boolean bit = ((b >> (7 - i) & 1) == 1);
-                boolean c15 = ((crc >> 15 & 1) == 1);
-                crc <<= 1;
-                if (c15 ^ bit) {
-                    crc ^= polynomial;
-                }
-            }
-        }
-        crc &= 0xFFFF;
-        return String.format("%04X", crc);
-    }
 }

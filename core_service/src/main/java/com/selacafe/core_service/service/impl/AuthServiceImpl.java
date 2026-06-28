@@ -44,8 +44,12 @@ public class AuthServiceImpl implements AuthService {
                         throw new BadRequestException("Email already registered");
                 }
 
-                Role role = roleRepository.findByName("CUSTOMER")
-                                .orElseThrow(() -> new ResourceNotFoundException("Role CUSTOMER not found"));
+                String roleName = request.getRole() != null && !request.getRole().isBlank()
+                                ? request.getRole().toUpperCase()
+                                : "CUSTOMER";
+
+                Role role = roleRepository.findByName(roleName)
+                                .orElseThrow(() -> new ResourceNotFoundException("Role " + roleName + " not found"));
 
                 User user = User.builder()
                                 .name(request.getName())

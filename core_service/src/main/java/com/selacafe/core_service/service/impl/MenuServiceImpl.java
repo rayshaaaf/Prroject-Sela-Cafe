@@ -117,7 +117,7 @@ public class MenuServiceImpl implements MenuService {
                                 .stock(menu.getStock())
                                 .isAvailable(menu.getIsAvailable())
                                 .categoryId(menu.getCategory().getId())
-                                .categoryName(menu.getCategory().getNameId())
+                                .categoryName(menu.getCategory().getNameEn())
                                 .imageUrl(menu.getImageUrl())
                                 .build();
         }

@@ -159,7 +159,8 @@ window.saveNewUser = async function(e) {
         name: document.getElementById('reg-name').value,
         email: document.getElementById('reg-email').value,
         phone: document.getElementById('reg-phone').value,
-        password: document.getElementById('reg-password').value
+        password: document.getElementById('reg-password').value,
+        role: document.getElementById('reg-role').value
     };
 
     try {

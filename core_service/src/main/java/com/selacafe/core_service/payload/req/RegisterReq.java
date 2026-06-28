@@ -20,4 +20,6 @@ public class RegisterReq {
     @NotBlank
     private String password;
 
+    private String role;
+
 }
