@@ -29,7 +29,7 @@ public class UserController {
                                                 .build());
         }
 
-        @PreAuthorize("hasAnyAuthority('ADMIN','OWNER')")
+        @PreAuthorize("hasAnyAuthority('ADMIN','OWNER','CASHIER')")
         @GetMapping("/getAll")
         public ResponseEntity<ApiRes<List<UserRes>>> getAllUsers() {
                 return ResponseEntity.ok(
@@ -116,7 +116,7 @@ public class UserController {
                                                 .build());
         }
 
-        @PreAuthorize("hasAnyAuthority('ADMIN','OWNER')")
+        @PreAuthorize("hasAnyAuthority('ADMIN','OWNER','CASHIER')")
         @GetMapping("/active")
         public ResponseEntity<ApiRes<List<UserRes>>> getActiveUsers() {
 

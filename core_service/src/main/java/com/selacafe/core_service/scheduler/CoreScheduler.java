@@ -17,7 +17,7 @@ public class CoreScheduler {
     private final PdfReportService pdfReportService;
     private final EmailService emailService;
 
-    @Scheduled(cron = "0 56 15 * * *")
+    @Scheduled(cron = "0 58 15 * * *")
     public void sendDailyReport() {
 
         ByteArrayOutputStream pdf = pdfReportService.generateDailyReport();

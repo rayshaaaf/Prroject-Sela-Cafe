@@ -548,7 +548,7 @@
 
             // Tampilkan opsi kustomisasi yang sesuai kategori
             const catName = (product.categoryName || product.category || '').toLowerCase();
-            const isFood = ['pastry', 'dessert'].includes(catName);
+            const isFood = ['pastry', 'dessert', 'pastri', 'pencuci mulut', 'pencuci_mulut', 'food', 'makanan'].includes(catName);
 
             if (isFood) {
                 document.getElementById('beverage-customization')?.classList.add('hidden');
@@ -598,14 +598,14 @@
 
             const filtered = products.filter(p => Number(p.id) !== Number(currentProduct.id));
             const currentCat = (currentProduct.categoryName || currentProduct.category || '').toLowerCase();
-            const isBeverage = ['coffee', 'tea', 'non-coffee'].includes(currentCat);
+            const isBeverage = ['coffee', 'tea', 'non-coffee', 'kopi', 'teh', 'non-kopi'].includes(currentCat);
 
             let primaryMatches = [];
             let secondaryMatches = [];
 
             filtered.forEach(p => {
                 const pCat = (p.categoryName || p.category || '').toLowerCase();
-                const pIsBeverage = ['coffee', 'tea', 'non-coffee'].includes(pCat);
+                const pIsBeverage = ['coffee', 'tea', 'non-coffee', 'kopi', 'teh', 'non-kopi'].includes(pCat);
                 if (isBeverage !== pIsBeverage) {
                     primaryMatches.push(p);
                 } else {
@@ -623,7 +623,7 @@
             if (grid && recommendations.length > 0) {
                 grid.innerHTML = recommendations.map(p => {
                     const priceFormatted = 'Rp ' + Number(p.price || 0).toLocaleString('id-ID');
-                    const isFood = ['pastry', 'dessert'].includes((p.categoryName || p.category || '').toLowerCase());
+                    const isFood = ['pastry', 'dessert', 'pastri', 'pencuci mulut', 'pencuci_mulut', 'food', 'makanan'].includes((p.categoryName || p.category || '').toLowerCase());
                     const badge = isFood ? "Baker's Choice" : "Brewed Fresh";
                     return `
                     <a href="detailmenu.html?id=${p.id}" onclick="event.preventDefault(); loadMenuDetail(${p.id});" class="flex flex-col gap-6 group cursor-pointer block decoration-none text-on-surface">
@@ -685,7 +685,7 @@
             const sizeLabel = size.charAt(0).toUpperCase() + size.slice(1);
             
             const catName = (currentProduct?.categoryName || '').toLowerCase();
-            const isFood = ['pastry', 'dessert'].includes(catName);
+            const isFood = ['pastry', 'dessert', 'pastri', 'pencuci mulut', 'pencuci_mulut', 'food', 'makanan'].includes(catName);
             
             let name;
             if (isFood) {

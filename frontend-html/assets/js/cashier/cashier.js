@@ -1,19 +1,34 @@
 const CURRENT_ROLE = 'CASHIER';
 
-const COURIERS = [
+let COURIERS = [
     { id: 101, name: "Ahmad" },
     { id: 102, name: "Budi" },
     { id: 103, name: "Candra" },
     { id: 104, name: "Dedi" },
-    { id: 105, name: "Eko" },
-    { id: 106, name: "Fandi" },
-    { id: 107, name: "Gilang" },
-    { id: 108, name: "Hadi" },
-    { id: 109, name: "Indra" },
-    { id: 110, name: "Joko" }
+    { id: 105, name: "Eko" }
 ];
 
-document.addEventListener('DOMContentLoaded', () => {
+async function fetchCouriers() {
+    try {
+        const res = await window.apiFetch('/api/users/active');
+        if (res.ok) {
+            const apiRes = await res.json();
+            if (apiRes.success && apiRes.data) {
+                const dbCouriers = apiRes.data
+                    .filter(u => u.role === 'COURIER')
+                    .map(u => ({ id: u.id, name: u.name }));
+                if (dbCouriers.length > 0) {
+                    COURIERS = dbCouriers;
+                }
+            }
+        }
+    } catch (err) {
+        console.error('Error fetching couriers:', err);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+    await fetchCouriers();
     fetchCashierOrders();
     fetchTableSessions();
     setInterval(() => {
