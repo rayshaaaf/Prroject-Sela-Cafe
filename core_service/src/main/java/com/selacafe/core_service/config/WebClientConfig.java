@@ -12,6 +12,7 @@ public class WebClientConfig {
 
         return WebClient.builder()
                 .baseUrl("http://localhost:8082")
+                .defaultHeader("X-Gateway-Token", "SelaCafeGatewaySecret2026")
                 .build();
     }
 }

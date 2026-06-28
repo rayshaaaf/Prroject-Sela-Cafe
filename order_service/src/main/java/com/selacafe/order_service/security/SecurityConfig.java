@@ -40,7 +40,8 @@ public class SecurityConfig {
                                 "/api/payments/trx/**",
                                 "/api/payments/web/**",
                                 "/api/payments/callback",
-                                "/api/payments/*/simulate-success"
+                                "/api/payments/*/simulate-success",
+                                "/api/analytics/**"
                         ).permitAll()
                         .anyRequest()
                         .authenticated()
